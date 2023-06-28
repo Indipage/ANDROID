@@ -1,7 +1,8 @@
-package com.indipage
+package com.indipage.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.indipage.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
