@@ -1,8 +1,9 @@
 package com.indipage.domain.repository
 
-import com.indipage.data.dto.ExampleResponse
-import retrofit2.Response
+import androidx.paging.PagingData
+import com.indipage.data.dto.kakao.KaKaoImage
+import kotlinx.coroutines.flow.Flow
 
 interface TestApiRepository {
-    suspend fun getTestApi(): Response<ExampleResponse>
+    fun getKaKaoResult(query:String): Flow<PagingData<KaKaoImage>>
 }

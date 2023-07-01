@@ -1,4 +1,5 @@
 object AndroidX {
+    const val ACTIVITY = "androidx.activity:activity-ktx:1.1.0"
     const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
     const val CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
     const val LIFECYCLE_RUNTIME =
@@ -9,7 +10,7 @@ object AndroidX {
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VIEWMODEL_KTX}"
 
     const val SPLASH_SCREEN = "androidx.core:core-splashscreen:${Versions.SPLASHSCREEN}"
-    const val PAGING="androidx.paging:paging-runtime-ktx:${Versions.PAGING_VERSION}"
+    const val PAGING = "androidx.paging:paging-runtime-ktx:${Versions.PAGING_VERSION}"
 }
 
 object TestDependencies {
@@ -32,6 +33,7 @@ object SquareUp {
     const val OKHTTP3_BOM = "com.squareup.okhttp3:okhttp-bom:${Versions.OKHTTP3_BOM}"
     const val OKHTTP3 = "com.squareup.okhttp3:okhttp"
     const val OKHTTP3_LOGGING = "com.squareup.okhttp3:logging-interceptor"
+
 }
 
 object KotlinX {
@@ -40,9 +42,12 @@ object KotlinX {
     const val KOTLINX_SERIALIZATION =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION_VERSION}"
 }
-object ThirdParty{
+
+object ThirdParty {
     const val COIL = "io.coil-kt:coil:${Versions.COIL}"
 }
+
 object Jakewharton {
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
+    const val CONVERTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
 }
