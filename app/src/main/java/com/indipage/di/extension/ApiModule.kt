@@ -13,6 +13,6 @@ import javax.inject.Singleton
 object ApiModule {
     @Provides
     @Singleton
-    fun provideHomeApiService(@TestRetrofit retrofit: Retrofit): TestApi =
+    fun provideTestService(@TestRetrofit retrofit: Retrofit): TestApi =
         retrofit.create(TestApi::class.java)
 }
