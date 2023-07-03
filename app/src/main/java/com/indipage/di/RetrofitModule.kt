@@ -1,6 +1,8 @@
-package com.indipage.di.extension
+package com.indipage.di
 
 import android.util.Log
+import com.indipage.di.extension.isJsonArray
+import com.indipage.di.extension.isJsonObject
 import com.indipage.util.API.API_TAG
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module

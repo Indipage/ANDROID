@@ -1,4 +1,4 @@
-package com.indipage.di.extension
+package com.indipage.di
 
 import com.indipage.data.repositoryimpl.TestRepositoryImpl
 import com.indipage.domain.repository.TestApiRepository

@@ -1,4 +1,4 @@
-package com.indipage.di.extension
+package com.indipage.di
 
 import javax.inject.Qualifier
 
