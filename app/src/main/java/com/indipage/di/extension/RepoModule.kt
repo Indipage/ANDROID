@@ -14,6 +14,6 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun providesHomeRepo(repoImpl: TestRepositoryImpl): TestApiRepository
+    abstract fun providesTestRecyclerviewRepo(repoImpl: TestRepositoryImpl): TestApiRepository
 
 }

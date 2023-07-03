@@ -1,17 +1,15 @@
 package com.indipage.presentation
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.data.dto.kakao.KaKaoImage
 import com.indipage.databinding.ItemKakaoImageBinding
 import com.indipage.util.DiffCallback
 
-class SearchPagingAdapter(
-) : PagingDataAdapter<KaKaoImage, SearchPagingAdapter.PagingViewHolder>(
+class TestRecyclerviewPagingAdapter(
+) : PagingDataAdapter<KaKaoImage, TestRecyclerviewPagingAdapter.PagingViewHolder>(
     KaKaoDiffCallback
 ) {
 
@@ -27,7 +25,6 @@ class SearchPagingAdapter(
 
     inner class PagingViewHolder(private val binding: ItemKakaoImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(data: KaKaoImage) {
             binding.kakaoimage = data
             binding.executePendingBindings()

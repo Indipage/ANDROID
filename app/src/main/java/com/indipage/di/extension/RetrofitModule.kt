@@ -51,7 +51,7 @@ object RetrofitModule {
     @TestRetrofit
     fun provideReqresRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("https://dapi.kakao.com")
+        .baseUrl("base url")
         .client(okHttpClient)
         .build()
 
@@ -59,7 +59,7 @@ object RetrofitModule {
         val requestInterceptor = Interceptor { chain ->
             val original = chain.request()
             val builder = original.newBuilder()
-            builder.addHeader("Authorization", "KakaoAK bdbb7a2357a91dea2795012758a3e6ee")
+            builder.addHeader("Authorization", "헤더의 토큰 값")
             chain.proceed(builder.build())
         }
         return requestInterceptor

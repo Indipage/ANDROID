@@ -9,7 +9,6 @@ class TestDataSource(
     private val apiService: TestApi,
     private val query: String
 ) : PagingSource<Int, KaKaoImage>() {
-
     override fun getRefreshKey(state: PagingState<Int, KaKaoImage>): Int? {
         return state.anchorPosition?.let { position ->
             state.closestPageToPosition(position)?.prevKey?.plus(1)
