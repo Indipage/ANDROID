@@ -53,10 +53,12 @@ dependencies {
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX
+    implementation(AndroidX.ACTIVITY)
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.CORE_KTX)
     implementation(AndroidX.LIFECYCLE_RUNTIME)
     implementation(AndroidX.PAGING)
+    implementation(AndroidX.LIFECYCLE_VIEWMODEL_KTX)
 
     // Matrial Design
     implementation(Google.MATERIAL)
@@ -77,5 +79,6 @@ dependencies {
     implementation(SquareUp.OKHTTP3_LOGGING)
     implementation(SquareUp.OKHTTP3_BOM)
     implementation(Jakewharton.TIMBER)
+    implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
 }
