@@ -2,12 +2,9 @@ package com.indipage.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.indipage.R
-import com.indipage.data.dto.request.RequestTestDto
 import com.indipage.databinding.ActivityMainBinding
 import com.indipage.util.base.BindingActivity
-import com.indipage.util.pagingSubmitData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,12 +12,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     // 어댑터 초기화
     private val adapter = TestRecyclerviewPagingAdapter()
+
     // ViewModel 초기화
     private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         /**
-         *  viewModel.test(RequestTestDto("test123"))
+         *  viewModel.test(RequestTestDto("test123","test123"))
          *
          * **/
 

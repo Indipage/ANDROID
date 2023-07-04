@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.indipage.data.dto.request.RequestTestDto
+import com.indipage.data.dto.request.RequestSignInDto
 import com.indipage.data.dto.response.TestRecyclerviewImage
 import com.indipage.domain.repository.TestApiRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +18,8 @@ class MainViewModel @Inject constructor(
     fun getRecyclerviewTest(query: String): Flow<PagingData<TestRecyclerviewImage>> =
         apiRepository.getRecyclerviewTest(query)
 
-    fun test(requestTestDto: RequestTestDto) = viewModelScope.launch {
-        apiRepository.test(requestTestDto)
+    fun test(requestTestDto: RequestSignInDto) = viewModelScope.launch {
+        apiRepository.singIn(requestTestDto)
             .onSuccess { Log.d("test", "success") }
             .onFailure { Log.d("test", "fail") }
     }

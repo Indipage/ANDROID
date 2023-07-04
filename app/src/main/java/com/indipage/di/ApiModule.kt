@@ -1,6 +1,6 @@
 package com.indipage.di
 
-import com.indipage.data.api.TestApi
+import com.indipage.data.api.TestApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ import javax.inject.Singleton
 object ApiModule {
     @Provides
     @Singleton
-    fun provideTestService(@TestRetrofit retrofit: Retrofit): TestApi =
-        retrofit.create(TestApi::class.java)
+    fun provideTestService(@TestRetrofit retrofit: Retrofit): TestApiService =
+        retrofit.create(TestApiService::class.java)
 }

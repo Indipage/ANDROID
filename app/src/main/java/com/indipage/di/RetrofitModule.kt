@@ -53,7 +53,7 @@ object RetrofitModule {
     @TestRetrofit
     fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("base url")
+        .baseUrl("http://52.78.152.187:8080")
         .client(okHttpClient)
         .build()
 
