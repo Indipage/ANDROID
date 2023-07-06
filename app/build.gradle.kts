@@ -59,6 +59,8 @@ dependencies {
     implementation(AndroidX.LIFECYCLE_RUNTIME)
     implementation(AndroidX.PAGING)
     implementation(AndroidX.LIFECYCLE_VIEWMODEL_KTX)
+    implementation(AndroidX.NAVIGATION_CONPONENT_FRAGMENT)
+    implementation(AndroidX.NAVIGATION_CONPONENT_UI)
 
     // Matrial Design
     implementation(Google.MATERIAL)

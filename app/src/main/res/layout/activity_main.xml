@@ -12,5 +12,24 @@
         android:layout_height="match_parent"
         tools:context=".presentation.MainActivity">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fc_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bot_nav_main"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/navigation_main" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bot_nav_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_main_nav" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

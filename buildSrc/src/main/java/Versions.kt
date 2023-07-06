@@ -33,4 +33,6 @@ object Versions {
 
     const val COIL = "2.3.0"
     const val PAGING_VERSION = "3.1.1"
+
+    const val NAV_VERSION = "2.5.3"
 }
