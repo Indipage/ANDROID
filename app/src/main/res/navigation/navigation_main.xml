@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/navigation_article">
+
+    <fragment
+        android:id="@+id/navigation_article"
+        android:name="com.indipage.presentation.article.ArticleFragment"
+        android:label="ArticleFragment" />
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.indipage.presentation.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/navigation_ticket"
+        android:name="com.indipage.presentation.ticket.TicketFragment"
+        android:label="TicketFragment" />
+    <fragment
+        android:id="@+id/navigation_my_page"
+        android:name="com.indipage.presentation.profile.MyPageFragment"
+        android:label="MyPageFragment" />
+</navigation>
