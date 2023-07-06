@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">IndiPage</string>
+    <string name="label_article_icon">아티클</string>
+    <string name="label_search_icon">검색</string>
+    <string name="label_ticket_icon">티켓</string>
+    <string name="label_my_page_icon">마이페이지</string>
 </resources>
