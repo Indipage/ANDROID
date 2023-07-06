@@ -2,6 +2,10 @@ package com.indipage.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.indipage.R
 import com.indipage.databinding.ActivityMainBinding
 import com.indipage.util.base.BindingActivity
@@ -32,6 +36,21 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
          *          paging 라이브러리 사용해서 무한스크롤 리사이클러뷰 구현
          *          pagingSubmitData라는 유틸 함수를 만들어 놓았음
          * **/
+
+        initView()
+    }
+
+
+    private fun initView(){
+        val navController = supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()
+
+        with(binding) {
+            botNavMain.itemIconTintList = null
+            navController?.let { NavController->
+                botNavMain.setupWithNavController(NavController)
+            }
+        }
+
     }
 }
 
