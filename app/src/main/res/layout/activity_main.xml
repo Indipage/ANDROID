@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/navigation_main_menu" />
+            app:menu="@menu/menu_main_nav" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
