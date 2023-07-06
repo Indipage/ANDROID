@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="아티클 뷰" />
+            android:text="아티클 뷰" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
