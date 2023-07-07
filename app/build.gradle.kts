@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":core-ui"))
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX
