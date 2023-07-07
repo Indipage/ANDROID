@@ -2,13 +2,12 @@ package com.indipage.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.core_ui.base.BindingActivity
+import com.example.core_ui.context.longToast
 import com.indipage.R
 import com.indipage.databinding.ActivityMainBinding
-import com.indipage.util.base.BindingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +20,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        longToast("test")
         /**
          *  viewModel.test(RequestTestDto("test123","test123"))
          *
@@ -41,12 +41,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
 
-    private fun initView(){
-        val navController = supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()
+    override fun initView() {
+        val navController =
+            supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()
 
         with(binding) {
             botNavMain.itemIconTintList = null
-            navController?.let { NavController->
+            navController?.let { NavController ->
                 botNavMain.setupWithNavController(NavController)
             }
         }

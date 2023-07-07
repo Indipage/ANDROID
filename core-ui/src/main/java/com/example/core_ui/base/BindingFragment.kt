@@ -1,4 +1,4 @@
-package com.indipage.util.base
+package com.example.core_ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.indipage.R
 
 abstract class BindingFragment<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int,
@@ -25,6 +24,7 @@ abstract class BindingFragment<T : ViewDataBinding>(
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
