@@ -9,6 +9,8 @@ import com.example.core_ui.context.longToast
 import com.indipage.R
 import com.indipage.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -21,6 +23,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         longToast("test")
+        Timber.d("Hello")
         /**
          *  viewModel.test(RequestTestDto("test123","test123"))
          *
