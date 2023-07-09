@@ -14,7 +14,7 @@
 | [lsakee](https://github.com/lsakee) | [sohyun127](https://github.com/sohyun127)  | [s6m1n](https://github.com/s6m1n) |
 |:------------------------------------:|:-------------------------:|:------------------------------:|
 |      <img width="150" src="https://avatars.githubusercontent.com/u/93514333?v=4"/>       | <img width="150" src="https://avatars.githubusercontent.com/u/98076050?v=4"/> |   <img width="150" src="https://avatars.githubusercontent.com/u/76741702?v=4"/>    |
-|             초대장            |          아티클           |         검색/마이페이지          |
+|       초대장/마이페이지       |          아티클           |        검색/서점상세        |
 
 ## 🛠 Tech Stack
 
