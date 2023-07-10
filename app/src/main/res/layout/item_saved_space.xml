@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="saved_space"
+            type="com.indipage.data.dto.response.SavedSpace" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp">
+
+        <ImageView
+            android:id="@+id/iv_saved_space"
+            imageUrl="@{saved_space.imageUrl}"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_saved_space_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/font_pretendard_regular"
+            android:text="@{saved_space.spaceName}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/iv_saved_space"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="test" />
+
+        <TextView
+            android:id="@+id/tv_saved_space_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/font_pretendard_regular"
+            android:text="@{saved_space.spaceAddress}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/iv_saved_space"
+            app:layout_constraintTop_toBottomOf="@id/tv_saved_space_name"
+            tools:text="test" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
