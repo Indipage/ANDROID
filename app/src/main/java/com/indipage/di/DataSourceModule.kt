@@ -1,6 +1,6 @@
 package com.indipage.di
 
-import com.indipage.data.datasource.Remote.TestDataSourceImpl
+import com.indipage.data.datasource.remote.TestDataSourceImpl
 import com.indipage.data.datasource.TestDataSource
 import dagger.Binds
 import dagger.Module
