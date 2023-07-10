@@ -43,7 +43,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         initView()
     }
 
-
     override fun initView() {
         val navController =
             supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()

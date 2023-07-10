@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemSpaceDetailTagBinding
 
-class SpaceDetailTagAdapter() :
+class SpaceDetailTagAdapter(private val itemList: List<String>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var itemList = listOf<String>("안녕", "만나서", "반가워")
-
 
     class SpaceDetailTagViewHolder(private val binding: ItemSpaceDetailTagBinding) :
         RecyclerView.ViewHolder(binding.root) {

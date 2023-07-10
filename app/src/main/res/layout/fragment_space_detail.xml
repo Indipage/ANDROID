@@ -7,89 +7,170 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.search.SpaceDetailFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_space_detail_background"
-            android:layout_width="0dp"
-            android:layout_height="381dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.search.SpaceDetailFragment">
 
-        <ImageView
-            android:id="@+id/iv_bookmark_icon"
-            android:layout_width="25dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/iv_space_detail_background"
+                android:layout_width="0dp"
+                android:layout_height="381dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_space_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_space_address"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="인디페이지 최고"
-            tools:textSize="25sp" />
+            <ImageView
+                android:id="@+id/iv_bookmark_icon"
+                android:layout_width="25dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/ic_launcher_foreground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/tv_space_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_space_time"
-            app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-            tools:text="주소 | 상세주소란"
-            tools:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_space_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_space_address"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="인디페이지 최고"
+                tools:textSize="25sp" />
 
 
-        <TextView
-            android:id="@+id/tv_space_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/tv_space_closed"
-            app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-            tools:text="운영시간 | Tue-Sat 08:00-19:00"
-            tools:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_space_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_space_scale"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="주소 | 상세주소란"
+                tools:textSize="15sp" />
 
 
-        <TextView
-            android:id="@+id/tv_space_closed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="49dp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
-            app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-            tools:text="휴무 | 월화수목금토일"
-            tools:textSize="15sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_space_detail_tag"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="21dp"
-            android:layout_marginBottom="23dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_space_detail_tag">
+            <TextView
+                android:id="@+id/tv_space_scale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_space_time"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="규모 | 소형"
+                tools:textSize="15sp" />
 
 
+            <TextView
+                android:id="@+id/tv_space_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/tv_space_closed"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="운영시간 | Tue-Sat 08:00-19:00"
+                tools:textSize="15sp" />
 
-        </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_space_closed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="49dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="휴무 | 일요일, 월요일"
+                tools:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_space_detail_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="21dp"
+                android:layout_marginBottom="23dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/item_space_detail_tag" />
+
+            <TextView
+                android:id="@+id/tv_comment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                app:layout_constraintTop_toBottomOf="@id/iv_space_detail_background"
+                tools:text="책방지기 00의 한마디"
+                tools:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_comment_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                app:layout_constraintTop_toBottomOf="@id/tv_comment_title"
+                tools:text="독립서점 소개글 작성란"
+                tools:textSize="13sp" />
+
+
+            <TextView
+                android:id="@+id/tv_curation_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                app:layout_constraintTop_toBottomOf="@id/tv_comment_detail"
+                tools:text="책방지기 추천서가"
+                tools:textSize="20sp" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_curation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_curation_title"/>
+
+            <TextView
+                android:id="@+id/tv_curation_content_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vp_curation"
+                tools:text="책 제목" />
+
+
+            <TextView
+                android:id="@+id/tv_curation_content_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_curation_content_title"
+                tools:text="큐레이션 멘트" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vp_curation">
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

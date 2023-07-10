@@ -7,6 +7,7 @@ import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.databinding.FragmentSpaceDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.android.go.sopt.presentation.recycler.SpaceDetailCurationAdapter
 
 @AndroidEntryPoint
 class SpaceDetailFragment :
@@ -15,9 +16,8 @@ class SpaceDetailFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val tagAdapter = SpaceDetailTagAdapter()
         binding.rvSpaceDetailTag.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSpaceDetailTag.adapter = tagAdapter
+        binding.rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(listOf("안녕", "만나서", "반가워"))
     }
 }
