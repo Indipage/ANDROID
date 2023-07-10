@@ -9,8 +9,5 @@ import retrofit2.http.Query
 
 interface BookMarkApiService {
     @GET("/user/bookmark/article")
-    suspend fun getSavedArticles(
-        @Query("page") page: Int,
-        @Query("size") size: Int
-    ): BaseResponse<List<SavedArticle>>
+    suspend fun getSavedArticles(): BaseResponse<List<SavedArticle>>
 }
