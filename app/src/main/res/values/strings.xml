@@ -6,4 +6,9 @@
     <string name="label_my_page_icon">마이페이지</string>
     <string name="tv_saved_article_title">저장한 아티클</string>
     <string name="tv_saved_space">저장한 공간</string>
+    <string name="tv_app_version">앱버젼</string>
+    <string name="tv_my_page_question">자주 묻는 질문</string>
+    <string name="tv_my_page_exit">탈퇴</string>
+    <string name="tv_logout">자주 묻는 질문</string>
+    <string name="tv_info">개인정보처리방침</string>
 </resources>
