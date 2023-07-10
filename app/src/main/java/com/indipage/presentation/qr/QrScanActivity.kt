@@ -7,6 +7,7 @@ import com.indipage.databinding.ActivityQrScanBinding
 import com.journeyapps.barcodescanner.CaptureManager
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class QrScanActivity : BindingActivity<ActivityQrScanBinding>(R.layout.activity_qr_scan) {
@@ -29,7 +30,7 @@ class QrScanActivity : BindingActivity<ActivityQrScanBinding>(R.layout.activity_
     }
 
     override fun initView() {
-        TODO("Not yet implemented")
+        Timber.d("init")
     }
 
     override fun onResume() {
