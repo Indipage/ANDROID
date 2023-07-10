@@ -14,9 +14,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/ab_saved_article"
             android:layout_width="match_parent"
-            android:gravity="center"
             android:layout_height="82dp"
             android:background="@color/white"
+            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
@@ -42,16 +42,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_saved_article"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="12dp"
+            android:orientation="vertical"
             android:paddingHorizontal="28dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ab_saved_article"
-            tools:listitem="@layout/item_saved_article"
-            app:spanCount="1" />
+            tools:listitem="@layout/item_saved_article" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
