@@ -29,7 +29,5 @@
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_main_nav" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
