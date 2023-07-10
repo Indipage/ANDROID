@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
@@ -45,6 +46,13 @@ class SavedSpaceFragment :
         binding.rvSavedSpace.adapter = adapter
         adapter.submitList(spaceList)
 //        getCollectData()
+        setNavigation()
+    }
+
+    private fun setNavigation() {
+        binding.tbSavedSpace.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun getCollectData() {

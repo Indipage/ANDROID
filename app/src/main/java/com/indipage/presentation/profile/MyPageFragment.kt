@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.test="https://avatars.githubusercontent.com/u/93514333?v=4"
         binding.ivMyPageProfileArticle.setOnClickListener {
             findNavController().navigate(
                 R.id.action_navigation_my_page_to_saved_article, bundleOf(
