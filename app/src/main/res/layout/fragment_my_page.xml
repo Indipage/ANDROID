@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+            <variable
+                name="test"
+                type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,15 +16,14 @@
 
         <ImageView
             android:id="@+id/iv_my_page_profile_image"
-            android:src="@drawable/ic_launcher_background"
+            setCircleImage="@{test}"
             android:layout_width="84dp"
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_launcher_background" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_my_page_profile_name"
