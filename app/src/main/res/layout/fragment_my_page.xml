@@ -21,6 +21,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="마이페이지 뷰" />
+        <TextView
+            android:id="@+id/tv_profile2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile"
+            android:text="마이페이지 뷰2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

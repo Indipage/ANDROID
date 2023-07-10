@@ -5,4 +5,5 @@
     <string name="label_ticket_icon">티켓</string>
     <string name="label_my_page_icon">마이페이지</string>
     <string name="tv_saved_article_title">저장한 아티클</string>
+    <string name="tv_saved_space">저장한 공간</string>
 </resources>

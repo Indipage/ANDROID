@@ -1,9 +1,9 @@
-package com.indipage.presentation.savedarticle
+package com.indipage.presentation.savedspace
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.SavedArticle
+import com.indipage.data.dto.response.SavedSpace
 import com.indipage.domain.repository.BookMarkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,19 +14,19 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SavedArticleViewModel @Inject constructor(
+class SavedSpaceViewModel @Inject constructor(
     private val apiRepository: BookMarkRepository
 ) : ViewModel() {
 
-    private val _savedArticles = MutableStateFlow<UiState<List<SavedArticle>>>(UiState.Loading)
-    val savedArticles: StateFlow<UiState<List<SavedArticle>>> = _savedArticles.asStateFlow()
+    private val _savedSpaces = MutableStateFlow<UiState<List<SavedSpace>>>(UiState.Loading)
+    val savedSpaces: StateFlow<UiState<List<SavedSpace>>> = _savedSpaces.asStateFlow()
     init {
-        getSavedArticles()
+        getSavedSpaces()
     }
-    fun getSavedArticles() = viewModelScope.launch {
-        apiRepository.getSavedArticles()
-            .onSuccess { savedArticles ->
-                _savedArticles.value = UiState.Success(savedArticles)
+    fun getSavedSpaces() = viewModelScope.launch {
+        apiRepository.getSavedSpaces()
+            .onSuccess { savedSpaces ->
+                _savedSpaces.value = UiState.Success(savedSpaces)
                 Timber.d("Success")
             }
             .onFailure {
