@@ -2,13 +2,10 @@ package com.indipage.presentation.savedarticle
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.databinding.FragmentSavedArticleBinding
-import com.indipage.presentation.MainViewModel
-import com.indipage.presentation.TestRecyclerviewPagingAdapter
 import com.indipage.util.pagingSubmitData
 import dagger.hilt.android.AndroidEntryPoint
 

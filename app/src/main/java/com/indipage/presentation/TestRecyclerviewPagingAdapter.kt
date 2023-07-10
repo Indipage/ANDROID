@@ -15,7 +15,7 @@ class TestRecyclerviewPagingAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingViewHolder {
         val binding =
-            ItemTestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+          ItemTestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PagingViewHolder(binding)
     }
 
