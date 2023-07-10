@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/tv_saved_article_title"
+                    android:text="@string/tv_saved_space"
                     android:textAppearance="@style/TextAppearance.IndiPage.Headline01"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -40,18 +40,17 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_saved_article"
+            android:id="@+id/rv_saved_space"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="94dp"
+            android:layout_marginTop="102dp"
             android:orientation="vertical"
-            android:paddingHorizontal="28dp"
+            android:paddingHorizontal="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ab_saved_article"
-            tools:listitem="@layout/item_saved_article" />
-
+            app:layout_constraintTop_toBottomOf="@id/ab_saved_article"
+            tools:listitem="@layout/item_saved_space" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
