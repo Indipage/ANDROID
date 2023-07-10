@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.search.SpaceDetailFragment">
+
+        <ImageView
+            android:id="@+id/iv_space_detail_background"
+            android:layout_width="0dp"
+            android:layout_height="381dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_bookmark_icon"
+            android:layout_width="25dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_space_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_space_address"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="인디페이지 최고"
+            tools:textSize="25sp" />
+
+
+        <TextView
+            android:id="@+id/tv_space_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_space_time"
+            app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+            tools:text="주소 | 상세주소란"
+            tools:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/tv_space_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/tv_space_closed"
+            app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+            tools:text="운영시간 | Tue-Sat 08:00-19:00"
+            tools:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/tv_space_closed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="49dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
+            app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+            tools:text="휴무 | 월화수목금토일"
+            tools:textSize="15sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_space_detail_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginBottom="23dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_space_detail_tag">
+
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
