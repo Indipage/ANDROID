@@ -25,8 +25,8 @@ class QrScanActivity : BindingActivity<ActivityQrScanBinding>(R.layout.activity_
         captureManager.setShowMissingCameraPermissionDialog(
             true,
             "카메라 권한 요청"
-        )    // 권한요청 다이얼로그 보이게 할 지 말 지
-        captureManager.decode()        // decoding 시작
+        )    // 권한요청 다이얼로그
+        captureManager.decode()        // decoding start
     }
 
     override fun initView() {
@@ -47,14 +47,12 @@ class QrScanActivity : BindingActivity<ActivityQrScanBinding>(R.layout.activity_
         super.onDestroy()
         captureManager.onDestroy()
     }
-
-    // onSaveInstanceState ? 또한 처리해주어야 한다.
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         captureManager.onSaveInstanceState(outState)
     }
 
-    // 카메라 권한을 요청할 수 있기 때문에
+    // 카메라 권한을 요청
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
