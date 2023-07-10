@@ -14,6 +14,6 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun providesTestRecyclerviewRepo(TestDataSourceImpl: TestDataSourceImpl): TestDataSource
+    abstract fun providesTestDataSource(TestDataSourceImpl: TestDataSourceImpl): TestDataSource
 
 }
