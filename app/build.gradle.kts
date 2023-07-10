@@ -83,4 +83,5 @@ dependencies {
     implementation(Jakewharton.TIMBER)
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
+    implementation(ThirdParty.ZXING)
 }

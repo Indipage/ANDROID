@@ -35,4 +35,5 @@ object Versions {
     const val PAGING_VERSION = "3.1.1"
 
     const val NAV_VERSION = "2.5.3"
+    const val ZXING_VERSION = "4.3.0"
 }
