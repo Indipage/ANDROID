@@ -10,31 +10,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        Copy code
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/ab_saved_article"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarProductDetail"
+                android:id="@+id/tb_saved_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:navigationIcon="@drawable/ic_back">
 
                 <TextView
-                    android:textAppearance="@style/TextAppearance.IndiPage.Headline01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="저장한 아티클"
-                    android:textSize="18sp"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    android:text="@string/tv_saved_article_title"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Headline01"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_saved_article"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="28dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ab_saved_article"
+            app:spanCount="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
