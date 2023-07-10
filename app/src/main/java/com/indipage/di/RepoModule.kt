@@ -1,6 +1,8 @@
 package com.indipage.di
 
+import com.indipage.data.repositoryimpl.BookMarkRepositoryImpl
 import com.indipage.data.repositoryimpl.TestRepositoryImpl
+import com.indipage.domain.repository.BookMarkRepository
 import com.indipage.domain.repository.TestApiRepository
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,7 @@ abstract class RepositoryModule {
     @Binds
     abstract fun providesTestRecyclerviewRepo(repoImpl: TestRepositoryImpl): TestApiRepository
 
+    @Singleton
+    @Binds
+    abstract fun providesBookMarkRepository(repoImpl: BookMarkRepositoryImpl): BookMarkRepository
 }
