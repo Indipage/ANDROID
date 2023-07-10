@@ -10,11 +10,9 @@ import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.SavedArticle
 import com.indipage.databinding.FragmentSavedArticleBinding
-import com.indipage.util.pagingSubmitData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class SavedArticleFragment :
@@ -47,10 +45,11 @@ class SavedArticleFragment :
                 spaceComment = "Comment 3"
             )
         )
-        binding.rvSavedArticle.adapter= adapter
+        binding.rvSavedArticle.adapter = adapter
         adapter.submitList(articleList)
 //        getCollectData()
     }
+
     private fun getCollectData() {
         viewModel.savedArticles.flowWithLifecycle(lifecycle).onEach {
             when (it) {

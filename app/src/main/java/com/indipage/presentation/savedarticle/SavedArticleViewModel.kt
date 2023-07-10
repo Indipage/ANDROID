@@ -14,16 +14,16 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SavedArticleViewModel  @Inject constructor(
+class SavedArticleViewModel @Inject constructor(
     private val apiRepository: BookMarkRepository
 ) : ViewModel() {
 
     private val _savedArticles = MutableStateFlow<UiState<List<SavedArticle>>>(UiState.Loading)
-    val savedArticles:StateFlow<UiState<List<SavedArticle>>> = _savedArticles.asStateFlow()
+    val savedArticles: StateFlow<UiState<List<SavedArticle>>> = _savedArticles.asStateFlow()
 
     fun getSavedArticles() = viewModelScope.launch {
         apiRepository.getSavedArticles()
-            .onSuccess {savedArticles->
+            .onSuccess { savedArticles ->
                 _savedArticles.value = UiState.Success(savedArticles)
                 Timber.d("Success")
             }

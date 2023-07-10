@@ -2,9 +2,7 @@ package com.indipage.presentation.savedarticle
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.SavedArticle
@@ -25,9 +23,10 @@ class SavedArticleAdapter(
 //        getItem(position)?.let { holder.bind(it) }
         holder.bind(getItem(position))
     }
+
     class SavedArticleViewHolder(
         private val binding: ItemSavedArticleBinding
-    ):ViewHolder(binding.root){
+    ) : ViewHolder(binding.root) {
         fun bind(data: SavedArticle) {
             binding.savedArticle = data
             binding.executePendingBindings()
