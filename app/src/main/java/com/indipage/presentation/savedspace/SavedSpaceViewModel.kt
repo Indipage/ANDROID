@@ -20,8 +20,10 @@ class SavedSpaceViewModel @Inject constructor(
 
     private val _savedSpaces = MutableStateFlow<UiState<List<SavedSpace>>>(UiState.Loading)
     val savedSpaces: StateFlow<UiState<List<SavedSpace>>> = _savedSpaces.asStateFlow()
-
-    fun getSavedArticles() = viewModelScope.launch {
+    init {
+        getSavedSpaces()
+    }
+    fun getSavedSpaces() = viewModelScope.launch {
         apiRepository.getSavedSpaces()
             .onSuccess { savedSpaces ->
                 _savedSpaces.value = UiState.Success(savedSpaces)
