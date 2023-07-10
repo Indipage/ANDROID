@@ -19,6 +19,12 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
                 )
             )
         }
+        binding.tvProfile2.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_navigation_my_page_to_saved_space, bundleOf(
+                )
+            )
+        }
 
     }
 
