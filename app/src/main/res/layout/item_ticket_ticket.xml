@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="String" />
+        <variable
+            name="vm"
+            type="com.indipage.presentation.ticket.TicketViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:paddingBottom="25dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            imageUrl="@{data}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="480dp"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
