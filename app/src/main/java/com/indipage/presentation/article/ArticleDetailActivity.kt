@@ -1,5 +1,6 @@
 package com.indipage.presentation.article
 
+import android.os.Bundle
 import com.example.core_ui.base.BindingActivity
 import com.indipage.R
 import com.indipage.databinding.ActivityArticleDetailBinding
@@ -8,7 +9,11 @@ class ArticleDetailActivity:BindingActivity<ActivityArticleDetailBinding>(R.layo
 
 
     override fun initView() {
-        TODO("Not yet implemented")
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
 
