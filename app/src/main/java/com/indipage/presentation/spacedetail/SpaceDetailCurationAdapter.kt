@@ -2,35 +2,52 @@ package org.android.go.sopt.presentation.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.indipage.data.dto.response.MockCurationData
 import com.indipage.databinding.ItemSpaceDetailCurationBinding
 
 
-class SpaceDetailCurationAdapter(_itemList: List<Int> = listOf()) :RecyclerView.Adapter<SpaceDetailCurationAdapter.PagerViewHolder>()
-    {
-        lateinit var binding: ItemSpaceDetailCurationBinding
-        private var itemList: List<Int> = _itemList
+class SpaceDetailCurationAdapter :
+    ListAdapter<MockCurationData, SpaceDetailCurationAdapter.CurationViewHolder>(
+        SpaceDetailDiffCallback()
+    ) {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
-            binding = ItemSpaceDetailCurationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return PagerViewHolder(binding)
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurationViewHolder {
+        return CurationViewHolder(
+            ItemSpaceDetailCurationBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
 
-        class PagerViewHolder(val binding: ItemSpaceDetailCurationBinding) :
-            RecyclerView.ViewHolder(binding.root) {
-            fun bind(src: Int) {
-                binding.ivCuration.setImageResource(src)
-            }
-        }
+    override fun onBindViewHolder(holder: CurationViewHolder, position: Int) {
+        holder.onBind(getItem(position))
+    }
 
-        override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-            holder.bind(itemList[position])
-        }
-
-        override fun getItemCount() = itemList.size
-
-        fun setItemList(itemList: List<Int>) {
-            this.itemList = itemList
-            notifyDataSetChanged()
+    class CurationViewHolder(private val binding: ItemSpaceDetailCurationBinding) :
+        ViewHolder(binding.root) {
+        fun onBind(data: MockCurationData) {
+            binding.curation = data
         }
     }
+}
+
+class SpaceDetailDiffCallback : DiffUtil.ItemCallback<MockCurationData>() {
+    override fun areItemsTheSame(
+        oldItem: MockCurationData,
+        newItem: MockCurationData
+    ): Boolean {
+        return oldItem.bookData == newItem.bookData
+    }
+
+    override fun areContentsTheSame(
+        oldItem: MockCurationData,
+        newItem: MockCurationData
+    ): Boolean {
+        return oldItem == newItem
+    }
+}
