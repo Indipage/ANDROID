@@ -5,12 +5,14 @@
 
     <data>
 
+        <variable
+            name="testImageUrl"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.ticket.TicketFragment">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/frameLayout"
@@ -65,17 +67,33 @@
                     app:layout_constraintGuide_percent="0.5" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_ticket_ticket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="47dp"
-            android:contentDescription="rv_ticket"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/frameLayout"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_ticket_card"
+                android:scaleType="fitXY"
+                android:layout_width="0dp"
+                android:layout_marginTop="26dp"
+                android:layout_height="0dp"
+                android:paddingHorizontal="41dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="17dp"
+                imageUrl="@{testImageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/rv_ticket_card"
+                app:layout_constraintTop_toBottomOf="@id/frameLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_ticket_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="rv_card"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

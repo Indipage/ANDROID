@@ -1,7 +1,11 @@
 package com.indipage.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.core_ui.base.BindingActivity
@@ -41,12 +45,12 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
          * **/
 
         initView()
-    }
 
+    }
 
     override fun initView() {
         val navController =
-            supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()
+            supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()!!
 
         with(binding) {
             botNavMain.itemIconTintList = null

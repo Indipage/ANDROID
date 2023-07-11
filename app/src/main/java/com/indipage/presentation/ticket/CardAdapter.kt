@@ -2,19 +2,18 @@ package com.indipage.presentation.ticket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
+import com.indipage.databinding.ItemTicketCardBinding
 import com.indipage.databinding.ItemTicketTicketBinding
 
-class TicketAdapter() : ListAdapter<String, TicketAdapter.TicketViewHolder>(
-    TicketDiffCalback
+class CardAdapter() : ListAdapter<String, CardAdapter.TicketViewHolder>(
+    CardDiffCalback
 ){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
         val binding =
-            ItemTicketTicketBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTicketCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TicketViewHolder(binding)
     }
 
@@ -23,17 +22,17 @@ class TicketAdapter() : ListAdapter<String, TicketAdapter.TicketViewHolder>(
     }
 
     class TicketViewHolder(
-        private val binding: ItemTicketTicketBinding
+        private val binding: ItemTicketCardBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: String) {
-            binding.data = data
+            binding.testUrl= data
             binding.executePendingBindings()
         }
     }
 
 
     companion object {
-        private val TicketDiffCalback =
+        private val CardDiffCalback =
             ItemDiffCallback<String>(
                 onItemsTheSame = { old, new -> old == new },
                 onContentsTheSame = { old, new -> old == new }
