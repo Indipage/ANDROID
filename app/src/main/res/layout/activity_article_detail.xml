@@ -22,7 +22,7 @@
             app:navigationIcon="@drawable/ic_article_detail_arrow"
             app:title="@string/article_detail_tool_bar_title" />
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_article_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +62,7 @@
                     android:text="@string/article_detail_title"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_author"
@@ -102,66 +103,25 @@
                     android:background="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_move_to_place_detail" />
 
-                <LinearLayout
-                    android:id="@+id/layout_article_detail_article_body"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_article_detail_article_body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_1">
-
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view_article_detail_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/layout_article_detail_article_body" />
-
-                <TextView
-                    android:id="@+id/tv_article_detail_article_interview_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="32dp"
                     android:layout_marginTop="35dp"
-                    android:text="@string/article_detail_interview_title"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_2"
-                    tools:ignore="TextSizeCheck"
-                    tools:layout_editor_absoluteX="32dp" />
-
-                <TextView
-                    android:id="@+id/tv_article_detail_article_interview_author"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="14dp"
-                    android:text="@string/article_detail_interview_author"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_article_interview_title" />
-
-                <LinearLayout
-                    android:id="@+id/layout_article_detail_article_interview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_article_interview_author" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_1" />
+
 
                 <View
                     android:id="@+id/view_article_detail_3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="35dp"
                     android:background="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/layout_article_detail_article_interview" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_article_detail_article_body" />
 
                 <TextView
                     android:id="@+id/tv_article_detail_ticket_title"
@@ -173,6 +133,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/view_article_detail_3"
                     tools:layout_editor_absoluteX="114dp" />
 
@@ -202,7 +163,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_detail"
                     app:srcCompat="@drawable/ppp_club_img" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
