@@ -22,4 +22,9 @@
     <string name="tv_my_page_exit">탈퇴</string>
     <string name="tv_logout">자주 묻는 질문</string>
     <string name="tv_info">개인정보처리방침</string>
+    <string name="tv_saved_article_move">읽으러 가기</string>
+    <string name="tv_ticket">티켓</string>
+    <string name="tv_card">카드</string>
+    <string name="tv_card_empty_intro">장소를 방문하여 카드를 받아보세요</string>
+    <string name="tv_ticket_empty_title">발급 받은 카드가 없어요!</string>
 </resources>

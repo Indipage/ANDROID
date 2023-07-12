@@ -32,11 +32,10 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/tv_saved_space"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    android:textColor="@color/indi_black" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_saved_space"

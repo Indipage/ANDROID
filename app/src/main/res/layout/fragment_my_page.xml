@@ -28,11 +28,11 @@
 
         <TextView
             android:id="@+id/tv_my_page_profile_name"
-            android:textAppearance="@style/TextAppearance.IndiPage.Body03"
-            android:textColor="@color/indi_black"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body03"
+            android:textColor="@color/indi_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_my_page_profile_image"
@@ -103,14 +103,14 @@
             app:layout_constraintTop_toBottomOf="@id/cl_my_page_profile" />
 
         <TextView
-            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
-            android:textColor="@color/indi_black"
             android:id="@+id/tv_my_page_profile_info"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
             android:text="@string/tv_info"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
             app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_question" />
@@ -144,9 +144,9 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
+            android:text="@string/tv_my_page_exit"
             android:textAppearance="@style/TextAppearance.IndiPage.Body04"
             android:textColor="@color/indi_black"
-            android:text="@string/tv_my_page_exit"
             app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_logout" />
