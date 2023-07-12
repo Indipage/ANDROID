@@ -36,10 +36,6 @@
             android:name=".presentation.qr.QrScanActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-        <activity
-            android:name=".presentation.article.ArticleDetailActivity"
-            android:exported="false" />
-
     </application>
 
 </manifest>
