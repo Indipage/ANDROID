@@ -133,10 +133,11 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
 
             }
 
-            ArticleDetailTag.REPLACE_STYLE_TAG_REGEX.findAll(spannable).forEach { matchResult ->
-                Log.d("test", matchResult.value)
-                Log.d("test", matchResult.range.first.toString())
-                Log.d("test", matchResult.range.last.toString())
+            ArticleDetailTag.REPLACE_STYLE_START_TAG_REGEX.findAll(spannable).forEach { matchResult ->
+                spannable.delete(matchResult.range.first, matchResult.range.last + 1)
+            }
+
+            ArticleDetailTag.REPLACE_STYLE_END_TAG_REGEX.findAll(spannable).forEach { matchResult ->
                 spannable.delete(matchResult.range.first, matchResult.range.last + 1)
             }
 
