@@ -45,7 +45,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
          * **/
 
         initView()
-
     }
 
     override fun initView() {
@@ -61,4 +60,3 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     }
 }
-
