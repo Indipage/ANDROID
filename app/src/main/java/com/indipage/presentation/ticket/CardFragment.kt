@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
@@ -28,17 +27,14 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
         binding.testImageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4"
         binding.rvTicketCard.adapter = adapter
         adapter.submitList(spaceList)
-        binding.switchTicket.isChecked=true
+        binding.switchTicket.isChecked = true
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
 
-            if (isChecked)
-                Timber.d("good")
-            else
-                 findNavController().navigate(
-                R.id.action_navigation_card_to_navigation_ticket, bundleOf(
-                ))
-
+            if (isChecked) Timber.d("good")
+            else findNavController().navigate(
+                R.id.action_navigation_card_to_navigation_ticket,
+                bundleOf()
+            )
         }
-
     }
 }

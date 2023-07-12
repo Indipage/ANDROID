@@ -3,8 +3,6 @@ package com.indipage.presentation.ticket
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,7 +11,6 @@ import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.QrScanActivity
-import com.indipage.presentation.savedspace.SavedSpaceViewModel
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -43,6 +40,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         viewModel.openProductEvent.observe(viewLifecycleOwner, EventObserver {
             setNavigationQR()
         })
+
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked)findNavController().navigate(
                 R.id.action_navigation_ticket_to_navigation_card, bundleOf(
