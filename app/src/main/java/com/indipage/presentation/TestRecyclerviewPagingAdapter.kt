@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.TestRecyclerviewImage
 import com.indipage.databinding.ItemTestBinding
-import com.indipage.util.DiffCallback
 
 class TestRecyclerviewPagingAdapter(
 ) : PagingDataAdapter<TestRecyclerviewImage, TestRecyclerviewPagingAdapter.PagingViewHolder>(
@@ -15,7 +15,7 @@ class TestRecyclerviewPagingAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingViewHolder {
         val binding =
-            ItemTestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+          ItemTestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PagingViewHolder(binding)
     }
 
@@ -33,6 +33,9 @@ class TestRecyclerviewPagingAdapter(
 
     companion object {
         private val TestDiffCallback =
-            DiffCallback<TestRecyclerviewImage>(id = { old, new -> old.id == new.id })
+            ItemDiffCallback<TestRecyclerviewImage>(
+                onItemsTheSame = { old, new -> old.id == new.id },
+                onContentsTheSame = { old, new -> old == new }
+            )
     }
 }

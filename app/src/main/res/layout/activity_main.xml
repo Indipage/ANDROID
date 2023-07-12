@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.MainActivity">
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fc_main"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -29,7 +28,5 @@
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_main_nav" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

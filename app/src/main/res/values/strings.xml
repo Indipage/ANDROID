@@ -4,4 +4,22 @@
     <string name="label_search_icon">검색</string>
     <string name="label_ticket_icon">티켓</string>
     <string name="label_my_page_icon">마이페이지</string>
+    <string name="article_detail_tool_bar_title">문학살롱 초고</string>
+    <string name="article_detail_author">책방지기 키위</string>
+    <string name="article_detail_title">반복되는 일상 속 나만의\n아지트가 되어주는 공간</string>
+    <string name="article_detail_date">2023-06-08</string>
+    <string name="article_detail_interview_title">[Interview] 우리가 함께 써내려간 초고를 돌아보며,</string>
+    <string name="article_detail_interview_author">문학살롱 초고대표 김연지</string>
+    <string name="article_detail_ticket_title">티켓 받아가세요!</string>
+    <string name="article_detail_ticket_detail">이번 주 아티클은 잘 읽으셨나요?\nPPPclub에서 드리는 티켓을 가지고\n문학살롱 초고에 방문하여 인증받아보세요!</string>
+    <string name="article_detail_place_image_description">장소 이미지</string>
+    <string name="article_detail_ticket_image_description">티켓 이미지</string>
+    <string name="article_detail_move_to_place_detail_btn_description">상세 페이지로 이동</string>
+    <string name="tv_saved_article_title">저장한 아티클</string>
+    <string name="tv_saved_space">저장한 공간</string>
+    <string name="tv_app_version">앱버젼</string>
+    <string name="tv_my_page_question">자주 묻는 질문</string>
+    <string name="tv_my_page_exit">탈퇴</string>
+    <string name="tv_logout">자주 묻는 질문</string>
+    <string name="tv_info">개인정보처리방침</string>
 </resources>

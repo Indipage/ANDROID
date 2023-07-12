@@ -1,5 +1,6 @@
 package com.indipage.di
 
+import com.indipage.data.api.BookMarkApiService
 import com.indipage.data.api.TestApiService
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,9 @@ object ApiModule {
     @Singleton
     fun provideTestService(@TestRetrofit retrofit: Retrofit): TestApiService =
         retrofit.create(TestApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideBookMarkService(@TestRetrofit retrofit: Retrofit): BookMarkApiService =
+        retrofit.create(BookMarkApiService::class.java)
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".IndiPageApp"
@@ -30,6 +31,15 @@
         <activity
             android:name=".presentation.MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".presentation.qr.QrScanActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+        <activity
+            android:name=".presentation.article.ArticleDetailActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

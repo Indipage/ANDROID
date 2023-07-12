@@ -15,9 +15,36 @@
     <fragment
         android:id="@+id/navigation_ticket"
         android:name="com.indipage.presentation.ticket.TicketFragment"
-        android:label="TicketFragment" />
+        android:label="TicketFragment" >
+        <action
+            android:id="@+id/action_navigation_ticket_to_navigation_card"
+            app:destination="@id/navigation_card" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_my_page"
         android:name="com.indipage.presentation.profile.MyPageFragment"
         android:label="MyPageFragment" />
+        <action
+            android:id="@+id/action_navigation_my_page_to_saved_article"
+            app:destination="@id/navigation_saved_article" />
+        <action
+            android:id="@+id/action_navigation_my_page_to_saved_space"
+            app:destination="@id/navigation_saved_space" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_saved_article"
+        android:name="com.indipage.presentation.savedarticle.SavedArticleFragment"
+        android:label="SavedArticleFragment" />
+    <fragment
+        android:id="@+id/navigation_saved_space"
+        android:name="com.indipage.presentation.savedspace.SavedSpaceFragment"
+        android:label="SavedSpaceFragment" />
+    <fragment
+        android:id="@+id/navigation_card"
+        android:name="com.indipage.presentation.ticket.CardFragment"
+        android:label="CardFragment" >
+        <action
+            android:id="@+id/action_navigation_card_to_navigation_ticket"
+            app:destination="@id/navigation_ticket" />
+    </fragment>
 </navigation>

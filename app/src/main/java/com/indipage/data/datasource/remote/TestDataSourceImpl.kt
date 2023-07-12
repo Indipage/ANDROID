@@ -1,4 +1,4 @@
-package com.indipage.data.datasource.Remote
+package com.indipage.data.datasource.remote
 
 import com.indipage.data.api.TestApiService
 import com.indipage.data.datasource.TestDataSource
