@@ -48,6 +48,7 @@ class SavedArticleFragment :
         )
         binding.rvSavedArticle.adapter = adapter
         adapter.submitList(articleList)
+        binding.coSavedArticleEmptyView.visibility = if (articleList.isEmpty()) View.VISIBLE else View.GONE
 //        getCollectData()
         setNavigation()
     }

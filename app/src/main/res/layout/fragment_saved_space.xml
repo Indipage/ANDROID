@@ -50,8 +50,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ab_saved_space"
             tools:listitem="@layout/item_saved_space" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/co_saved_article_empty_view"
+            android:id="@+id/co_saved_space_empty_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,8 +64,8 @@
                 android:id="@+id/iv_saved_space_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"
                 android:layout_marginTop="154dp"
+                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

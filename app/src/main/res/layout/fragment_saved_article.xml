@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ab_saved_article"/>
+            app:layout_constraintTop_toBottomOf="@+id/ab_saved_article" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/co_saved_article_empty_view"
@@ -64,8 +64,8 @@
                 android:id="@+id/iv_saved_article_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"
                 android:layout_marginTop="154dp"
+                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
