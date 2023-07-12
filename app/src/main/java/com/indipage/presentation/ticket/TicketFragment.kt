@@ -31,10 +31,14 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             "https://avatars.githubusercontent.com/u/93514333?v=4",
             "https://avatars.githubusercontent.com/u/93514333?v=4",
             "https://avatars.githubusercontent.com/u/93514333?v=4",
-            )
+        )
         binding.rvTicketTicket.adapter = adapter
+
         val itemTouchHelper = ItemTouchHelper(TicketItemHelper(viewModel))
         itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)
+
+        binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
+
         adapter.submitList(spaceList)
 
         viewModel.openProductEvent.observe(viewLifecycleOwner, EventObserver {
@@ -42,9 +46,10 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         })
 
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked)findNavController().navigate(
+            if (isChecked) findNavController().navigate(
                 R.id.action_navigation_ticket_to_navigation_card, bundleOf(
-                ))
+                )
+            )
             else Timber.d("test")
         }
     }
