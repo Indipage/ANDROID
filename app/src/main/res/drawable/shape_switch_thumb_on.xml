@@ -4,7 +4,7 @@
     <size
         android:width="144dp"
         android:height="34dp" />
-    <solid android:color="@color/purple" />
+    <solid android:color="@color/indi_purple" />
     <corners
         android:radius="17dp" />
 
