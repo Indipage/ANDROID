@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/navigation_my_page"
         android:name="com.indipage.presentation.profile.MyPageFragment"
-        android:label="MyPageFragment" />
+        android:label="MyPageFragment" >
         <action
             android:id="@+id/action_navigation_my_page_to_saved_article"
             app:destination="@id/navigation_saved_article" />
