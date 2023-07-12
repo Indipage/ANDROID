@@ -78,6 +78,7 @@ class ArticleDetailAdapterViewHolder {
             }
 
             binding.tvItemArticleDetailArticleBody.text = spannable
+            binding.tvItemArticleDetailArticleBody.setLineSpacing(24f,1f)
         }
     }
 
