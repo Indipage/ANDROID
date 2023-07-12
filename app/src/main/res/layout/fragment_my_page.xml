@@ -28,6 +28,8 @@
 
         <TextView
             android:id="@+id/tv_my_page_profile_name"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body03"
+            android:textColor="@color/indi_black"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -42,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/font_pretendard_regular"
-            android:textColor="@color/indi_gray700"
+            android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+            android:textColor="@color/indi_gray500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_name"
@@ -53,9 +55,9 @@
             android:id="@+id/cl_my_page_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@color/indi_gray200"
             android:paddingVertical="32dp"
-            android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_id">
 
             <ImageView
@@ -93,25 +95,25 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/font_pretendard_regular"
             android:text="@string/tv_my_page_question"
-            android:textColor="@color/black"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_my_page_profile"
-            app:drawableEndCompat="@drawable/ic_arrow_right" />
+            app:layout_constraintTop_toBottomOf="@id/cl_my_page_profile" />
 
         <TextView
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
             android:id="@+id/tv_my_page_profile_info"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/font_pretendard_regular"
             android:text="@string/tv_info"
-            android:textColor="@color/black"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_question"
-            app:drawableEndCompat="@drawable/ic_arrow_right" />
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_question" />
 
 
         <View
@@ -129,12 +131,12 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/font_pretendard_regular"
             android:text="@string/tv_logout"
-            android:textColor="@color/black"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_my_page_1"
-            app:drawableEndCompat="@drawable/ic_arrow_right" />
+            app:layout_constraintTop_toBottomOf="@id/line_my_page_1" />
 
         <TextView
             android:id="@+id/tv_my_page_profile_exit"
@@ -142,12 +144,12 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/font_pretendard_regular"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
             android:text="@string/tv_my_page_exit"
-            android:textColor="@color/black"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_logout"
-            app:drawableEndCompat="@drawable/ic_arrow_right" />
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_logout" />
 
         <View
             android:id="@+id/line_my_page_2"
@@ -164,9 +166,9 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/font_pretendard_regular"
             android:text="@string/tv_app_version"
-            android:textColor="@color/black"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line_my_page_2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
