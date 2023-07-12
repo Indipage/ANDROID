@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- IndiPage Point -->
+    <color name="purple">#AA59FC</color>
+    <color name="green">#D1FC59</color>
+    <!-- IndiPage Grayscale -->
+    <color name="white_1">#FF4DOO</color>
+    <color name="gray100">#F8F8F8</color>
+    <color name="gray200">#F2F2F2</color>
+    <color name="gray700">#5A5A5A</color>
+    <color name="gray800">#494949</color>
+    <color name="grey900">#383838</color>
+    <color name="indi_black">#292929</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

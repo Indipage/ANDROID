@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.transform.RoundedCornersTransformation
+import com.indipage.R
 
 @BindingAdapter("onThrottleClick", "clickInterval", requireAll = false)
 fun applyThrottleClick(view: View, listener: View.OnClickListener, interval: Long? = 300L) {
@@ -15,4 +17,11 @@ fun applyThrottleClick(view: View, listener: View.OnClickListener, interval: Lon
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String) {
     view.load(url)
+}
+
+@BindingAdapter("setCircleImage")
+fun ImageView.setCircleImage(img: String?) {
+    load(img) {
+        transformations(RoundedCornersTransformation(1000f))
+    }
 }
