@@ -10,7 +10,7 @@
         android:label="ArticleFragment" />
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
+        android:name="com.indipage.presentation.search.SearchFragment"
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/navigation_ticket"
