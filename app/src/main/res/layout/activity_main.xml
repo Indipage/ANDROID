@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.MainActivity">
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fc_main"
             android:name="androidx.navigation.fragment.NavHostFragment"

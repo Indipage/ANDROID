@@ -31,8 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/font_pretendard_semibold"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_my_page_profile_image"
@@ -45,7 +43,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/font_pretendard_regular"
-            android:textColor="@color/gray700"
+            android:textColor="@color/indi_gray700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_name"
@@ -55,7 +53,7 @@
             android:id="@+id/cl_my_page_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray200"
+            android:background="@color/indi_gray200"
             android:paddingVertical="32dp"
             android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_id">
@@ -122,7 +120,7 @@
             android:layout_height="1dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:background="@color/gray200"
+            android:background="@color/indi_gray200"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_info" />
 
         <TextView
@@ -157,7 +155,7 @@
             android:layout_height="1dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:background="@color/gray200"
+            android:background="@color/indi_gray200"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_exit" />
 
         <TextView

@@ -32,7 +32,6 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/tv_saved_space"
-                    android:textAppearance="@style/TextAppearance.IndiPage.Headline01"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.Toolbar>
@@ -50,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ab_saved_article"
+            app:layout_constraintTop_toBottomOf="@id/ab_saved_space"
             tools:listitem="@layout/item_saved_space" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
