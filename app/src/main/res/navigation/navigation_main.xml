@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_article_detail_to_space_detail"
             app:destination="@id/navigation_space_detail" />
+        <action
+            android:id="@+id/action_article_detail_to_article"
+            app:destination="@id/navigation_article" />
     </fragment>
     <fragment
         android:id="@+id/navigation_space_detail"
