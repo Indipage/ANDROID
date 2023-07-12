@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="search"
+            type="com.indipage.data.dto.response.Search" />
 
     </data>
 
@@ -17,6 +21,7 @@
             android:layout_width="84dp"
             android:layout_height="84dp"
             app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -24,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="검색 결과 이미지"
-                android:src="@drawable/ic_launcher_background" />
+                tools:src="@drawable/ic_launcher_background"
+                imageUrl="@{search.imageUrl}" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -33,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="11dp"
-            android:text="문학살롱 초고"
+            android:text="@{search.searchTitle}"
             app:layout_constraintStart_toEndOf="@id/cv_search"
             app:layout_constraintTop_toTopOf="@id/cv_search" />
 
@@ -44,7 +50,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="12dp"
-            android:text="서울특별시 영등포구 여의대로 108(여의도동, 파크원) 지하 2층"
+            android:text="@{search.searchComment}"
             app:layout_constraintBottom_toBottomOf="@id/cv_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cv_search"

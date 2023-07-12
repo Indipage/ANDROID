@@ -33,7 +33,6 @@ class SavedSpaceAdapter(
         }
     }
 
-
     companion object {
         private val SavedSpaceDiffCalback =
             ItemDiffCallback<SavedSpace>(
