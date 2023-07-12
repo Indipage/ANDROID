@@ -28,7 +28,6 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
         binding.rvTicketCard.adapter = adapter
         adapter.submitList(spaceList)
         binding.switchTicket.isChecked = true
-
         binding.coCardEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
 
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
