@@ -12,14 +12,28 @@
         android:layout_height="match_parent"
         tools:context=".presentation.search.SearchFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="56dp"
+            android:background="@drawable/shape_gray200_fill_8_rect"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:hint="지역명으로 검색해보세요 ex) 서초구"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:paddingHorizontal="32dp"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/indi_gray500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="검색 뷰" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
