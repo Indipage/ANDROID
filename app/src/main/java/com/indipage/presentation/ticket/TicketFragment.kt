@@ -3,6 +3,7 @@ package com.indipage.presentation.ticket
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,9 @@ import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.QrScanActivity
 import com.indipage.util.EventObserver
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanIntentResult
+import com.journeyapps.barcodescanner.ScanOptions
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -55,8 +59,38 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     }
 
     private fun setNavigationQR() {
-        Intent(activity, QrScanActivity::class.java).apply {
-            startActivity(this)
+
+        onCustomScanButtonClicked()
+    }
+
+    private val barcodeLauncher = registerForActivityResult(
+        ScanContract()
+    ) { result: ScanIntentResult ->
+        // result : 스캔된 결과
+
+        // 내용이 없다면
+        if (result.contents == null) {
         }
+        else { // 내용이 있다면
+            val url = result.contents
+            val regex = Regex(""".*(/(\d+)/).*""")
+            val finalResult = regex.replace(url, "$2")
+            viewModel.isCheckQR(finalResult.toInt())
+        }
+    }
+
+    // 커스텀 스캐너 실행하기
+    // Custom SCAN - onClick
+    private fun onCustomScanButtonClicked() {
+        val options = ScanOptions()
+        options.setOrientationLocked(false)
+        // options.setCameraId(1)          // 0 : 후면(default), 1 : 전면,
+        options.setBeepEnabled(true)
+        // options.setTorchEnabled(true)      // true : 실행되자마자 플래시가 켜진다.
+        options.setPrompt("커스텀 QR 스캐너 창")
+        options.setDesiredBarcodeFormats( ScanOptions.QR_CODE )
+        options.captureActivity = QrScanActivity::class.java
+
+        barcodeLauncher.launch(options)
     }
 }
