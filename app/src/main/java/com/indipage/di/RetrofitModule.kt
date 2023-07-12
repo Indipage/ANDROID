@@ -27,7 +27,7 @@ object RetrofitModule {
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(tokenInterceptor())
+//            .addInterceptor(tokenInterceptor())
             .build()
 
     @Provides
@@ -53,7 +53,7 @@ object RetrofitModule {
     @TestRetrofit
     fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("http://52.78.152.187:8080")
+        .baseUrl("http://3.37.34.144")
         .client(okHttpClient)
         .build()
 
