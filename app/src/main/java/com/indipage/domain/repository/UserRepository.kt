@@ -1,8 +1,8 @@
 package com.indipage.domain.repository
 
-import com.indipage.data.dto.response.UserResponseDto
+import com.indipage.domain.entity.UserInfo
 
 interface UserRepository {
-    suspend fun getUserInfo(): Result<UserResponseDto>
+    suspend fun getUserInfo(): Result<UserInfo>
 
 }
