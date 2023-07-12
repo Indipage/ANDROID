@@ -1,22 +1,9 @@
 package com.indipage.presentation.article
 
-import android.graphics.Color
-import android.graphics.Typeface
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.TextPaint
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemArticleDetailArticleBodyBinding
 import com.indipage.databinding.ItemArticleDetailArticleImageBinding
@@ -48,7 +35,7 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
                     parent,
                     false
                 )
-                ItemArticleDetailArticleTitleViewHolder(binding)
+                ArticleDetailAdapterViewHolder.ItemArticleDetailArticleTitleViewHolder(binding)
             }
             ArticleDetailTag.IMAGE -> {
                 val binding = ItemArticleDetailArticleImageBinding.inflate(
@@ -56,7 +43,7 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
                     parent,
                     false
                 )
-                ItemArticleDetailArticleImageViewHolder(binding)
+                ArticleDetailAdapterViewHolder.ItemArticleDetailArticleImageViewHolder(binding)
             }
             else -> {
                 val binding = ItemArticleDetailArticleBodyBinding.inflate(
@@ -64,103 +51,27 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
                     parent,
                     false
                 )
-                ItemArticleDetailArticleBodyViewHolder(binding)
+                ArticleDetailAdapterViewHolder.ItemArticleDetailArticleBodyViewHolder(binding)
             }
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (currentList[position].body.contains(ArticleDetailTag.TITLE_TAG_REGEX)) {
-            (holder as ItemArticleDetailArticleTitleViewHolder).run {
+            (holder as ArticleDetailAdapterViewHolder.ItemArticleDetailArticleTitleViewHolder).run {
                 onBind(currentList[position])
             }
         } else if (currentList[position].body.contains(ArticleDetailTag.IMAGE_TAG_REGEX)) {
-            (holder as ItemArticleDetailArticleImageViewHolder).run {
+            (holder as ArticleDetailAdapterViewHolder.ItemArticleDetailArticleImageViewHolder).run {
                 onBind(currentList[position])
             }
         } else {
-            (holder as ItemArticleDetailArticleBodyViewHolder).run {
+            (holder as ArticleDetailAdapterViewHolder.ItemArticleDetailArticleBodyViewHolder).run {
                 onBind(currentList[position])
             }
         }
     }
 
-    class ItemArticleDetailArticleBodyViewHolder(private val binding: ItemArticleDetailArticleBodyBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        private val clickableSpan = object : ClickableSpan() {
-            override fun onClick(view: View) {
-                Toast.makeText(view.context, "문학 칵테일 클릭 이벤트", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun updateDrawState(ds: TextPaint) {
-                ds.isUnderlineText = true
-            }
-        }
-
-        fun onBind(data: ArticleDetailData) {
-            var articleBody = data.body
-            articleBody = articleBody.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
-            binding.tvItemArticleDetailArticleBody.movementMethod = LinkMovementMethod()
-
-            var spannable = SpannableStringBuilder(articleBody).apply {
-                ArticleDetailTag.COLOR_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
-                    setSpan(
-                        ForegroundColorSpan(Color.parseColor("#AA59FC")),
-                        matchResult.range.first,
-                        matchResult.range.last,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                }
-
-                ArticleDetailTag.BOLD_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
-                    setSpan(
-                        StyleSpan(Typeface.BOLD),
-                        matchResult.range.first,
-                        matchResult.range.last,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                }
-
-                ArticleDetailTag.CLICK_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
-                    setSpan(
-                        clickableSpan,
-                        matchResult.range.first,
-                        matchResult.range.last,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                }
-
-            }
-
-            ArticleDetailTag.REPLACE_STYLE_START_TAG_REGEX.findAll(spannable).forEach { matchResult ->
-                spannable.delete(matchResult.range.first, matchResult.range.last + 1)
-            }
-
-            ArticleDetailTag.REPLACE_STYLE_END_TAG_REGEX.findAll(spannable).forEach { matchResult ->
-                spannable.delete(matchResult.range.first, matchResult.range.last + 1)
-            }
-
-            binding.tvItemArticleDetailArticleBody.text = spannable
-        }
-    }
-
-    class ItemArticleDetailArticleTitleViewHolder(private val binding: ItemArticleDetailArticleTitleBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ArticleDetailData) {
-            var articleTitle = data.body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
-            binding.tvItemArticleDetailArticleTitle.text = articleTitle
-        }
-
-    }
-
-    class ItemArticleDetailArticleImageViewHolder(private val binding: ItemArticleDetailArticleImageBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ArticleDetailData) {
-            var articleImage = data.body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
-            binding.ivItemArticleDetailArticleImage.load(articleImage)
-        }
-    }
 
     companion object {
         private val ArticleDetailAdapterDiffCallback =
