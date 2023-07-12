@@ -32,7 +32,6 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/tv_saved_space"
-                    android:textAppearance="@style/TextAppearance.IndiPage.Headline01"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.Toolbar>
