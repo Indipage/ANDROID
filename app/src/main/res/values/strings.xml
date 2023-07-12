@@ -33,4 +33,9 @@
     <string name="tv_saved_article_empty_title">아직 저장한 아티클이 없어요</string>
     <string name="tv_saved_space_empty_intro">마음에 드는 공간을 저장해보세요</string>
     <string name="tv_saved_space_empty_title">아직 저장한 공간이 없어요</string>
+    <string name="tv_qr_success_title">인증 성공!</string>
+    <string name="tv_qr_success_intro">카드를 획득헀어요!</string>
+    <string name="tv_qr_fail_intro">QR 코드 인식에 실패했어요. \n 다시 시도해보세요!</string>
+    <string name="tv_qr_fail_exit">나가기</string>
+    <string name="tv_qr_fail_retry">다시 시도하기</string>
 </resources>
