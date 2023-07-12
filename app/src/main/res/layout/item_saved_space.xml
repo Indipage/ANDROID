@@ -15,14 +15,22 @@
         android:layout_height="wrap_content"
         android:paddingBottom="24dp">
 
-        <ImageView
-            android:id="@+id/iv_saved_space"
-            imageUrl="@{saved_space.imageUrl}"
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:src="@drawable/ic_launcher_background"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_saved_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_saved_space"
+                imageUrl="@{saved_space.imageUrl}"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:src="@drawable/ic_launcher_background" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_saved_space_name"
@@ -31,9 +39,9 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="11dp"
             android:text="@{saved_space.spaceName}"
-            android:textColor="@color/black"
             android:textAppearance="@style/TextAppearance.IndiPage.Body04"
-            app:layout_constraintStart_toEndOf="@id/iv_saved_space"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/cv_saved_space"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="test" />
 
@@ -43,10 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
-            android:textColor="@color/indi_gray600"
-            android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
             android:text="@{saved_space.spaceAddress}"
-            app:layout_constraintStart_toEndOf="@id/iv_saved_space"
+            android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+            android:textColor="@color/indi_gray600"
+            app:layout_constraintStart_toEndOf="@id/cv_saved_space"
             app:layout_constraintTop_toBottomOf="@id/tv_saved_space_name"
             tools:text="test" />
 
