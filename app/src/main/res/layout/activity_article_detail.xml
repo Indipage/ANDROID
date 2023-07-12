@@ -20,7 +20,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/menu_article_detail_app_bar"
             app:navigationIcon="@drawable/ic_article_detail_arrow"
-            app:title="@string/article_detail_tool_bar_title" />
+            app:title="@string/article_detail_tool_bar_title"
+            app:titleTextAppearance="@style/TextAppearance.IndiPage.Sub_Head01" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_article_detail"
@@ -48,25 +49,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/article_detail_author"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_article_detail_place_image"
-                    tools:ignore="TextSizeCheck" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_article_detail_place_image" />
 
                 <TextView
                     android:id="@+id/tv_article_detail_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/article_detail_title"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_author"
-                    tools:ignore="TextSizeCheck" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_author" />
 
 
                 <TextView
@@ -74,8 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/article_detail_date"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_title"
@@ -132,11 +127,8 @@
                     android:layout_marginTop="60dp"
                     android:text="@string/article_detail_ticket_title"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_3"
-                    tools:layout_editor_absoluteX="114dp" />
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_3" />
 
                 <TextView
                     android:id="@+id/tv_article_detail_ticket_detail"
@@ -146,10 +138,8 @@
                     android:layout_marginTop="24dp"
                     android:text="@string/article_detail_ticket_detail"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_title"
-                    tools:layout_editor_absoluteX="56dp" />
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_title" />
 
                 <ImageView
                     android:id="@+id/iv_article_detail_ticket_image"
