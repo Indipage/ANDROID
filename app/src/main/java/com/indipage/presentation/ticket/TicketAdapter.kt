@@ -11,7 +11,7 @@ import com.indipage.databinding.ItemTicketTicketBinding
 
 class TicketAdapter() : ListAdapter<String, TicketAdapter.TicketViewHolder>(
     TicketDiffCalback
-){
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
         val binding =
             ItemTicketTicketBinding.inflate(LayoutInflater.from(parent.context), parent, false)

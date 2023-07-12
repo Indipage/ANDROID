@@ -10,7 +10,7 @@ import com.indipage.databinding.ItemTicketTicketBinding
 
 class CardAdapter() : ListAdapter<String, CardAdapter.TicketViewHolder>(
     CardDiffCalback
-){
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
         val binding =
             ItemTicketCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,7 +25,7 @@ class CardAdapter() : ListAdapter<String, CardAdapter.TicketViewHolder>(
         private val binding: ItemTicketCardBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: String) {
-            binding.testUrl= data
+            binding.testUrl = data
             binding.executePendingBindings()
         }
     }
