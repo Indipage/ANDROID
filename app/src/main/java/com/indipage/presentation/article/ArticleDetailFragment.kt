@@ -2,6 +2,7 @@ package com.indipage.presentation.article
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
@@ -19,6 +20,16 @@ class ArticleDetailFragment: BindingFragment<FragmentArticleDetailBinding>(R.lay
 
     private fun initView() {
         setArticleDetailAdapter()
+        setClickEventOnMoveToSpaceDetailTextView()
+    }
+
+    private fun setClickEventOnMoveToSpaceDetailTextView(){
+        binding.tvArticleDetailMoveToPlaceDetail1.setOnClickListener(View.OnClickListener {
+            findNavController().navigate(R.id.action_article_detail_to_space_detail)
+        })
+        binding.tvArticleDetailMoveToPlaceDetail2.setOnClickListener(View.OnClickListener {
+            findNavController().navigate(R.id.action_article_detail_to_space_detail)
+        })
     }
 
     private fun setArticleDetailAdapter() {
