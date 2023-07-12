@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="12dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_search"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background"
+                android:contentDescription="검색 결과 이미지"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_search_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="11dp"
+            android:text="문학살롱 초고"
+            app:layout_constraintStart_toEndOf="@id/cv_search"
+            app:layout_constraintTop_toTopOf="@id/cv_search" />
+
+
+        <TextView
+            android:id="@+id/tv_search_comment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="12dp"
+            android:text="서울특별시 영등포구 여의대로 108(여의도동, 파크원) 지하 2층"
+            app:layout_constraintBottom_toBottomOf="@id/cv_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cv_search"
+            app:layout_constraintTop_toBottomOf="@id/tv_search_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
