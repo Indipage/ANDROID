@@ -82,17 +82,18 @@
                     tools:ignore="SmallSp,TextSizeCheck" />
 
 
-                <TextView
-                    android:id="@+id/tv_article_detail_move_to_place_detail"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.utils.widget.ImageFilterButton
+                    android:id="@+id/btn_article_detail_move_to_place_detail"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/article_detail_move_to_place_detail"
-                    android:textSize="12sp"
+                    android:layout_marginHorizontal="110dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/article_detail_move_to_place_detail_btn_description"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_date"
-                    tools:ignore="TextSizeCheck" />
+                    tools:src="@tools:sample/avatars" />
 
                 <View
                     android:id="@+id/view_article_detail_1"
@@ -101,7 +102,7 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_move_to_place_detail" />
+                    app:layout_constraintTop_toBottomOf="@id/btn_article_detail_move_to_place_detail" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
