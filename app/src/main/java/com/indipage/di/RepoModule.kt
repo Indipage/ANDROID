@@ -1,15 +1,8 @@
 package com.indipage.di
 
-import com.indipage.data.repositoryimpl.BookMarkRepositoryImpl
-import com.indipage.data.repositoryimpl.SpaceDetailRepositoryImpl
-import com.indipage.data.repositoryimpl.TestRepositoryImpl
-import com.indipage.data.repositoryimpl.TicketRepositoryImpl
-import com.indipage.data.repositoryimpl.UserRepositoryImpl
-import com.indipage.domain.repository.BookMarkRepository
-import com.indipage.domain.repository.SpaceDetailRepository
-import com.indipage.domain.repository.TestApiRepository
-import com.indipage.domain.repository.TicketRepository
-import com.indipage.domain.repository.UserRepository
+
+import com.indipage.data.repositoryimpl.*
+import com.indipage.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
-
     @Singleton
     @Binds
     abstract fun providesTestRecyclerviewRepo(repoImpl: TestRepositoryImpl): TestApiRepository

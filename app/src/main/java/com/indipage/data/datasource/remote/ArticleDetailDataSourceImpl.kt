@@ -6,7 +6,8 @@ import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import javax.inject.Inject
 
-class ArticleDetailDataSourceImpl @Inject constructor(
+class ArticleDetailDataSourceImpl
+@Inject constructor(
     private val apiService: TestApiService
 ) : ArticleDetailDataSource {
     override suspend fun getArticleDetail(articleId: Long): BaseResponse<ResponseArticleDetailDto> {
