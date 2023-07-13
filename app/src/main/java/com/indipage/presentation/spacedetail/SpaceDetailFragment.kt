@@ -66,6 +66,10 @@ class SpaceDetailFragment :
             btnFollow.setBackgroundColor(Color.parseColor("#FFAA59FC"))
             btnFollow.text = "조르기 완료"
         }
+
+        ivBookmarkIcon.setOnClickListener(){
+            ivBookmarkIcon.isSelected = !ivBookmarkIcon.isSelected
+        }
     }
 
     private fun initTagAdapter(item: SpaceDetailData) = with(binding) {
