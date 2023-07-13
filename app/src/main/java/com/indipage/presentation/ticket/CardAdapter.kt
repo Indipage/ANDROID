@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemTicketCardBinding
-import com.indipage.databinding.ItemTicketTicketBinding
 
 class CardAdapter() : ListAdapter<String, CardAdapter.TicketViewHolder>(
     CardDiffCalback
@@ -29,7 +28,6 @@ class CardAdapter() : ListAdapter<String, CardAdapter.TicketViewHolder>(
             binding.executePendingBindings()
         }
     }
-
 
     companion object {
         private val CardDiffCalback =

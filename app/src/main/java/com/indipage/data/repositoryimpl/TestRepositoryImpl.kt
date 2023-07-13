@@ -24,7 +24,7 @@ class TestRepositoryImpl @Inject constructor(
 
     override suspend fun singIn(requestSignInDto: RequestSignInDto): Result<ResponseSignInDto> {
         return runCatching {
-            dataSource.singIn(requestSignInDto).data
+            dataSource.singIn(requestSignInDto).data!!
         }
     }
 

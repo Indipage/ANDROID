@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="15dp">
+        android:paddingStart="15dp">
 
         <ImageView
             android:id="@+id/tv_ticket_card"

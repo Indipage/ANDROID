@@ -42,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="티켓"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline"
                     app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="카드"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/guideline"
@@ -98,13 +100,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-
                 android:id="@+id/tv_ticket_empty_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="71dp"
+                android:layout_marginTop="23dp"
                 android:gravity="center"
-                android:text=" 발급 받은 티켓이 없어요! "
+                android:text="@string/tv_article_empty_title"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+                android:textColor="@color/indi_gray600"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_ticket_empty" />
@@ -115,8 +119,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="71dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
-                android:text="아티클을 읽고 티켓을 받아보세요"
+                android:text="@string/tv_article_empty_intro"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+                android:textColor="@color/indi_gray400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ticket_empty_title" />
