@@ -27,10 +27,10 @@ class TicketViewModel @Inject constructor(
     fun isCheckQR(spaceId:Int) = viewModelScope.launch {
         apiRepository.isCheckQR(spaceId)
             .onSuccess { it ->
-                Timber.d("Success")
+                Timber.d("Success ${it}")
             }
             .onFailure {
-                Timber.d("Fail")
+                Timber.d("Fail ${it}")
             }
     }
 

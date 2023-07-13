@@ -72,6 +72,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         if (result.contents == null) {
         }
         else { // 내용이 있다면
+            Timber.d(result.contents)
             val url = result.contents
             val regex = Regex(""".*(/(\d+)/).*""")
             val finalResult = regex.replace(url, "$2")
