@@ -11,8 +11,10 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.indipage.R
 import com.indipage.databinding.ItemArticleDetailArticleBodyBinding
 import com.indipage.databinding.ItemArticleDetailArticleImageBinding
 import com.indipage.databinding.ItemArticleDetailArticleTitleBinding
@@ -26,6 +28,7 @@ class ArticleDetailAdapterViewHolder {
         private val clickableSpan = object : ClickableSpan() {
             override fun onClick(view: View) {
                 Toast.makeText(view.context, "문학 칵테일 클릭 이벤트", Toast.LENGTH_SHORT).show()
+                view.findNavController().navigate(R.id.action_article_detail_to_space_detail)
             }
 
             override fun updateDrawState(ds: TextPaint) {

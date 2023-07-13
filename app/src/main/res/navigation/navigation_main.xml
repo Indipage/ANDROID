@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/navigation_article"
         android:name="com.indipage.presentation.article.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+        <action
+            android:id="@+id/action_article_to_article_detail"
+            app:destination="@id/navigation_article_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.indipage.presentation.search.SearchFragment"
@@ -47,4 +51,19 @@
             android:id="@+id/action_navigation_card_to_navigation_ticket"
             app:destination="@id/navigation_ticket" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_article_detail"
+        android:name="com.indipage.presentation.article.ArticleDetailFragment"
+        android:label="ArticleDetailFragment" >
+        <action
+            android:id="@+id/action_article_detail_to_space_detail"
+            app:destination="@id/navigation_space_detail" />
+        <action
+            android:id="@+id/action_article_detail_to_article"
+            app:destination="@id/navigation_article" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_space_detail"
+        android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
+        android:label="SpaceDetailFragment" />
 </navigation>
