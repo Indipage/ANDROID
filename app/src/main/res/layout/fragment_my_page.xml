@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            android:text="@{userInfo.name}"
+            app:operationInformation="@{userInfo.name}"
             android:textAppearance="@style/TextAppearance.IndiPage.Body03"
             android:textColor="@color/indi_black"
             app:layout_constraintEnd_toEndOf="parent"

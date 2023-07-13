@@ -13,6 +13,7 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
+import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
@@ -76,8 +77,11 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 is UiState.Success -> {
                     Timber.d("${it.data},$it")
                     when (it.data) {
-                        200 -> Timber.d("Success QR")
-                        404 -> Timber.d("failure QR")
+                        200 -> {
+                            Timber.d("Success QR")
+                            val dialog = DialogQrFailFragment()
+                            dialog.show(parentFragmentManager, "dialog")
+                        } 404 -> Timber.d("failure QR")
                     }
                 }
                 else -> {}
