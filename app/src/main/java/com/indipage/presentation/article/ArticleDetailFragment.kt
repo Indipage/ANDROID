@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.snackBar
+import com.example.core_ui.fragment.toast
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
 
@@ -23,6 +25,7 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
         setArticleDetailAdapter()
         setClickEventOnMoveToSpaceDetailTextView()
         setClickEventOnToolbar()
+        setClickEventOnTicketImage()
     }
 
     private fun setClickEventOnMoveToSpaceDetailTextView(){
@@ -40,7 +43,13 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
         })
 
         binding.ivArticleDetailBookmark.setOnClickListener(View.OnClickListener {
-            Toast.makeText(requireActivity().applicationContext, "북마크", Toast.LENGTH_SHORT).show()
+            toast("북마크")
+        })
+    }
+
+    private fun setClickEventOnTicketImage(){
+        binding.ivArticleDetailTicketImage.setOnClickListener(View.OnClickListener {
+          snackBar(requireView(), message = { "티켓을 받았어요!" })
         })
     }
 
