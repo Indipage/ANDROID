@@ -62,6 +62,7 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
 
         binding.ivArticleDetailBookmark.setOnClickListener(View.OnClickListener {
             toast("북마크")
+            binding.ivArticleDetailBookmark.isSelected = !binding.ivArticleDetailBookmark.isSelected
         })
     }
 
