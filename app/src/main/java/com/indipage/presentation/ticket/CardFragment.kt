@@ -30,8 +30,11 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
         binding.switchTicket.isChecked = true
         binding.coCardEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
 
-        binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
+        moveToTicket()
+    }
 
+    private fun moveToTicket() {
+        binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) Timber.d("good")
             else findNavController().navigate(
                 R.id.action_navigation_card_to_navigation_ticket,
