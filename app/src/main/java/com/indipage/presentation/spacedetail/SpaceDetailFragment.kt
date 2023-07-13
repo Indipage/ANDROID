@@ -13,6 +13,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.CurationData
+import com.indipage.data.dto.response.SpaceDetailData
 import com.indipage.databinding.FragmentSpaceDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -29,11 +30,22 @@ class SpaceDetailFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getCuration()
-        binding.rvSpaceDetailTag.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(listOf("안녕", "만나서", "반가워"))
         initButton()
         getCurationData()
+        getSpaceDetail()
+    }
+
+    private fun getSpaceDetail() {
+        viewModel.spaceDetailData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    Timber.d("$it.data 실험")
+                    initTagAdapter(it.data)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun getCurationData() {
@@ -54,6 +66,14 @@ class SpaceDetailFragment :
             btnFollow.setBackgroundColor(Color.parseColor("#FFAA59FC"))
             btnFollow.text = "조르기 완료"
         }
+    }
+
+    private fun initTagAdapter(item: SpaceDetailData) = with(binding) {
+        spaceDetail = item
+
+        binding.rvSpaceDetailTag.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(listOf("안녕", "만나서", "반가워"))
     }
 
     private fun initCurationAdapter(item: List<CurationData>) {
@@ -94,7 +114,6 @@ class SpaceDetailFragment :
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
                         curation = item[position]
-                        curation2 = item[position].bookData
                     }
 
                     override fun onPageScrolled(
