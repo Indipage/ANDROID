@@ -2,6 +2,7 @@ package com.indipage.presentation.article
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
@@ -33,9 +34,13 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
         })
     }
 
-    private fun setClickEventOnToolbar(){
+    private fun setClickEventOnToolbar() {
         binding.toolbarArticleDetail.setNavigationOnClickListener(View.OnClickListener {
             findNavController().navigate(R.id.action_article_detail_to_article)
+        })
+
+        binding.ivArticleDetailBookmark.setOnClickListener(View.OnClickListener {
+            Toast.makeText(requireActivity().applicationContext, "북마크", Toast.LENGTH_SHORT).show()
         })
     }
 
