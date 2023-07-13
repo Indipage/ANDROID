@@ -39,4 +39,9 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun provideTicketRepository(repoImpl: TicketRepositoryImpl): TicketRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesArticleDetailRepository(repoImpl: ArticleDetailRepositoryImpl): ArticleDetailRepository
+
 }

@@ -71,5 +71,4 @@
         android:id="@+id/navigation_space_detail"
         android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
         android:label="SpaceDetailFragment" />
-
 </navigation>

@@ -22,6 +22,13 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
     }
 
     private fun initView() {
+        viewModel.getArticleDetail(1)
+        observe()
+        setClickEventOnMoveToSpaceDetailTextView()
+        setClickEventOnToolbar()
+    }
+
+    private fun setClickEventOnMoveToSpaceDetailTextView() {
         setArticleDetailAdapter()
         setClickEventOnMoveToSpaceDetailTextView()
         setClickEventOnToolbar()
@@ -41,6 +48,19 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
         binding.toolbarArticleDetail.setNavigationOnClickListener(View.OnClickListener {
             findNavController().navigate(R.id.action_article_detail_to_article)
         })
+    }
+
+    private fun observe() {
+        viewModel.setAdapter.observe(viewLifecycleOwner) {
+            val resultArticleArray = splitArticleBody(it.content)
+            binding.rvArticleDetailArticleBody.adapter =
+                ArticleDetailAdapter().apply { submitList(resultArticleArray) }
+            Log.d("help", it.spaceOwner)
+            binding.tvArticleDetailAuthor.text = it.spaceOwner
+            binding.tvArticleDetailDate.text = it.createdAt
+            binding.tvArticleDetailTitle.text = it.title
+            binding.toolbarArticleDetail.title = it.spaceName
+        }
 
         binding.ivArticleDetailBookmark.setOnClickListener(View.OnClickListener {
             toast("북마크")

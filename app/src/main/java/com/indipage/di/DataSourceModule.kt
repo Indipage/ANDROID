@@ -10,6 +10,7 @@ import com.indipage.data.datasource.remote.SpaceDetailDataSourceImpl
 import com.indipage.data.datasource.remote.TestDataSourceImpl
 import com.indipage.data.datasource.remote.TicketDataSourceImpl
 import com.indipage.data.datasource.remote.UserDataSourceImpl
+
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -39,5 +40,10 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun providesTicketDataSource(DataSourceImpl: TicketDataSourceImpl): TicketDataSource
+
+    @Singleton
+    @Binds
+    abstract fun providesArticleDetailDataSource(DataSourceImpl: ArticleDetailDataSourceImpl): ArticleDetailDataSource
+
 
 }
