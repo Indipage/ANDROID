@@ -6,9 +6,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.toast
+import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.QrScanActivity
@@ -17,6 +21,8 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -56,6 +62,19 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             )
             else Timber.d("test")
         }
+
+        viewModel.qrResponseCode.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    Timber.d("${it.data},$it")
+                    when(it.data){
+                        200 -> Timber.d("Success QR")
+                        404 -> Timber.d("failure QR")
+                    }
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun setNavigationQR() {
@@ -73,10 +92,15 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         }
         else { // 내용이 있다면
             Timber.d(result.contents)
-            val url = result.contents
-            val regex = Regex(""".*(/(\d+)/).*""")
-            val finalResult = regex.replace(url, "$2")
-            viewModel.isCheckQR(finalResult.toInt())
+            if (result.contents.contains("http://3.37.34.144")) {
+                val url = result.contents
+                val regex = Regex(""".*(/(\d+)/).*""")
+                val finalResult = regex.replace(url, "$2")
+                viewModel.isCheckQR(finalResult.toInt())
+            } else {
+                toast("다시 시도해라")
+            }
+
         }
     }
 
