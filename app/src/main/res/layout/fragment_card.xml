@@ -43,7 +43,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="티켓"
+                    android:text="@string/tv_ticket"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline"
                     app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="카드"
+                    android:text="@string/tv_card"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/guideline"
@@ -68,31 +70,32 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
 
-            <ImageView
-                android:id="@+id/iv_ticket_card"
-                android:scaleType="fitXY"
-                android:layout_width="0dp"
-                android:layout_marginTop="26dp"
-                android:layout_height="0dp"
-                android:paddingHorizontal="41dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="17dp"
-                imageUrl="@{testImageUrl}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/rv_ticket_card"
-                app:layout_constraintTop_toBottomOf="@id/frameLayout" />
+        <ImageView
+            android:id="@+id/iv_ticket_card"
+            imageUrl="@{testImageUrl}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="26dp"
+            android:paddingHorizontal="41dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="17dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/rv_ticket_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameLayout" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_ticket_card"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:contentDescription="rv_card"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_ticket_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="rv_card"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/co_card_empty_view"
             android:layout_width="0dp"
@@ -118,8 +121,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="71dp"
+                android:layout_marginTop="23dp"
                 android:gravity="center"
-                android:text=" 발급 받은 티켓이 없어요! "
+                android:text="@string/tv_ticket_empty_title"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+                android:textColor="@color/indi_gray600"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_ticket_empty" />
@@ -130,14 +136,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="71dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
-                android:text="아티클을 읽고 티켓을 받아보세요"
+                android:text="@string/tv_card_empty_intro"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+                android:textColor="@color/indi_gray400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ticket_empty_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
