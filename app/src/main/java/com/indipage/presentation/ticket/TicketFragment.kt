@@ -1,9 +1,7 @@
 package com.indipage.presentation.ticket
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -51,10 +49,18 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
         adapter.submitList(spaceList)
 
+        openQR()
+        moveToCard()
+        getColletQRScanData()
+    }
+
+    private fun openQR() {
         viewModel.openProductEvent.observe(viewLifecycleOwner, EventObserver {
             setNavigationQR()
         })
+    }
 
+    private fun moveToCard() {
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) findNavController().navigate(
                 R.id.action_navigation_ticket_to_navigation_card, bundleOf(
@@ -62,12 +68,14 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             )
             else Timber.d("test")
         }
+    }
 
+    private fun getColletQRScanData() {
         viewModel.qrResponseCode.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     Timber.d("${it.data},$it")
-                    when(it.data){
+                    when (it.data) {
                         200 -> Timber.d("Success QR")
                         404 -> Timber.d("failure QR")
                     }
@@ -78,19 +86,14 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     }
 
     private fun setNavigationQR() {
-
         onCustomScanButtonClicked()
     }
 
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        // result : 스캔된 결과
-
-        // 내용이 없다면
         if (result.contents == null) {
-        }
-        else { // 내용이 있다면
+        } else {
             Timber.d(result.contents)
             if (result.contents.contains("http://3.37.34.144")) {
                 val url = result.contents
@@ -100,12 +103,8 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             } else {
                 toast("다시 시도해라")
             }
-
         }
     }
-
-    // 커스텀 스캐너 실행하기
-    // Custom SCAN - onClick
     private fun onCustomScanButtonClicked() {
         val options = ScanOptions()
         options.setOrientationLocked(false)
@@ -113,9 +112,8 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         options.setBeepEnabled(true)
         // options.setTorchEnabled(true)      // true : 실행되자마자 플래시가 켜진다.
         options.setPrompt("커스텀 QR 스캐너 창")
-        options.setDesiredBarcodeFormats( ScanOptions.QR_CODE )
+        options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
         options.captureActivity = QrScanActivity::class.java
-
         barcodeLauncher.launch(options)
     }
 }

@@ -23,6 +23,16 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
+        moveToSaveArticle()
+        moveToSaveSpace()
+    }
+
+    private fun initView() {
+        getUserInfo()
+    }
+
+    private fun getUserInfo() {
         viewModel.userInfo.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -32,20 +42,24 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
 
-        binding.ivMyPageProfileArticle.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_navigation_my_page_to_saved_article, bundleOf(
-                )
-            )
-        }
+    private fun moveToSaveSpace() {
         binding.ivMyPageProfileSpace.setOnClickListener {
             findNavController().navigate(
                 R.id.action_navigation_my_page_to_saved_space, bundleOf(
                 )
             )
         }
+    }
 
+    private fun moveToSaveArticle() {
+        binding.ivMyPageProfileArticle.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_navigation_my_page_to_saved_article, bundleOf(
+                )
+            )
+        }
     }
 
 

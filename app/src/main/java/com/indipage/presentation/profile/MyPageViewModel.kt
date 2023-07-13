@@ -3,7 +3,6 @@ package com.indipage.presentation.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.UserInfo
 import com.indipage.domain.repository.UserRepository
 import com.indipage.presentation.model.UserInfoModel
 import com.indipage.presentation.model.toUserModelEntity
@@ -22,9 +21,11 @@ class MyPageViewModel @Inject constructor(
 
     private val _userInfo = MutableStateFlow<UiState<UserInfoModel>>(UiState.Loading)
     val userInfo: StateFlow<UiState<UserInfoModel>> = _userInfo.asStateFlow()
+
     init {
         getSavedSpaces()
     }
+
     fun getSavedSpaces() = viewModelScope.launch {
         apiRepository.getUserInfo()
             .onSuccess { savedSpaces ->
