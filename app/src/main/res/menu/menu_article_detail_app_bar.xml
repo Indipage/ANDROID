@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/app_bar_bookmark"
-        android:icon="@drawable/ic_article_detail_bookmark_off"
-        app:showAsAction="always"
-        android:title="북마크" />
-</menu>

@@ -11,22 +11,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_article_detail"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_article_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:paddingVertical="24dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/menu_article_detail_app_bar"
-            app:navigationIcon="@drawable/ic_article_detail_arrow"
-            app:title="@string/article_detail_tool_bar_title" />
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_article_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="24dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="32dp"
+                app:navigationIcon="@drawable/ic_article_detail_arrow"
+                app:title="@string/article_detail_tool_bar_title"
+                app:titleTextAppearance="@style/TextAppearance.IndiPage.Sub_Head01">
+
+                <ImageView
+                    android:id="@+id/iv_article_detail_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/selector_article_detail_bookmark"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_article_detail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_article_detail"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_article_detail"
             tools:ignore="SpeakableTextPresentCheck">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,71 +58,80 @@
                     android:layout_width="match_parent"
                     android:layout_height="228dp"
                     android:contentDescription="@string/article_detail_place_image_description"
+                    android:scaleType="centerCrop"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ppp_club_img" />
+                    app:srcCompat="@drawable/ic_launcher_background" />
 
                 <TextView
                     android:id="@+id/tv_article_detail_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="21dp"
                     android:text="@string/article_detail_author"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_article_detail_place_image"
-                    tools:ignore="TextSizeCheck" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_article_detail_place_image" />
 
                 <TextView
                     android:id="@+id/tv_article_detail_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="27px"
                     android:text="@string/article_detail_title"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_author"
-                    tools:ignore="TextSizeCheck" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_author" />
 
 
                 <TextView
                     android:id="@+id/tv_article_detail_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:text="@string/article_detail_date"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_title"
                     tools:ignore="SmallSp,TextSizeCheck" />
 
-
-                <androidx.constraintlayout.utils.widget.ImageFilterButton
-                    android:id="@+id/btn_article_detail_move_to_place_detail"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tv_article_detail_move_to_place_detail_1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="110dp"
-                    android:layout_marginTop="20dp"
-                    android:contentDescription="@string/article_detail_move_to_place_detail_btn_description"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_date"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_marginTop="23dp"
+                    android:background="@color/indi_black"
+                    android:paddingHorizontal="32dp"
+                    android:paddingTop="21dp"
+                    android:text="나만 알고싶은"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+                    android:textColor="@color/indi_green"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_date" />
+
+                <TextView
+                    android:id="@+id/tv_article_detail_move_to_place_detail_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/indi_black"
+                    android:drawableEnd="@drawable/ic_article_detail_go_to_place_detail_arrow"
+                    android:paddingHorizontal="32dp"
+                    android:paddingBottom="21dp"
+                    android:text="문학살롱 초고\n바로가기"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body03"
+                    android:textColor="@color/indi_green"
+                    app:layout_constraintBottom_toTopOf="@id/view_article_detail_1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_move_to_place_detail_1" />
 
                 <View
                     android:id="@+id/view_article_detail_1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginHorizontal="13dp"
                     android:layout_marginTop="20dp"
-                    android:background="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/btn_article_detail_move_to_place_detail" />
-
+                    android:background="@color/indi_gray200"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_move_to_place_detail_2" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_article_detail_article_body"
@@ -116,12 +144,12 @@
 
 
                 <View
-                    android:id="@+id/view_article_detail_3"
+                    android:id="@+id/view_article_detail_2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginHorizontal="13dp"
                     android:layout_marginTop="35dp"
-                    android:background="@color/black"
+                    android:background="@color/indi_gray200"
                     app:layout_constraintTop_toBottomOf="@id/rv_article_detail_article_body" />
 
                 <TextView
@@ -129,27 +157,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="114dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="56dp"
                     android:text="@string/article_detail_ticket_title"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_3"
-                    tools:layout_editor_absoluteX="114dp" />
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    app:layout_constraintTop_toBottomOf="@id/view_article_detail_2" />
 
                 <TextView
                     android:id="@+id/tv_article_detail_ticket_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="56dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="19dp"
+                    android:lineSpacingExtra="24px"
                     android:text="@string/article_detail_ticket_detail"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_title"
-                    tools:layout_editor_absoluteX="56dp" />
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_title" />
 
                 <ImageView
                     android:id="@+id/iv_article_detail_ticket_image"
@@ -162,10 +186,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_detail"
-                    app:srcCompat="@drawable/ppp_club_img" />
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

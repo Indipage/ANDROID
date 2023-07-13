@@ -45,6 +45,9 @@ class SavedSpaceFragment :
         )
         binding.rvSavedSpace.adapter = adapter
         adapter.submitList(spaceList)
+        binding.coSavedSpaceEmptyView.visibility =
+            if (spaceList.isEmpty()) View.VISIBLE else View.GONE
+
 //        getCollectData()
         setNavigation()
     }

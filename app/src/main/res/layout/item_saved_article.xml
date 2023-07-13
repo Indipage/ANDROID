@@ -43,12 +43,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
                     android:background="@drawable/shape_purple_fill_5_rect"
-                    android:fontFamily="@font/pretendard_regular"
                     android:paddingHorizontal="5dp"
                     android:paddingVertical="3dp"
                     android:text="@{saved_article.space}"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
+                    android:textColor="@color/indi_white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="독립서점" />
@@ -58,10 +57,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="@font/font_pretendard_bold"
                     android:text="@{saved_article.spaceName}"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    android:textColor="@color/indi_white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_saved_article_space"
                     tools:text="문학살롱 초고" />
@@ -71,10 +69,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:fontFamily="@font/font_pretendard_medium"
                     android:text="@{saved_article.spaceComment}"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+                    android:textColor="@color/indi_white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_saved_article_name"
                     tools:text="반복되는 일상 속 나만의 아지트가 되어주는 공간" />
@@ -89,26 +86,21 @@
                     android:paddingVertical="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
+
                     <TextView
                         android:id="@+id/tv_btn_name"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:text="읽으러 가기"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
+                        android:drawablePadding="7dp"
+                        android:text="@string/tv_saved_article_move"
+                        android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+                        android:textColor="@color/indi_white"
+                        app:drawableEndCompat="@drawable/ic_article_move"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-                    <ImageView
-                        android:layout_marginStart="4dp"
-                        android:layout_width="12dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_article_move"
-                        app:layout_constraintStart_toEndOf="@id/tv_btn_name"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_btn_name"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-               
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

@@ -32,11 +32,10 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/tv_saved_space"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    android:textColor="@color/indi_black" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_saved_space"
@@ -51,5 +50,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ab_saved_space"
             tools:listitem="@layout/item_saved_space" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/co_saved_space_empty_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ab_saved_space">
+
+            <ImageView
+                android:id="@+id/iv_saved_space_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="154dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_saved_space_empty_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="71dp"
+                android:layout_marginTop="23dp"
+                android:gravity="center"
+                android:text="@string/tv_saved_space_empty_title"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+                android:textColor="@color/indi_gray600"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_saved_space_empty" />
+
+
+            <TextView
+                android:id="@+id/tv_saved_space_empty_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="71dp"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="@string/tv_saved_space_empty_intro"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                android:textColor="@color/indi_gray400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_saved_space_empty_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

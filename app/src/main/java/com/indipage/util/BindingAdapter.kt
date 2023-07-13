@@ -46,3 +46,4 @@ fun applyAFormat(view: TextView, item: String?) {
     val spaceInforFormat = "주소|${item}"
     view.text = spaceInforFormat
 }
+

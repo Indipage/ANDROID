@@ -8,12 +8,6 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-<!--    <style name="TextAppearance.IndiPage.Headline01">-->
-<!--        <item name="fontFamily">@font/font_pretendard_bold</item>-->
-<!--        <item name="android:textSize">20sp</item>-->
-<!--        <item name="lineHeight">32sp</item>-->
-<!--    </style>-->
-
     <style name="TextAppearance.IndiPage.Title01">
         <item name ="fontFamily">@font/font_pretendard_bold</item>
         <item name ="android:textSize">28sp</item>
