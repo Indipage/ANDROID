@@ -10,7 +10,10 @@ import com.example.core_ui.fragment.snackBar
 import com.example.core_ui.fragment.toast
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
 
     private val testString =
@@ -24,8 +27,10 @@ class ArticleDetailFragment : BindingFragment<FragmentArticleDetailBinding>(R.la
     private fun initView() {
         viewModel.getArticleDetail(1)
         observe()
+        setArticleDetailAdapter()
         setClickEventOnMoveToSpaceDetailTextView()
         setClickEventOnToolbar()
+        setClickEventOnTicketImage()
     }
 
     private fun setClickEventOnMoveToSpaceDetailTextView(){
