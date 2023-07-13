@@ -27,7 +27,7 @@ object RetrofitModule {
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(tokenInterceptor())
+//            .addInterceptor(tokenInterceptor())
             .build()
 
     @Provides
@@ -37,8 +37,10 @@ object RetrofitModule {
             when {
                 message.isJsonObject() ->
                     Log.d(API_TAG, JSONObject(message).toString(4))
+
                 message.isJsonArray() ->
                     Log.d(API_TAG, JSONArray(message).toString(4))
+
                 else -> {
                     Log.d(API_TAG, "CONNECTION INFO -> $message")
                 }
@@ -53,7 +55,7 @@ object RetrofitModule {
     @TestRetrofit
     fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("http://52.78.152.187:8080")
+        .baseUrl("http://3.37.34.144")
         .client(okHttpClient)
         .build()
 
@@ -66,6 +68,5 @@ object RetrofitModule {
         }
         return requestInterceptor
     }
-
 }
 

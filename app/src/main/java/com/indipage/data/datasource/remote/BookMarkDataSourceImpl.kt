@@ -7,10 +7,9 @@ import com.indipage.data.dto.response.SavedArticle
 import com.indipage.data.dto.response.SavedSpace
 import javax.inject.Inject
 
-class BookMarkDataSourceImpl@Inject constructor(
+class BookMarkDataSourceImpl @Inject constructor(
     private val apiService: BookMarkApiService
 ) : BookMarkDataSource {
-
 
     override suspend fun getSavedArticles(): BaseResponse<List<SavedArticle>> {
         return apiService.getSavedArticles()

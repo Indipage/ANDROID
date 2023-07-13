@@ -1,8 +1,10 @@
 package com.indipage.di
 
 import com.indipage.data.datasource.BookMarkDataSource
+import com.indipage.data.datasource.SpaceDetailDataSource
 import com.indipage.data.datasource.TestDataSource
 import com.indipage.data.datasource.remote.BookMarkDataSourceImpl
+import com.indipage.data.datasource.remote.SpaceDetailDataSourceImpl
 import com.indipage.data.datasource.remote.TestDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -21,5 +23,9 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun providesBookMarkDataSource(DataSourceImpl: BookMarkDataSourceImpl): BookMarkDataSource
+
+    @Singleton
+    @Binds
+    abstract fun providesSpaceDetailDataSource(DataSourceImpl: SpaceDetailDataSourceImpl): SpaceDetailDataSource
 
 }

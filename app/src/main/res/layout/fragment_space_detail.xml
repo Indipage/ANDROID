@@ -7,7 +7,12 @@
 
         <variable
             name="curation"
-            type="com.indipage.data.dto.response.MockCurationData" />
+            type="com.indipage.data.dto.response.CurationData" />
+
+
+        <variable
+            name="curation2"
+            type="com.indipage.data.dto.response.CurationData.BookData" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -33,7 +38,7 @@
                 android:id="@+id/iv_bookmark_icon"
                 android:layout_width="25dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="30dp"
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="21dp"
                 android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,12 +145,12 @@
 
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/iv_purple_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/shape_purple_unfill_rect"
                 android:layout_marginTop="16dp"
+                android:src="@drawable/shape_purple_unfill_rect"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_title" />
@@ -154,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{curation.bookData.title}"
+                android:text="@{curation2.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vp_curation" />
