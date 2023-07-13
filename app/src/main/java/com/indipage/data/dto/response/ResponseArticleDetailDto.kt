@@ -13,6 +13,10 @@ data class ResponseArticleDetailDto(
     val content: String,
     @SerialName("createdAt")
     val createdAt: String,
+    @SerialName("thumbnailUrl")
+    val thumbnailUrl: String,
+    @SerialName("spaceId")
+    val spaceId: Int,
     @SerialName("spaceName")
     val spaceName: String,
     @SerialName("spaceOwner")
