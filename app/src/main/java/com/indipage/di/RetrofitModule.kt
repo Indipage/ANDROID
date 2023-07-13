@@ -37,8 +37,10 @@ object RetrofitModule {
             when {
                 message.isJsonObject() ->
                     Log.d(API_TAG, JSONObject(message).toString(4))
+
                 message.isJsonArray() ->
                     Log.d(API_TAG, JSONArray(message).toString(4))
+
                 else -> {
                     Log.d(API_TAG, "CONNECTION INFO -> $message")
                 }
@@ -66,6 +68,5 @@ object RetrofitModule {
         }
         return requestInterceptor
     }
-
 }
 

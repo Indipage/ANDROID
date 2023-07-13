@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.indipage.R
 
 @BindingAdapter("onThrottleClick", "clickInterval", requireAll = false)
 fun applyThrottleClick(view: View, listener: View.OnClickListener, interval: Long? = 300L) {
@@ -15,6 +14,7 @@ fun applyThrottleClick(view: View, listener: View.OnClickListener, interval: Lon
     } ?: OnThrottleClickListener(listener)
     view.setOnClickListener(throttleListener)
 }
+
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String) {
     view.load(url)
@@ -29,6 +29,21 @@ fun ImageView.setCircleImage(img: String?) {
 
 @BindingAdapter("operationInformation")
 fun applyOperationFormat(view: TextView, item: String?) {
-    val spaceInforFormat = "운영시간|$item" ?:"/"
+    val spaceInforFormat = "운영시간|${item}"
     view.text = spaceInforFormat
 }
+
+
+@BindingAdapter("closedInformation")
+fun applyClosedFormat(view: TextView, item: String?) {
+    val spaceInforFormat = "휴무|${item}"
+    view.text = spaceInforFormat
+}
+
+
+@BindingAdapter("addressInformation")
+fun applyAFormat(view: TextView, item: String?) {
+    val spaceInforFormat = "주소|${item}"
+    view.text = spaceInforFormat
+}
+

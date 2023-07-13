@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
+
     private lateinit var adapter: SearchAdapter
     private val searchDebouncer = Debouncer<String>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
