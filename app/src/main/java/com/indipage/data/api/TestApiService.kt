@@ -2,6 +2,7 @@ package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.request.RequestSignInDto
+import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseSignInDto
 import com.indipage.data.dto.response.ResponseTestRecyclerview
 import retrofit2.Response
@@ -25,5 +26,10 @@ interface TestApiService {
      *     @Path("path") path:String
      *     ): Response<ResponseTestDto>
      * **/
+
+    @GET("/article/{articleId}")
+    suspend fun getArticleDetail(
+        @Path(value = "articleId") articleId: Long
+    ): BaseResponse<ResponseArticleDetailDto>
 
 }

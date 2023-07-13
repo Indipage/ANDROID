@@ -1,7 +1,9 @@
 package com.indipage.di
 
+import com.indipage.data.repositoryimpl.ArticleDetailRepositoryImpl
 import com.indipage.data.repositoryimpl.BookMarkRepositoryImpl
 import com.indipage.data.repositoryimpl.TestRepositoryImpl
+import com.indipage.domain.repository.ArticleDetailRepository
 import com.indipage.domain.repository.BookMarkRepository
 import com.indipage.domain.repository.TestApiRepository
 import dagger.Binds
@@ -21,4 +23,8 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesBookMarkRepository(repoImpl: BookMarkRepositoryImpl): BookMarkRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesArticleDetailRepository(repoImpl: ArticleDetailRepositoryImpl): ArticleDetailRepository
 }
