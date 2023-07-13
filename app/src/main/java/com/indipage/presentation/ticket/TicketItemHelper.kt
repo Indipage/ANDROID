@@ -41,7 +41,6 @@ class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
         return 2f
     }
-
     override fun clearView(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
