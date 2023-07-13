@@ -52,6 +52,11 @@
             app:destination="@id/navigation_ticket" />
     </fragment>
     <fragment
+        android:id="@+id/navigation_space_detail"
+        android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
+        android:label="SpaceDetailFragment" />
+    
+    <fragment
         android:id="@+id/navigation_article_detail"
         android:name="com.indipage.presentation.article.ArticleDetailFragment"
         android:label="ArticleDetailFragment" >
@@ -66,4 +71,5 @@
         android:id="@+id/navigation_space_detail"
         android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
         android:label="SpaceDetailFragment" />
+
 </navigation>

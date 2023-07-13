@@ -7,7 +7,11 @@
 
         <variable
             name="curation"
-            type="com.indipage.data.dto.response.MockCurationData" />
+            type="com.indipage.data.dto.response.CurationData" />
+
+        <variable
+            name="spaceDetail"
+            type="com.indipage.data.dto.response.SpaceDetailData" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -29,13 +33,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="53dp"
+                android:background="@color/zxing_transparent"
+                android:src="@drawable/ic_back_wh"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
                 android:id="@+id/iv_bookmark_icon"
-                android:layout_width="25dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:src="@drawable/ic_launcher_foreground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="28dp"
+                android:background="@color/zxing_transparent"
+                android:src="@drawable/selector_space_bookmark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,51 +59,59 @@
                 android:id="@+id/tv_space_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="21dp"
-                android:text="문학살롱 초고"
-                android:textSize="24sp"
+                android:layout_marginBottom="24dp"
+                android:text="@{spaceDetail.name}"
+                android:textAppearance="@style/TextAppearance.IndiPage.Title02"
+                android:textColor="@color/indi_white"
                 app:layout_constraintBottom_toTopOf="@id/tv_space_address"
-                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag" />
-
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="문학살롱 초고" />
 
             <TextView
                 android:id="@+id/tv_space_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="주소 | 상세주소란"
-                android:textSize="14sp"
+                android:layout_marginBottom="6dp"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                android:textColor="@color/indi_white"
+                app:addressInformation="@{spaceDetail.address}"
                 app:layout_constraintBottom_toTopOf="@id/tv_space_time"
-                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag" />
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="주소" />
 
 
             <TextView
                 android:id="@+id/tv_space_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:text="운영시간 | Tue-Sat 08:00-19:00"
-                android:textSize="14sp"
+                android:layout_marginBottom="6dp"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                android:textColor="@color/indi_white"
                 app:layout_constraintBottom_toTopOf="@id/tv_space_closed"
-                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag" />
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                app:operationInformation="@{spaceDetail.operatingTime}"
+                tools:text="운영시간" />
 
 
             <TextView
                 android:id="@+id/tv_space_closed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="21dp"
-                android:text="휴무 | 일요일, 월요일"
-                android:textSize="14sp"
+                android:layout_marginBottom="20dp"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                android:textColor="@color/indi_white"
+                app:closedInformation="@{spaceDetail.closed}"
                 app:layout_constraintBottom_toTopOf="@id/rv_space_detail_tag"
-                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag" />
+                app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
+                tools:text="휴무" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_space_detail_tag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="21dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="26dp"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="@id/iv_space_detail_background"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,56 +119,59 @@
                 tools:listitem="@layout/item_space_detail_tag" />
 
             <TextView
-                android:id="@+id/tv_comment_title"
+                android:id="@+id/tv_owner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:text="책방지기 키위"
-                android:textSize="20sp"
+                android:layout_marginTop="33dp"
+                android:text="@{spaceDetail.owner}"
+                android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-                app:layout_constraintTop_toBottomOf="@id/iv_space_detail_background" />
+                app:layout_constraintTop_toBottomOf="@id/iv_space_detail_background"
+                tools:text="공간지기 키위" />
 
             <TextView
-                android:id="@+id/tv_comment_detail"
+                android:id="@+id/tv_comment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="#F4F4F4"
+                android:layout_marginTop="10dp"
+                android:background="@color/indi_gray200"
                 android:paddingHorizontal="32dp"
                 android:paddingVertical="14dp"
-                android:text="대전 성심당 부근 여행자에게 영감을 주는 여행 서점 겸 카페다. 서점은 2층에 있으며, 1층은 '도시여행자' 카페로 운영한다. 전시와 북토크, 심야책방을 정기적으로 연다. 책방지기는 이 공간에서 삶의 다양한 방향성을 제시하고자 한다. 도시문화 콘텐츠 기획을 겸하고 있다."
-                android:textSize="15sp"
+                android:text="@{spaceDetail.introduction}"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                android:textColor="@color/indi_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_comment_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_owner" />
 
             <TextView
                 android:id="@+id/tv_curation_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:text="책방지기 추천서가"
-                android:textSize="20sp"
+                android:layout_marginTop="78dp"
+                android:text="공간지기 추천서가"
+                android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-                app:layout_constraintTop_toBottomOf="@id/tv_comment_detail" />
+                app:layout_constraintTop_toBottomOf="@id/tv_comment" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_curation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_title" />
 
-
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/iv_purple_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/shape_purple_unfill_rect"
                 android:layout_marginTop="16dp"
+                android:src="@drawable/shape_purple_unfill_rect"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_title" />
@@ -154,7 +181,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{curation.bookData.title}"
+                android:text="파과"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+                android:textColor="@color/indi_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vp_curation" />
@@ -165,11 +194,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="44dp"
                 android:layout_marginTop="10dp"
-                android:background="#F4F4F4"
+                android:background="@color/indi_gray200"
                 android:gravity="center"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="14dp"
                 android:text="@{curation.comment}"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                android:textColor="@color/indi_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_content_title" />
@@ -178,9 +209,10 @@
                 android:id="@+id/tv_peculiarity_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:text="특색 요소"
-                android:textSize="20sp"
+                android:layout_marginTop="78dp"
+                android:text="특색요소"
+                android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_comment" />
 
@@ -188,17 +220,18 @@
                 android:id="@+id/fl_peculiarity"
                 android:layout_width="0dp"
                 android:layout_height="234dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_peculiarity_title">
 
                 <ImageView
                     android:id="@+id/iv_peculiarity"
+                    imageUrl="https://avatars.githubusercontent.com/u/93514333?v=4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
+                    tools:src="@drawable/ic_launcher_background" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -209,39 +242,43 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginTop="134dp"
-                        android:layout_marginEnd="32dp"
-                        android:text="문학 칵테일"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginHorizontal="32dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@{spaceDetail.peculiarityTitle}"
+                        android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                        android:textColor="@color/indi_black"
+                        app:layout_constraintBottom_toTopOf="@id/tv_peculiarity_comment"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_peculiarity_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:text="문학 작품과 즐기는 칵테일,\n이런 고급스런 취미는 어때요?"
+                        android:layout_marginHorizontal="32dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="@{spaceDetail.peculiarityContent}"
+                        android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+                        android:textColor="@color/indi_black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_peculiarity_subtitle" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
             <TextView
-                android:id="@+id/tv_article_fallow"
+                android:id="@+id/tv_article_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="76dp"
+                android:switchTextAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:text="공간이야기"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/btn_follow"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_peculiarity" />
 
             <TextView
-                android:id="@+id/tv_article_fallow_comment"
+                android:id="@+id/tv_article_follow_comment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -249,23 +286,25 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@id/btn_follow"
                 app:layout_constraintStart_toStartOf="@id/btn_follow"
-                app:layout_constraintTop_toBottomOf="@id/tv_article_fallow" />
-
+                app:layout_constraintTop_toBottomOf="@id/tv_article_follow" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_follow"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginHorizontal="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="84dp"
-                android:background="@color/light_green"
-                android:shadowColor="#00000000"
-                android:text="조르기"
+                android:background="@drawable/shape_purple_fill_6_rect"
+                android:paddingVertical="20dp"
+                android:text="아티클 조르기"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body03"
+                android:textColor="@color/indi_white"
+                app:elevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_article_fallow_comment" />
+                app:layout_constraintStart_toStartOf="@id/tv_article_follow"
+                app:layout_constraintTop_toBottomOf="@id/tv_article_follow_comment" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

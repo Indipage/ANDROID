@@ -1,10 +1,12 @@
 package com.indipage.di
 
 import com.indipage.data.repositoryimpl.BookMarkRepositoryImpl
+import com.indipage.data.repositoryimpl.SpaceDetailRepositoryImpl
 import com.indipage.data.repositoryimpl.TestRepositoryImpl
 import com.indipage.data.repositoryimpl.TicketRepositoryImpl
 import com.indipage.data.repositoryimpl.UserRepositoryImpl
 import com.indipage.domain.repository.BookMarkRepository
+import com.indipage.domain.repository.SpaceDetailRepository
 import com.indipage.domain.repository.TestApiRepository
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.repository.UserRepository
@@ -26,6 +28,10 @@ abstract class RepositoryModule {
     @Binds
     abstract fun providesBookMarkRepository(repoImpl: BookMarkRepositoryImpl): BookMarkRepository
 
+    @Singleton
+    @Binds
+    abstract fun providesSpaceDetailRepository(repoImpl: SpaceDetailRepositoryImpl): SpaceDetailRepository
+  
     @Singleton
     @Binds
     abstract fun provideUserRepository(repoImpl: UserRepositoryImpl): UserRepository
