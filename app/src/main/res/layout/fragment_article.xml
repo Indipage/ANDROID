@@ -49,14 +49,16 @@
 
         <ImageView
             android:id="@+id/iv_article_place_image"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="8dp"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="54dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
+            app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
+            app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
             app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
 
         <ImageView
@@ -93,11 +95,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
 
+
         <ImageView
             android:id="@+id/iv_article_card_packed"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="26dp"
             android:scaleType="fitXY"
