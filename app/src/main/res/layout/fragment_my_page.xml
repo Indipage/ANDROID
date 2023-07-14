@@ -18,6 +18,7 @@
         <ImageView
             android:id="@+id/iv_my_page_profile_image"
             android:layout_width="84dp"
+            android:src="@drawable/ic_launcher_background"
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
             app:layout_constraintDimensionRatio="1:1"
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            app:operationInformation="@{userInfo.name}"
+            android:text="@{userInfo.name}"
             android:textAppearance="@style/TextAppearance.IndiPage.Body03"
             android:textColor="@color/indi_black"
             app:layout_constraintEnd_toEndOf="parent"

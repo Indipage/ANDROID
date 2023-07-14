@@ -63,7 +63,6 @@ class SpaceDetailFragment :
 
     private fun initButton() = with(binding) {
         btnFollow.setOnClickListener {
-            btnFollow.setBackgroundColor(Color.parseColor("#FFAA59FC"))
             btnFollow.text = "조르기 완료"
         }
 
