@@ -59,6 +59,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
 
+        <ImageView
+            android:id="@+id/iv_article_card_gradient_open"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_article_card_gradient_open"
+            app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
+            app:layout_constraintEnd_toEndOf="@id/iv_article_place_image"
+            app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
+            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+
         <TextView
             android:id="@+id/tv_article_title"
             android:layout_width="wrap_content"
