@@ -10,7 +10,6 @@ import com.indipage.databinding.FragmentQrSuccessBinding
 class QrSuccessFragment : BindingFragment<FragmentQrSuccessBinding>(R.layout.fragment_qr_success) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvQrSuccessTitle.setOnClickListener {
-            findNavController().navigateUp() }
+
     }
 }

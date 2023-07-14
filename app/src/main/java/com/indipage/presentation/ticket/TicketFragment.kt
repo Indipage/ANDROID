@@ -111,7 +111,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                viewModel.isCheckQR(finalResult.toInt())
+                viewModel.isCheckQR(2)
             } else {
                 toast("다시 시도해라")
             }

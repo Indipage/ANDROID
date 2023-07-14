@@ -39,6 +39,7 @@ class DialogQrFailFragment: DialogFragment() {
 
         binding.btnQrFailRetry.setOnClickListener {
             listener?.onCheckDialogResult()
+            dismiss()
         }
     }
 
