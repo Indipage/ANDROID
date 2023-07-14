@@ -2,6 +2,7 @@ package com.indipage.presentation.ticket
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -27,7 +28,8 @@ import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 @AndroidEntryPoint
-class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_ticket) ,CheckDialogListener{
+class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_ticket),
+    CheckDialogListener {
 
     private lateinit var adapter: TicketAdapter
     private lateinit var adapter2: CardAdapter
@@ -64,10 +66,14 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private fun moveToCard() {
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) findNavController().navigate(
-                R.id.action_navigation_ticket_to_navigation_card, bundleOf(
-                )
-            )
+
+            if (isChecked)
+                Handler().postDelayed({
+                    findNavController().navigate(
+                        R.id.action_navigation_ticket_to_navigation_card, bundleOf(
+                        )
+                    )
+                }, 100)
             else Timber.d("test")
         }
     }
@@ -80,8 +86,13 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     when (it.data) {
                         200 -> {
                             Timber.d("Success QR")
-                            findNavController().navigate(
-                                R.id.action_navigation_ticket_to_qr_success, bundleOf())
+
+                            Handler().postDelayed({
+                                findNavController().navigate(
+                                    R.id.action_navigation_card_to_navigation_ticket,
+                                    bundleOf()
+                                )
+                            }, 100)
                             viewModel.closeQR()
                         }
                         404 -> {
@@ -117,6 +128,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             }
         }
     }
+
     private fun onCustomScanButtonClicked() {
         val options = ScanOptions()
         options.setOrientationLocked(false)
