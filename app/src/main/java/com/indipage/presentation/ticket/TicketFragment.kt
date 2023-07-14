@@ -47,7 +47,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)
 
         binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
-
         adapter.submitList(spaceList)
 
         openQR()
@@ -79,9 +78,16 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     when (it.data) {
                         200 -> {
                             Timber.d("Success QR")
+                            findNavController().navigate(
+                                R.id.action_navigation_ticket_to_navigation_qr_success,
+                                bundleOf()
+                            )
+                        }
+                        404 -> {
+                            Timber.d("failure QR")
                             val dialog = DialogQrFailFragment()
                             dialog.show(parentFragmentManager, "dialog")
-                        } 404 -> Timber.d("failure QR")
+                        }
                     }
                 }
                 else -> {}
