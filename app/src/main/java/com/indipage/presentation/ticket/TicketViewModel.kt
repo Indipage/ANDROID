@@ -42,4 +42,9 @@ class TicketViewModel @Inject constructor(
             }
     }
 
+
+    fun closeQR() {
+        _qrResponseCode.value=UiState.Success(100)
+    }
+
 }

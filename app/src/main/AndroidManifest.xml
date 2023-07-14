@@ -37,10 +37,6 @@
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
 
-        <activity
-            android:name=".presentation.qr.QrSuccessActivity"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation" />
     </application>
 
 </manifest>

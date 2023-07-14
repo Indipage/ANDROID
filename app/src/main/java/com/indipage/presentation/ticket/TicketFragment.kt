@@ -16,7 +16,6 @@ import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
-import com.indipage.presentation.qr.QrSuccessActivity
 import com.indipage.presentation.qr.QrScanActivity
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
@@ -81,8 +80,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     when (it.data) {
                         200 -> {
                             Timber.d("Success QR")
-                            val intent = Intent(activity, QrSuccessActivity::class.java)
-                            startActivity(intent)
+                            findNavController().navigate(
+                                R.id.action_navigation_ticket_to_qr_success, bundleOf())
+                            viewModel.closeQR()
                         }
                         404 -> {
                             Timber.d("failure QR")
@@ -111,7 +111,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                viewModel.isCheckQR(2)
+                viewModel.isCheckQR(finalResult.toInt())
             } else {
                 toast("다시 시도해라")
             }
