@@ -1,5 +1,6 @@
 package com.indipage.presentation.ticket
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -13,7 +14,9 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
+import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
+import com.indipage.presentation.qr.QrSuccessActivity
 import com.indipage.presentation.qr.QrScanActivity
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
@@ -25,7 +28,7 @@ import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 @AndroidEntryPoint
-class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_ticket) {
+class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_ticket) ,CheckDialogListener{
 
     private lateinit var adapter: TicketAdapter
     private lateinit var adapter2: CardAdapter
@@ -78,14 +81,13 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     when (it.data) {
                         200 -> {
                             Timber.d("Success QR")
-                            findNavController().navigate(
-                                R.id.action_navigation_ticket_to_navigation_qr_success,
-                                bundleOf()
-                            )
+                            val intent = Intent(activity, QrSuccessActivity::class.java)
+                            startActivity(intent)
                         }
                         404 -> {
                             Timber.d("failure QR")
                             val dialog = DialogQrFailFragment()
+                            dialog.setCheckDialogListener(this)
                             dialog.show(parentFragmentManager, "dialog")
                         }
                     }
@@ -109,7 +111,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                viewModel.isCheckQR(finalResult.toInt())
+                viewModel.isCheckQR(2)
             } else {
                 toast("다시 시도해라")
             }
@@ -125,5 +127,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
         options.captureActivity = QrScanActivity::class.java
         barcodeLauncher.launch(options)
+    }
+
+    override fun onCheckDialogResult() {
+        setNavigationQR()
     }
 }

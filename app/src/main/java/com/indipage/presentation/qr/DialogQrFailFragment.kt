@@ -1,19 +1,23 @@
 package com.indipage.presentation.qr
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
 import com.indipage.databinding.FragmentDialogQrFailBinding
 
+interface CheckDialogListener {
+    fun onCheckDialogResult()
+}
 class DialogQrFailFragment: DialogFragment() {
 
+    private var listener: CheckDialogListener? = null
     private var _binding: FragmentDialogQrFailBinding? = null
     private val binding get() = _binding!!
-
+    fun setCheckDialogListener(listener: CheckDialogListener) {
+        this.listener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,19 +29,18 @@ class DialogQrFailFragment: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        initBtn()
+        initBtn()
     }
 
     private fun initBtn() {
+        binding.btnQrFailExit.setOnClickListener {
             dismiss()
-    }
+        }
 
-//    private fun startMainActivity() {
-//        Intent(activity, MainActivity::class.java).apply {
-//            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//            startActivity(this)
-//        }
-//    }
+        binding.btnQrFailRetry.setOnClickListener {
+            listener?.onCheckDialogResult()
+        }
+    }
 
     override fun onDestroy() {
         _binding = null
