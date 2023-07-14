@@ -16,5 +16,26 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         binding.ivArticlePlaceImage.setOnClickListener(View.OnClickListener {
             findNavController().navigate(R.id.action_article_to_article_detail)
         })
+
+        initView()
+        setClickEventOnCategoryButton()
+    }
+
+    private fun initView() {
+        binding.btnArticleCategoryWeekly.isSelected = true
+    }
+
+    private fun setClickEventOnCategoryButton() {
+        binding.btnArticleCategoryWeekly.setOnClickListener(View.OnClickListener {
+            binding.btnArticleCategoryWeekly.isSelected =
+                !binding.btnArticleCategoryWeekly.isSelected
+            binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
+        })
+        binding.btnArticleCategoryAll.setOnClickListener(View.OnClickListener {
+            binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
+            binding.btnArticleCategoryWeekly.isSelected =
+                !binding.btnArticleCategoryWeekly.isSelected
+
+        })
     }
 }
