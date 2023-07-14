@@ -11,24 +11,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp">
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/shape_black_fill_20_rect">
+
+        <TextView
+            android:id="@+id/tv_hashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_marginStart="16dp"
+            android:switchTextAppearance="@style/TextAppearance.IndiPage.Body06"
+            android:text="#"
+            android:textColor="@color/indi_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:textColor="@color/indi_green" />
 
         <TextView
             android:id="@+id/tv_space_detail_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="16dp"
+            android:switchTextAppearance="@style/TextAppearance.IndiPage.Body06"
             android:textColor="@color/white"
-            android:background="@drawable/shape_purple_fill_20_rect"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="#태그"
-            tools:textColor="@color/white"
-            tools:textSize="14sp" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_hashtag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="태그 내용"
+            tools:textColor="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

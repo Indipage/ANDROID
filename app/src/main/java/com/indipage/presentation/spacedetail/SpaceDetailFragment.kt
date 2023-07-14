@@ -1,6 +1,5 @@
 package com.indipage.presentation.spacedetail
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.Px
@@ -63,11 +62,11 @@ class SpaceDetailFragment :
 
     private fun initButton() = with(binding) {
         btnFollow.setOnClickListener {
-            btnFollow.setBackgroundColor(Color.parseColor("#FFAA59FC"))
+            btnFollow.isSelected = !btnFollow.isSelected
             btnFollow.text = "조르기 완료"
         }
 
-        ivBookmarkIcon.setOnClickListener(){
+        ivBookmarkIcon.setOnClickListener() {
             ivBookmarkIcon.isSelected = !ivBookmarkIcon.isSelected
         }
     }
@@ -77,7 +76,7 @@ class SpaceDetailFragment :
 
         binding.rvSpaceDetailTag.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(listOf("안녕", "만나서", "반가워"))
+        binding.rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(item.tagList)
     }
 
     private fun initCurationAdapter(item: List<CurationData>) {

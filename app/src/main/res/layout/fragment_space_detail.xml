@@ -169,7 +169,7 @@
                 android:id="@+id/iv_purple_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:src="@drawable/shape_purple_unfill_rect"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -257,10 +257,10 @@
                         android:layout_gravity="end"
                         android:layout_marginHorizontal="32dp"
                         android:layout_marginBottom="24dp"
+                        android:switchTextAppearance="@style/TextAppearance.IndiPage.Body05"
                         android:text="@{spaceDetail.peculiarityContent}"
                         android:textAppearance="@style/TextAppearance.IndiPage.Body04"
                         android:textColor="@color/indi_black"
-                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -272,8 +272,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="76dp"
-                android:switchTextAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:text="공간이야기"
+                android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_peculiarity" />
 
@@ -281,9 +282,10 @@
                 android:id="@+id/tv_article_follow_comment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text="인디페이지에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
-                android:textSize="14sp"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                android:textColor="@color/indi_gray400"
                 app:layout_constraintEnd_toEndOf="@id/btn_follow"
                 app:layout_constraintStart_toStartOf="@id/btn_follow"
                 app:layout_constraintTop_toBottomOf="@id/tv_article_follow" />
@@ -295,7 +297,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="84dp"
-                android:background="@drawable/shape_purple_fill_6_rect"
+                android:background="@drawable/selector_follow_button"
                 android:paddingVertical="20dp"
                 android:text="아티클 조르기"
                 android:textAppearance="@style/TextAppearance.IndiPage.Body03"
@@ -305,6 +307,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tv_article_follow"
                 app:layout_constraintTop_toBottomOf="@id/tv_article_follow_comment" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
