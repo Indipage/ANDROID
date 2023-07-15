@@ -14,10 +14,6 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Singleton
     @Binds
-    abstract fun providesTestRecyclerviewRepo(repoImpl: TestRepositoryImpl): TestApiRepository
-
-    @Singleton
-    @Binds
     abstract fun providesBookMarkRepository(repoImpl: BookMarkRepositoryImpl): BookMarkRepository
 
     @Singleton

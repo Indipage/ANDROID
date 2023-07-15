@@ -1,49 +1,19 @@
 package com.indipage.presentation
 
 import android.os.Bundle
-import android.view.View
-import androidx.activity.viewModels
-import androidx.core.os.bundleOf
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.core_ui.base.BindingActivity
-import com.example.core_ui.context.longToast
 import com.indipage.R
 import com.indipage.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    // 어댑터 초기화
-    private val adapter = TestRecyclerviewPagingAdapter()
-
-    // ViewModel 초기화
-    private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        longToast("test")
-        Timber.d("Hello")
-        /**
-         *  viewModel.test(RequestTestDto("test123","test123"))
-         *
-         * **/
-
-        /**
-         *          리사이클러뷰 방출
-         *
-         *          binding.rvtest.adapter = adapter.apply {
-         *          pagingSubmitData(this@MainActivity,viewModel.getRecyclerviewTest("1"),adapter)
-         *          }
-         *
-         *          paging 라이브러리 사용해서 무한스크롤 리사이클러뷰 구현
-         *          pagingSubmitData라는 유틸 함수를 만들어 놓았음
-         * **/
-
         initView()
     }
 

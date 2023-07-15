@@ -15,10 +15,6 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun providesTestDataSource(TestDataSourceImpl: TestDataSourceImpl): TestDataSource
-
-    @Singleton
-    @Binds
     abstract fun providesBookMarkDataSource(DataSourceImpl: BookMarkDataSourceImpl): BookMarkDataSource
 
     @Singleton

@@ -52,7 +52,7 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    @TestRetrofit
+    @IndiPageRetrofit
     fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .baseUrl("http://3.37.34.144")

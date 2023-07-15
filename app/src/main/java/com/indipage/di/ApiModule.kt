@@ -13,33 +13,28 @@ import javax.inject.Singleton
 object ApiModule {
     @Provides
     @Singleton
-    fun provideTestService(@TestRetrofit retrofit: Retrofit): TestApiService =
-        retrofit.create(TestApiService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideBookMarkService(@TestRetrofit retrofit: Retrofit): BookMarkApiService =
+    fun provideBookMarkService(@IndiPageRetrofit retrofit: Retrofit): BookMarkApiService =
         retrofit.create(BookMarkApiService::class.java)
 
 
     @Provides
     @Singleton
-    fun provideSpaceDetailService(@TestRetrofit retrofit: Retrofit): SpaceDetailApiService =
+    fun provideSpaceDetailService(@IndiPageRetrofit retrofit: Retrofit): SpaceDetailApiService =
         retrofit.create(SpaceDetailApiService::class.java)
 
     @Provides
     @Singleton
-    fun provideUserService(@TestRetrofit retrofit: Retrofit): UserApiService =
+    fun provideUserService(@IndiPageRetrofit retrofit: Retrofit): UserApiService =
         retrofit.create(UserApiService::class.java)
 
     @Provides
     @Singleton
-    fun articleDetailApiService(@TestRetrofit retrofit: Retrofit): ArticleDetailApiService =
+    fun articleDetailApiService(@IndiPageRetrofit retrofit: Retrofit): ArticleDetailApiService =
         retrofit.create(ArticleDetailApiService::class.java)
 
     @Provides
     @Singleton
-    fun provideTicketService(@TestRetrofit retrofit: Retrofit): TicketApiService =
+    fun provideTicketService(@IndiPageRetrofit retrofit: Retrofit): TicketApiService =
         retrofit.create(TicketApiService::class.java)
 
 
