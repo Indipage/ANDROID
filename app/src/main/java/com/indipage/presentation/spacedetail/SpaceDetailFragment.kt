@@ -9,10 +9,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.CurationData
-import com.indipage.data.dto.response.SpaceArticleData
 import com.indipage.data.dto.response.SpaceDetailData
 import com.indipage.databinding.FragmentSpaceDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +29,7 @@ class SpaceDetailFragment :
     private val viewModel by viewModels<SpaceDetailViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.spaceArticle = SpaceArticleData("", "", "", 1, "")
+
         initView()
     }
 
@@ -40,8 +40,18 @@ class SpaceDetailFragment :
         initSpaceArticle()
     }
 
+    /** 북마크 버튼 초기화
+     * 1. getBookmarked : 북마크 여부를 서버에서 get
+     * 2. bookMarked observe scope 실행
+     * 3.   북마크 == true일 시
+     *          아이콘 selected 모양
+     *          클릭 리스너 -> deleteBookmarked
+     * 4.   북마크 == false일 시
+     *          아이콘 !selected 모양
+     *          클릭 리스너 -> postBookmarked */
+
     private fun initBookmarkButton() = with(binding) {
-        viewModel.getBookMarked()
+        viewModel.getBookmarked()
         viewModel.bookMarked.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -67,6 +77,9 @@ class SpaceDetailFragment :
         }.launchIn(lifecycleScope)
     }
 
+    /** 공간 상세페이지 초기화
+     * 1. spaceDetailData observe scope 실행
+     * 2.   성공 시 initTagAdapter 실행 */
     private fun getSpaceDetail() {
         viewModel.spaceDetailData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -79,8 +92,20 @@ class SpaceDetailFragment :
         }.launchIn(lifecycleScope)
     }
 
+    /**initTagAdapter
+     * 1. binding 전달
+     * 2. 추천 서가 recycler view LayoutManager 설정
+     * 3. recycler view adapter*/
+    private fun initTagAdapter(item: SpaceDetailData) = with(binding) {
+        spaceDetail = item
+        rvSpaceDetailTag.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(item.tagList)
+    }
+
+    /**1. 서버에서 curationData 받아오기
+     * */
     private fun getCurationData() {
-        viewModel.getCuration()
         viewModel.curationData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -92,75 +117,28 @@ class SpaceDetailFragment :
         }.launchIn(lifecycleScope)
     }
 
-
-    private fun initSpaceArticle() {
-        viewModel.getSpaceArticle()
-        viewModel.spaceArticle.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Success -> {
-                    Timber.d("이삭이삭${it.data}")
-                    if (it.data == null) {
-//                        initFollowButton()
-                    } else {
-                        binding.spaceArticle = it.data
-                        binding.clSpaceArticle.visibility = View.VISIBLE
-                    }
-                }
-
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
-    }
-
-//    private fun initFollowButton() = with(binding) {
-//        binding.clFollow.visibility = View.VISIBLE
-//        viewModel.follow.flowWithLifecycle(lifecycle).onEach {
-//            when (it) {
-//                is UiState.Success -> {
-//                    Timber.d("{$it} 조르기 버튼 UI 초기화")
-//                    if (it.data.isFollowed) {
-//                        btnFollow.text = "조르기 완료"
-//                        btnFollow.isSelected = true
-//                    }
-//                    if (!it.data.isFollowed) {
-//                        btnFollow.setOnClickListener { // 누르면 조르기
-//                            viewModel.postFollow()
-//                            toast("아티클이 발행되면 알려드릴게요!")
-//                        }
-//
-//                    } else {
-//                    }
-//                }
-//
-//                else -> {}
-//            }
-//        }.launchIn(lifecycleScope)
-//    }
-
-    private fun initTagAdapter(item: SpaceDetailData) = with(binding) {
-        spaceDetail = item
-
-        binding.rvSpaceDetailTag.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSpaceDetailTag.adapter = SpaceDetailTagAdapter(item.tagList)
-    }
-
+    /**initCurationAdapter */
     private fun initCurationAdapter(item: List<CurationData>) {
         with(binding) {
-            vpCuration.adapter = SpaceDetailCurationAdapter().apply {
-                submitList(item)
+            vpCuration.apply {
+                adapter = SpaceDetailCurationAdapter().apply {
+                    submitList(item)
+                }
+                vpCuration.offscreenPageLimit = 1
+                post { setCurrentItem(1, true) }
             }
+
             val pageWidth = resources.getDimension(R.dimen.viewpager_item_width)
             val pageMargin = resources.getDimension(R.dimen.viewpager_item_margin)
             val screenWidth = resources.displayMetrics.widthPixels
             val offset = screenWidth - pageWidth - pageMargin
-            vpCuration.offscreenPageLimit = 3
+
             vpCuration.setPageTransformer { page, position ->
                 page.translationX = position * -offset
                 if (position == 0f) {
                     page.alpha = 1f
                     ivPurpleFrame.visibility = View.VISIBLE
-                    Timber.d("$position, $page, 과학 1")
+                    Timber.d("$position, $page, 선생님")
                 } else {
                     if (position == 1f || position == 2f) {
                         ivPurpleFrame.visibility = View.VISIBLE
@@ -172,11 +150,8 @@ class SpaceDetailFragment :
                         normalizedposition = 0.5f
                     }
                     page.alpha = normalizedposition
-                    Timber.d("$position, $page, 과학 2")
+                    Timber.d("$position, $page, 선생님")
                 }
-            }
-            vpCuration.post {
-                vpCuration.setCurrentItem(1, true)
             }
             vpCuration.registerOnPageChangeCallback(
                 object : ViewPager2.OnPageChangeCallback() {
@@ -194,5 +169,45 @@ class SpaceDetailFragment :
                 }
             )
         }
+    }
+
+
+    private fun initSpaceArticle() {
+        viewModel.getSpaceArticle()
+        viewModel.spaceArticle.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    binding.spaceArticle = it.data
+                    binding.clSpaceArticle.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    initFollowButton()
+                }
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun initFollowButton() = with(binding) {
+        binding.clFollow.visibility = View.VISIBLE
+        viewModel.follow.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    Timber.d("{$it} 조르기 버튼 UI 초기화")
+                    if (it.data.isFollowed) {
+                        btnFollow.text = "조르기 완료"
+                        btnFollow.isSelected = true
+                    } else {
+                        btnFollow.setOnClickListener { // 누르면 조르기
+                            viewModel.postFollow()
+                            toast("아티클이 발행되면 알려드릴게요!")
+                        }
+
+                    }
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 }

@@ -40,4 +40,5 @@
     <string name="tv_qr_fail_retry">다시 시도하기</string>
     <string name="btn_article_category_weekly">weekly</string>
     <string name="btn_article_category_all">all</string>
+    <string name="tv_curation_title">공간지기 추천서가</string>
 </resources>

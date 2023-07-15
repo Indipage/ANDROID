@@ -53,6 +53,7 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     fun getSpaceDetail() = viewModelScope.launch {
         apiRepository.getSpaceDetail().onSuccess { SpaceDetailData ->
             _spaceDetailData.value = UiState.Success(SpaceDetailData)
+            Timber.d("공간 상세 정보 실험 ${_spaceDetailData.value}")
         }
             .onFailure { Timber.d("뷰모델 실패 Space Detail // ${it}") }
     }
@@ -78,7 +79,7 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
         }.onFailure { Timber.d("뷰모델 실패 Space Article // ${it}") }
     }
 
-    fun getBookMarked() = viewModelScope.launch {
+    fun getBookmarked() = viewModelScope.launch {
         apiRepository.getBookmarked().onSuccess { BookMarkData ->
             _bookMarked.value = UiState.Success(BookMarkData)
             Timber.d("뷰모델 실험 북마크 get Success ${_bookMarked.value}")

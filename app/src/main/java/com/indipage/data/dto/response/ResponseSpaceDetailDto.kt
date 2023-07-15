@@ -13,7 +13,7 @@ data class SpaceDetailData(
     @SerialName("imageUrl")
     val imageUrl: String?,
     @SerialName("roadAddress")
-    val address: String,
+    val address: String?,
     @SerialName("type")
     val type: String,
     @SerialName("owner")
