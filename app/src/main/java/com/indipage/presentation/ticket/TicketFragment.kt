@@ -52,7 +52,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
         binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
         adapter.submitList(spaceList)
-
         openQR()
         moveToCard()
         getColletQRScanData()
@@ -66,7 +65,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private fun moveToCard() {
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
-
             if (isChecked)
                 Handler().postDelayed({
                     findNavController().navigate(
@@ -86,7 +84,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     when (it.data) {
                         200 -> {
                             Timber.d("Success QR")
-
                             Handler().postDelayed({
                                 findNavController().navigate(
                                     R.id.action_navigation_card_to_navigation_ticket,
@@ -107,11 +104,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             }
         }.launchIn(lifecycleScope)
     }
-
     private fun setNavigationQR() {
         onCustomScanButtonClicked()
     }
-
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
@@ -122,13 +117,12 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                viewModel.isCheckQR(2)
+                viewModel.isCheckQR(finalResult.toInt())
             } else {
                 toast("다시 시도해라")
             }
         }
     }
-
     private fun onCustomScanButtonClicked() {
         val options = ScanOptions()
         options.setOrientationLocked(false)
@@ -140,7 +134,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         options.captureActivity = QrScanActivity::class.java
         barcodeLauncher.launch(options)
     }
-
     override fun onCheckDialogResult() {
         setNavigationQR()
     }
