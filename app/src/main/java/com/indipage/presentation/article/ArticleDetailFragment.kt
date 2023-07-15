@@ -12,6 +12,7 @@ import com.example.core_ui.fragment.snackBar
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
+import com.indipage.data.dto.request.RequestTicketReceiveDto
 import com.indipage.databinding.FragmentArticleDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -57,6 +58,17 @@ class ArticleDetailFragment :
         })
     }
 
+    private fun postTicketReceive() {
+        viewModel.postTicketReceive(1, RequestTicketReceiveDto(1))
+
+        viewModel.postTicketReceive.observe(this) {
+            if (it == 201) {
+                snackBar(requireView(), message = { "티켓을 받았어요!" })
+            }
+            toast(it.toString())
+        }
+    }
+
     private fun getArticleDetailData() {
         viewModel.getArticleDetail(1)
 
@@ -96,7 +108,7 @@ class ArticleDetailFragment :
 
     private fun setClickEventOnTicketImage() {
         binding.ivArticleDetailTicketImage.setOnClickListener(View.OnClickListener {
-            snackBar(requireView(), message = { "티켓을 받았어요!" })
+            postTicketReceive()
         })
     }
 

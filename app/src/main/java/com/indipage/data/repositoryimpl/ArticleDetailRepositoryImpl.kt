@@ -20,4 +20,12 @@ class ArticleDetailRepositoryImpl @Inject constructor(
             dataSource.getTicketReceiveCheck(spaceId).data
         }
     }
+
+    override suspend fun postTicketReceive(
+        spaceId: Long
+    ): Result<Int> {
+        return runCatching {
+            dataSource.postTicketReceive(spaceId).code
+        }
+    }
 }
