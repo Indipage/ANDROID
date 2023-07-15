@@ -26,6 +26,9 @@ class TicketViewModel @Inject constructor(
     private val _qrResponseCode = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val qrResponseCode: StateFlow<UiState<Int>> = _qrResponseCode.asStateFlow()
 
+    init {
+        getTicketList()
+    }
     fun openQR() {
         _openProductEvent.value = Event("test")
     }
@@ -44,6 +47,15 @@ class TicketViewModel @Inject constructor(
 
     fun closeQR() {
         _qrResponseCode.value=UiState.Success(100)
+    }
+
+    fun getTicketList() = viewModelScope.launch {
+        apiRepository.getTicketList()
+            .onSuccess { it ->
+                Timber.d("Success ${it}")
+            }
+            .onFailure {
+            }
     }
 
 }
