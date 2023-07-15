@@ -12,6 +12,11 @@
         <variable
             name="spaceDetail"
             type="com.indipage.data.dto.response.SpaceDetailData" />
+
+        <variable
+            name="spaceArticle"
+            type="com.indipage.data.dto.response.SpaceArticleData" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -45,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/iv_bookmark_icon"
+                android:id="@+id/ib_bookmark_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
@@ -78,7 +83,6 @@
                 app:layout_constraintBottom_toTopOf="@id/tv_space_time"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
                 tools:text="주소" />
-
 
             <TextView
                 android:id="@+id/tv_space_time"
@@ -123,11 +127,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="33dp"
-                android:text="@{spaceDetail.owner}"
                 android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
                 app:layout_constraintTop_toBottomOf="@id/iv_space_detail_background"
+                app:ownerInformation="@{spaceDetail.owner}"
                 tools:text="공간지기 키위" />
 
             <TextView
@@ -278,36 +282,145 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_peculiarity" />
 
-            <TextView
-                android:id="@+id/tv_article_follow_comment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_follow"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="5dp"
-                android:text="인디페이지에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
-                android:textAppearance="@style/TextAppearance.IndiPage.Body06"
-                android:textColor="@color/indi_gray400"
-                app:layout_constraintEnd_toEndOf="@id/btn_follow"
-                app:layout_constraintStart_toStartOf="@id/btn_follow"
-                app:layout_constraintTop_toBottomOf="@id/tv_article_follow" />
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/tv_article_follow">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_follow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="84dp"
-                android:background="@drawable/selector_follow_button"
-                android:paddingVertical="20dp"
-                android:text="아티클 조르기"
-                android:textAppearance="@style/TextAppearance.IndiPage.Body03"
-                android:textColor="@color/indi_white"
-                app:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tv_article_follow"
-                app:layout_constraintTop_toBottomOf="@id/tv_article_follow_comment" />
+                <TextView
+                    android:id="@+id/tv_article_follow_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="인디페이지에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                    android:textColor="@color/indi_gray400"
+                    app:layout_constraintEnd_toEndOf="@id/btn_follow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_follow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="84dp"
+                    android:background="@drawable/selector_follow_button"
+                    android:paddingVertical="20dp"
+                    android:text="아티클 조르기"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body03"
+                    android:textColor="@color/indi_white"
+                    app:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_follow_comment" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_space_article"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="7dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/tv_article_follow">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_saved_article"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="32dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_saved_article_background"
+                        imageUrl="@{spaceArticle.imageUrl}"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_background" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="15dp">
+
+                        <TextView
+                            android:id="@+id/tv_saved_article_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/shape_purple_fill_5_rect"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:text="@{spaceArticle.spaceType}"
+                             android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
+                            android:textColor="@color/indi_white"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="독립서점" />
+
+                        <TextView
+                            android:id="@+id/tv_saved_article_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{spaceArticle.spaceName}"
+                            android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                            android:textColor="@color/indi_white"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_saved_article_space"
+                            tools:text="문학살롱 초고" />
+
+                        <TextView
+                            android:id="@+id/tv_saved_article_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@{spaceArticle.title}"
+                            android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+                            android:textColor="@color/indi_white"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_saved_article_name"
+                            tools:text="반복되는 일상 속 나만의 아지트가 되어주는 공간" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/shape_black_fill_12_rect"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_btn_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:drawablePadding="7dp"
+                                android:text="@string/tv_saved_article_move"
+                                android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+                                android:textColor="@color/indi_white"
+                                app:drawableEndCompat="@drawable/ic_article_move"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

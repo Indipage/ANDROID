@@ -12,6 +12,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.CurationData
+import com.indipage.data.dto.response.SpaceArticleData
 import com.indipage.data.dto.response.SpaceDetailData
 import com.indipage.databinding.FragmentSpaceDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,17 +29,48 @@ class SpaceDetailFragment :
     private val viewModel by viewModels<SpaceDetailViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getCuration()
-        initButton()
-        getCurationData()
+        binding.spaceArticle = SpaceArticleData("", "", "", 1, "")
+        initView()
+    }
+
+    private fun initView() {
+        initBookmarkButton()
         getSpaceDetail()
+        getCurationData()
+        initSpaceArticle()
+    }
+
+    private fun initBookmarkButton() = with(binding) {
+        viewModel.getBookMarked()
+        viewModel.bookMarked.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data.bookmarked) {
+                        true -> {
+                            ibBookmarkIcon.isSelected = true
+                            ibBookmarkIcon.setOnClickListener { // 누르면 조르기
+                                viewModel.deleteBookMarked()
+                            }
+                        }
+
+                        false -> {
+                            ibBookmarkIcon.isSelected = false
+                            ibBookmarkIcon.setOnClickListener { // 누르면 조르기
+                                viewModel.postBookMarked()
+                            }
+                        }
+                    }
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun getSpaceDetail() {
         viewModel.spaceDetailData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    Timber.d("$it.data 실험")
                     initTagAdapter(it.data)
                 }
 
@@ -48,10 +80,10 @@ class SpaceDetailFragment :
     }
 
     private fun getCurationData() {
+        viewModel.getCuration()
         viewModel.curationData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    Timber.d("$it 실험")
                     initCurationAdapter(it.data)
                 }
 
@@ -60,16 +92,49 @@ class SpaceDetailFragment :
         }.launchIn(lifecycleScope)
     }
 
-    private fun initButton() = with(binding) {
-        btnFollow.setOnClickListener {
-            btnFollow.isSelected = !btnFollow.isSelected
-            btnFollow.text = "조르기 완료"
-        }
+    private fun initSpaceArticle() {
+        viewModel.getSpaceArticle()
+        viewModel.spaceArticle.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    Timber.d("이삭이삭${it.data}")
+                    if (it.data == null) {
+//                        initFollowButton()
+                    } else {
+                        binding.spaceArticle = it.data
+                        binding.clSpaceArticle.visibility = View.VISIBLE
+                    }
+                }
 
-        ivBookmarkIcon.setOnClickListener() {
-            ivBookmarkIcon.isSelected = !ivBookmarkIcon.isSelected
-        }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
+
+//    private fun initFollowButton() = with(binding) {
+//        binding.clFollow.visibility = View.VISIBLE
+//        viewModel.follow.flowWithLifecycle(lifecycle).onEach {
+//            when (it) {
+//                is UiState.Success -> {
+//                    Timber.d("{$it} 조르기 버튼 UI 초기화")
+//                    if (it.data.isFollowed) {
+//                        btnFollow.text = "조르기 완료"
+//                        btnFollow.isSelected = true
+//                    }
+//                    if (!it.data.isFollowed) {
+//                        btnFollow.setOnClickListener { // 누르면 조르기
+//                            viewModel.postFollow()
+//                            toast("아티클이 발행되면 알려드릴게요!")
+//                        }
+//
+//                    } else {
+//                    }
+//                }
+//
+//                else -> {}
+//            }
+//        }.launchIn(lifecycleScope)
+//    }
 
     private fun initTagAdapter(item: SpaceDetailData) = with(binding) {
         spaceDetail = item

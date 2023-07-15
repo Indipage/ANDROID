@@ -46,3 +46,10 @@ fun applyAFormat(view: TextView, item: String?) {
     val spaceInforFormat = "주소 | ${item}"
     view.text = spaceInforFormat
 }
+
+
+@BindingAdapter("ownerInformation")
+fun ownerFormat(view: TextView, item: String?) {
+    val ownerInformat = "공간지기 ${item}"
+    view.text = ownerInformat
+}
