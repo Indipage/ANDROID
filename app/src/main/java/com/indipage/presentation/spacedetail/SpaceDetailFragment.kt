@@ -29,7 +29,6 @@ class SpaceDetailFragment :
     private val viewModel by viewModels<SpaceDetailViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.spaceArticle = SpaceArticleData("", "", "", 1, "")
         initView()
     }
 

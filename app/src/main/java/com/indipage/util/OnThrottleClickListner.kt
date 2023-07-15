@@ -2,6 +2,7 @@ package com.indipage.util
 
 import android.util.Log
 import android.view.View
+import timber.log.Timber
 
 class OnThrottleClickListener(
     private val clickListener: View.OnClickListener,
@@ -20,7 +21,7 @@ class OnThrottleClickListener(
                 clickListener.onClick(v)
             }
         } else {
-            Log.d("로그", "OnThrottleClickListener_onClick: miss!!")
+            Timber.d( "OnThrottleClickListener_onClick: miss!!")
         }
     }
 }
