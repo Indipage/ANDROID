@@ -41,6 +41,7 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
         getSpaceDetail()
         getFollow()
         getSpaceArticle()
+        getBookmarked()
     }
 
     fun getCuration() = viewModelScope.launch {
@@ -61,42 +62,42 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     fun getFollow() = viewModelScope.launch {
         apiRepository.getFollow().onSuccess { FollowData ->
             _follow.value = UiState.Success(FollowData)
-            Timber.d("뷰모델 실험 Success 조르기")
-        }.onFailure { Timber.d("뷰모델 실패 Follow // ${it}") }
+            Timber.d("뷰모델 성공 Success 조르기")
+        }.onFailure { Timber.d("뷰모델 실패 Follow / ${it}") }
     }
 
     fun postFollow() = viewModelScope.launch {
         apiRepository.postFollow().onSuccess {
             _follow.value = UiState.Success(FollowData(true))
-            Timber.d("뷰모델 조르기 post Success$it")
-        }.onFailure { Timber.d("뷰모델 실패 Post follow // ${it}") }
+            Timber.d("뷰모델 성공 조르기 post Success$it")
+        }.onFailure { Timber.d("뷰모델 실패 Post follow / ${it}") }
     }
 
     fun getSpaceArticle() = viewModelScope.launch {
         apiRepository.getSpaceArticle().onSuccess { SpaceArticleData ->
             _spaceArticle.value = UiState.Success(SpaceArticleData)
-            Timber.d("뷰모델 공간 아티클 Success $SpaceArticleData")
-        }.onFailure { Timber.d("뷰모델 실패 Space Article // ${it}") }
+            Timber.d("뷰모델 성공 Space Article Success $SpaceArticleData")
+        }.onFailure { Timber.d("뷰모델 실패 Space Article / ${it}") }
     }
 
     fun getBookmarked() = viewModelScope.launch {
         apiRepository.getBookmarked().onSuccess { BookMarkData ->
             _bookMarked.value = UiState.Success(BookMarkData)
-            Timber.d("뷰모델 실험 북마크 get Success ${_bookMarked.value}")
-        }.onFailure { Timber.d("뷰모델 실패 Bookmarked // ${it}") }
+            Timber.d("뷰모델 성공 get Bookmarked ${_bookMarked.value}")
+        }.onFailure { Timber.d("뷰모델 실패 get Bookmarked / ${it}") }
     }
 
     fun postBookMarked() = viewModelScope.launch {
         apiRepository.postBookmarked().onSuccess {
             _bookMarked.value = UiState.Success(BookmarkData(true))
-            Timber.d("뷰모델 실험 북마크 post Success ${_bookMarked.value}")
-        }.onFailure { Timber.d("뷰모델 실패 Post Bookmarked // ${it}") }
+            Timber.d("뷰모델 성공 post Bookmarked ${_bookMarked.value}")
+        }.onFailure { Timber.d("뷰모델 실패 Post Bookmarked / ${it}") }
     }
 
     fun deleteBookMarked() = viewModelScope.launch {
         apiRepository.deleteBookmarked().onSuccess {
             _bookMarked.value = UiState.Success(BookmarkData(false))
-            Timber.d("뷰모델 실험 북마크 delete Success ${_bookMarked.value}")
-        }.onFailure { Timber.d("뷰모델 실패 Post Bookmarked // ${it}") }
+            Timber.d("뷰모델 성공 delete Bookmarked ${_bookMarked.value}")
+        }.onFailure { Timber.d("뷰모델 실패 delete Bookmarked // ${it}") }
     }
 }

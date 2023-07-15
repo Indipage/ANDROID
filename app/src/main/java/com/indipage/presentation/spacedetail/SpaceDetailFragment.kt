@@ -28,7 +28,6 @@ class SpaceDetailFragment :
     private val viewModel by viewModels<SpaceDetailViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView()
     }
 
@@ -57,7 +56,8 @@ class SpaceDetailFragment :
                     when (it.data.bookmarked) {
                         true -> {
                             ibBookmarkIcon.isSelected = true
-                            ibBookmarkIcon.setOnClickListener { // 누르면 조르기
+                            ibBookmarkIcon.setOnClickListener {
+                                Timber.d("터치 됏당~!") // 누르면 조르기
                                 viewModel.deleteBookMarked()
                             }
                         }
@@ -66,6 +66,7 @@ class SpaceDetailFragment :
                             ibBookmarkIcon.isSelected = false
                             ibBookmarkIcon.setOnClickListener { // 누르면 조르기
                                 viewModel.postBookMarked()
+                                Timber.d("터치 됏당~!")
                             }
                         }
                     }
