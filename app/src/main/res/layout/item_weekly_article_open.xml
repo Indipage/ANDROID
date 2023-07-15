@@ -14,6 +14,7 @@
             android:id="@+id/iv_item_weekly_article_place_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
@@ -21,6 +22,7 @@
             android:id="@+id/iv_item_weekly_article_open_card_gradient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_article_card_gradient_open" />
 
