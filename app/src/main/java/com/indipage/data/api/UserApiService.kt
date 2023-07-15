@@ -12,8 +12,5 @@ interface UserApiService {
     suspend fun getUserInfo(
     ): BaseResponse<UserResponseDto>
 
-    @PUT("/user/space/{spaceId}/visit")
-    suspend fun isCheckQR(
-        @Path("spaceId") spaceId: Int
-    ): QRResponse
+
 }

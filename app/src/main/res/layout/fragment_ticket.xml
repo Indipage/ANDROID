@@ -16,15 +16,16 @@
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="32dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <Switch
                 android:id="@+id/switch_ticket"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="290dp"
                 android:layout_gravity="center"
+                android:layout_height="40dp"
                 android:showText="true"
                 android:textColor="@color/black"
                 android:textOff=""

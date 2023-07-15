@@ -1,9 +1,6 @@
 package com.indipage.di
 
-import com.indipage.data.api.BookMarkApiService
-import com.indipage.data.api.SpaceDetailApiService
-import com.indipage.data.api.TestApiService
-import com.indipage.data.api.UserApiService
+import com.indipage.data.api.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,9 +27,14 @@ object ApiModule {
     fun provideSpaceDetailService(@TestRetrofit retrofit: Retrofit): SpaceDetailApiService =
         retrofit.create(SpaceDetailApiService::class.java)
 
-  @Provides
+    @Provides
     @Singleton
     fun provideUserService(@TestRetrofit retrofit: Retrofit): UserApiService =
         retrofit.create(UserApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTicketService(@TestRetrofit retrofit: Retrofit): TicketApiService =
+        retrofit.create(TicketApiService::class.java)
 
 }
