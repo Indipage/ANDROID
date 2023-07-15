@@ -1,6 +1,8 @@
 package com.indipage.presentation.ticket
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -13,6 +15,7 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
+import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity
 import com.indipage.util.EventObserver
@@ -25,7 +28,8 @@ import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 @AndroidEntryPoint
-class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_ticket) {
+class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_ticket),
+    CheckDialogListener {
 
     private lateinit var adapter: TicketAdapter
     private lateinit var adapter2: CardAdapter
@@ -47,9 +51,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)
 
         binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
-
         adapter.submitList(spaceList)
-
         openQR()
         moveToCard()
         getColletQRScanData()
@@ -63,10 +65,13 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private fun moveToCard() {
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) findNavController().navigate(
-                R.id.action_navigation_ticket_to_navigation_card, bundleOf(
-                )
-            )
+            if (isChecked)
+                Handler().postDelayed({
+                    findNavController().navigate(
+                        R.id.action_navigation_ticket_to_navigation_card, bundleOf(
+                        )
+                    )
+                }, 100)
             else Timber.d("test")
         }
     }
@@ -79,20 +84,29 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     when (it.data) {
                         200 -> {
                             Timber.d("Success QR")
+                            Handler().postDelayed({
+                                findNavController().navigate(
+                                    R.id.action_navigation_card_to_navigation_ticket,
+                                    bundleOf()
+                                )
+                            }, 100)
+                            viewModel.closeQR()
+                        }
+                        404 -> {
+                            Timber.d("failure QR")
                             val dialog = DialogQrFailFragment()
+                            dialog.setCheckDialogListener(this)
                             dialog.show(parentFragmentManager, "dialog")
-                        } 404 -> Timber.d("failure QR")
+                        }
                     }
                 }
                 else -> {}
             }
         }.launchIn(lifecycleScope)
     }
-
     private fun setNavigationQR() {
         onCustomScanButtonClicked()
     }
-
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
@@ -119,5 +133,8 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
         options.captureActivity = QrScanActivity::class.java
         barcodeLauncher.launch(options)
+    }
+    override fun onCheckDialogResult() {
+        setNavigationQR()
     }
 }

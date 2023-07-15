@@ -1,6 +1,9 @@
 package com.indipage.presentation.ticket
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -8,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.databinding.FragmentCardBinding
+import kotlinx.coroutines.delay
 import timber.log.Timber
 
 class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card) {
@@ -35,11 +39,16 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
 
     private fun moveToTicket() {
         binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) Timber.d("good")
-            else findNavController().navigate(
-                R.id.action_navigation_card_to_navigation_ticket,
-                bundleOf()
-            )
+            if (isChecked) {
+                Timber.d("good")
+            } else if (!isChecked) {
+                Handler().postDelayed({
+                    findNavController().navigate(
+                        R.id.action_navigation_card_to_navigation_ticket,
+                        bundleOf()
+                    )
+                }, 100)
+            }
         }
     }
 }

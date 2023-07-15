@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_navigation_ticket_to_navigation_card"
             app:destination="@id/navigation_card" />
+        <action
+            android:id="@+id/action_navigation_ticket_to_qr_success"
+            app:destination="@id/navigation_qr_success" />
     </fragment>
     <fragment
         android:id="@+id/navigation_my_page"
@@ -68,7 +71,7 @@
             app:destination="@id/navigation_article" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_space_detail"
-        android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
-        android:label="SpaceDetailFragment" />
+        android:id="@+id/navigation_qr_success"
+        android:name="com.indipage.presentation.qr.QrSuccessFragment"
+        android:label="QrSuccessFragment" />
 </navigation>

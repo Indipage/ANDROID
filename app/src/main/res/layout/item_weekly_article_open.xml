@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_item_weekly_article_place_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:id="@+id/iv_item_weekly_article_open_card_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_article_card_gradient_open" />
+
+        <TextView
+            android:id="@+id/tv_item_weekly_article_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간"
+            android:textAppearance="@style/TextAppearance.IndiPage.Title01"
+            android:textColor="@color/indi_white"
+            app:layout_constraintStart_toStartOf="@id/iv_item_weekly_article_place_image"
+            app:layout_constraintTop_toTopOf="@id/iv_item_weekly_article_place_image" />
+
+        <TextView
+            android:id="@+id/tv_item_weekly_article_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="문학살롱 초고"
+            android:textAppearance="@style/TextAppearance.IndiPage.Title02"
+            android:textColor="@color/indi_green"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_weekly_article_author"
+            app:layout_constraintEnd_toEndOf="@id/iv_item_weekly_article_place_image" />
+
+        <TextView
+            android:id="@+id/tv_item_weekly_article_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="36dp"
+            android:text="책방지기 키위"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+            android:textColor="@color/indi_green"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_weekly_article_place_image"
+            app:layout_constraintEnd_toEndOf="@id/iv_item_weekly_article_place_image" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

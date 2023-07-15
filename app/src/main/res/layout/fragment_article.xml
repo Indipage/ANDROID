@@ -12,16 +12,101 @@
         android:layout_height="match_parent"
         tools:context=".presentation.article.ArticleFragment">
 
-        <TextView
-            android:id="@+id/tv_article_detail"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_article_category_weekly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/selector_article_category_button_back"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="@string/btn_article_category_weekly"
+            android:textAppearance="@style/TextAppearance.IndiPage.En.Body01"
+            android:textColor="@drawable/selector_article_category_button_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_article_category_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/selector_article_category_button_back"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="@string/btn_article_category_all"
+            android:textAppearance="@style/TextAppearance.IndiPage.En.Body01"
+            android:textColor="@drawable/selector_article_category_button_text"
+            app:layout_constraintStart_toEndOf="@id/btn_article_category_weekly"
+            app:layout_constraintTop_toTopOf="@id/btn_article_category_weekly"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/iv_article_place_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="54dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
+            app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
+            app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
+            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
+
+        <ImageView
+            android:id="@+id/iv_article_card_gradient_open"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_article_card_gradient_open"
+            app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
+            app:layout_constraintEnd_toEndOf="@id/iv_article_place_image"
+            app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
+            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+
+        <TextView
+            android:id="@+id/tv_article_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간"
+            android:textAppearance="@style/TextAppearance.IndiPage.Title01"
+            android:textColor="@color/indi_white"
+            app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
+            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_article"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="64dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
+
+
+        <ImageView
+            android:id="@+id/iv_article_card_packed"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="26dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_article_card_packed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="아티클 뷰" />
-
+            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

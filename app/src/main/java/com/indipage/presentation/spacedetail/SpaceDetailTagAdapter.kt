@@ -3,15 +3,16 @@ package com.indipage.presentation.spacedetail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.indipage.data.dto.response.SpaceDetailData
 import com.indipage.databinding.ItemSpaceDetailTagBinding
 
-class SpaceDetailTagAdapter(private val itemList: List<String>) :
+class SpaceDetailTagAdapter(private val itemList: List<SpaceDetailData.SpaceTag>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class SpaceDetailTagViewHolder(private val binding: ItemSpaceDetailTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: String) = with(binding) {
-            tvSpaceDetailTag.text = item
+        fun onBind(item: SpaceDetailData.SpaceTag) = with(binding) {
+            tvSpaceDetailTag.text = item.name
         }
     }
 

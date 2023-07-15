@@ -23,3 +23,8 @@ object ArticleDetailTag{
     val REPLACE_STYLE_START_TAG_REGEX = "(((<bold>)?(<color>)?(<click>)?)+)".toRegex()
     val REPLACE_STYLE_END_TAG_REGEX = "(((</click>)?(</bold>)?(</color>)?)+)".toRegex()
 }
+
+object WeeklyArticle{
+    const val ITEM_OPEN = 0
+    const val ITEM_PRE = 1
+}
