@@ -7,7 +7,7 @@
 
         <variable
             name="saved_space"
-            type="com.indipage.data.dto.response.SavedSpace" />
+            type="com.indipage.data.dto.response.ResponseSpaceDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="11dp"
-            android:text="@{saved_space.spaceName}"
+            android:text="@{saved_space.name}"
             android:textAppearance="@style/TextAppearance.IndiPage.Body04"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/cv_saved_space"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
-            android:text="@{saved_space.spaceAddress}"
+            android:text="@{saved_space.roadAddress}"
             android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
             android:textColor="@color/indi_gray600"
             app:layout_constraintStart_toEndOf="@id/cv_saved_space"

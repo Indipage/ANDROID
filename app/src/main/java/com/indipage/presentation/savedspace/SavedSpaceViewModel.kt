@@ -3,6 +3,7 @@ package com.indipage.presentation.savedspace
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.data.dto.response.SavedSpace
 import com.indipage.domain.repository.BookMarkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +19,8 @@ class SavedSpaceViewModel @Inject constructor(
     private val apiRepository: BookMarkRepository
 ) : ViewModel() {
 
-    private val _savedSpaces = MutableStateFlow<UiState<List<SavedSpace>>>(UiState.Loading)
-    val savedSpaces: StateFlow<UiState<List<SavedSpace>>> = _savedSpaces.asStateFlow()
+    private val _savedSpaces = MutableStateFlow<UiState<List<ResponseSpaceDto>>>(UiState.Loading)
+    val savedSpaces: StateFlow<UiState<List<ResponseSpaceDto>>> = _savedSpaces.asStateFlow()
 
     init {
         getSavedSpaces()

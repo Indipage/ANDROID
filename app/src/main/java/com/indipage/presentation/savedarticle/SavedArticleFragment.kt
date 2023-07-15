@@ -9,8 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.response.ResponseArticleDto
-import com.indipage.data.dto.response.SavedArticle
 import com.indipage.databinding.FragmentSavedArticleBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

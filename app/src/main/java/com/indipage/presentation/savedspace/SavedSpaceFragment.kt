@@ -24,29 +24,9 @@ class SavedSpaceFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = SavedSpaceAdapter()
-        val spaceList = listOf(
-            SavedSpace(
-                imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
-                spaceName = "Space Name 1",
-                spaceAddress = "Comment 1"
-            ),
-            SavedSpace(
-                imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
-                spaceName = "Space Name 2",
-                spaceAddress = "Comment 2"
-            ),
-            SavedSpace(
-                imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
-                spaceName = "Space Name 3",
-                spaceAddress = "Comment 3"
-            )
-        )
         binding.rvSavedSpace.adapter = adapter
-        adapter.submitList(spaceList)
-        binding.coSavedSpaceEmptyView.visibility =
-            if (spaceList.isEmpty()) View.VISIBLE else View.GONE
 
-//        getCollectData()
+        getCollectData()
         setNavigation()
     }
 
@@ -61,6 +41,9 @@ class SavedSpaceFragment :
             when (it) {
                 is UiState.Success -> {
                     adapter.submitList(it.data)
+                    binding.coSavedSpaceEmptyView.visibility =
+                        if (it.data.isEmpty()) View.VISIBLE else View.GONE
+
                 }
                 else -> {}
             }

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDto
-import com.indipage.data.dto.response.SavedArticle
 import com.indipage.databinding.ItemSavedArticleBinding
 
 class SavedArticleAdapter: ListAdapter<ResponseArticleDto, SavedArticleAdapter.SavedArticleViewHolder>(
