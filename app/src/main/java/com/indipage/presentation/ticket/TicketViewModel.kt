@@ -37,8 +37,13 @@ class TicketViewModel @Inject constructor(
                 Timber.d("Success ${it}")
             }
             .onFailure {
+                _qrResponseCode.value=UiState.Success(404)
                 Timber.d("Fail ${it}")
             }
+    }
+
+    fun closeQR() {
+        _qrResponseCode.value=UiState.Success(100)
     }
 
 }

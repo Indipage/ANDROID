@@ -92,6 +92,7 @@ class SpaceDetailFragment :
         }.launchIn(lifecycleScope)
     }
 
+
     private fun initSpaceArticle() {
         viewModel.getSpaceArticle()
         viewModel.spaceArticle.flowWithLifecycle(lifecycle).onEach {
