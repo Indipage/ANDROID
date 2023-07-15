@@ -88,7 +88,6 @@
             android:id="@+id/vp_article"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="64dp"
             android:visibility="invisible"
