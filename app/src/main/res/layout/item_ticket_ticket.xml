@@ -13,17 +13,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:paddingBottom="25dp"
+        android:layout_marginBottom="25dp"
         android:layout_height="wrap_content">
 
         <ImageView
-            imageUrl="@{data}"
+            android:src="@drawable/ic_test_ticket"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="480dp"
             android:scaleType="fitXY"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_height="wrap_content"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
