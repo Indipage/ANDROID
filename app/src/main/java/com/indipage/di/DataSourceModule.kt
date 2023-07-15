@@ -33,5 +33,9 @@ abstract class DataSourceModule {
     @Binds
     abstract fun providesArticleDetailDataSource(DataSourceImpl: ArticleDetailDataSourceImpl): ArticleDetailDataSource
 
+    @Singleton
+    @Binds
+    abstract fun providesArticleDataSource(DataSourceImpl: ArticleDataSourceImpl): ArticleDataSource
+
 
 }
