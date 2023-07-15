@@ -13,7 +13,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvArticleDetail.setOnClickListener(View.OnClickListener {
+        binding.ivArticlePlaceImage.setOnClickListener(View.OnClickListener {
             findNavController().navigate(R.id.action_article_to_article_detail)
         })
     }

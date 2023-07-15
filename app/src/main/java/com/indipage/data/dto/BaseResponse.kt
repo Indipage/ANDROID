@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BaseResponse<T> (
+data class BaseResponse<T>(
     @SerialName("code")
     val code: Int,
     @SerialName("message")
@@ -14,11 +14,21 @@ data class BaseResponse<T> (
 )
 
 @Serializable
-data class QRResponse (
+data class BaseResponseNullable<T>(
     @SerialName("code")
     val code: Int,
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: String ?= null
+    val data: T? = null
+)
+
+@Serializable
+data class QRResponse(
+    @SerialName("code")
+    val code: Int,
+    @SerialName("message")
+    val message: String,
+    @SerialName("data")
+    val data: String? = null
 )
