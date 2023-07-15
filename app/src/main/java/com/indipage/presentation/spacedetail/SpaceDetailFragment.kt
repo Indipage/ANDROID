@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.android.go.sopt.presentation.recycler.SpaceDetailCurationAdapter
 import timber.log.Timber
-import kotlin.math.abs
 
 @AndroidEntryPoint
 class SpaceDetailFragment :
@@ -109,7 +108,7 @@ class SpaceDetailFragment :
         viewModel.curationData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    initCurationAdapter(it.data)
+                    initCurationAdapter2(it.data)
                 }
 
                 else -> {}
@@ -118,59 +117,53 @@ class SpaceDetailFragment :
     }
 
     /**initCurationAdapter */
-    private fun initCurationAdapter(item: List<CurationData>) {
+    private fun initCurationAdapter2(item: List<CurationData>) {
         with(binding) {
             vpCuration.apply {
-                adapter = SpaceDetailCurationAdapter().apply {
-                    submitList(item)
-                }
-                vpCuration.offscreenPageLimit = 1
-                post { setCurrentItem(1, true) }
+                adapter = SpaceDetailCurationAdapter().apply { submitList(item) }
+                offscreenPageLimit = 1
+                post { setCurrentItem(item.size / 2, true) }
+                registerOnPageChangeCallback(
+                    object : ViewPager2.OnPageChangeCallback() {
+                        override fun onPageSelected(position: Int) {
+                            super.onPageSelected(position)
+                            curation = item[position]
+                        }
+
+                        override fun onPageScrolled(
+                            position: Int,
+                            positionOffset: Float,
+                            @Px positionOffsetPixels: Int
+                        ) {
+                        }
+                    }
+                )
             }
-
-            val pageWidth = resources.getDimension(R.dimen.viewpager_item_width)
-            val pageMargin = resources.getDimension(R.dimen.viewpager_item_margin)
-            val screenWidth = resources.displayMetrics.widthPixels
-            val offset = screenWidth - pageWidth - pageMargin
-
-            vpCuration.setPageTransformer { page, position ->
-                page.translationX = position * -offset
-                if (position == 0f) {
-                    page.alpha = 1f
-                    ivPurpleFrame.visibility = View.VISIBLE
-                    Timber.d("$position, $page, 선생님")
-                } else {
-                    if (position == 1f || position == 2f) {
-                        ivPurpleFrame.visibility = View.VISIBLE
-                    } else {
-                        ivPurpleFrame.visibility = View.GONE
-                    }
-                    var normalizedposition = abs(1 - abs(position))
-                    if (normalizedposition < 0.5) {
-                        normalizedposition = 0.5f
-                    }
-                    page.alpha = normalizedposition
-                    Timber.d("$position, $page, 선생님")
-                }
-            }
-            vpCuration.registerOnPageChangeCallback(
-                object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageSelected(position: Int) {
-                        super.onPageSelected(position)
-                        curation = item[position]
-                    }
-
-                    override fun onPageScrolled(
-                        position: Int,
-                        positionOffset: Float,
-                        @Px positionOffsetPixels: Int
-                    ) {
-                    }
-                }
-            )
         }
+        setDeviceOffset()
     }
 
+    private fun setDeviceOffset() {
+        val pageWidth = resources.getDimension(R.dimen.viewpager_item_width)
+        val pageMargin = resources.getDimension(R.dimen.viewpager_item_margin)
+        val screenWidth = resources.displayMetrics.widthPixels
+        val offset = screenWidth - pageWidth - pageMargin
+        setPageTransformer(offset)
+    }
+
+    private fun setPageTransformer(offset: Float) = with(binding) {
+        vpCuration.setPageTransformer { page, position ->
+
+            page.translationX = position * -offset
+            val absPos = Math.abs(position)
+            var alphaByPosition = 1 - absPos
+            if (alphaByPosition < 0.5) {
+                alphaByPosition = 0.5f
+            }
+            page.alpha = alphaByPosition
+            ivPurpleFrame.visibility = if (position % 1 == 0.0f) View.VISIBLE else View.GONE
+        }
+    }
 
     private fun initSpaceArticle() {
         viewModel.getSpaceArticle()
