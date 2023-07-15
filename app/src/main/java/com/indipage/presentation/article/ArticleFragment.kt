@@ -3,6 +3,7 @@ package com.indipage.presentation.article
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.data.dto.response.ResponseWeeklyArticleDto
@@ -76,6 +77,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
             binding.btnArticleCategoryWeekly.isSelected =
                 !binding.btnArticleCategoryWeekly.isSelected
+            findNavController().navigate(R.id.action_article_to_article_all)
 
         })
     }
