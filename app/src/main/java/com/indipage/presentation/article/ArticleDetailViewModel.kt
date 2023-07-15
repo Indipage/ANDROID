@@ -1,12 +1,10 @@
 package com.indipage.presentation.article
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.request.RequestTicketReceiveDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.repository.ArticleDetailRepository
@@ -53,16 +51,13 @@ class ArticleDetailViewModel @Inject constructor(
             .onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun postTicketReceive(spaceId: Long, requestDto: RequestTicketReceiveDto) =
+    fun postTicketReceive(spaceId: Long) =
         viewModelScope.launch {
             apiRepository.postTicketReceive(spaceId)
                 .onSuccess {
                     _postTicketReceive.value = it
                     Timber.d("Success")
-                    Log.d("ddd", "ddd")
                 }
-                .onFailure {
-                    Timber.d(it.message.toString())
-                }
+                .onFailure { Timber.d(it.message.toString()) }
         }
 }

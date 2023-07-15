@@ -14,26 +14,17 @@ import kotlin.math.abs
 class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragment_article) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.ivArticleCardPacked.setOnClickListener(View.OnClickListener {
-            binding.ivArticleCardPacked.isVisible = false
-            binding.ivArticlePlaceImage.isVisible = false
-            binding.tvArticleTitle.isVisible = false
-            binding.vpArticle.isVisible = true
-
-        })
-
         initView()
-        setClickEventOnCategoryButton()
-        setAdapter()
     }
 
     private fun initView() {
         binding.btnArticleCategoryWeekly.isSelected = true
+        initArticleAdapter()
+        initClickEventListeners()
     }
 
-    private fun setAdapter() {
-        val mutableList: MutableList<ResponseWeeklyArticleDto> = mutableListOf(
+    private fun initArticleAdapter() {
+        val dummyData: MutableList<ResponseWeeklyArticleDto> = mutableListOf(
             ResponseWeeklyArticleDto(
                 "반복되는 일상 속\n나만의 아지트가\n되어주는 공간",
                 "문학살롱 초고",
@@ -49,34 +40,31 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 "https://github.com/Indipage/ANDROID/assets/98076050/fcc88f8e-04a6-46b9-9ad4-937a4d82c8b6"
             )
         )
-
-        binding.vpArticle.adapter = WeeklyArticleAdapter().apply {
-            submitList(mutableList)
+        with(binding) {
+            vpArticle.adapter = WeeklyArticleAdapter().apply { submitList(dummyData) }
+            vpArticle.offscreenPageLimit = 2
+            vpArticle.setPageTransformer { page, position ->
+                page.translationX =
+                    position * -resources.getDimension(R.dimen.viewpager_item_weekly_article_margin)
+                page.scaleY = ((1 - abs(position)) / 4 + 0.8f)
+            }
         }
-
-        val pageMargin = resources.getDimension(R.dimen.viewpager_item_weekly_article_margin)
-
-        binding.vpArticle.offscreenPageLimit = 2
-        binding.vpArticle.setPageTransformer { page, position ->
-            page.translationX = position * -pageMargin
-            page.scaleY = ((1 - abs(position)) / 4 + 0.8f)
-        }
-
-
     }
 
-
-    private fun setClickEventOnCategoryButton() {
-        binding.btnArticleCategoryWeekly.setOnClickListener(View.OnClickListener {
-            binding.btnArticleCategoryWeekly.isSelected =
-                !binding.btnArticleCategoryWeekly.isSelected
-            binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
-        })
-        binding.btnArticleCategoryAll.setOnClickListener(View.OnClickListener {
-            binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
-            binding.btnArticleCategoryWeekly.isSelected =
-                !binding.btnArticleCategoryWeekly.isSelected
-
-        })
+    private fun initClickEventListeners() {
+        with(binding) {
+            ivArticleCardPacked.setOnClickListener {
+                layoutCardAnimation.isVisible = false
+                vpArticle.isVisible = true
+            }
+            btnArticleCategoryWeekly.setOnClickListener {
+                btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
+                btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
+            }
+            btnArticleCategoryAll.setOnClickListener {
+                btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
+                btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
+            }
+        }
     }
 }

@@ -8,7 +8,12 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemArticleDetailArticleBodyBinding
 import com.indipage.databinding.ItemArticleDetailArticleImageBinding
 import com.indipage.databinding.ItemArticleDetailArticleTitleBinding
-import com.indipage.util.ArticleDetailTag
+import com.indipage.util.ArticleDetailTag.BODY
+import com.indipage.util.ArticleDetailTag.BODY_TAG_REGEX
+import com.indipage.util.ArticleDetailTag.IMAGE
+import com.indipage.util.ArticleDetailTag.IMAGE_TAG_REGEX
+import com.indipage.util.ArticleDetailTag.TITLE
+import com.indipage.util.ArticleDetailTag.TITLE_TAG_REGEX
 
 class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHolder>(
     ArticleDetailAdapterDiffCallback
@@ -16,20 +21,20 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getItemViewType(position: Int): Int {
-        return if (currentList[position].body.contains(ArticleDetailTag.TITLE_TAG_REGEX)) {
-            ArticleDetailTag.TITLE
-        } else if (currentList[position].body.contains(ArticleDetailTag.IMAGE_TAG_REGEX)) {
-            ArticleDetailTag.IMAGE
-        } else if (currentList[position].body.contains(ArticleDetailTag.BODY_TAG_REGEX)) {
-            ArticleDetailTag.BODY
+        return if (currentList[position].body.contains(TITLE_TAG_REGEX)) {
+            TITLE
+        } else if (currentList[position].body.contains(IMAGE_TAG_REGEX)) {
+            IMAGE
+        } else if (currentList[position].body.contains(BODY_TAG_REGEX)) {
+            BODY
         } else {
-            ArticleDetailTag.BODY
+            BODY
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ArticleDetailTag.TITLE -> {
+            TITLE -> {
                 val binding = ItemArticleDetailArticleTitleBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -37,7 +42,7 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
                 )
                 ArticleDetailAdapterViewHolder.ItemArticleDetailArticleTitleViewHolder(binding)
             }
-            ArticleDetailTag.IMAGE -> {
+            IMAGE -> {
                 val binding = ItemArticleDetailArticleImageBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -57,11 +62,11 @@ class ArticleDetailAdapter : ListAdapter<ArticleDetailData, RecyclerView.ViewHol
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (currentList[position].body.contains(ArticleDetailTag.TITLE_TAG_REGEX)) {
+        if (currentList[position].body.contains(TITLE_TAG_REGEX)) {
             (holder as ArticleDetailAdapterViewHolder.ItemArticleDetailArticleTitleViewHolder).run {
                 onBind(currentList[position])
             }
-        } else if (currentList[position].body.contains(ArticleDetailTag.IMAGE_TAG_REGEX)) {
+        } else if (currentList[position].body.contains(IMAGE_TAG_REGEX)) {
             (holder as ArticleDetailAdapterViewHolder.ItemArticleDetailArticleImageViewHolder).run {
                 onBind(currentList[position])
             }

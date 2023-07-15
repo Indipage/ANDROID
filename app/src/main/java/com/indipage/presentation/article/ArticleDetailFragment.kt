@@ -12,8 +12,8 @@ import com.example.core_ui.fragment.snackBar
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.request.RequestTicketReceiveDto
 import com.indipage.databinding.FragmentArticleDetailBinding
+import com.indipage.util.ArticleDetailTag.TAG_REGEX
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -31,116 +31,107 @@ class ArticleDetailFragment :
     }
 
     private fun initView() {
-        getArticleDetailData()
-        setClickEventOnMoveToSpaceDetailTextView()
-        setClickEventOnToolbar()
-        setClickEventOnTicketImage()
-        getTicketReceiveCheckData()
+        getData()
+        setUpArticleDetail()
+        initClickEventListeners()
     }
 
-    private fun setClickEventOnMoveToSpaceDetailTextView() {
-        binding.tvArticleDetailMoveToPlaceDetail1.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(R.id.action_article_detail_to_space_detail)
-        })
-        binding.tvArticleDetailMoveToPlaceDetail2.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(R.id.action_article_detail_to_space_detail)
-        })
+    private fun getData() {
+        viewModel.getArticleDetail(1)
+        viewModel.getTicketReceiveCheck(1)
     }
 
-    private fun setClickEventOnToolbar() {
-        binding.toolbarArticleDetail.setNavigationOnClickListener(View.OnClickListener {
-            findNavController().navigate(R.id.action_article_detail_to_article)
-        })
-
-        binding.ivArticleDetailBookmark.setOnClickListener(View.OnClickListener {
-            toast("북마크")
-            binding.ivArticleDetailBookmark.isSelected = !binding.ivArticleDetailBookmark.isSelected
-        })
+    private fun setUpArticleDetail() {
+        observeArticle()
+        observeTicket()
     }
 
-    private fun postTicketReceive() {
-        viewModel.postTicketReceive(1, RequestTicketReceiveDto(1))
+    private fun observeArticle() {
+        viewModel.articleDetailData
+            .flowWithLifecycle(lifecycle)
+            .onEach { uiState ->
+                when (uiState) {
+                    is UiState.Success -> {
+                        val resultArticleArray = splitArticleContent(uiState.data.content)
+                        with(binding) {
+                            rvArticleDetailArticleBody.adapter =
+                                ArticleDetailAdapter().apply { submitList(resultArticleArray) }
 
-        viewModel.postTicketReceive.observe(this) {
+                            tvArticleDetailAuthor.text = uiState.data.spaceOwner
+                            tvArticleDetailDate.text = uiState.data.createdAt
+                            tvArticleDetailTitle.text = uiState.data.title
+                            toolbarArticleDetail.title = uiState.data.spaceName
+                        }
+                    }
+                    else -> {}
+                }
+            }.launchIn(lifecycleScope)
+    }
+
+    private fun observeTicket() {
+        viewModel.postTicketReceive.observe(viewLifecycleOwner) {
             if (it == 201) {
                 snackBar(requireView(), message = { "티켓을 받았어요!" })
+            } else {
+                toast(it.toString())
             }
-            toast(it.toString())
         }
-    }
-
-    private fun getArticleDetailData() {
-        viewModel.getArticleDetail(1)
-
-        viewModel.articleDetailData.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Success -> {
-                    val resultArticleArray = splitArticleBody(it.data.content)
-                    binding.rvArticleDetailArticleBody.adapter =
-                        ArticleDetailAdapter().apply { submitList(resultArticleArray) }
-
-                    binding.tvArticleDetailAuthor.text = it.data.spaceOwner
-                    binding.tvArticleDetailDate.text = it.data.createdAt
-                    binding.tvArticleDetailTitle.text = it.data.title
-                    binding.toolbarArticleDetail.title = it.data.spaceName
-                }
-
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
-    }
-
-    private fun getTicketReceiveCheckData() {
-        viewModel.getTicketReceiveCheck(1)
-
-        viewModel.ticketReceiveCheckData.observe(this) {
+        viewModel.ticketReceiveCheckData.observe(viewLifecycleOwner) {
             if (it.hasReceivedTicket) {
                 binding.ivArticleDetailTicketImage.load(it.ticket.ticketImageUrl)
                 Timber.d("티켓 받음")
                 toast("티켓 받음")
             } else {
-                toast("티켓 안 받음")
                 Timber.d("티켓 안 받음")
+                toast("티켓 안 받음")
             }
         }
-
     }
 
-    private fun setClickEventOnTicketImage() {
-        binding.ivArticleDetailTicketImage.setOnClickListener(View.OnClickListener {
-            postTicketReceive()
-        })
+    private fun initClickEventListeners() {
+        with(binding) {
+            tvArticleDetailMoveToPlaceDetail1.setOnClickListener {
+                findNavController().navigate(R.id.action_article_detail_to_space_detail)
+            }
+            tvArticleDetailMoveToPlaceDetail2.setOnClickListener {
+                findNavController().navigate(R.id.action_article_detail_to_space_detail)
+            }
+            ivArticleDetailTicketImage.setOnClickListener {
+                viewModel.postTicketReceive(1)
+            }
+            toolbarArticleDetail.setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_article_detail_to_article)
+            }
+            ivArticleDetailBookmark.setOnClickListener {
+                toast("북마크")
+                binding.ivArticleDetailBookmark.isSelected =
+                    !binding.ivArticleDetailBookmark.isSelected
+            }
+        }
     }
-
 
     //전체 아티클 내용 태그 별 분할
-    private fun splitArticleBody(input: String): List<ArticleDetailData> {
-
+    private fun splitArticleContent(input: String): List<ArticleDetailData> {
         var currentIndex = 0
-        val articleList = listOf<ArticleDetailData>().toMutableList()
+        val articleList = mutableListOf<ArticleDetailData>()
 
         TAG_REGEX.findAll(input).forEach { matchResult ->
-            //정규식을 기반으로 각각 인풋에 대한 결과를 찾는다
+
             val tagLessPart = input.substring(currentIndex, matchResult.range.first)
-            //태그가없는 부분에서 태그의 시작점까지 섭스트링에 인덱스번호로 찾음 그 부분 모드를 태그리스에 저장
+
             if (tagLessPart.isNotBlank()) {
                 articleList.add(ArticleDetailData(tagLessPart))
             }
-            //태그리스 부분이 비어있지않다면 배열의 추가
+
             articleList.add(ArticleDetailData(matchResult.value))
             currentIndex = matchResult.range.last + 1
         }
 
         val lastTagLessPart = input.substring(currentIndex)
-
         if (lastTagLessPart.isNotBlank()) {
             articleList.add(ArticleDetailData(lastTagLessPart))
         }
 
         return articleList
-    }
-
-    companion object {
-        val TAG_REGEX = "(<img>.*?</img>|<title>.*?</title>|<body>.*?</body>)".toRegex()
     }
 }
