@@ -2,4 +2,5 @@
 <resources>
     <dimen name="viewpager_item_width">116dp</dimen>
     <dimen name="viewpager_item_margin">32dp</dimen>
+    <dimen name="viewpager_item_weekly_article_margin">58dp</dimen>
 </resources>
