@@ -8,8 +8,7 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.ItemSavedSpaceBinding
 
-class SavedSpaceAdapter(
-) : ListAdapter<SavedSpace, SavedSpaceAdapter.SavedSpaceViewHolder>(
+class SavedSpaceAdapter: ListAdapter<SavedSpace, SavedSpaceAdapter.SavedSpaceViewHolder>(
     SavedSpaceDiffCalback
 ) {
 

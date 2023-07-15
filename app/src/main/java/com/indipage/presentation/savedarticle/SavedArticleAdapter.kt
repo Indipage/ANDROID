@@ -8,8 +8,7 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.SavedArticle
 import com.indipage.databinding.ItemSavedArticleBinding
 
-class SavedArticleAdapter(
-) : ListAdapter<SavedArticle, SavedArticleAdapter.SavedArticleViewHolder>(
+class SavedArticleAdapter: ListAdapter<SavedArticle, SavedArticleAdapter.SavedArticleViewHolder>(
     SavedArticleDiffCalback
 ) {
 

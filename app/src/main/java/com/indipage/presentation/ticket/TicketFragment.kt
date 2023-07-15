@@ -109,8 +109,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        if (result.contents == null) {
-        } else {
+        if (result.contents != null) {
             Timber.d(result.contents)
             if (result.contents.contains("http://3.37.34.144")) {
                 val url = result.contents

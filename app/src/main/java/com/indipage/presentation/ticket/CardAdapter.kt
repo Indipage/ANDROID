@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemTicketCardBinding
 
-class CardAdapter() : ListAdapter<String, CardAdapter.TicketViewHolder>(
+class CardAdapter : ListAdapter<String, CardAdapter.TicketViewHolder>(
     CardDiffCalback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
