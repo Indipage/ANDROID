@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseArticleDetailDto
-import com.indipage.data.dto.response.ResponseTicketDto
+import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.repository.ArticleDetailRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,8 +25,8 @@ class ArticleDetailViewModel @Inject constructor(
     val articleDetailData: StateFlow<UiState<ResponseArticleDetailDto>> =
         _articleDetailData.asStateFlow()
 
-    private val _ticketReceiveCheckData: MutableLiveData<ResponseTicketDto> = MutableLiveData()
-    val ticketReceiveCheckData: LiveData<ResponseTicketDto> = _ticketReceiveCheckData
+    private val _ticketReceiveCheckData: MutableLiveData<ResponseTicketReceiveCheckDto> = MutableLiveData()
+    val ticketReceiveCheckData: LiveData<ResponseTicketReceiveCheckDto> = _ticketReceiveCheckData
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId)

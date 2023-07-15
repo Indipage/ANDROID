@@ -2,7 +2,7 @@ package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.response.ResponseArticleDetailDto
-import com.indipage.data.dto.response.ResponseTicketDto
+import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -16,6 +16,6 @@ interface ArticleDetailApiService {
     @GET("/user/ticket/{spaceId}")
     suspend fun getTicketReceiveCheck(
         @Path(value = "spaceId") spaceId: Long
-    ): BaseResponse<ResponseTicketDto>
+    ): BaseResponse<ResponseTicketReceiveCheckDto>
 
 }

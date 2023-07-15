@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.NotNull
 
 @Serializable
-data class ResponseTicketDto(
+data class ResponseTicketReceiveCheckDto(
     @SerialName("ticket")
     val ticket: Ticket,
     @NotNull
