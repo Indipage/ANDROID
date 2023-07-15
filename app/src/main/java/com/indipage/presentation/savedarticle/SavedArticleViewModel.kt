@@ -3,6 +3,7 @@ package com.indipage.presentation.savedarticle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.data.dto.response.SavedArticle
 import com.indipage.domain.repository.BookMarkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +19,8 @@ class SavedArticleViewModel @Inject constructor(
     private val apiRepository: BookMarkRepository
 ) : ViewModel() {
 
-    private val _savedArticles = MutableStateFlow<UiState<List<SavedArticle>>>(UiState.Loading)
-    val savedArticles: StateFlow<UiState<List<SavedArticle>>> = _savedArticles.asStateFlow()
+    private val _savedArticles = MutableStateFlow<UiState<List<ResponseArticleDto>>>(UiState.Loading)
+    val savedArticles: StateFlow<UiState<List<ResponseArticleDto>>> = _savedArticles.asStateFlow()
 
     init {
         getSavedArticles()
@@ -29,10 +30,10 @@ class SavedArticleViewModel @Inject constructor(
         apiRepository.getSavedArticles()
             .onSuccess { savedArticles ->
                 _savedArticles.value = UiState.Success(savedArticles)
-                Timber.d("Success")
+                Timber.d("Success $savedArticles")
             }
             .onFailure {
-                Timber.d("Fail")
+                Timber.d("Fail $it")
             }
     }
 

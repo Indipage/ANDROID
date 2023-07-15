@@ -9,11 +9,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
+import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.data.dto.response.SavedArticle
 import com.indipage.databinding.FragmentSavedArticleBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class SavedArticleFragment :
@@ -25,29 +27,8 @@ class SavedArticleFragment :
     private val viewModel by viewModels<SavedArticleViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val articleList = listOf(
-            SavedArticle(
-                imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
-                space = "Space A",
-                spaceName = "Space Name 1",
-                spaceComment = "Comment 1"
-            ),
-            SavedArticle(
-                imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
-                space = "Space B",
-                spaceName = "Space Name 2",
-                spaceComment = "Comment 2"
-            ),
-            SavedArticle(
-                imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
-                space = "Space C",
-                spaceName = "Space Name 3",
-                spaceComment = "Comment 3"
-            )
-        )
         initAdapter()
-        initView(articleList)
+        initView()
 //        getCollectData()
         setNavigation()
     }
@@ -56,10 +37,19 @@ class SavedArticleFragment :
         binding.rvSavedArticle.adapter = adapter
     }
 
-    private fun initView(articleList: List<SavedArticle>) {
-        adapter.submitList(articleList)
-        binding.coSavedArticleEmptyView.visibility =
-            if (articleList.isEmpty()) View.VISIBLE else View.GONE
+    private fun initView() {
+        viewModel.savedArticles.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    adapter.submitList(it.data)
+                    binding.coSavedArticleEmptyView.visibility =
+                        if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                    Timber.d(it.data.toString())
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+
     }
 
     private fun setNavigation() {
