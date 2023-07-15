@@ -25,8 +25,8 @@ class QrScanActivity : BindingActivity<ActivityQrScanBinding>(R.layout.activity_
         captureManager.setShowMissingCameraPermissionDialog(
             true,
             "카메라 권한 요청"
-        )    // 권한요청 다이얼로그
-        captureManager.decode()        // decoding start
+        )
+        captureManager.decode()
     }
 
     override fun initView() {
@@ -47,6 +47,7 @@ class QrScanActivity : BindingActivity<ActivityQrScanBinding>(R.layout.activity_
         super.onDestroy()
         captureManager.onDestroy()
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         captureManager.onSaveInstanceState(outState)

@@ -29,7 +29,6 @@ class TicketAdapter() : ListAdapter<String, TicketAdapter.TicketViewHolder>(
         }
     }
 
-
     companion object {
         private val TicketDiffCalback =
             ItemDiffCallback<String>(

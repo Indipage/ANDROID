@@ -10,14 +10,13 @@ import com.indipage.databinding.FragmentDialogQrFailBinding
 interface CheckDialogListener {
     fun onCheckDialogResult()
 }
-class DialogQrFailFragment: DialogFragment() {
+
+class DialogQrFailFragment : DialogFragment() {
 
     private var listener: CheckDialogListener? = null
     private var _binding: FragmentDialogQrFailBinding? = null
     private val binding get() = _binding!!
-    fun setCheckDialogListener(listener: CheckDialogListener) {
-        this.listener = listener
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,19 +32,27 @@ class DialogQrFailFragment: DialogFragment() {
     }
 
     private fun initBtn() {
+        onClickBtnExit()
+        onClickBtnRetry()
+    }
+
+    private fun onClickBtnExit() {
         binding.btnQrFailExit.setOnClickListener {
             dismiss()
         }
-
+    }
+    private fun onClickBtnRetry() {
         binding.btnQrFailRetry.setOnClickListener {
             listener?.onCheckDialogResult()
             dismiss()
         }
     }
 
+    fun setCheckDialogListener(listener: CheckDialogListener) {
+        this.listener = listener
+    }
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
-
     }
 }

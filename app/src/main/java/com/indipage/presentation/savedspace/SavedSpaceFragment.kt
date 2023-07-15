@@ -18,10 +18,8 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class SavedSpaceFragment :
     BindingFragment<FragmentSavedSpaceBinding>(R.layout.fragment_saved_space) {
-    // 어댑터 초기화
-    private lateinit var adapter: SavedSpaceAdapter
 
-    // ViewModel 초기화
+    private lateinit var adapter: SavedSpaceAdapter
     private val viewModel by viewModels<SavedSpaceViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
