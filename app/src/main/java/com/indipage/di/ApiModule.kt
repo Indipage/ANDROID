@@ -34,7 +34,13 @@ object ApiModule {
 
     @Provides
     @Singleton
+    fun articleDetailApiService(@TestRetrofit retrofit: Retrofit): ArticleDetailApiService =
+        retrofit.create(ArticleDetailApiService::class.java)
+
+    @Provides
+    @Singleton
     fun provideTicketService(@TestRetrofit retrofit: Retrofit): TicketApiService =
         retrofit.create(TicketApiService::class.java)
+
 
 }

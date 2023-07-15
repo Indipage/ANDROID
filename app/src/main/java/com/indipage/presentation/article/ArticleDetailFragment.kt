@@ -6,15 +6,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.snackBar
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
+import com.indipage.data.dto.request.RequestTicketReceiveDto
 import com.indipage.databinding.FragmentArticleDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -32,6 +35,7 @@ class ArticleDetailFragment :
         setClickEventOnMoveToSpaceDetailTextView()
         setClickEventOnToolbar()
         setClickEventOnTicketImage()
+        getTicketReceiveCheckData()
     }
 
     private fun setClickEventOnMoveToSpaceDetailTextView() {
@@ -54,6 +58,17 @@ class ArticleDetailFragment :
         })
     }
 
+    private fun postTicketReceive() {
+        viewModel.postTicketReceive(1, RequestTicketReceiveDto(1))
+
+        viewModel.postTicketReceive.observe(this) {
+            if (it == 201) {
+                snackBar(requireView(), message = { "티켓을 받았어요!" })
+            }
+            toast(it.toString())
+        }
+    }
+
     private fun getArticleDetailData() {
         viewModel.getArticleDetail(1)
 
@@ -73,13 +88,27 @@ class ArticleDetailFragment :
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
 
+    private fun getTicketReceiveCheckData() {
+        viewModel.getTicketReceiveCheck(1)
+
+        viewModel.ticketReceiveCheckData.observe(this) {
+            if (it.hasReceivedTicket) {
+                binding.ivArticleDetailTicketImage.load(it.ticket.ticketImageUrl)
+                Timber.d("티켓 받음")
+                toast("티켓 받음")
+            } else {
+                toast("티켓 안 받음")
+                Timber.d("티켓 안 받음")
+            }
+        }
 
     }
 
     private fun setClickEventOnTicketImage() {
         binding.ivArticleDetailTicketImage.setOnClickListener(View.OnClickListener {
-            snackBar(requireView(), message = { "티켓을 받았어요!" })
+            postTicketReceive()
         })
     }
 

@@ -27,9 +27,4 @@ interface TestApiService {
      *     ): Response<ResponseTestDto>
      * **/
 
-    @GET("/article/{articleId}")
-    suspend fun getArticleDetail(
-        @Path(value = "articleId") articleId: Long
-    ): BaseResponse<ResponseArticleDetailDto>
-
 }
