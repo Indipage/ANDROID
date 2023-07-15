@@ -1,5 +1,6 @@
 package com.indipage.domain.repository
 
+import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 
@@ -10,4 +11,6 @@ interface ArticleDetailRepository {
     suspend fun postTicketReceive(
         spaceId: Long
     ): Result<Int>
+
+    suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>>
 }

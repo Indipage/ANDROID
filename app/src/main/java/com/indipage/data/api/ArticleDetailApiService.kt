@@ -2,6 +2,7 @@ package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.NullResponse
+import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import retrofit2.http.GET
@@ -25,4 +26,6 @@ interface ArticleDetailApiService {
         @Path(value = "spaceId") spaceId: Long
     ): NullResponse
 
+    @GET("/article")
+    suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>>
 }
