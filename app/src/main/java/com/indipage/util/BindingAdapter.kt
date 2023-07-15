@@ -29,21 +29,27 @@ fun ImageView.setCircleImage(img: String?) {
 
 @BindingAdapter("operationInformation")
 fun applyOperationFormat(view: TextView, item: String?) {
-    val spaceInforFormat = "운영시간|${item}"
+    val spaceInforFormat = "운영시간 | ${item}"
     view.text = spaceInforFormat
 }
 
 
 @BindingAdapter("closedInformation")
 fun applyClosedFormat(view: TextView, item: String?) {
-    val spaceInforFormat = "휴무|${item}"
+    val spaceInforFormat = "휴무 | ${item}"
     view.text = spaceInforFormat
 }
 
 
 @BindingAdapter("addressInformation")
 fun applyAFormat(view: TextView, item: String?) {
-    val spaceInforFormat = "주소|${item}"
+    val spaceInforFormat = "주소 | ${item}"
     view.text = spaceInforFormat
 }
 
+
+@BindingAdapter("ownerInformation")
+fun ownerFormat(view: TextView, item: String?) {
+    val ownerInformat = "공간지기 ${item}"
+    view.text = ownerInformat
+}
