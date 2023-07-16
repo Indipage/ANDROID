@@ -40,6 +40,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                         position * -resources.getDimension(R.dimen.viewpager_item_weekly_article_margin)
                     page.scaleY = ((1 - abs(position)) / 4 + 0.8f)
                 }
+                articleWeekly = it
+                executePendingBindings()
             }
         }
 

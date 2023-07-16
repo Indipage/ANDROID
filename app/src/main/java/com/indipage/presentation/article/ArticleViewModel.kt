@@ -23,11 +23,10 @@ class ArticleViewModel @Inject constructor(
         getArticleWeekly()
     }
 
-    fun getArticleWeekly() = viewModelScope.launch {
+    private fun getArticleWeekly() = viewModelScope.launch {
         apiRepository.getArticleWeekly()
             .onSuccess {
                 _articleWeeklyData.value = it
-                Log.d("sss","sss")
                 Timber.d("Success")
             }
             .onFailure { Timber.d(it.message.toString()) }

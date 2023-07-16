@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="article_weekly"
+            type="com.indipage.data.dto.response.ResponseArticleWeeklyDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,17 +60,18 @@
 
             <ImageView
                 android:id="@+id/iv_article_place_image"
+                imageUrl="@{article_weekly.thumbnailUrlOfThisWeek}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginBottom="54dp"
                 android:contentDescription="@string/article_detail_place_image_description"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
                 app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
                 app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
 
             <ImageView
                 android:id="@+id/iv_article_card_gradient_open"
@@ -87,11 +91,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
-                android:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간"
+                android:text="@{article_weekly.spaceName}"
                 android:textAppearance="@style/TextAppearance.IndiPage.Title01"
                 android:textColor="@color/indi_white"
                 app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
-                app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+                app:layout_constraintTop_toTopOf="@id/iv_article_place_image"
+                tools:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간" />
 
             <ImageView
                 android:id="@+id/iv_article_card_packed"
