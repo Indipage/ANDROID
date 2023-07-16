@@ -9,7 +9,7 @@ data class ResponseTicketDto(
     @SerialName("ticketId")
     val ticketId: Int,
     @SerialName("imageUrl")
-    val imageUrl: Int,
+    val imageUrl: String,
     @SerialName("spaceId")
     val spaceId: Int,
 )

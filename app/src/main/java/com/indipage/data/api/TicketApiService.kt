@@ -11,11 +11,11 @@ import retrofit2.http.Path
 interface TicketApiService {
     @GET("/user/ticket")
     suspend fun getTicketList(
-    ): BaseResponse<ResponseTicketDto>
+    ): BaseResponse<List<ResponseTicketDto>>
 
     @GET("/user/card")
     suspend fun getCardList(
-    ): BaseResponse<ResponseCardDto>
+    ): BaseResponse<List<ResponseCardDto>>
 
     @PUT("/user/space/{spaceId}/visit")
     suspend fun isCheckQR(

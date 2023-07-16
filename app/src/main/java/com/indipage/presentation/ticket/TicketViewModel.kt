@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.data.dto.response.ResponseTicketDto
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,26 +27,21 @@ class TicketViewModel @Inject constructor(
     private val _qrResponseCode = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val qrResponseCode: StateFlow<UiState<Int>> = _qrResponseCode.asStateFlow()
 
+    private val _ticket = MutableStateFlow<UiState<List<ResponseTicketDto>>>(UiState.Loading)
+    val ticket: StateFlow<UiState<List<ResponseTicketDto>>> = _ticket.asStateFlow()
+
     init {
         getTicketList()
-        getCardList()
     }
 
     fun getTicketList() = viewModelScope.launch {
         apiRepository.getTicketList()
             .onSuccess { it ->
-                Timber.d("Success ${it}")
+                _ticket.value=UiState.Success(it)
+                Timber.d("Success $it")
             }
             .onFailure {
-            }
-    }
-
-    fun getCardList() = viewModelScope.launch {
-        apiRepository.getCardList()
-            .onSuccess { it ->
-                Timber.d("Success ${it}")
-            }
-            .onFailure {
+                Timber.d("Fail $it")
             }
     }
 
