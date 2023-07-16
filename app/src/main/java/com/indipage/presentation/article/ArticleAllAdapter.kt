@@ -1,6 +1,7 @@
 package com.indipage.presentation.article
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -31,6 +32,10 @@ class ArticleAllAdapter(
             with(binding) {
                 articleAll = data
                 executePendingBindings()
+                layoutArticleAllReadArticle.visibility =
+                    if (data.ticketReceived) View.VISIBLE else View.GONE
+                layoutArticleAllNoReadArticle.visibility =
+                    if (data.ticketReceived) View.GONE else View.VISIBLE
             }
 
         }
