@@ -23,7 +23,7 @@ class ArticleAllViewModel @Inject constructor(
         getArticleAll()
     }
 
-    fun getArticleAll() = viewModelScope.launch {
+    private fun getArticleAll() = viewModelScope.launch {
         apiRepository.getArticleAll()
             .onSuccess {
                 Log.d("ddd", "sss")

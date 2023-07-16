@@ -23,7 +23,6 @@ class ArticleAllFragment :
     private fun initView() {
         binding.btnArticleAllCategoryAll.isSelected = true
         setClickEventOnCategoryButton()
-        getData()
         observeArticleAll()
     }
 
@@ -35,10 +34,6 @@ class ArticleAllFragment :
                 !binding.btnArticleAllCategoryAll.isSelected
             findNavController().navigate(R.id.action_article_all_to_article)
         })
-    }
-
-    private fun getData() {
-        viewModel.getArticleAll()
     }
 
     private fun observeArticleAll() {
