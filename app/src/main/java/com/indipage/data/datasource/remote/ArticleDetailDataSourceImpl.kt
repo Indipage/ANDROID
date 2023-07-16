@@ -20,9 +20,7 @@ class ArticleDetailDataSourceImpl
         return apiService.getTicketReceiveCheck(spaceId)
     }
 
-    override suspend fun postTicketReceive(
-        spaceId: Long
-    ): QRResponse {
+    override suspend fun postTicketReceive(spaceId: Int): QRResponse {
         return apiService.postTicketReceive(spaceId)
     }
 }

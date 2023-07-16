@@ -69,13 +69,22 @@ class ArticleDetailFragment :
     }
 
     private fun observeTicket() {
-        viewModel.postTicketReceive.observe(viewLifecycleOwner) {
-            if (it == 201) {
-                snackBar(requireView(), message = { "티켓을 받았어요!" })
-            } else {
-                toast(it.toString())
+        viewModel.postTicketReceive.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data) {
+                        201 -> {
+                            snackBar(requireView(), message = { "티켓을 받았어요!" })
+                        }
+                        409 -> {
+                            snackBar(requireView(), message = { "이미 티켓을 받았어요!" })
+                        }
+                    }
+                }
+                else -> {}
             }
-        }
+        }.launchIn(lifecycleScope)
+
         viewModel.ticketReceiveCheckData.observe(viewLifecycleOwner) {
             if (it.hasReceivedTicket) {
                 binding.ivArticleDetailTicketImage.load(it.ticket.ticketImageUrl)

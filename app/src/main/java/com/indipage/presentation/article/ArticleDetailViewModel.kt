@@ -29,9 +29,8 @@ class ArticleDetailViewModel @Inject constructor(
         MutableLiveData()
     val ticketReceiveCheckData: LiveData<ResponseTicketReceiveCheckDto> = _ticketReceiveCheckData
 
-    private val _postTicketReceive: MutableLiveData<Int> =
-        MutableLiveData()
-    val postTicketReceive: LiveData<Int> = _postTicketReceive
+    private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
+    val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId)
@@ -51,13 +50,16 @@ class ArticleDetailViewModel @Inject constructor(
             .onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun postTicketReceive(spaceId: Long) =
+    fun postTicketReceive(spaceId: Int) =
         viewModelScope.launch {
             apiRepository.postTicketReceive(spaceId)
                 .onSuccess {
-                    _postTicketReceive.value = it
+                    _postTicketReceive.value = UiState.Success(it)
                     Timber.d("Success")
                 }
-                .onFailure { Timber.d(it.message.toString()) }
+                .onFailure {
+                    _postTicketReceive.value = UiState.Success(409)
+                    Timber.d(it.message.toString())
+                }
         }
 }

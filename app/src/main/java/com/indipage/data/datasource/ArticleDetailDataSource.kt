@@ -10,5 +10,5 @@ interface ArticleDetailDataSource {
 
     suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponse<ResponseTicketReceiveCheckDto>
 
-    suspend fun postTicketReceive(spaceId: Long): QRResponse
+    suspend fun postTicketReceive(spaceId: Int): QRResponse
 }

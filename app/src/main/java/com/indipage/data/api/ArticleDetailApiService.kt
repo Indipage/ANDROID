@@ -22,7 +22,7 @@ interface ArticleDetailApiService {
 
     @POST("/user/ticket/{spaceId}")
     suspend fun postTicketReceive(
-        @Path(value = "spaceId") spaceId: Long
+        @Path(value = "spaceId") spaceId: Int
     ): QRResponse
 
 }
