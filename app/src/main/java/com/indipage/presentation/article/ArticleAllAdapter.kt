@@ -29,8 +29,8 @@ class ArticleAllAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseArticleAllDto) {
             with(binding) {
-                binding.articleAll = data
-                binding.executePendingBindings()
+                articleAll = data
+                executePendingBindings()
             }
 
         }

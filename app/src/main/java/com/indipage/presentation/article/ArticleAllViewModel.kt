@@ -1,6 +1,5 @@
 package com.indipage.presentation.article
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,7 +25,6 @@ class ArticleAllViewModel @Inject constructor(
     private fun getArticleAll() = viewModelScope.launch {
         apiRepository.getArticleAll()
             .onSuccess {
-                Log.d("ddd", "sss")
                 _articleAllData.value = it
                 Timber.d("Success")
             }
