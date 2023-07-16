@@ -19,6 +19,10 @@ class ArticleViewModel @Inject constructor(
     private val _articleWeeklyData: MutableLiveData<ResponseArticleWeeklyDto> = MutableLiveData()
     val articleWeeklyData: LiveData<ResponseArticleWeeklyDto> = _articleWeeklyData
 
+    init {
+        getArticleWeekly()
+    }
+
     fun getArticleWeekly() = viewModelScope.launch {
         apiRepository.getArticleWeekly()
             .onSuccess {

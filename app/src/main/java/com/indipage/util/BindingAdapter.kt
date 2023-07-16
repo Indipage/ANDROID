@@ -16,7 +16,7 @@ fun applyThrottleClick(view: View, listener: View.OnClickListener, interval: Lon
 }
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url: String) {
+fun loadImage(view: ImageView, url: String?) {
     view.load(url)
 }
 

@@ -22,13 +22,9 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun initView() {
         binding.btnArticleCategoryWeekly.isSelected = true
         initClickEventListeners()
-        getData()
         setUpArticleData()
     }
 
-    private fun getData() {
-        viewModel.getArticleWeekly()
-    }
 
     private fun setUpArticleData() {
         observeArticleWeekly()

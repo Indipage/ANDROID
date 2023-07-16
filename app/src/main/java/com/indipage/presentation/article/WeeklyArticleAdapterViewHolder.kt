@@ -2,7 +2,6 @@ package com.indipage.presentation.article
 
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.indipage.R
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
@@ -13,10 +12,8 @@ class WeeklyArticleAdapterViewHolder {
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ResponseArticleWeeklyDto) {
             with(binding) {
-                ivItemWeeklyArticlePlaceImage.load(data.thumbnailUrlOfThisWeek)
-                tvItemWeeklyArticleTitle.text = data.spaceName
-                tvItemWeeklyArticleSubTitle.text = data.title
-                tvItemWeeklyArticleAuthor.text = data.spaceOwner
+                articleWeekly = data
+                executePendingBindings()
                 root.setOnClickListener {
                     it.findNavController().navigate(R.id.action_article_to_article_detail)
                 }
@@ -28,8 +25,8 @@ class WeeklyArticleAdapterViewHolder {
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ResponseArticleWeeklyDto) {
             with(binding) {
-                ivItemWeeklyArticlePlaceImage.load(data.thumbnailUrlOfNextWeek)
-                tvItemWeeklyArticlePreDate.text = data.remainingDays.toString() + "Days"
+                articleWeekly = data
+                executePendingBindings()
             }
         }
     }
