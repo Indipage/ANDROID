@@ -19,7 +19,7 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesSpaceDetailRepository(repoImpl: SpaceDetailRepositoryImpl): SpaceDetailRepository
-  
+
     @Singleton
     @Binds
     abstract fun provideUserRepository(repoImpl: UserRepositoryImpl): UserRepository
@@ -31,5 +31,9 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesArticleDetailRepository(repoImpl: ArticleDetailRepositoryImpl): ArticleDetailRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesArticleRepository(repoImpl: ArticleRepositoryImpl): ArticleRepository
 
 }
