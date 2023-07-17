@@ -16,5 +16,7 @@ interface ArticleDetailRepository {
 
     suspend fun getBookmark(articleId: Long): Result<ResponseArticleBookmarkDto>
 
+    suspend fun postBookmark(articleId: Long): Result<Int>
+
 
 }

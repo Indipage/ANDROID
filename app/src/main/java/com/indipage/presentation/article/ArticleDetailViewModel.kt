@@ -37,6 +37,9 @@ class ArticleDetailViewModel @Inject constructor(
         MutableLiveData()
     val articleBookmarkData: LiveData<ResponseArticleBookmarkDto> = _articleBookmarkData
 
+    private val _postArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
+    val postArticleBookmark: StateFlow<UiState<Int>> = _postArticleBookmark.asStateFlow()
+
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId)
             .onSuccess {
@@ -77,4 +80,18 @@ class ArticleDetailViewModel @Inject constructor(
                 }
                 .onFailure { Timber.d(it.message.toString()) }
         }
+
+    fun postBookMark(articleId: Long) =
+        viewModelScope.launch {
+            apiRepository.postBookmark(articleId)
+                .onSuccess {
+                    _postArticleBookmark.value = UiState.Success(it)
+                    Timber.d("Success")
+                }
+                .onFailure {
+                    _postArticleBookmark.value = UiState.Success(404)
+                    Timber.d(it.message.toString())
+                }
+        }
+
 }

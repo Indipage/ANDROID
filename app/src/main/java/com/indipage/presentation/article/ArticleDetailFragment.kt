@@ -39,7 +39,7 @@ class ArticleDetailFragment :
     private fun getData() {
         viewModel.getArticleDetail(1)
         viewModel.getTicketReceiveCheck(1)
-        viewModel.getBookMark(3)
+        viewModel.getBookMark(4)
     }
 
     private fun setUpArticleDetail() {
@@ -100,6 +100,22 @@ class ArticleDetailFragment :
     }
 
     private fun observeBookmark() {
+        viewModel.postArticleBookmark.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data) {
+                        201 -> {
+                            snackBar(requireView(), message = { "북마크 성공" })
+                        }
+                        404 -> {
+                            Timber.d("존재하지 않는 아티클")
+                        }
+                    }
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+
         viewModel.articleBookmarkData.observe(viewLifecycleOwner) {
             if (it.bookmarked) {
                 binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_on)
@@ -107,6 +123,10 @@ class ArticleDetailFragment :
             } else {
                 binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_off)
                 Timber.d("북마크 안됨")
+                binding.ivArticleDetailBookmark.setOnClickListener {
+                    viewModel.postBookMark(4)
+                    binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_on)
+                }
             }
         }
 
@@ -125,9 +145,6 @@ class ArticleDetailFragment :
             }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigate(R.id.action_article_detail_to_article)
-            }
-            ivArticleDetailBookmark.setOnClickListener {
-                toast("북마크")
             }
         }
     }

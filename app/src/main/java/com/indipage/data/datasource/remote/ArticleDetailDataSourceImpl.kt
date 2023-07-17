@@ -37,5 +37,8 @@ class ArticleDetailDataSourceImpl
         return apiService.getBookmark(articleId)
     }
 
+    override suspend fun postBookmark(articleId: Long): NullResponse {
+        return apiService.postBookmark(articleId)
+    }
 
 }

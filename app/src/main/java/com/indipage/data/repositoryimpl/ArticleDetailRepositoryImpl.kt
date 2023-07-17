@@ -40,4 +40,10 @@ class ArticleDetailRepositoryImpl @Inject constructor(
             dataSource.getBookmark(articleId).data
         }
     }
+
+    override suspend fun postBookmark(articleId: Long): Result<Int> {
+        return runCatching {
+            dataSource.postBookmark(articleId).code
+        }
+    }
 }
