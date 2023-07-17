@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_article_to_article_detail"
             app:destination="@id/navigation_article_detail" />
+        <action
+            android:id="@+id/action_article_to_article_all"
+            app:destination="@id/navigation_article_all" />
     </fragment>
     <fragment
         android:id="@+id/navigation_search"
@@ -74,4 +77,12 @@
         android:id="@+id/navigation_qr_success"
         android:name="com.indipage.presentation.qr.QrSuccessFragment"
         android:label="QrSuccessFragment" />
+    <fragment
+        android:id="@+id/navigation_article_all"
+        android:name="com.indipage.presentation.article.ArticleAllFragment"
+        android:label="ArticleAllFragment" >
+        <action
+            android:id="@+id/action_article_all_to_article"
+            app:destination="@id/navigation_article" />
+    </fragment>
 </navigation>

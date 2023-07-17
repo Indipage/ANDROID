@@ -3,6 +3,7 @@ package com.indipage.presentation.article
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.viewModels
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
@@ -45,6 +46,22 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         }
 
     }
+
+
+
+    private fun setClickEventOnCategoryButton() {
+        binding.btnArticleCategoryWeekly.setOnClickListener(View.OnClickListener {
+            binding.btnArticleCategoryWeekly.isSelected =
+                !binding.btnArticleCategoryWeekly.isSelected
+            binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
+        })
+        binding.btnArticleCategoryAll.setOnClickListener(View.OnClickListener {
+            binding.btnArticleCategoryAll.isSelected = !binding.btnArticleCategoryAll.isSelected
+            binding.btnArticleCategoryWeekly.isSelected =
+                !binding.btnArticleCategoryWeekly.isSelected
+            findNavController().navigate(R.id.action_article_to_article_all)
+
+        })
 
     private fun initClickEventListeners() {
         with(binding) {
