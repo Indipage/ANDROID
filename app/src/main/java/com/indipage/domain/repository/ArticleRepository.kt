@@ -7,4 +7,6 @@ interface ArticleRepository {
     suspend fun getArticleWeekly(): Result<ResponseArticleWeeklyDto>
 
     suspend fun getArticleSlide(): Result<ResponseArticleSlideDto>
+
+    suspend fun putArticleSlide(): Result<Int>
 }

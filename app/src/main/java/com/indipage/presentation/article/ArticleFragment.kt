@@ -5,11 +5,18 @@ import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.toast
+import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import kotlin.math.abs
 
 @AndroidEntryPoint
@@ -60,6 +67,25 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 }
             }
         }
+
+        viewModel.putArticleSlide.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data) {
+                        200 -> {
+                            toast("슬라이드 함")
+                            Timber.d("슬라이드 함")
+                        }
+                        400 -> {
+                            toast("잘못 된 요청")
+                            Timber.d("잘못 된 요청")
+                        }
+                    }
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+
     }
 
     private fun initClickEventListeners() {
@@ -91,6 +117,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                viewModel.putArticleSlide()
                 findNavController().navigate(R.id.action_article_to_article_detail)
             }
 

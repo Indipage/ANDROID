@@ -20,4 +20,10 @@ class ArticleRepositoryImpl @Inject constructor(
             dataSource.getArticleSlide().data
         }
     }
+
+    override suspend fun putArticleSlide(): Result<Int> {
+        return runCatching {
+            dataSource.putArticleSlide().code
+        }
+    }
 }
