@@ -50,7 +50,7 @@ class ArticleDetailViewModel @Inject constructor(
             .onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun postTicketReceive(spaceId: Int) =
+    fun postTicketReceive(spaceId: Long) =
         viewModelScope.launch {
             apiRepository.postTicketReceive(spaceId)
                 .onSuccess {

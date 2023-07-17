@@ -62,6 +62,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             findNavController().navigate(R.id.action_article_to_article_all)
 
         })
+    }
 
     private fun initClickEventListeners() {
         with(binding) {
