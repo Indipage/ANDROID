@@ -2,6 +2,7 @@ package com.indipage.presentation.article
 
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,6 +25,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         binding.btnArticleCategoryWeekly.isSelected = true
         initClickEventListeners()
         setUpArticleData()
+        motion()
     }
 
     private fun setUpArticleData() {
@@ -51,8 +53,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun initClickEventListeners() {
         with(binding) {
             ivArticleCardPacked.setOnClickListener {
-                //layoutCardAnimation.isVisible = false
-                //vpArticle.isVisible = true
+                layoutCardAnimation.isVisible = false
+                vpArticle.isVisible = true
             }
             btnArticleCategoryAll.setOnClickListener {
                 btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
@@ -60,5 +62,37 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 findNavController().navigate(R.id.action_article_to_article_all)
             }
         }
+    }
+
+    private fun motion() {
+        binding.layoutCardAnimation.setTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionStarted(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int
+            ) {
+            }
+
+            override fun onTransitionChange(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
+
+            }
+
+            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                findNavController().navigate(R.id.action_article_to_article_detail)
+            }
+
+            override fun onTransitionTrigger(
+                motionLayout: MotionLayout?,
+                triggerId: Int,
+                positive: Boolean,
+                progress: Float
+            ) {
+            }
+        })
     }
 }
