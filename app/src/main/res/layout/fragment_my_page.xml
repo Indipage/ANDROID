@@ -8,6 +8,7 @@
         <variable
             name="userInfo"
             type="com.indipage.presentation.model.UserInfoModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
