@@ -39,11 +39,13 @@ class ArticleDetailFragment :
     private fun getData() {
         viewModel.getArticleDetail(1)
         viewModel.getTicketReceiveCheck(1)
+        viewModel.getBookMark(3)
     }
 
     private fun setUpArticleDetail() {
         observeArticle()
         observeTicket()
+        observeBookmark()
     }
 
     private fun observeArticle() {
@@ -97,6 +99,19 @@ class ArticleDetailFragment :
         }
     }
 
+    private fun observeBookmark() {
+        viewModel.articleBookmarkData.observe(viewLifecycleOwner) {
+            if (it.bookmarked) {
+                binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_on)
+                Timber.d("북마크 됨")
+            } else {
+                binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_off)
+                Timber.d("북마크 안됨")
+            }
+        }
+
+    }
+
     private fun initClickEventListeners() {
         with(binding) {
             tvArticleDetailMoveToPlaceDetail1.setOnClickListener {
@@ -113,8 +128,6 @@ class ArticleDetailFragment :
             }
             ivArticleDetailBookmark.setOnClickListener {
                 toast("북마크")
-                binding.ivArticleDetailBookmark.isSelected =
-                    !binding.ivArticleDetailBookmark.isSelected
             }
         }
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.repository.ArticleDetailRepository
@@ -31,6 +32,10 @@ class ArticleDetailViewModel @Inject constructor(
 
     private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
+
+    private val _articleBookmarkData: MutableLiveData<ResponseArticleBookmarkDto> =
+        MutableLiveData()
+    val articleBookmarkData: LiveData<ResponseArticleBookmarkDto> = _articleBookmarkData
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId)
@@ -61,5 +66,15 @@ class ArticleDetailViewModel @Inject constructor(
                     _postTicketReceive.value = UiState.Success(409)
                     Timber.d(it.message.toString())
                 }
+        }
+
+    fun getBookMark(articleId: Long) =
+        viewModelScope.launch {
+            apiRepository.getBookmark(articleId)
+                .onSuccess {
+                    _articleBookmarkData.value = it
+                    Timber.d("Success")
+                }
+                .onFailure { Timber.d(it.message.toString()) }
         }
 }
