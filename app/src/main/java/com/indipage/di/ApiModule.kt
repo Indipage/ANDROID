@@ -16,7 +16,6 @@ object ApiModule {
     fun provideBookMarkService(@IndiPageRetrofit retrofit: Retrofit): BookMarkApiService =
         retrofit.create(BookMarkApiService::class.java)
 
-
     @Provides
     @Singleton
     fun provideSpaceDetailService(@IndiPageRetrofit retrofit: Retrofit): SpaceDetailApiService =

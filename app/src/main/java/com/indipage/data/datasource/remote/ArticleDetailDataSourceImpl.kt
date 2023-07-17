@@ -3,7 +3,7 @@ package com.indipage.data.datasource.remote
 import com.indipage.data.api.ArticleDetailApiService
 import com.indipage.data.datasource.ArticleDetailDataSource
 import com.indipage.data.dto.BaseResponse
-import com.indipage.data.dto.QRResponse
+import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import javax.inject.Inject
@@ -20,9 +20,10 @@ class ArticleDetailDataSourceImpl
         return apiService.getTicketReceiveCheck(spaceId)
     }
 
+
     override suspend fun postTicketReceive(
         spaceId: Long
-    ): QRResponse {
+    ): NullResponse {
         return apiService.postTicketReceive(spaceId)
     }
 }

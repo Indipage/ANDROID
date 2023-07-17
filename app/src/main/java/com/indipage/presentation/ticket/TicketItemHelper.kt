@@ -1,6 +1,5 @@
 package com.indipage.presentation.ticket
 
-import android.content.Context
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,8 +20,8 @@ class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper
         val swipeFlags = ItemTouchHelper.LEFT
         return makeMovementFlags(dragFlags, swipeFlags)
     }
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
     }
 
     override fun isItemViewSwipeEnabled(): Boolean {
@@ -40,6 +39,7 @@ class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
         return 2f
     }
+
     override fun clearView(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
@@ -47,6 +47,5 @@ class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper
         viewModel.openQR()
         getDefaultUIUtil().clearView((viewHolder as TicketAdapter.TicketViewHolder).itemView)
     }
-    private var clamp = 0f
 
 }

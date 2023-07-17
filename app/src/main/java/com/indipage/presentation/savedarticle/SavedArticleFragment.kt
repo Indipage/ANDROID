@@ -25,7 +25,7 @@ class SavedArticleFragment :
     private val viewModel by viewModels<SavedArticleViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = SavedArticleAdapter()
+
         val articleList = listOf(
             SavedArticle(
                 imageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4",
@@ -46,11 +46,20 @@ class SavedArticleFragment :
                 spaceComment = "Comment 3"
             )
         )
-        binding.rvSavedArticle.adapter = adapter
-        adapter.submitList(articleList)
-        binding.coSavedArticleEmptyView.visibility = if (articleList.isEmpty()) View.VISIBLE else View.GONE
+        initAdapter()
+        initView(articleList)
 //        getCollectData()
         setNavigation()
+    }
+    private fun initAdapter() {
+        adapter = SavedArticleAdapter()
+        binding.rvSavedArticle.adapter = adapter
+    }
+
+    private fun initView(articleList: List<SavedArticle>) {
+        adapter.submitList(articleList)
+        binding.coSavedArticleEmptyView.visibility =
+            if (articleList.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun setNavigation() {

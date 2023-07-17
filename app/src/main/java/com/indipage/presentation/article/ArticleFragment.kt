@@ -25,7 +25,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         setUpArticleData()
     }
 
-
     private fun setUpArticleData() {
         observeArticleWeekly()
     }

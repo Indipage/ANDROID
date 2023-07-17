@@ -22,19 +22,25 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = CardAdapter()
+
         val spaceList = listOf(
             "https://avatars.githubusercontent.com/u/93514333?v=4",
             "https://avatars.githubusercontent.com/u/93514333?v=4",
             "https://avatars.githubusercontent.com/u/93514333?v=4",
         )
         binding.testImageUrl = "https://avatars.githubusercontent.com/u/93514333?v=4"
+        initAdapter()
+        initView(spaceList)
+        moveToTicket()
+    }
+    private fun initAdapter() {
+        adapter = CardAdapter()
         binding.rvTicketCard.adapter = adapter
+    }
+    private fun initView(spaceList: List<String>) {
         adapter.submitList(spaceList)
         binding.switchTicket.isChecked = true
         binding.coCardEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
-
-        moveToTicket()
     }
 
     private fun moveToTicket() {
@@ -43,12 +49,11 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
                 Timber.d("good")
             } else if (!isChecked) {
                 Handler().postDelayed({
-                    findNavController().navigate(
-                        R.id.action_navigation_card_to_navigation_ticket,
-                        bundleOf()
-                    )
+                    findNavController()
+                        .navigate(R.id.action_navigation_card_to_navigation_ticket, bundleOf())
                 }, 100)
             }
         }
     }
+
 }

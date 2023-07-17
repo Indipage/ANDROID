@@ -7,6 +7,5 @@ interface TicketRepository {
 
     suspend fun isCheckQR(spaceId: Int): Result<Int>
     suspend fun getTicketList(): Result<Ticket>
-
     suspend fun getCardList(): Result<Card>
 }
