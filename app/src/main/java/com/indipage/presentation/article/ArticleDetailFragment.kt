@@ -25,6 +25,8 @@ class ArticleDetailFragment :
     BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
 
     private val viewModel by viewModels<ArticleDetailViewModel>()
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -118,17 +120,29 @@ class ArticleDetailFragment :
 
         viewModel.articleBookmarkData.observe(viewLifecycleOwner) {
             if (it.bookmarked) {
-                binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_on)
+                binding.ivArticleDetailBookmark.isSelected = true
                 Timber.d("북마크 됨")
             } else {
-                binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_off)
+                binding.ivArticleDetailBookmark.isSelected = false
                 Timber.d("북마크 안됨")
-                binding.ivArticleDetailBookmark.setOnClickListener {
-                    viewModel.postBookMark(4)
-                    binding.ivArticleDetailBookmark.setImageResource(R.drawable.ic_article_detail_bookmark_on)
-                }
             }
         }
+
+        viewModel.deleteArticleBookmark.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data) {
+                        200 -> {
+                            snackBar(requireView(), message = { "북마크 취소" })
+                        }
+                        404 -> {
+                            Timber.d("존재하지 않는 아티클")
+                        }
+                    }
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
 
     }
 
@@ -145,6 +159,15 @@ class ArticleDetailFragment :
             }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigate(R.id.action_article_detail_to_article)
+            }
+            ivArticleDetailBookmark.setOnClickListener {
+                if (ivArticleDetailBookmark.isSelected) {
+                    viewModel.deleteBookMark(4)
+                    binding.ivArticleDetailBookmark.isSelected = false
+                } else {
+                    viewModel.postBookMark(4)
+                    binding.ivArticleDetailBookmark.isSelected = true
+                }
             }
         }
     }

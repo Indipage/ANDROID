@@ -18,5 +18,6 @@ interface ArticleDetailRepository {
 
     suspend fun postBookmark(articleId: Long): Result<Int>
 
+    suspend fun deleteBookmark(articleId: Long): Result<Int>
 
 }

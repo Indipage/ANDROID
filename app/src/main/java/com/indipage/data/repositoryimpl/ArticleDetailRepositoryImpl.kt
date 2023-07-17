@@ -46,4 +46,10 @@ class ArticleDetailRepositoryImpl @Inject constructor(
             dataSource.postBookmark(articleId).code
         }
     }
+
+    override suspend fun deleteBookmark(articleId: Long): Result<Int> {
+        return runCatching {
+            dataSource.deleteBookmark(articleId).code
+        }
+    }
 }

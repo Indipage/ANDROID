@@ -19,4 +19,6 @@ interface ArticleDetailDataSource {
     suspend fun getBookmark(articleId: Long): BaseResponse<ResponseArticleBookmarkDto>
 
     suspend fun postBookmark(articleId: Long): NullResponse
+
+    suspend fun deleteBookmark(articleId: Long): NullResponse
 }

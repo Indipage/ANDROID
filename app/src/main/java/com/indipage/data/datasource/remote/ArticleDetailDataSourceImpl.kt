@@ -41,4 +41,8 @@ class ArticleDetailDataSourceImpl
         return apiService.postBookmark(articleId)
     }
 
+    override suspend fun deleteBookmark(articleId: Long): NullResponse {
+        return apiService.deleteBookmark(articleId)
+    }
+
 }
