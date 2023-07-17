@@ -2,10 +2,6 @@ package com.indipage.util
 
 object API {
     const val API_TAG = "Retrofit2"
-    const val REQRES_BASE_URL = "https://reqres.in/"
-    const val SIGN_IN = "sign-in"
-    const val SIGN_UP = "sign-up"
-    const val HOME_USER = "api/users"
 }
 
 object ArticleDetailTag{
@@ -22,6 +18,8 @@ object ArticleDetailTag{
     val REPLACE_TAG_REGEX = "(<img>|</img>|<title>|</title>|<body>|</body>)".toRegex()
     val REPLACE_STYLE_START_TAG_REGEX = "(((<bold>)?(<color>)?(<click>)?)+)".toRegex()
     val REPLACE_STYLE_END_TAG_REGEX = "(((</click>)?(</bold>)?(</color>)?)+)".toRegex()
+
+    val TAG_REGEX = "(<img>.*?</img>|<title>.*?</title>|<body>.*?</body>)".toRegex()
 }
 
 object WeeklyArticle{

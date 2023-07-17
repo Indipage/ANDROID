@@ -20,7 +20,6 @@ class SavedArticleAdapter(
     }
 
     override fun onBindViewHolder(holder: SavedArticleViewHolder, position: Int) {
-//        getItem(position)?.let { holder.bind(it) }
         holder.bind(getItem(position))
     }
 
@@ -32,7 +31,6 @@ class SavedArticleAdapter(
             binding.executePendingBindings()
         }
     }
-
 
     companion object {
         private val SavedArticleDiffCalback =

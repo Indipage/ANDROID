@@ -1,31 +1,32 @@
 package com.indipage.presentation.article
 
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.indipage.data.dto.response.ResponseWeeklyArticleDto
+import com.indipage.R
+import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
 import com.indipage.databinding.ItemWeeklyArticlePreBinding
 
 class WeeklyArticleAdapterViewHolder {
-
     class ItemWeeklyArticleOpenViewHolder(private val binding: ItemWeeklyArticleOpenBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ResponseWeeklyArticleDto) {
+        fun onBind(data: ResponseArticleWeeklyDto) {
             with(binding) {
-                tvItemWeeklyArticleTitle.text = data.title
-                ivItemWeeklyArticlePlaceImage.load(data.thumbnail)
-                tvItemWeeklyArticleSubTitle.text = data.subTitle
-                tvItemWeeklyArticleAuthor.text = data.name
+                articleWeekly = data
+                executePendingBindings()
+                root.setOnClickListener {
+                    it.findNavController().navigate(R.id.action_article_to_article_detail)
+                }
             }
         }
     }
 
     class ItemWeeklyArticlePreViewHolder(private val binding: ItemWeeklyArticlePreBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ResponseWeeklyArticleDto) {
+        fun onBind(data: ResponseArticleWeeklyDto) {
             with(binding) {
-                tvItemWeeklyArticlePreDate.text = data.date + "days"
-                ivItemWeeklyArticlePlaceImage.load(data.thumbnail)
+                articleWeekly = data
+                executePendingBindings()
             }
         }
     }

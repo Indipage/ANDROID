@@ -5,16 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.ResponseWeeklyArticleDto
+import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
 import com.indipage.databinding.ItemWeeklyArticlePreBinding
 import com.indipage.util.WeeklyArticle.ITEM_OPEN
 import com.indipage.util.WeeklyArticle.ITEM_PRE
 
-class WeeklyArticleAdapter : ListAdapter<ResponseWeeklyArticleDto, RecyclerView.ViewHolder>(
+class WeeklyArticleAdapter : ListAdapter<ResponseArticleWeeklyDto, RecyclerView.ViewHolder>(
     WeeklyArticleAdapterDiffCallback
 ) {
-
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getItemViewType(position: Int): Int {
@@ -54,10 +53,9 @@ class WeeklyArticleAdapter : ListAdapter<ResponseWeeklyArticleDto, RecyclerView.
 
     companion object {
         private val WeeklyArticleAdapterDiffCallback =
-            ItemDiffCallback<ResponseWeeklyArticleDto>(
+            ItemDiffCallback<ResponseArticleWeeklyDto>(
                 onItemsTheSame = { old, new -> old.title == new.title },
                 onContentsTheSame = { old, new -> old == new }
             )
     }
-
 }

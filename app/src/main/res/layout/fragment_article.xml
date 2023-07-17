@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="article_weekly"
+            type="com.indipage.data.dto.response.ResponseArticleWeeklyDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +31,7 @@
             android:textColor="@drawable/selector_article_category_button_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_article_category_all"
@@ -45,44 +48,71 @@
             android:textColor="@drawable/selector_article_category_button_text"
             app:layout_constraintStart_toEndOf="@id/btn_article_category_weekly"
             app:layout_constraintTop_toTopOf="@id/btn_article_category_weekly"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
-        <ImageView
-            android:id="@+id/iv_article_place_image"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_card_animation"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="8dp"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="54dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
-            app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
-            app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
-            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly">
 
-        <ImageView
-            android:id="@+id/iv_article_card_gradient_open"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_article_card_gradient_open"
-            app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
-            app:layout_constraintEnd_toEndOf="@id/iv_article_place_image"
-            app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
-            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+            <ImageView
+                android:id="@+id/iv_article_place_image"
+                imageUrl="@{article_weekly.thumbnailUrlOfThisWeek}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="54dp"
+                android:contentDescription="@string/article_detail_place_image_description"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
+                app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
+                app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:id="@+id/tv_article_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간"
-            android:textAppearance="@style/TextAppearance.IndiPage.Title01"
-            android:textColor="@color/indi_white"
-            app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
-            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+            <ImageView
+                android:id="@+id/iv_article_card_gradient_open"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/article_weekly_gradient"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_article_card_gradient_open"
+                app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
+                app:layout_constraintEnd_toEndOf="@id/iv_article_place_image"
+                app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
+                app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+
+            <TextView
+                android:id="@+id/tv_article_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="@{article_weekly.spaceName}"
+                android:textAppearance="@style/TextAppearance.IndiPage.Title01"
+                android:textColor="@color/indi_white"
+                app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
+                app:layout_constraintTop_toTopOf="@id/iv_article_place_image"
+                tools:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간" />
+
+            <ImageView
+                android:id="@+id/iv_article_card_packed"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="26dp"
+                android:contentDescription="@string/article_weekly_gradient"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_article_card_packed"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_article"
@@ -93,20 +123,6 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
-
-
-        <ImageView
-            android:id="@+id/iv_article_card_packed"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="26dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_article_card_packed"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_article_place_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

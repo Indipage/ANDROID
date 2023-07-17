@@ -16,7 +16,6 @@ object ApiModule {
     fun provideBookMarkService(@IndiPageRetrofit retrofit: Retrofit): BookMarkApiService =
         retrofit.create(BookMarkApiService::class.java)
 
-
     @Provides
     @Singleton
     fun provideSpaceDetailService(@IndiPageRetrofit retrofit: Retrofit): SpaceDetailApiService =
@@ -36,6 +35,11 @@ object ApiModule {
     @Singleton
     fun provideTicketService(@IndiPageRetrofit retrofit: Retrofit): TicketApiService =
         retrofit.create(TicketApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideArticleService(@IndiPageRetrofit retrofit: Retrofit): ArticleApiService =
+        retrofit.create(ArticleApiService::class.java)
 
 
 }

@@ -41,4 +41,5 @@
     <string name="btn_article_category_weekly">weekly</string>
     <string name="btn_article_category_all">all</string>
     <string name="tv_curation_title">공간지기 추천서가</string>
+    <string name="article_weekly_gradient">불투명한 커버</string>
 </resources>

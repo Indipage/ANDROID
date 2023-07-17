@@ -20,35 +20,15 @@ class TicketViewModel @Inject constructor(
     private val apiRepository: TicketRepository
 ) : ViewModel() {
 
-    private val _openProductEvent = MutableLiveData<Event<String>>()
-    val openProductEvent: LiveData<Event<String>> = _openProductEvent
+    private val _openQrEvent = MutableLiveData<Event<String>>()
+    val openQrEvent: LiveData<Event<String>> = _openQrEvent
 
     private val _qrResponseCode = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val qrResponseCode: StateFlow<UiState<Int>> = _qrResponseCode.asStateFlow()
 
     init {
-//        getTicketList()
+        getTicketList()
         getCardList()
-    }
-
-    fun openQR() {
-        _openProductEvent.value = Event("test")
-    }
-
-    fun isCheckQR(spaceId: Int) = viewModelScope.launch {
-        apiRepository.isCheckQR(spaceId)
-            .onSuccess { it ->
-                _qrResponseCode.value = UiState.Success(it)
-                Timber.d("Success ${it}")
-            }
-            .onFailure {
-                _qrResponseCode.value = UiState.Success(404)
-                Timber.d("Fail ${it}")
-            }
-    }
-
-    fun closeQR() {
-        _qrResponseCode.value = UiState.Success(100)
     }
 
     fun getTicketList() = viewModelScope.launch {
@@ -67,6 +47,26 @@ class TicketViewModel @Inject constructor(
             }
             .onFailure {
             }
+    }
+
+    fun openQR() {
+        _openQrEvent.value = Event("test")
+    }
+
+    fun isCheckQR(spaceId: Int) = viewModelScope.launch {
+        apiRepository.isCheckQR(spaceId)
+            .onSuccess { it ->
+                _qrResponseCode.value = UiState.Success(it)
+                Timber.d("Success ${it}")
+            }
+            .onFailure {
+                _qrResponseCode.value = UiState.Success(404)
+                Timber.d("Fail ${it}")
+            }
+    }
+
+    fun closeQR() {
+        _qrResponseCode.value = UiState.Success(100)
     }
 
 }

@@ -1,12 +1,10 @@
 package com.indipage.presentation.article
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.request.RequestTicketReceiveDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.repository.ArticleDetailRepository
@@ -31,9 +29,8 @@ class ArticleDetailViewModel @Inject constructor(
         MutableLiveData()
     val ticketReceiveCheckData: LiveData<ResponseTicketReceiveCheckDto> = _ticketReceiveCheckData
 
-    private val _postTicketReceive: MutableLiveData<Int> =
-        MutableLiveData()
-    val postTicketReceive: LiveData<Int> = _postTicketReceive
+    private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
+    val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId)
@@ -53,15 +50,15 @@ class ArticleDetailViewModel @Inject constructor(
             .onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun postTicketReceive(spaceId: Long, requestDto: RequestTicketReceiveDto) =
+    fun postTicketReceive(spaceId: Int) =
         viewModelScope.launch {
             apiRepository.postTicketReceive(spaceId)
                 .onSuccess {
-                    _postTicketReceive.value = it
+                    _postTicketReceive.value = UiState.Success(it)
                     Timber.d("Success")
-                    Log.d("ddd", "ddd")
                 }
                 .onFailure {
+                    _postTicketReceive.value = UiState.Success(409)
                     Timber.d(it.message.toString())
                 }
         }

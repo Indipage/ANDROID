@@ -4,7 +4,7 @@ import com.indipage.data.api.SpaceDetailApiService
 import com.indipage.data.datasource.SpaceDetailDataSource
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.BaseResponseNullable
-import com.indipage.data.dto.QRResponse
+import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.BookmarkData
 import com.indipage.data.dto.response.CurationData
 import com.indipage.data.dto.response.FollowData
@@ -19,11 +19,11 @@ class SpaceDetailDataSourceImpl @Inject constructor(
         return apiService.getBookmarked(spaceId = 1)
     }
 
-    override suspend fun deleteBookmarked(): QRResponse {
+    override suspend fun deleteBookmarked(): NullResponse {
         return apiService.deleteBookmarked(spaceId = 1)
     }
 
-    override suspend fun postBookmarked(): QRResponse {
+    override suspend fun postBookmarked(): NullResponse {
         return apiService.postBookmarked(spaceId = 1)
     }
 
@@ -39,7 +39,7 @@ class SpaceDetailDataSourceImpl @Inject constructor(
         return apiService.getFollow(spaceId = 1)
     }
 
-    override suspend fun postFollow(): QRResponse {
+    override suspend fun postFollow(): NullResponse {
         return apiService.postFollow(spaceId = 1)
     }
 

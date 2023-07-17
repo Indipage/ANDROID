@@ -1,7 +1,7 @@
 package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
-import com.indipage.data.dto.QRResponse
+import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import retrofit2.http.GET
@@ -23,6 +23,6 @@ interface ArticleDetailApiService {
     @POST("/user/ticket/{spaceId}")
     suspend fun postTicketReceive(
         @Path(value = "spaceId") spaceId: Long
-    ): QRResponse
+    ): NullResponse
 
 }
