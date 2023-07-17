@@ -36,5 +36,10 @@ object ApiModule {
     fun provideTicketService(@IndiPageRetrofit retrofit: Retrofit): TicketApiService =
         retrofit.create(TicketApiService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideArticleService(@IndiPageRetrofit retrofit: Retrofit): ArticleApiService =
+        retrofit.create(ArticleApiService::class.java)
+
 
 }

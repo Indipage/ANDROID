@@ -9,6 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
+import coil.load
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
@@ -35,22 +36,22 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-
-        //SampleData
-        val spaceList = listOf(
-            "https://avatars.githubusercontent.com/u/93514333?v=4",
-            "https://avatars.githubusercontent.com/u/93514333?v=4",
-            "https://avatars.githubusercontent.com/u/93514333?v=4",)
-        adapter.submitList(spaceList)
-        //
-        initView(spaceList)
+        initView()
         openQR()
         moveToCard()
         getCollectQrScanData()
     }
 
-    private fun initView(spaceList: List<String>) {
-        binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
+    private fun initView() {
+        viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    adapter.submitList(it.data)
+                    binding.coTicketEmptyView.visibility = if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initAdapter() {
@@ -109,8 +110,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
-        if (result.contents == null) {
-        } else {
+        if (result.contents != null) {
             Timber.d(result.contents)
             if (result.contents.contains("http://3.37.34.144")) {
                 val url = result.contents

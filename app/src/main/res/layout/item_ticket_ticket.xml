@@ -4,11 +4,8 @@
 
     <data>
         <variable
-            name="data"
-            type="String" />
-        <variable
-            name="vm"
-            type="com.indipage.presentation.ticket.TicketViewModel" />
+            name="ticket"
+            type="com.indipage.data.dto.response.ResponseTicketDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@drawable/ic_test_ticket"
+            imageUrl="@{ticket.imageUrl}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="480dp"

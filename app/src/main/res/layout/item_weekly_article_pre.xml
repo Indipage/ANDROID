@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="article_weekly"
+            type="com.indipage.data.dto.response.ResponseArticleWeeklyDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,6 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_item_weekly_article_place_image"
+            imageUrl="@{article_weekly.thumbnailUrlOfNextWeek}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="40dp"
@@ -43,11 +48,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="36dp"
-            android:text="4Days"
+            android:text='@{Integer.toString(article_weekly.remainingDays)+"Days"}'
             android:textAppearance="@style/TextAppearance.IndiPage.En.Title1"
             android:textColor="@color/indi_green"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/iv_item_weekly_article_place_image" />
+            app:layout_constraintEnd_toEndOf="@id/iv_item_weekly_article_place_image"
+            tools:text="4Days" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

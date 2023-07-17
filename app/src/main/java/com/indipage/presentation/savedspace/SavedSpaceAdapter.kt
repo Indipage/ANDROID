@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
+import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.ItemSavedSpaceBinding
 
-class SavedSpaceAdapter(
-) : ListAdapter<SavedSpace, SavedSpaceAdapter.SavedSpaceViewHolder>(
+class SavedSpaceAdapter: ListAdapter<ResponseSpaceDto, SavedSpaceAdapter.SavedSpaceViewHolder>(
     SavedSpaceDiffCalback
 ) {
 
@@ -26,7 +26,7 @@ class SavedSpaceAdapter(
     class SavedSpaceViewHolder(
         private val binding: ItemSavedSpaceBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: SavedSpace) {
+        fun bind(data: ResponseSpaceDto) {
             binding.savedSpace = data
             binding.executePendingBindings()
         }
@@ -34,8 +34,8 @@ class SavedSpaceAdapter(
 
     companion object {
         private val SavedSpaceDiffCalback =
-            ItemDiffCallback<SavedSpace>(
-                onItemsTheSame = { old, new -> old.spaceName == new.spaceName },
+            ItemDiffCallback<ResponseSpaceDto>(
+                onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new }
             )
     }

@@ -12,7 +12,7 @@ import retrofit2.http.*
 
 interface SpaceDetailApiService {
 
-    @GET("user/bookmark/space/{spaceId}")
+    @GET("bookmark/space/{spaceId}")
     suspend fun getBookmarked(@Path("spaceId") spaceId: Int): BaseResponse<BookmarkData>
 
     @POST("user/bookmark/space/{spaceId}")
@@ -34,5 +34,5 @@ interface SpaceDetailApiService {
     suspend fun postFollow(@Path("spaceId") spaceId: Int): NullResponse
 
     @GET("space/{spaceId}/article")
-    suspend fun getSpaceArticle(@Path("spaceId") spaceId:Int): BaseResponseNullable<SpaceArticleData>
+    suspend fun getSpaceArticle(@Path("spaceId") spaceId: Int): BaseResponseNullable<SpaceArticleData>
 }

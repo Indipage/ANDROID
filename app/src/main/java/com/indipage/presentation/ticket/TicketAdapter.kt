@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
+import com.indipage.data.dto.response.ResponseTicketDto
 import com.indipage.databinding.ItemTicketTicketBinding
 
-class TicketAdapter() : ListAdapter<String, TicketAdapter.TicketViewHolder>(
+class TicketAdapter : ListAdapter<ResponseTicketDto, TicketAdapter.TicketViewHolder>(
     TicketDiffCalback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
@@ -23,16 +24,16 @@ class TicketAdapter() : ListAdapter<String, TicketAdapter.TicketViewHolder>(
     class TicketViewHolder(
         private val binding: ItemTicketTicketBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: String) {
-            binding.data = data
+        fun bind(data: ResponseTicketDto) {
+            binding.ticket = data
             binding.executePendingBindings()
         }
     }
 
     companion object {
         private val TicketDiffCalback =
-            ItemDiffCallback<String>(
-                onItemsTheSame = { old, new -> old == new },
+            ItemDiffCallback<ResponseTicketDto>(
+                onItemsTheSame = { old, new -> old.ticketId == new.ticketId },
                 onContentsTheSame = { old, new -> old == new }
             )
     }
