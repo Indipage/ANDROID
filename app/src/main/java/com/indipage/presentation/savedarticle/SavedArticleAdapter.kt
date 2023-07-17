@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.SavedArticle
+import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.databinding.ItemSavedArticleBinding
 
-class SavedArticleAdapter(
-) : ListAdapter<SavedArticle, SavedArticleAdapter.SavedArticleViewHolder>(
+class SavedArticleAdapter: ListAdapter<ResponseArticleDto, SavedArticleAdapter.SavedArticleViewHolder>(
     SavedArticleDiffCalback
 ) {
 
@@ -26,7 +25,7 @@ class SavedArticleAdapter(
     class SavedArticleViewHolder(
         private val binding: ItemSavedArticleBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: SavedArticle) {
+        fun bind(data: ResponseArticleDto) {
             binding.savedArticle = data
             binding.executePendingBindings()
         }
@@ -34,8 +33,8 @@ class SavedArticleAdapter(
 
     companion object {
         private val SavedArticleDiffCalback =
-            ItemDiffCallback<SavedArticle>(
-                onItemsTheSame = { old, new -> old.spaceName == new.spaceName },
+            ItemDiffCallback<ResponseArticleDto>(
+                onItemsTheSame = { old, new -> old.id == new.id},
                 onContentsTheSame = { old, new -> old == new }
             )
     }

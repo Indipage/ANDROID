@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="testUrl"
-            type="String" />
+            name="card"
+            type="com.indipage.data.dto.response.ResponseCardDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/tv_ticket_card"
-            imageUrl="@{testUrl}"
+            imageUrl="@{card.imageUrl}"
             android:layout_width="68dp"
             android:layout_height="108dp"
             app:layout_constraintStart_toStartOf="parent"

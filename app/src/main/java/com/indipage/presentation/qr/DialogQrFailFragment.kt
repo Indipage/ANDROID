@@ -21,7 +21,7 @@ class DialogQrFailFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDialogQrFailBinding.inflate(inflater, container, false)
         return binding.root
     }

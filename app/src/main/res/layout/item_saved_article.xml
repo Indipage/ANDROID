@@ -7,7 +7,7 @@
 
         <variable
             name="saved_article"
-            type="com.indipage.data.dto.response.SavedArticle" />
+            type="com.indipage.data.dto.response.ResponseArticleDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
 
             <ImageView
                 android:id="@+id/iv_saved_article_background"
-                imageUrl="@{saved_article.imageUrl}"
+                imageUrl="@{saved_article.thumbnailUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="174dp"
                 android:scaleType="fitXY"
@@ -45,7 +45,7 @@
                     android:background="@drawable/shape_purple_fill_5_rect"
                     android:paddingHorizontal="5dp"
                     android:paddingVertical="3dp"
-                    android:text="@{saved_article.space}"
+                    android:text="@{saved_article.spaceType}"
                     android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
                     android:textColor="@color/indi_white"
                     app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@{saved_article.spaceComment}"
+                    android:text="@{saved_article.title}"
                     android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
                     android:textColor="@color/indi_white"
                     app:layout_constraintStart_toStartOf="parent"
