@@ -14,7 +14,6 @@ import com.indipage.util.WeeklyArticle.ITEM_PRE
 class WeeklyArticleAdapter : ListAdapter<ResponseWeeklyArticleDto, RecyclerView.ViewHolder>(
     WeeklyArticleAdapterDiffCallback
 ) {
-
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getItemViewType(position: Int): Int {
@@ -59,5 +58,4 @@ class WeeklyArticleAdapter : ListAdapter<ResponseWeeklyArticleDto, RecyclerView.
                 onContentsTheSame = { old, new -> old == new }
             )
     }
-
 }

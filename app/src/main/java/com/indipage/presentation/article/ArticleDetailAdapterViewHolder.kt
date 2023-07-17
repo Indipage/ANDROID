@@ -1,6 +1,6 @@
 package com.indipage.presentation.article
 
-import android.graphics.Color
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -36,15 +36,16 @@ class ArticleDetailAdapterViewHolder {
             }
         }
 
+        @SuppressLint("ResourceAsColor")
         fun onBind(data: ArticleDetailData) {
             var articleBody = data.body
             articleBody = articleBody.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
             binding.tvItemArticleDetailArticleBody.movementMethod = LinkMovementMethod()
 
-            var spannable = SpannableStringBuilder(articleBody).apply {
+            val spannable = SpannableStringBuilder(articleBody).apply {
                 ArticleDetailTag.COLOR_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
                     setSpan(
-                        ForegroundColorSpan(Color.parseColor("#AA59FC")),
+                        ForegroundColorSpan(R.color.indi_purple),
                         matchResult.range.first,
                         matchResult.range.last,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -81,14 +82,14 @@ class ArticleDetailAdapterViewHolder {
             }
 
             binding.tvItemArticleDetailArticleBody.text = spannable
-            binding.tvItemArticleDetailArticleBody.setLineSpacing(24f,1f)
+            binding.tvItemArticleDetailArticleBody.setLineSpacing(24f, 1f)
         }
     }
 
     class ItemArticleDetailArticleTitleViewHolder(private val binding: ItemArticleDetailArticleTitleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ArticleDetailData) {
-            var articleTitle = data.body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
+            val articleTitle = data.body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
             binding.tvItemArticleDetailArticleTitle.text = articleTitle
         }
 
@@ -97,9 +98,8 @@ class ArticleDetailAdapterViewHolder {
     class ItemArticleDetailArticleImageViewHolder(private val binding: ItemArticleDetailArticleImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ArticleDetailData) {
-            var articleImage = data.body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
+            val articleImage = data.body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
             binding.ivItemArticleDetailArticleImage.load(articleImage)
         }
     }
-
 }

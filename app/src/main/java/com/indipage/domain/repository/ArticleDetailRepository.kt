@@ -7,7 +7,5 @@ interface ArticleDetailRepository {
     suspend fun getArticleDetail(articleId: Long): Result<ResponseArticleDetailDto>
     suspend fun getTicketReceiveCheck(spaceId: Long): Result<ResponseTicketReceiveCheckDto>
 
-    suspend fun postTicketReceive(
-        spaceId: Long
-    ): Result<Int>
+    suspend fun postTicketReceive(spaceId: Int): Result<Int>
 }
