@@ -70,7 +70,6 @@
                 android:layout_marginBottom="54dp"
                 android:contentDescription="@string/article_detail_place_image_description"
                 android:scaleType="centerCrop"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
                 app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
                 app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
@@ -84,7 +83,6 @@
                 android:contentDescription="@string/article_weekly_gradient"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_article_card_gradient_open"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
                 app:layout_constraintEnd_toEndOf="@id/iv_article_place_image"
                 app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
@@ -99,7 +97,6 @@
                 android:text="@{article_weekly.spaceName}"
                 android:textAppearance="@style/TextAppearance.IndiPage.Title01"
                 android:textColor="@color/indi_white"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@id/iv_article_place_image"
                 app:layout_constraintTop_toTopOf="@id/iv_article_place_image"
                 tools:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간" />
@@ -108,9 +105,7 @@
                 android:id="@+id/iv_article_card_packed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="false"
                 android:contentDescription="@string/article_weekly_gradient"
-                android:focusable="false"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_article_card_packed" />
         </androidx.constraintlayout.motion.widget.MotionLayout>
