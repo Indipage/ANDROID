@@ -17,6 +17,8 @@ object AndroidX {
     const val NAVIGATION_CONPONENT_UI =
         "androidx.navigation:navigation-ui-ktx:${Versions.NAV_VERSION}"
 
+    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_VERSION}"
+
 }
 
 object TestDependencies {

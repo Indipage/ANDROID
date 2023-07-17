@@ -61,6 +61,7 @@ dependencies {
     implementation(AndroidX.LIFECYCLE_VIEWMODEL_KTX)
     implementation(AndroidX.NAVIGATION_CONPONENT_FRAGMENT)
     implementation(AndroidX.NAVIGATION_CONPONENT_UI)
+    implementation(AndroidX.CONSTRAINT_LAYOUT)
 
     // Matrial Design
     implementation(Google.MATERIAL)
