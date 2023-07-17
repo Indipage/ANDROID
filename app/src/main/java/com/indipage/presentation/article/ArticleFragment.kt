@@ -38,7 +38,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 vpArticle.setPageTransformer { page, position ->
                     page.translationX =
                         position * -resources.getDimension(R.dimen.viewpager_item_weekly_article_margin)
-                    page.scaleY = ((1 - abs(position)) / 4 + 0.8f)
+                    page.scaleY = ((1 - abs(position)) / 5 + 0.8f)
+                    page.scaleX = ((1 - abs(position)) / 5 + 0.8f)
                 }
                 articleWeekly = it
                 executePendingBindings()
