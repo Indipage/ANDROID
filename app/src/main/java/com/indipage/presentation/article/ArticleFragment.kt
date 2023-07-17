@@ -51,8 +51,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun initClickEventListeners() {
         with(binding) {
             ivArticleCardPacked.setOnClickListener {
-                layoutCardAnimation.isVisible = false
-                vpArticle.isVisible = true
+                //layoutCardAnimation.isVisible = false
+                //vpArticle.isVisible = true
             }
             btnArticleCategoryAll.setOnClickListener {
                 btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
