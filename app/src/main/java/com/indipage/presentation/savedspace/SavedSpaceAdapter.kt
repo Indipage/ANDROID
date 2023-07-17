@@ -20,7 +20,6 @@ class SavedSpaceAdapter(
     }
 
     override fun onBindViewHolder(holder: SavedSpaceViewHolder, position: Int) {
-//        getItem(position)?.let { holder.bind(it) }
         holder.bind(getItem(position))
     }
 

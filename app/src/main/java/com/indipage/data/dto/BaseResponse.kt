@@ -24,7 +24,7 @@ data class BaseResponseNullable<T>(
 )
 
 @Serializable
-data class QRResponse(
+data class NullResponse(
     @SerialName("code")
     val code: Int,
     @SerialName("message")

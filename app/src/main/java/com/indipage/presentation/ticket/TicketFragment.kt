@@ -1,6 +1,5 @@
 package com.indipage.presentation.ticket
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -32,51 +31,53 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     CheckDialogListener {
 
     private lateinit var adapter: TicketAdapter
-    private lateinit var adapter2: CardAdapter
-
     private val viewModel by viewModels<TicketViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAdapter()
 
-        adapter = TicketAdapter()
-        adapter2 = CardAdapter()
+        //SampleData
         val spaceList = listOf(
             "https://avatars.githubusercontent.com/u/93514333?v=4",
             "https://avatars.githubusercontent.com/u/93514333?v=4",
-            "https://avatars.githubusercontent.com/u/93514333?v=4",
-        )
-        binding.rvTicketTicket.adapter = adapter
-
-        val itemTouchHelper = ItemTouchHelper(TicketItemHelper(viewModel))
-        itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)
-
-        binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
+            "https://avatars.githubusercontent.com/u/93514333?v=4",)
         adapter.submitList(spaceList)
+        //
+        initView(spaceList)
         openQR()
         moveToCard()
-        getColletQRScanData()
+        getCollectQrScanData()
+    }
+
+    private fun initView(spaceList: List<String>) {
+        binding.coTicketEmptyView.visibility = if (spaceList.isEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun initAdapter() {
+        adapter = TicketAdapter()
+        binding.rvTicketTicket.adapter = adapter
+        val itemTouchHelper = ItemTouchHelper(TicketItemHelper(viewModel))
+        itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)
     }
 
     private fun openQR() {
-        viewModel.openProductEvent.observe(viewLifecycleOwner, EventObserver {
-            setNavigationQR()
+        viewModel.openQrEvent.observe(viewLifecycleOwner, EventObserver {
+            onCustomScanButtonClicked()
         })
     }
 
     private fun moveToCard() {
-        binding.switchTicket.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.switchTicket.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 Handler().postDelayed({
-                    findNavController().navigate(
-                        R.id.action_navigation_ticket_to_navigation_card, bundleOf(
-                        )
-                    )
+                    findNavController()
+                        .navigate(R.id.action_navigation_ticket_to_navigation_card, bundleOf())
                 }, 100)
             else Timber.d("test")
         }
     }
 
-    private fun getColletQRScanData() {
+    private fun getCollectQrScanData() {
         viewModel.qrResponseCode.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -104,9 +105,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             }
         }.launchIn(lifecycleScope)
     }
-    private fun setNavigationQR() {
-        onCustomScanButtonClicked()
-    }
+
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
     ) { result: ScanIntentResult ->
@@ -126,15 +125,14 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private fun onCustomScanButtonClicked() {
         val options = ScanOptions()
         options.setOrientationLocked(false)
-        // options.setCameraId(1)          // 0 : 후면(default), 1 : 전면,
         options.setBeepEnabled(true)
-        // options.setTorchEnabled(true)      // true : 실행되자마자 플래시가 켜진다.
         options.setPrompt("커스텀 QR 스캐너 창")
         options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
         options.captureActivity = QrScanActivity::class.java
         barcodeLauncher.launch(options)
     }
+
     override fun onCheckDialogResult() {
-        setNavigationQR()
+        onCustomScanButtonClicked()
     }
 }

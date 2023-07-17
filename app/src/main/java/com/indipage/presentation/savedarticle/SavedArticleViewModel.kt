@@ -20,9 +20,11 @@ class SavedArticleViewModel @Inject constructor(
 
     private val _savedArticles = MutableStateFlow<UiState<List<SavedArticle>>>(UiState.Loading)
     val savedArticles: StateFlow<UiState<List<SavedArticle>>> = _savedArticles.asStateFlow()
+
     init {
         getSavedArticles()
     }
+
     fun getSavedArticles() = viewModelScope.launch {
         apiRepository.getSavedArticles()
             .onSuccess { savedArticles ->
