@@ -30,6 +30,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     private fun setUpArticleData() {
         observeArticleWeekly()
+        observeArticleSlide()
     }
 
     private fun observeArticleWeekly() {
@@ -50,12 +51,19 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     }
 
+    private fun observeArticleSlide() {
+        viewModel.articleSlideData.observe(viewLifecycleOwner) {
+            if (it.hasSlide) {
+                with(binding) {
+                    layoutCardAnimation.isVisible = false
+                    vpArticle.isVisible = true
+                }
+            }
+        }
+    }
+
     private fun initClickEventListeners() {
         with(binding) {
-            ivArticleCardPacked.setOnClickListener {
-                layoutCardAnimation.isVisible = false
-                vpArticle.isVisible = true
-            }
             btnArticleCategoryAll.setOnClickListener {
                 btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
                 btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
