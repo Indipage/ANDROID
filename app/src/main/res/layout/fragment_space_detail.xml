@@ -30,13 +30,14 @@
 
             <ImageView
                 android:id="@+id/iv_space_detail_background"
+                imageUrl="@{spaceDetail.imageUrl}"
                 android:layout_width="0dp"
                 android:layout_height="444dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
 
             <ImageButton
                 android:id="@+id/iv_back"
@@ -154,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="78dp"
-                android:text="공간지기 추천서가"
+                android:text="@string/tv_curation_title"
                 android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
@@ -185,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="파과"
+                android:text="@{curation.bookData.title}"
                 android:textAppearance="@style/TextAppearance.IndiPage.Body01"
                 android:textColor="@color/indi_black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -298,7 +299,7 @@
                     android:text="인디페이지에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body06"
                     android:textColor="@color/indi_gray400"
-                    app:layout_constraintEnd_toEndOf="@id/btn_follow"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -307,7 +308,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginEnd="32dp"
                     android:layout_marginBottom="84dp"
                     android:background="@drawable/selector_follow_button"
                     android:paddingVertical="20dp"
@@ -319,7 +319,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_follow_comment" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -361,7 +360,7 @@
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="4dp"
                             android:text="@{spaceArticle.spaceType}"
-                             android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
+                            android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
                             android:textColor="@color/indi_white"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
