@@ -1,4 +1,4 @@
-package com.indipage.presentation.article
+package com.indipage.presentation.articleall
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
