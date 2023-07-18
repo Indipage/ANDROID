@@ -2,6 +2,7 @@ package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDetailDataSource
 import com.indipage.data.dto.response.ResponseArticleAllDto
+import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.repository.ArticleDetailRepository
@@ -31,6 +32,24 @@ class ArticleDetailRepositoryImpl @Inject constructor(
     override suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>> {
         return runCatching {
             dataSource.getArticleAll().data
+        }
+    }
+
+    override suspend fun getBookmark(articleId: Long): Result<ResponseArticleBookmarkDto> {
+        return runCatching {
+            dataSource.getBookmark(articleId).data
+        }
+    }
+
+    override suspend fun postBookmark(articleId: Long): Result<Int> {
+        return runCatching {
+            dataSource.postBookmark(articleId).code
+        }
+    }
+
+    override suspend fun deleteBookmark(articleId: Long): Result<Int> {
+        return runCatching {
+            dataSource.deleteBookmark(articleId).code
         }
     }
 }

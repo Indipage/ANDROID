@@ -25,6 +25,9 @@ class ArticleDetailFragment :
     BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
 
     private val viewModel by viewModels<ArticleDetailViewModel>()
+    private var spaceId: Long? = null
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -37,13 +40,16 @@ class ArticleDetailFragment :
     }
 
     private fun getData() {
-        viewModel.getArticleDetail(1)
-        viewModel.getTicketReceiveCheck(1)
+        arguments?.getLong("articleId")?.let {
+            viewModel.getArticleDetail(it)
+            viewModel.getBookMark(it)
+        }
     }
 
     private fun setUpArticleDetail() {
         observeArticle()
         observeTicket()
+        observeBookmark()
     }
 
     private fun observeArticle() {
@@ -56,11 +62,12 @@ class ArticleDetailFragment :
                         with(binding) {
                             rvArticleDetailArticleBody.adapter =
                                 ArticleDetailAdapter().apply { submitList(resultArticleArray) }
-
                             tvArticleDetailAuthor.text = uiState.data.spaceOwner
                             tvArticleDetailDate.text = uiState.data.createdAt
                             tvArticleDetailTitle.text = uiState.data.title
                             toolbarArticleDetail.title = uiState.data.spaceName
+                            spaceId = uiState.data.spaceId.toLong()
+                            spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                         }
                     }
                     else -> {}
@@ -97,6 +104,51 @@ class ArticleDetailFragment :
         }
     }
 
+    private fun observeBookmark() {
+        viewModel.postArticleBookmark.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data) {
+                        201 -> {
+                            snackBar(requireView(), message = { "북마크 성공" })
+                        }
+                        404 -> {
+                            Timber.d("존재하지 않는 아티클")
+                        }
+                    }
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+
+        viewModel.articleBookmarkData.observe(viewLifecycleOwner) {
+            if (it.bookmarked) {
+                binding.ivArticleDetailBookmark.isSelected = true
+                Timber.d("북마크 됨")
+            } else {
+                binding.ivArticleDetailBookmark.isSelected = false
+                Timber.d("북마크 안됨")
+            }
+        }
+
+        viewModel.deleteArticleBookmark.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    when (it.data) {
+                        200 -> {
+                            snackBar(requireView(), message = { "북마크 취소" })
+                        }
+                        404 -> {
+                            Timber.d("존재하지 않는 아티클")
+                        }
+                    }
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+
+    }
+
     private fun initClickEventListeners() {
         with(binding) {
             tvArticleDetailMoveToPlaceDetail1.setOnClickListener {
@@ -106,15 +158,19 @@ class ArticleDetailFragment :
                 findNavController().navigate(R.id.action_article_detail_to_space_detail)
             }
             ivArticleDetailTicketImage.setOnClickListener {
-                viewModel.postTicketReceive(1)
+                spaceId?.let { viewModel.postTicketReceive(it) }
             }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigate(R.id.action_article_detail_to_article)
             }
             ivArticleDetailBookmark.setOnClickListener {
-                toast("북마크")
-                binding.ivArticleDetailBookmark.isSelected =
-                    !binding.ivArticleDetailBookmark.isSelected
+                if (ivArticleDetailBookmark.isSelected) {
+                    arguments?.getLong("articleId")?.let { it -> viewModel.deleteBookMark(it) }
+                    binding.ivArticleDetailBookmark.isSelected = false
+                } else {
+                    arguments?.getLong("articleId")?.let { it -> viewModel.postBookMark(it) }
+                    binding.ivArticleDetailBookmark.isSelected = true
+                }
             }
         }
     }
