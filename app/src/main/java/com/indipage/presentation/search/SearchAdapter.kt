@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.Search
+import com.indipage.data.dto.response.ResponseSearchData.SearchDetailData
 import com.indipage.databinding.ItemSearchBinding
 
-class SearchAdapter() : ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
+class SearchAdapter() :
+    ListAdapter<SearchDetailData, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
+    private val searchResults = mutableListOf<SearchDetailData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding =
@@ -24,16 +26,26 @@ class SearchAdapter() : ListAdapter<Search, SearchAdapter.SearchViewHolder>(Sear
     class SearchViewHolder(
         private val binding: ItemSearchBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: Search) {
+        fun bind(data: SearchDetailData) {
             binding.search = data
         }
     }
 
     companion object {
         private val SearchDiffCalback =
-            ItemDiffCallback<Search>(
-                onItemsTheSame = { old, new -> old.searchComment == new.searchComment },
+            ItemDiffCallback<SearchDetailData>(
+                onItemsTheSame = { old, new -> old.name == new.name },
                 onContentsTheSame = { old, new -> old == new }
             )
     }
+
+    //    override fun getItemCount(): Int = searchResults.size
+    fun updateSearchResults(newSearchResults: MutableList<SearchDetailData>) {
+        searchResults.clear()
+        searchResults.addAll(newSearchResults)
+        notifyDataSetChanged()
+    }
 }
+
+
+

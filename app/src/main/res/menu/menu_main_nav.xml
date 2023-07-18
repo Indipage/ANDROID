@@ -6,7 +6,7 @@
         android:icon="@drawable/selector_article_icon"
         android:title="@string/label_article_icon" />
     <item
-        android:id="@+id/navigation_space_detail"
+        android:id="@+id/navigation_search"
         android:icon="@drawable/selector_search_icon"
         android:title="@string/label_search_icon" />
     <item
