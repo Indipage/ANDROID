@@ -10,7 +10,7 @@ import com.indipage.databinding.ItemTicketCardBinding
 import com.indipage.domain.entity.Card
 import com.indipage.presentation.model.CardModel
 
-class CardAdapter : ListAdapter<ResponseCardDto, CardAdapter.TicketViewHolder>(
+class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<ResponseCardDto, CardAdapter.TicketViewHolder>(
     CardDiffCalback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
@@ -23,11 +23,12 @@ class CardAdapter : ListAdapter<ResponseCardDto, CardAdapter.TicketViewHolder>(
         getItem(position)?.let { holder.bind(it) }
     }
 
-    class TicketViewHolder(
+   inner class TicketViewHolder(
         private val binding: ItemTicketCardBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseCardDto) {
             binding.card = data
+            binding.vm=viewModel
             binding.executePendingBindings()
         }
     }

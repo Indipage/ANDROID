@@ -8,6 +8,9 @@
             name="card"
             type="com.indipage.data.dto.response.ResponseCardDto" />
 
+        <variable
+            name="vm"
+            type="com.indipage.presentation.ticket.CardViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                onThrottleClick="@{()->vm.setMainCard(card.imageUrl)}"
                 android:id="@+id/tv_ticket_card"
                 imageUrl="@{card.imageUrl}"
                 android:layout_width="68dp"
