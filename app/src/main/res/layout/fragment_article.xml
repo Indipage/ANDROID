@@ -56,6 +56,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
             android:paddingHorizontal="32dp"
+            android:visibility="gone"
             app:layoutDescription="@xml/fragment_article_scene"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly"
