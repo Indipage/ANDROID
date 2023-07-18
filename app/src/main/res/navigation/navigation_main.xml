@@ -86,7 +86,11 @@
     <fragment
         android:id="@+id/navigation_qr_success"
         android:name="com.indipage.presentation.qr.QrSuccessFragment"
-        android:label="QrSuccessFragment" />
+        android:label="QrSuccessFragment" >
+        <action
+            android:id="@+id/action_navigation_qr_success_to_navigation_card"
+            app:destination="@id/navigation_card" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_article_all"
         android:name="com.indipage.presentation.article.ArticleAllFragment"
