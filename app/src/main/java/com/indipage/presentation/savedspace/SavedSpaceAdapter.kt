@@ -9,7 +9,8 @@ import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.ItemSavedSpaceBinding
 
-class SavedSpaceAdapter: ListAdapter<ResponseSpaceDto, SavedSpaceAdapter.SavedSpaceViewHolder>(
+class SavedSpaceAdapter(private val viewModel:SavedSpaceViewModel):
+    ListAdapter<ResponseSpaceDto, SavedSpaceAdapter.SavedSpaceViewHolder>(
     SavedSpaceDiffCalback
 ) {
 
@@ -23,11 +24,12 @@ class SavedSpaceAdapter: ListAdapter<ResponseSpaceDto, SavedSpaceAdapter.SavedSp
         holder.bind(getItem(position))
     }
 
-    class SavedSpaceViewHolder(
+    inner class SavedSpaceViewHolder(
         private val binding: ItemSavedSpaceBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseSpaceDto) {
             binding.savedSpace = data
+            binding.vm= viewModel
             binding.executePendingBindings()
         }
     }
