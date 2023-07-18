@@ -56,5 +56,46 @@
             app:layout_constraintTop_toBottomOf="@id/et_search"
             tools:listitem="@layout/item_search" />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/co_empty_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="177dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/et_search">
+
+            <ImageView
+                android:id="@+id/iv_search_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_place_blank"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_search_empty_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tv_search_empty"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+                android:textColor="@color/indi_gray500"
+                app:layout_constraintTop_toBottomOf="@id/iv_search_empty" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/tv_search_empty_comment"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+                android:textColor="@color/indi_gray400"
+                app:layout_constraintTop_toBottomOf="@id/tv_search_empty_title" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

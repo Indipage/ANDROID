@@ -75,6 +75,8 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         binding.rvSearch.adapter = adapter.apply {
             updateSearchResults(searchList)
             submitList(searchList)
+            binding.coEmptySearch.visibility =
+                if (searchList.isEmpty()) View.VISIBLE else View.GONE
         }
     }
 }
