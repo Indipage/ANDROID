@@ -1,6 +1,7 @@
 package com.indipage.presentation.savedarticle
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -8,7 +9,7 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.databinding.ItemSavedArticleBinding
 
-class SavedArticleAdapter: ListAdapter<ResponseArticleDto, SavedArticleAdapter.SavedArticleViewHolder>(
+class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAdapter<ResponseArticleDto, SavedArticleAdapter.SavedArticleViewHolder>(
     SavedArticleDiffCalback
 ) {
 
@@ -22,11 +23,19 @@ class SavedArticleAdapter: ListAdapter<ResponseArticleDto, SavedArticleAdapter.S
         holder.bind(getItem(position))
     }
 
-    class SavedArticleViewHolder(
+    inner class SavedArticleViewHolder(
         private val binding: ItemSavedArticleBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseArticleDto) {
             binding.savedArticle = data
+            binding.vm=viewModel
+            if (data.ticketReceived){
+                binding.clTicketTrue.visibility= View.VISIBLE
+                binding.clTicketFalse.visibility=View.GONE
+            }else{
+                binding.clTicketTrue.visibility= View.GONE
+                binding.clTicketFalse.visibility=View.VISIBLE
+            }
             binding.executePendingBindings()
         }
     }

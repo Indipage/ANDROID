@@ -2,6 +2,7 @@ package com.indipage.presentation.savedarticle
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +11,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentSavedArticleBinding
+import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -27,11 +29,18 @@ class SavedArticleFragment :
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         initView()
-//        getCollectData()
         setNavigation()
+        viewModel.openArticleEvent.observe(viewLifecycleOwner, EventObserver {
+            Timber.d("test $it")
+            findNavController().navigate(
+                R.id.action_navigation_saved_article_to_navigation_article_detail, bundleOf(
+                    "articleId" to it
+                )
+            )
+        })
     }
     private fun initAdapter() {
-        adapter = SavedArticleAdapter()
+        adapter = SavedArticleAdapter(viewModel)
         binding.rvSavedArticle.adapter = adapter
     }
 
@@ -56,14 +65,4 @@ class SavedArticleFragment :
         }
     }
 
-    private fun getCollectData() {
-        viewModel.savedArticles.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Success -> {
-                    adapter.submitList(it.data)
-                }
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
-    }
 }

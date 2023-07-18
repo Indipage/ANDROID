@@ -88,7 +88,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                             Timber.d("Success QR")
                             Handler().postDelayed({
                                 findNavController().navigate(
-                                    R.id.action_navigation_card_to_navigation_ticket,
+                                    R.id.action_navigation_ticket_to_qr_success,
                                     bundleOf()
                                 )
                             }, 100)

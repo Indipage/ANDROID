@@ -44,7 +44,11 @@
     <fragment
         android:id="@+id/navigation_saved_article"
         android:name="com.indipage.presentation.savedarticle.SavedArticleFragment"
-        android:label="SavedArticleFragment" />
+        android:label="SavedArticleFragment" >
+        <action
+            android:id="@+id/action_navigation_saved_article_to_navigation_article_detail"
+            app:destination="@id/navigation_article_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_saved_space"
         android:name="com.indipage.presentation.savedspace.SavedSpaceFragment"
