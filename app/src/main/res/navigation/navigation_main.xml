@@ -44,18 +44,28 @@
     <fragment
         android:id="@+id/navigation_saved_article"
         android:name="com.indipage.presentation.savedarticle.SavedArticleFragment"
-        android:label="SavedArticleFragment" />
+        android:label="SavedArticleFragment" >
+        <action
+            android:id="@+id/action_navigation_saved_article_to_navigation_article_detail"
+            app:destination="@id/navigation_article_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_saved_space"
         android:name="com.indipage.presentation.savedspace.SavedSpaceFragment"
-        android:label="SavedSpaceFragment" />
+        android:label="SavedSpaceFragment" >
+        <action
+            android:id="@+id/action_navigation_saved_space_to_navigation_space_detail"
+            app:destination="@id/navigation_space_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_card"
         android:name="com.indipage.presentation.ticket.CardFragment"
         android:label="CardFragment" >
         <action
             android:id="@+id/action_navigation_card_to_navigation_ticket"
-            app:destination="@id/navigation_ticket" />
+            app:destination="@id/navigation_ticket"
+            app:popUpTo="@id/navigation_article"
+            app:popUpToInclusive="false"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_space_detail"
@@ -76,7 +86,11 @@
     <fragment
         android:id="@+id/navigation_qr_success"
         android:name="com.indipage.presentation.qr.QrSuccessFragment"
-        android:label="QrSuccessFragment" />
+        android:label="QrSuccessFragment" >
+        <action
+            android:id="@+id/action_navigation_qr_success_to_navigation_card"
+            app:destination="@id/navigation_card" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_article_all"
         android:name="com.indipage.presentation.article.ArticleAllFragment"

@@ -8,11 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.EventListener
 import coil.load
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentCardBinding
+import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -25,14 +27,20 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     private val viewModel by viewModels<CardViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//
         initAdapter()
         initView()
         moveToTicket()
+        viewModel.cardEvent.observe(viewLifecycleOwner,EventObserver{
+            binding.ivTicketCard.load(it)
+        })
     }
-
+    override fun onResume() {
+        super.onResume()
+        binding.switchTicket.isChecked = true
+    }
     private fun initAdapter() {
-        adapter = CardAdapter()
+        adapter = CardAdapter(viewModel)
         binding.rvTicketCard.adapter = adapter
     }
 
@@ -41,9 +49,11 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
             when (it) {
                 is UiState.Success -> {
                     adapter.submitList(it.data)
-                    binding.ivTicketCard.load(it.data[0].imageUrl)
-                    binding.coCardEmptyView.visibility =
-                        if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                    val data = it.data
+                    val isEmptyData = data.isEmpty()
+                    binding.ivTicketCard.load(data.firstOrNull()?.imageUrl)
+                    binding.coCardEmptyView.visibility = if (isEmptyData) View.VISIBLE else View.GONE
+                    binding.cdTicketCard.visibility = if (isEmptyData) View.GONE else View.VISIBLE
                 }
                 else -> {}
             }
@@ -52,14 +62,15 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     }
 
     private fun moveToTicket() {
-        binding.switchTicket.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) {
-                Handler().postDelayed({
-                    findNavController()
-                        .navigate(R.id.action_navigation_card_to_navigation_ticket, bundleOf())
-                }, 100)
-            }
+        binding.switchTicket.setOnClickListener {
+                if (!binding.switchTicket.isChecked) {
+                    Handler().postDelayed({
+                        findNavController()
+                            .navigate(R.id.action_navigation_card_to_navigation_ticket, bundleOf())
+                    }, 100)
+                }
         }
+
     }
 
 }

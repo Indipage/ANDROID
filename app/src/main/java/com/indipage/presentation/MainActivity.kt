@@ -1,6 +1,8 @@
 package com.indipage.presentation
 
 import android.os.Bundle
+import android.view.View
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.core_ui.base.BindingActivity
@@ -27,6 +29,20 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 botNavMain.setupWithNavController(NavController)
             }
         }
+        setBottomVisible(navController)
 
+    }
+
+    private fun setBottomVisible(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.botNavMain.visibility = if (destination.id in listOf(
+                    R.id.navigation_article,
+                    R.id.navigation_ticket,
+                    R.id.navigation_search,
+                    R.id.navigation_card,
+                    R.id.navigation_my_page
+                )
+            ) View.VISIBLE else View.GONE
+        }
     }
 }

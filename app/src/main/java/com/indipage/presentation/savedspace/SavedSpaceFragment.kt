@@ -2,6 +2,7 @@ package com.indipage.presentation.savedspace
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -11,9 +12,11 @@ import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.FragmentSavedSpaceBinding
+import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class SavedSpaceFragment :
@@ -23,11 +26,23 @@ class SavedSpaceFragment :
     private val viewModel by viewModels<SavedSpaceViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = SavedSpaceAdapter()
+        adapter = SavedSpaceAdapter(viewModel)
         binding.rvSavedSpace.adapter = adapter
 
         getCollectData()
         setNavigation()
+        moveToSpaceDetail()
+    }
+
+    private fun moveToSpaceDetail() {
+        viewModel.openSpaceEvent.observe(viewLifecycleOwner, EventObserver {
+            Timber.d("test $it")
+            findNavController().navigate(
+                R.id.action_navigation_saved_space_to_navigation_space_detail, bundleOf(
+                    "spaceId" to it
+                )
+            )
+        })
     }
 
     private fun setNavigation() {

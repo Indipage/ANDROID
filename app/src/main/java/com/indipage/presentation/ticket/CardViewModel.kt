@@ -24,6 +24,8 @@ class CardViewModel @Inject constructor(
     private val _card = MutableStateFlow<UiState<List<ResponseCardDto>>>(UiState.Loading)
     val card: StateFlow<UiState<List<ResponseCardDto>>> = _card.asStateFlow()
 
+    private val _cardEvent = MutableLiveData<Event<String>>()
+    val cardEvent: LiveData<Event<String>> = _cardEvent
     init {
         getCardList()
     }
@@ -39,5 +41,9 @@ class CardViewModel @Inject constructor(
             }
     }
 
+
+    fun setMainCard(cardUrl:String) {
+        _cardEvent.value = Event(cardUrl)
+    }
 
 }
