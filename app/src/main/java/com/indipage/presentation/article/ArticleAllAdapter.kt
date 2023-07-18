@@ -32,12 +32,14 @@ class ArticleAllAdapter(
             with(binding) {
                 articleAll = data
                 executePendingBindings()
-                layoutArticleAllReadArticle.visibility =
-                    if (data.ticketReceived) View.VISIBLE else View.GONE
-                layoutArticleAllNoReadArticle.visibility =
-                    if (data.ticketReceived) View.GONE else View.VISIBLE
+                if (data.ticketReceived) {
+                    layoutArticleAllReadArticle.visibility = View.VISIBLE
+                    layoutArticleAllNoReadArticle.visibility = View.GONE
+                } else {
+                    layoutArticleAllReadArticle.visibility = View.GONE
+                    layoutArticleAllNoReadArticle.visibility = View.VISIBLE
+                }
             }
-
         }
     }
 

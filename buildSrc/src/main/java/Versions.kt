@@ -36,4 +36,6 @@ object Versions {
 
     const val NAV_VERSION = "2.5.3"
     const val ZXING_VERSION = "4.3.0"
+
+    const val CONSTRAINT_VERSION = "2.0.0-beta1"
 }

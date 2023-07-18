@@ -42,4 +42,5 @@
     <string name="btn_article_category_all">all</string>
     <string name="tv_curation_title">공간지기 추천서가</string>
     <string name="article_weekly_gradient">불투명한 커버</string>
+    <string name="tv_read_article_get_ticket">아티클 읽고 티켓 받기</string>
 </resources>
