@@ -25,6 +25,7 @@ class ArticleDetailFragment :
     BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
 
     private val viewModel by viewModels<ArticleDetailViewModel>()
+    private var spaceId: Long? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,9 +40,10 @@ class ArticleDetailFragment :
     }
 
     private fun getData() {
-        viewModel.getArticleDetail(1)
-        viewModel.getTicketReceiveCheck(1)
-        viewModel.getBookMark(4)
+        arguments?.getLong("articleId")?.let {
+            viewModel.getArticleDetail(it)
+            viewModel.getBookMark(it)
+        }
     }
 
     private fun setUpArticleDetail() {
@@ -60,11 +62,12 @@ class ArticleDetailFragment :
                         with(binding) {
                             rvArticleDetailArticleBody.adapter =
                                 ArticleDetailAdapter().apply { submitList(resultArticleArray) }
-
                             tvArticleDetailAuthor.text = uiState.data.spaceOwner
                             tvArticleDetailDate.text = uiState.data.createdAt
                             tvArticleDetailTitle.text = uiState.data.title
                             toolbarArticleDetail.title = uiState.data.spaceName
+                            spaceId = uiState.data.spaceId.toLong()
+                            spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                         }
                     }
                     else -> {}
@@ -155,17 +158,17 @@ class ArticleDetailFragment :
                 findNavController().navigate(R.id.action_article_detail_to_space_detail)
             }
             ivArticleDetailTicketImage.setOnClickListener {
-                viewModel.postTicketReceive(1)
+                spaceId?.let { viewModel.postTicketReceive(it) }
             }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigate(R.id.action_article_detail_to_article)
             }
             ivArticleDetailBookmark.setOnClickListener {
                 if (ivArticleDetailBookmark.isSelected) {
-                    viewModel.deleteBookMark(4)
+                    arguments?.getLong("articleId")?.let { it -> viewModel.deleteBookMark(it) }
                     binding.ivArticleDetailBookmark.isSelected = false
                 } else {
-                    viewModel.postBookMark(4)
+                    arguments?.getLong("articleId")?.let { it -> viewModel.postBookMark(it) }
                     binding.ivArticleDetailBookmark.isSelected = true
                 }
             }

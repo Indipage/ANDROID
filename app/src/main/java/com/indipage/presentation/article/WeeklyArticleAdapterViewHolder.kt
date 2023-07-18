@@ -1,5 +1,7 @@
 package com.indipage.presentation.article
 
+import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.R
@@ -15,7 +17,10 @@ class WeeklyArticleAdapterViewHolder {
                 articleWeekly = data
                 executePendingBindings()
                 root.setOnClickListener {
-                    it.findNavController().navigate(R.id.action_article_to_article_detail)
+                    val bundle = Bundle().apply {
+                        putLong("articleId", data.id.toLong())
+                    }
+                    it.findNavController().navigate(R.id.action_article_to_article_detail,bundle)
                 }
             }
         }
