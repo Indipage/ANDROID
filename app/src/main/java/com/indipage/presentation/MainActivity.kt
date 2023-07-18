@@ -39,6 +39,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     R.id.navigation_article,
                     R.id.navigation_ticket,
                     R.id.navigation_search,
+                    R.id.navigation_card,
                     R.id.navigation_my_page
                 )
             ) View.VISIBLE else View.GONE

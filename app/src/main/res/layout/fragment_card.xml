@@ -71,6 +71,7 @@
         </FrameLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cd_ticket_card"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="26dp"

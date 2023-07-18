@@ -35,6 +35,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private val viewModel by viewModels<TicketViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initAdapter()
         initView()
         openQR()
@@ -42,6 +43,10 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         getCollectQrScanData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.switchTicket.isChecked = false
+    }
     private fun initView() {
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -52,6 +57,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+        binding.switchTicket.isChecked = false
     }
 
     private fun initAdapter() {
@@ -68,14 +74,15 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     }
 
     private fun moveToCard() {
-        binding.switchTicket.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked)
-                Handler().postDelayed({
-                    findNavController()
-                        .navigate(R.id.action_navigation_ticket_to_navigation_card, bundleOf())
-                }, 100)
-            else Timber.d("test")
+        binding.switchTicket.setOnClickListener {
+                if (binding.switchTicket.isChecked)
+                    Handler().postDelayed({
+                        findNavController()
+                            .navigate(R.id.action_navigation_ticket_to_navigation_card, bundleOf())
+                    }, 100)
+                else Timber.d("test")
         }
+
     }
 
     private fun getCollectQrScanData() {

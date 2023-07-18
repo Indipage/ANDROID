@@ -63,7 +63,9 @@
         android:label="CardFragment" >
         <action
             android:id="@+id/action_navigation_card_to_navigation_ticket"
-            app:destination="@id/navigation_ticket" />
+            app:destination="@id/navigation_ticket"
+            app:popUpTo="@id/navigation_article"
+            app:popUpToInclusive="false"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_space_detail"

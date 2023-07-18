@@ -25,12 +25,15 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     private val viewModel by viewModels<CardViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//
         initAdapter()
         initView()
         moveToTicket()
     }
-
+    override fun onResume() {
+        super.onResume()
+        binding.switchTicket.isChecked = true
+    }
     private fun initAdapter() {
         adapter = CardAdapter()
         binding.rvTicketCard.adapter = adapter
@@ -41,9 +44,11 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
             when (it) {
                 is UiState.Success -> {
                     adapter.submitList(it.data)
-                    binding.ivTicketCard.load(it.data[0].imageUrl)
-                    binding.coCardEmptyView.visibility =
-                        if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                    val data = it.data
+                    val isEmptyData = data.isEmpty()
+                    binding.ivTicketCard.load(data.firstOrNull()?.imageUrl)
+                    binding.coCardEmptyView.visibility = if (isEmptyData) View.VISIBLE else View.GONE
+                    binding.cdTicketCard.visibility = if (isEmptyData) View.GONE else View.VISIBLE
                 }
                 else -> {}
             }
@@ -52,14 +57,15 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     }
 
     private fun moveToTicket() {
-        binding.switchTicket.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) {
-                Handler().postDelayed({
-                    findNavController()
-                        .navigate(R.id.action_navigation_card_to_navigation_ticket, bundleOf())
-                }, 100)
-            }
+        binding.switchTicket.setOnClickListener {
+                if (!binding.switchTicket.isChecked) {
+                    Handler().postDelayed({
+                        findNavController()
+                            .navigate(R.id.action_navigation_card_to_navigation_ticket, bundleOf())
+                    }, 100)
+                }
         }
+
     }
 
 }
