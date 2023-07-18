@@ -41,9 +41,10 @@
                 android:layout_height="40dp">
 
                 <TextView
+                    android:id="@+id/tv_ticket_switch_ticket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="티켓"
+                    android:text="@string/tv_ticket"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline"
@@ -51,9 +52,10 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_ticket_switch_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="카드"
+                    android:text="@string/tv_card"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

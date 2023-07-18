@@ -1,5 +1,6 @@
 package com.indipage.presentation.ticket
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import coil.load
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
@@ -46,6 +48,8 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     override fun onResume() {
         super.onResume()
         binding.switchTicket.isChecked = false
+        val color=colorOf(R.color.indi_white)
+        binding.tvTicketSwitchTicket.setTextColor(color)
     }
     private fun initView() {
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
