@@ -16,6 +16,7 @@
         <variable
             name="spaceArticle"
             type="com.indipage.data.dto.response.SpaceArticleData" />
+
         <variable
             name="vm"
             type="com.indipage.presentation.spacedetail.SpaceDetailViewModel" />

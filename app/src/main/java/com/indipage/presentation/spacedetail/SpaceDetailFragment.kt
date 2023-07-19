@@ -33,7 +33,7 @@ class SpaceDetailFragment :
         super.onViewCreated(view, savedInstanceState)
         val spaceId = requireArguments().getInt("spaceId")
         Timber.tag("SakSpace").d("$spaceId")
-        binding.vm = viewModel
+        binding.vm=viewModel
         initView(spaceId)
 
     }
