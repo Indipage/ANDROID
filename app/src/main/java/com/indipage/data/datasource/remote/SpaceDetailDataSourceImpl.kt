@@ -12,36 +12,36 @@ class SpaceDetailDataSourceImpl @Inject constructor(
     private val apiService: SpaceDetailApiService
 ) : SpaceDetailDataSource {
 
-    override suspend fun getBookmarked(): BaseResponse<BookmarkData> {
-        return apiService.getBookmarked(spaceId = 1)
+    override suspend fun getBookmarked(spaceId:Int): BaseResponse<BookmarkData> {
+        return apiService.getBookmarked(spaceId)
     }
 
-    override suspend fun deleteBookmarked(): NullResponse {
-        return apiService.deleteBookmarked(spaceId = 1)
+    override suspend fun deleteBookmarked(spaceId:Int): NullResponse {
+        return apiService.deleteBookmarked(spaceId)
     }
 
-    override suspend fun postBookmarked(): NullResponse {
-        return apiService.postBookmarked(spaceId = 1)
+    override suspend fun postBookmarked(spaceId:Int): NullResponse {
+        return apiService.postBookmarked(spaceId)
     }
 
-    override suspend fun getSpaceDetail(): BaseResponse<SpaceDetailData> {
-        return apiService.getSpaceDetail(spaceId = 1)
+    override suspend fun getSpaceDetail(spaceId:Int): BaseResponse<SpaceDetailData> {
+        return apiService.getSpaceDetail(spaceId)
     }
 
-    override suspend fun getCuration(): BaseResponse<List<CurationData>> {
-        return apiService.getCuration(spaceId = 1)
+    override suspend fun getCuration(spaceId:Int): BaseResponse<List<CurationData>> {
+        return apiService.getCuration(spaceId)
     }
 
-    override suspend fun getFollow(): BaseResponse<FollowData> {
-        return apiService.getFollow(spaceId = 1)
+    override suspend fun getFollow(spaceId:Int): BaseResponse<FollowData> {
+        return apiService.getFollow(spaceId)
     }
 
-    override suspend fun postFollow(): NullResponse {
-        return apiService.postFollow(spaceId = 1)
+    override suspend fun postFollow(spaceId:Int): NullResponse {
+        return apiService.postFollow(spaceId)
     }
 
-    override suspend fun getSpaceArticle(): BaseResponseNullable<SpaceArticleData> {
-        return apiService.getSpaceArticle(spaceId = 1)
+    override suspend fun getSpaceArticle(spaceId:Int): BaseResponseNullable<SpaceArticleData> {
+        return apiService.getSpaceArticle(spaceId)
     }
 
 }
