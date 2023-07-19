@@ -33,7 +33,7 @@ class SpaceDetailFragment :
         super.onViewCreated(view, savedInstanceState)
         val spaceId = requireArguments().getInt("spaceId")
         Timber.tag("SakSpace").d("$spaceId")
-        binding.vm=viewModel
+        binding.vm = viewModel
         initView(spaceId)
 
     }
@@ -214,15 +214,17 @@ class SpaceDetailFragment :
     }
 
     private fun initSpaceArticleButton() {
-            viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
-                moveToSpaceArticle(it.toLong())
-            })
+        binding.ivBack.setOnClickListener { findNavController().navigateUp() }
+        viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
+            moveToSpaceArticle(it.toLong())
+        })
     }
 
-    private fun moveToSpaceArticle(articleId:Long) {
+    private fun moveToSpaceArticle(articleId: Long) {
         findNavController().navigate(
             R.id.action_navigation_space_detail_to_navigation_article_detail,
             bundleOf("articleId" to articleId)
         )
+
     }
 }
