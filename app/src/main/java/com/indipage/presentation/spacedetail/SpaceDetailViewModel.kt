@@ -36,8 +36,8 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     val spaceArticle: StateFlow<UiState<SpaceArticleData?>> = _spaceArticle.asStateFlow()
 
 
-    private val _openArticleDetail = MutableLiveData<Event<String>>()
-    val openArticleDetail: LiveData<Event<String>> = _openArticleDetail
+    private val _openArticleDetail = MutableLiveData<Event<Int>>()
+    val openArticleDetail: LiveData<Event<Int>> = _openArticleDetail
 
     fun setSpaceId(spaceId: Int) {
         getCuration(spaceId)
@@ -106,7 +106,8 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
 
 
 
-    fun openArticleDetailEvent() {
-        _openArticleDetail.value = Event("test")
+    fun openArticleDetailEvent(articleId:Int) {
+        Timber.tag("Sak").d("test")
+        _openArticleDetail.value = Event(articleId)
     }
 }
