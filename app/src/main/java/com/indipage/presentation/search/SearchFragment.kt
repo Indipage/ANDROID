@@ -2,6 +2,8 @@ package com.indipage.presentation.search
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -33,6 +35,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         viewModel.searchData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
+                    binding.coEmptySearch.visibility = if (it.data.isEmpty()) VISIBLE else GONE
                     initAdapter(it.data)
                 }
 
@@ -52,6 +55,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
             }
         }
     }
+
 
     private fun initAdapter(data: List<ResponseSearchData>) {
         Timber.d("검색 리사이클러뷰 초기화")
