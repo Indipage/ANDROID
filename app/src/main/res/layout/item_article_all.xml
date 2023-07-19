@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
+        android:layout_marginBottom="20dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_article_all"
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:elevation="6dp"
             app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -29,8 +30,15 @@
                 imageUrl="@{article_all.thumbnailUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background" />
+
+            <ImageView
+                android:id="@+id/iv_article_all_background_gradient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_article_list_gradient" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
