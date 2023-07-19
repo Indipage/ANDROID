@@ -20,7 +20,8 @@
         <activity
             android:name=".presentation.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.IndiPage.Splash">
+            android:theme="@style/Theme.IndiPage.Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +31,8 @@
 
         <activity
             android:name=".presentation.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".presentation.qr.QrScanActivity"

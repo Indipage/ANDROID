@@ -7,13 +7,10 @@
     <fragment
         android:id="@+id/navigation_article"
         android:name="com.indipage.presentation.article.ArticleFragment"
-        android:label="ArticleFragment" >
+        android:label="ArticleFragment">
         <action
             android:id="@+id/action_article_to_article_detail"
             app:destination="@id/navigation_article_detail" />
-        <action
-            android:id="@+id/action_article_to_article_all"
-            app:destination="@id/navigation_article_all" />
     </fragment>
     <fragment
         android:id="@+id/navigation_search"
@@ -22,7 +19,7 @@
     <fragment
         android:id="@+id/navigation_ticket"
         android:name="com.indipage.presentation.ticket.TicketFragment"
-        android:label="TicketFragment" >
+        android:label="TicketFragment">
         <action
             android:id="@+id/action_navigation_ticket_to_navigation_card"
             app:destination="@id/navigation_card" />
@@ -34,7 +31,7 @@
     <fragment
         android:id="@+id/navigation_my_page"
         android:name="com.indipage.presentation.profile.MyPageFragment"
-        android:label="MyPageFragment" >
+        android:label="MyPageFragment">
         <action
             android:id="@+id/action_navigation_my_page_to_saved_article"
             app:destination="@id/navigation_saved_article" />
@@ -46,7 +43,7 @@
     <fragment
         android:id="@+id/navigation_saved_article"
         android:name="com.indipage.presentation.savedarticle.SavedArticleFragment"
-        android:label="SavedArticleFragment" >
+        android:label="SavedArticleFragment">
         <action
             android:id="@+id/action_navigation_saved_article_to_navigation_article_detail"
             app:destination="@id/navigation_article_detail" />
@@ -55,7 +52,7 @@
     <fragment
         android:id="@+id/navigation_saved_space"
         android:name="com.indipage.presentation.savedspace.SavedSpaceFragment"
-        android:label="SavedSpaceFragment" >
+        android:label="SavedSpaceFragment">
         <action
             android:id="@+id/action_navigation_saved_space_to_navigation_space_detail"
             app:destination="@id/navigation_space_detail" />
@@ -64,7 +61,7 @@
     <fragment
         android:id="@+id/navigation_card"
         android:name="com.indipage.presentation.ticket.CardFragment"
-        android:label="CardFragment" >
+        android:label="CardFragment">
         <action
             android:id="@+id/action_navigation_card_to_navigation_ticket"
             app:destination="@id/navigation_ticket"
@@ -77,35 +74,22 @@
         android:id="@+id/navigation_space_detail"
         android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
         android:label="SpaceDetailFragment" />
-    
+
     <fragment
         android:id="@+id/navigation_article_detail"
-        android:name="com.indipage.presentation.article.ArticleDetailFragment"
-        android:label="ArticleDetailFragment" >
+        android:name="com.indipage.presentation.articledetail.ArticleDetailFragment"
+        android:label="ArticleDetailFragment">
         <action
             android:id="@+id/action_article_detail_to_space_detail"
             app:destination="@id/navigation_space_detail" />
-        <action
-            android:id="@+id/action_article_detail_to_article"
-            app:destination="@id/navigation_article" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_qr_success"
         android:name="com.indipage.presentation.qr.QrSuccessFragment"
-        android:label="QrSuccessFragment" >
+        android:label="QrSuccessFragment">
         <action
             android:id="@+id/action_navigation_qr_success_to_navigation_card"
             app:destination="@id/navigation_card" />
     </fragment>
-
-    <fragment
-        android:id="@+id/navigation_article_all"
-        android:name="com.indipage.presentation.article.ArticleAllFragment"
-        android:label="ArticleAllFragment" >
-        <action
-            android:id="@+id/action_article_all_to_article"
-            app:destination="@id/navigation_article" />
-    </fragment>
-
 </navigation>

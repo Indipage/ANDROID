@@ -4,6 +4,7 @@ import com.indipage.data.api.ArticleApiService
 import com.indipage.data.datasource.ArticleDataSource
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.NullResponse
+import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import javax.inject.Inject
@@ -22,4 +23,9 @@ class ArticleDataSourceImpl @Inject constructor(
     override suspend fun putArticleSlide(): NullResponse {
         return apiService.putArticleSlide()
     }
+
+    override suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>> {
+        return apiService.getArticleAll()
+    }
+
 }

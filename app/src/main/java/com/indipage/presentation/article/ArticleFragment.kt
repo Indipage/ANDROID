@@ -3,6 +3,7 @@ package com.indipage.presentation.article
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -13,6 +14,8 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleBinding
+import com.indipage.util.EventObserver
+import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,12 +41,14 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun setUpArticleData() {
         observeArticleWeekly()
         observeArticleSlide()
+        observeArticleAll()
     }
 
     private fun observeArticleWeekly() {
         viewModel.articleWeeklyData.observe(viewLifecycleOwner) {
             with(binding) {
-                vpArticle.adapter = WeeklyArticleAdapter().apply { submitList(listOf(it, it)) }
+                vpArticle.adapter =
+                    WeeklyArticleAdapter(viewModel).apply { submitList(listOf(it, it)) }
                 vpArticle.offscreenPageLimit = 2
                 vpArticle.setPageTransformer { page, position ->
                     page.translationX =
@@ -56,14 +61,18 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
         }
 
+        viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
+            openArticleDetail(it.id.toLong())
+        })
     }
 
     private fun observeArticleSlide() {
         viewModel.articleSlideData.observe(viewLifecycleOwner) {
-            if (it.hasSlide) {
-                with(binding) {
-                    layoutCardAnimation.isVisible = false
+            with(binding) {
+                if (it.hasSlide) {
                     vpArticle.isVisible = true
+                } else {
+                    layoutCardAnimation.isVisible = true
                 }
             }
         }
@@ -88,12 +97,32 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     }
 
+    private fun observeArticleAll() {
+        viewModel.articleAllData.observe(viewLifecycleOwner) {
+            binding.rvArticle.adapter = ArticleAllAdapter().apply {
+                submitList(it)
+            }
+        }
+    }
+
     private fun initClickEventListeners() {
         with(binding) {
             btnArticleCategoryAll.setOnClickListener {
-                btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
-                btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
-                findNavController().navigate(R.id.action_article_to_article_all)
+                if (!btnArticleCategoryAll.isSelected) {
+                    btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
+                    btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
+                    rvArticle.isVisible = true
+                    vpArticle.isVisible = false
+                    layoutCardAnimation.isVisible = false
+                }
+            }
+            btnArticleCategoryWeekly.setOnClickListener {
+                if (!btnArticleCategoryWeekly.isSelected) {
+                    btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
+                    btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
+                    rvArticle.isVisible = false
+                    observeArticleSlide()
+                }
             }
         }
     }
@@ -101,33 +130,30 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun motion() {
         binding.layoutCardAnimation.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int
+                motionLayout: MotionLayout?, startId: Int, endId: Int
             ) {
             }
 
             override fun onTransitionChange(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int,
-                progress: Float
+                motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float
             ) {
 
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 viewModel.putArticleSlide()
-                findNavController().navigate(R.id.action_article_to_article_detail)
             }
 
             override fun onTransitionTrigger(
-                motionLayout: MotionLayout?,
-                triggerId: Int,
-                positive: Boolean,
-                progress: Float
+                motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float
             ) {
             }
         })
+    }
+
+    private fun openArticleDetail(articleId: Long) {
+        findNavController().navigate(
+            R.id.action_article_to_article_detail, bundleOf(KEY_ARTICLE_ID to articleId)
+        )
     }
 }

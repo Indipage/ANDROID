@@ -2,7 +2,6 @@ package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.NullResponse
-import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
@@ -27,9 +26,6 @@ interface ArticleDetailApiService {
     suspend fun postTicketReceive(
         @Path(value = "spaceId") spaceId: Long
     ): NullResponse
-
-    @GET("/article")
-    suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>>
 
     @GET("/bookmark/article/{articleId}")
     suspend fun getBookmark(

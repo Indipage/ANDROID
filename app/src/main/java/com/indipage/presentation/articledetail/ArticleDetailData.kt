@@ -1,4 +1,4 @@
-package com.indipage.presentation.article
+package com.indipage.presentation.articledetail
 
 data class ArticleDetailData(
     val body: String

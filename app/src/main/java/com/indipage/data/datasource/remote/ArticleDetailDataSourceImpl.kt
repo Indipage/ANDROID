@@ -4,7 +4,6 @@ import com.indipage.data.api.ArticleDetailApiService
 import com.indipage.data.datasource.ArticleDetailDataSource
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.NullResponse
-import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
@@ -27,10 +26,6 @@ class ArticleDetailDataSourceImpl
         spaceId: Long
     ): NullResponse {
         return apiService.postTicketReceive(spaceId)
-    }
-
-    override suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>> {
-        return apiService.getArticleAll()
     }
 
     override suspend fun getBookmark(articleId: Long): BaseResponse<ResponseArticleBookmarkDto> {

@@ -6,13 +6,18 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.indipage.presentation.article.ArticleViewModel" />
+
+        <variable
             name="article_weekly"
             type="com.indipage.data.dto.response.ResponseArticleWeeklyDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{()->viewModel.openArticleDetail(article_weekly)}">
 
         <ImageView
             android:id="@+id/iv_item_weekly_article_place_image"

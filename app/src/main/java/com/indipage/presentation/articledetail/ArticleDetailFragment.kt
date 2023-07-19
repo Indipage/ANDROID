@@ -1,4 +1,4 @@
-package com.indipage.presentation.article
+package com.indipage.presentation.articledetail
 
 import android.os.Bundle
 import android.view.View
@@ -14,6 +14,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
 import com.indipage.util.ArticleDetailTag.TAG_REGEX
+import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -40,7 +41,7 @@ class ArticleDetailFragment :
     }
 
     private fun getData() {
-        arguments?.getLong("articleId")?.let {
+        requireArguments().getLong(KEY_ARTICLE_ID).let {
             viewModel.getArticleDetail(it)
             viewModel.getBookMark(it)
         }
@@ -53,9 +54,7 @@ class ArticleDetailFragment :
     }
 
     private fun observeArticle() {
-        viewModel.articleDetailData
-            .flowWithLifecycle(lifecycle)
-            .onEach { uiState ->
+        viewModel.articleDetailData.flowWithLifecycle(lifecycle).onEach { uiState ->
                 when (uiState) {
                     is UiState.Success -> {
                         val resultArticleArray = splitArticleContent(uiState.data.content)
@@ -161,15 +160,17 @@ class ArticleDetailFragment :
                 spaceId?.let { viewModel.postTicketReceive(it) }
             }
             toolbarArticleDetail.setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_article_detail_to_article)
+                findNavController().navigateUp()
             }
             ivArticleDetailBookmark.setOnClickListener {
-                if (ivArticleDetailBookmark.isSelected) {
-                    arguments?.getLong("articleId")?.let { it -> viewModel.deleteBookMark(it) }
-                    binding.ivArticleDetailBookmark.isSelected = false
-                } else {
-                    arguments?.getLong("articleId")?.let { it -> viewModel.postBookMark(it) }
-                    binding.ivArticleDetailBookmark.isSelected = true
+                requireArguments().getLong(KEY_ARTICLE_ID).let {
+                    if (ivArticleDetailBookmark.isSelected) {
+                        viewModel.deleteBookMark(it)
+                        binding.ivArticleDetailBookmark.isSelected = false
+                    } else {
+                        viewModel.postBookMark(it)
+                        binding.ivArticleDetailBookmark.isSelected = true
+                    }
                 }
             }
         }
