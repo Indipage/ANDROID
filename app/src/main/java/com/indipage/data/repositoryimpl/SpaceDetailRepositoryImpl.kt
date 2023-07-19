@@ -13,52 +13,52 @@ class SpaceDetailRepositoryImpl @Inject constructor(
     private val dataSource: SpaceDetailDataSource
 ) : SpaceDetailRepository {
 
-    override suspend fun getBookmarked(): Result<BookmarkData> {
+    override suspend fun getBookmarked(spaceId:Int): Result<BookmarkData> {
         return runCatching {
-            dataSource.getBookmarked().data
+            dataSource.getBookmarked(spaceId).data
         }
     }
 
-    override suspend fun postBookmarked(): Result<Int> {
+    override suspend fun postBookmarked(spaceId:Int): Result<Int> {
         return runCatching {
-            dataSource.postBookmarked().code
+            dataSource.postBookmarked(spaceId).code
         }
     }
 
-    override suspend fun deleteBookmarked(): Result<Int> {
+    override suspend fun deleteBookmarked(spaceId:Int): Result<Int> {
         return runCatching {
-            dataSource.deleteBookmarked().code
+            dataSource.deleteBookmarked(spaceId).code
         }
     }
 
-    override suspend fun getSpaceDetail(): Result<SpaceDetailData> {
+    override suspend fun getSpaceDetail(spaceId:Int): Result<SpaceDetailData> {
         return runCatching {
-            dataSource.getSpaceDetail().data
+            dataSource.getSpaceDetail(spaceId).data
         }
     }
 
-    override suspend fun getCuration(): Result<List<CurationData>> {
+    override suspend fun getCuration(spaceId:Int): Result<List<CurationData>> {
         return runCatching {
-            dataSource.getCuration().data
+            dataSource.getCuration(spaceId).data
         }
     }
 
 
-    override suspend fun getFollow(): Result<FollowData> {
+    override suspend fun getFollow(spaceId:Int): Result<FollowData> {
         return runCatching {
-            dataSource.getFollow().data
+            dataSource.getFollow(spaceId).data
         }
     }
 
-    override suspend fun postFollow(): Result<Int> {
+    override suspend fun postFollow(spaceId:Int): Result<Int> {
         return runCatching {
-            dataSource.postFollow().code
+            dataSource.postFollow(spaceId).code
         }
     }
 
-    override suspend fun getSpaceArticle(): Result<SpaceArticleData?> {
+    override suspend fun getSpaceArticle(spaceId:Int): Result<SpaceArticleData?> {
         return runCatching {
-            dataSource.getSpaceArticle().data
+            dataSource.getSpaceArticle(spaceId).data
         }
     }
 }
