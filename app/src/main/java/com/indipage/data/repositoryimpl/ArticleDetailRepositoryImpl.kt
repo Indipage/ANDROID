@@ -1,7 +1,6 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDetailDataSource
-import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
@@ -26,12 +25,6 @@ class ArticleDetailRepositoryImpl @Inject constructor(
     override suspend fun postTicketReceive(spaceId: Long): Result<Int> {
         return runCatching {
             dataSource.postTicketReceive(spaceId).code
-        }
-    }
-
-    override suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>> {
-        return runCatching {
-            dataSource.getArticleAll().data
         }
     }
 

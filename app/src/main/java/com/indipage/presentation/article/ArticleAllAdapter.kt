@@ -1,4 +1,4 @@
-package com.indipage.presentation.articleall
+package com.indipage.presentation.article
 
 import android.view.LayoutInflater
 import android.view.View

@@ -41,6 +41,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun setUpArticleData() {
         observeArticleWeekly()
         observeArticleSlide()
+        observeArticleAll()
     }
 
     private fun observeArticleWeekly() {
@@ -96,12 +97,32 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     }
 
+    private fun observeArticleAll() {
+        viewModel.articleAllData.observe(viewLifecycleOwner) {
+            binding.rvArticle.adapter = ArticleAllAdapter().apply {
+                submitList(it)
+            }
+        }
+    }
+
     private fun initClickEventListeners() {
         with(binding) {
             btnArticleCategoryAll.setOnClickListener {
-                btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
-                btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
-                findNavController().navigate(R.id.action_article_to_article_all)
+                if (!btnArticleCategoryAll.isSelected) {
+                    btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
+                    btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
+                    rvArticle.isVisible = true
+                    vpArticle.isVisible = false
+                    layoutCardAnimation.isVisible = false
+                }
+            }
+            btnArticleCategoryWeekly.setOnClickListener {
+                if (!btnArticleCategoryWeekly.isSelected) {
+                    btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
+                    btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
+                    rvArticle.isVisible = false
+                    observeArticleSlide()
+                }
             }
         }
     }

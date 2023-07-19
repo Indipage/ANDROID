@@ -1,6 +1,7 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDataSource
+import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.domain.repository.ArticleRepository
@@ -24,6 +25,12 @@ class ArticleRepositoryImpl @Inject constructor(
     override suspend fun putArticleSlide(): Result<Int> {
         return runCatching {
             dataSource.putArticleSlide().code
+        }
+    }
+
+    override suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>> {
+        return runCatching {
+            dataSource.getArticleAll().data
         }
     }
 }
