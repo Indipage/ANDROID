@@ -1,6 +1,5 @@
 package com.indipage.presentation.ticket
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import coil.load
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.fragment.toast
@@ -20,7 +18,6 @@ import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity
-import com.indipage.util.Event
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult

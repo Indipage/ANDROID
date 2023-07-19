@@ -5,16 +5,13 @@ import com.indipage.data.datasource.SpaceDetailDataSource
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
-import com.indipage.data.dto.response.BookmarkData
-import com.indipage.data.dto.response.CurationData
-import com.indipage.data.dto.response.FollowData
-import com.indipage.data.dto.response.SpaceArticleData
-import com.indipage.data.dto.response.SpaceDetailData
+import com.indipage.data.dto.response.*
 import javax.inject.Inject
 
 class SpaceDetailDataSourceImpl @Inject constructor(
     private val apiService: SpaceDetailApiService
 ) : SpaceDetailDataSource {
+
     override suspend fun getBookmarked(): BaseResponse<BookmarkData> {
         return apiService.getBookmarked(spaceId = 1)
     }
@@ -46,4 +43,5 @@ class SpaceDetailDataSourceImpl @Inject constructor(
     override suspend fun getSpaceArticle(): BaseResponseNullable<SpaceArticleData> {
         return apiService.getSpaceArticle(spaceId = 1)
     }
+
 }
