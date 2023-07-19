@@ -26,17 +26,30 @@ class SpaceDetailFragment :
     BindingFragment<FragmentSpaceDetailBinding>(R.layout.fragment_space_detail) {
 
     private val viewModel by viewModels<SpaceDetailViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val productId = requireArguments().getLong("spaceId")
+        val spaceId = requireArguments().getInt("spaceId")
+        Timber.tag("SakSpace").d("$spaceId")
+
+        viewModel.getCuration(spaceId)
+        viewModel.getSpaceDetail(spaceId)
+        viewModel.getFollow(spaceId)
+        viewModel.getSpaceArticle(spaceId)
+        viewModel.getBookmarked(spaceId)
+        initBookmarkButton(spaceId)
+        initSpaceArticle(spaceId)
+//        viewModel.setSpaceId(spaceId)
+//        Timber.tag("spaceId").d("$spaceId")
         initView()
     }
 
     private fun initView() {
-        initBookmarkButton()
+
+//        initBookmarkButton()
         getSpaceDetail()
         getCurationData()
-        initSpaceArticle()
+//        initSpaceArticle()
     }
 
     /** 북마크 버튼 초기화
@@ -49,8 +62,8 @@ class SpaceDetailFragment :
      *          아이콘 !selected 모양
      *          클릭 리스너 -> postBookmarked */
 
-    private fun initBookmarkButton() = with(binding) {
-        viewModel.getBookmarked()
+    private fun initBookmarkButton(spaceId:Int) = with(binding) {
+        viewModel.getBookmarked(spaceId)
         viewModel.bookMarked.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -59,14 +72,14 @@ class SpaceDetailFragment :
                             ibBookmarkIcon.isSelected = true
                             ibBookmarkIcon.setOnClickListener {
                                 Timber.d("터치 됏당~!") // 누르면 조르기
-                                viewModel.deleteBookMarked()
+                                viewModel.deleteBookMarked(1)
                             }
                         }
 
                         false -> {
                             ibBookmarkIcon.isSelected = false
                             ibBookmarkIcon.setOnClickListener { // 누르면 조르기
-                                viewModel.postBookMarked()
+                                viewModel.postBookMarked(1)
                                 Timber.d("터치 됏당~!")
                             }
                         }
@@ -167,8 +180,8 @@ class SpaceDetailFragment :
         }
     }
 
-    private fun initSpaceArticle() {
-        viewModel.getSpaceArticle()
+    private fun initSpaceArticle(spaceId: Int) {
+        viewModel.getSpaceArticle(spaceId)
         viewModel.spaceArticle.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -177,13 +190,13 @@ class SpaceDetailFragment :
                 }
 
                 else -> {
-                    initFollowButton()
+                    initFollowButton(spaceId)
                 }
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun initFollowButton() = with(binding) {
+    private fun initFollowButton(spaceId: Int) = with(binding) {
         binding.clFollow.visibility = View.VISIBLE
         viewModel.follow.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -194,7 +207,7 @@ class SpaceDetailFragment :
                         btnFollow.isSelected = true
                     } else {
                         btnFollow.setOnClickListener { // 누르면 조르기
-                            viewModel.postFollow()
+                            viewModel.postFollow(spaceId)
                             toast("아티클이 발행되면 알려드릴게요!")
                         }
 

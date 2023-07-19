@@ -39,7 +39,7 @@ class SavedSpaceFragment :
             Timber.d("test $it")
             findNavController().navigate(
                 R.id.action_navigation_saved_space_to_navigation_space_detail, bundleOf(
-                    "spaceId" to it
+                    "spaceId" to it.toInt()
                 )
             )
         })
