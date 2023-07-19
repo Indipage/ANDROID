@@ -26,30 +26,20 @@ class SpaceDetailFragment :
     BindingFragment<FragmentSpaceDetailBinding>(R.layout.fragment_space_detail) {
 
     private val viewModel by viewModels<SpaceDetailViewModel>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val spaceId = requireArguments().getInt("spaceId")
         Timber.tag("SakSpace").d("$spaceId")
+        initView(spaceId)
 
-        viewModel.getCuration(spaceId)
-        viewModel.getSpaceDetail(spaceId)
-        viewModel.getFollow(spaceId)
-        viewModel.getSpaceArticle(spaceId)
-        viewModel.getBookmarked(spaceId)
-        initBookmarkButton(spaceId)
-        initSpaceArticle(spaceId)
-//        viewModel.setSpaceId(spaceId)
-//        Timber.tag("spaceId").d("$spaceId")
-        initView()
     }
 
-    private fun initView() {
-
-//        initBookmarkButton()
+    private fun initView(spaceId: Int) {
         getSpaceDetail()
         getCurationData()
-//        initSpaceArticle()
+        viewModel.setSpaceId(spaceId)
+        initBookmarkButton(spaceId)
+        initSpaceArticle(spaceId)
     }
 
     /** 북마크 버튼 초기화
@@ -62,7 +52,7 @@ class SpaceDetailFragment :
      *          아이콘 !selected 모양
      *          클릭 리스너 -> postBookmarked */
 
-    private fun initBookmarkButton(spaceId:Int) = with(binding) {
+    private fun initBookmarkButton(spaceId: Int) = with(binding) {
         viewModel.getBookmarked(spaceId)
         viewModel.bookMarked.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -188,7 +178,6 @@ class SpaceDetailFragment :
                     binding.spaceArticle = it.data
                     binding.clSpaceArticle.visibility = View.VISIBLE
                 }
-
                 else -> {
                     initFollowButton(spaceId)
                 }

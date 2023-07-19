@@ -38,21 +38,15 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     private val _spaceArticle = MutableStateFlow<UiState<SpaceArticleData?>>(UiState.Loading)
     val spaceArticle: StateFlow<UiState<SpaceArticleData?>> = _spaceArticle.asStateFlow()
 
-    private val _spaceId = MutableLiveData<Int>()
-    val spaceId: LiveData<Int> = _spaceId
-
-    init {
-//        getCuration(spaceId.value?:1)
-//        getSpaceDetail(spaceId.value?:1)
-//        getFollow(spaceId.value?:1)
-//        getSpaceArticle(spaceId.value?:1)
-//        getBookmarked(spaceId.value?:1)
+    fun setSpaceId(spaceId: Int) {
+        getCuration(spaceId)
+        getSpaceDetail(spaceId)
+        getFollow(spaceId)
+        getSpaceArticle(spaceId)
+        getBookmarked(spaceId)
     }
 
-    fun setSpaceId(spaceId: Int){
-        _spaceId.value=spaceId
-    }
-    fun getCuration(spaceId:Int) = viewModelScope.launch {
+    fun getCuration(spaceId: Int) = viewModelScope.launch {
         apiRepository.getCuration(spaceId).onSuccess { CurationData ->
             _curationData.value = UiState.Success(CurationData)
         }
