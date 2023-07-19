@@ -9,6 +9,7 @@ import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.repository.ArticleDetailRepository
+import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -42,6 +43,13 @@ class ArticleDetailViewModel @Inject constructor(
 
     private val _deleteArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val deleteArticleBookmark: StateFlow<UiState<Int>> = _deleteArticleBookmark.asStateFlow()
+
+    private val _openSpaceDetail = MutableLiveData<Event<ResponseArticleDetailDto>>()
+    val openSpaceDetail: LiveData<Event<ResponseArticleDetailDto>> = _openSpaceDetail
+
+    fun openSpaceDetail(responseArticleDetailDto: ResponseArticleDetailDto) {
+        _openSpaceDetail.value = Event(responseArticleDetailDto)
+    }
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId).onSuccess {

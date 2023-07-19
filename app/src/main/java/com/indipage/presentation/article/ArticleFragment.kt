@@ -35,7 +35,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         binding.btnArticleCategoryWeekly.isSelected = true
         initClickEventListeners()
         setUpArticleData()
-        motion()
     }
 
     private fun setUpArticleData() {
@@ -58,10 +57,11 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 }
                 articleWeekly = it
                 executePendingBindings()
+                motion(it.id.toLong())
             }
         }
 
-        viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
+        viewModel.openArticleDetail1.observe(viewLifecycleOwner, EventObserver {
             openArticleDetail(it.id.toLong())
         })
     }
@@ -72,7 +72,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 if (it.hasSlide) {
                     vpArticle.isVisible = true
                 } else {
-                    layoutCardAnimation.isVisible = true
+                    layoutWeekly.isVisible = true
                 }
             }
         }
@@ -99,10 +99,14 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     private fun observeArticleAll() {
         viewModel.articleAllData.observe(viewLifecycleOwner) {
-            binding.rvArticle.adapter = ArticleAllAdapter().apply {
+            binding.rvArticle.adapter = ArticleAllAdapter(viewModel).apply {
                 submitList(it)
             }
         }
+
+        viewModel.openArticleDetail2.observe(viewLifecycleOwner, EventObserver {
+            openArticleDetail(it.id.toLong())
+        })
     }
 
     private fun initClickEventListeners() {
@@ -113,7 +117,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
                     rvArticle.isVisible = true
                     vpArticle.isVisible = false
-                    layoutCardAnimation.isVisible = false
+                    layoutWeekly.isVisible = false
                 }
             }
             btnArticleCategoryWeekly.setOnClickListener {
@@ -127,7 +131,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         }
     }
 
-    private fun motion() {
+    private fun motion(articleId: Long) {
         binding.layoutCardAnimation.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?, startId: Int, endId: Int
@@ -142,6 +146,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 viewModel.putArticleSlide()
+                openArticleDetail(articleId)
             }
 
             override fun onTransitionTrigger(

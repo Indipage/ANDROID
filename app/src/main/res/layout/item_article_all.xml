@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.indipage.presentation.article.ArticleViewModel" />
+
+        <variable
             name="article_all"
             type="com.indipage.data.dto.response.ResponseArticleAllDto" />
     </data>
@@ -13,7 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:onClick="@{()->viewModel.openArticleDetail2(article_all)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_article_all"

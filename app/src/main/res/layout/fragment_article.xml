@@ -50,17 +50,14 @@
             app:layout_constraintTop_toTopOf="@id/btn_article_category_weekly"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/layout_card_animation"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_weekly"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
-            android:paddingHorizontal="32dp"
             android:visibility="gone"
-            app:layoutDescription="@xml/fragment_article_scene"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly"
-            app:showPaths="true">
+            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly">
 
             <ImageView
                 android:id="@+id/iv_article_place_image"
@@ -68,12 +65,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="54dp"
-                android:contentDescription="@string/article_detail_place_image_description"
+                android:layout_marginBottom="80dp"
+                android:contentDescription="@string/iv_article_detail_place_image"
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@id/iv_article_card_packed"
-                app:layout_constraintEnd_toEndOf="@id/iv_article_card_packed"
-                app:layout_constraintStart_toStartOf="@id/iv_article_card_packed"
+                app:layout_constraintBottom_toBottomOf="@id/layout_card_animation"
+                app:layout_constraintEnd_toEndOf="@id/layout_card_animation"
+                app:layout_constraintStart_toStartOf="@id/layout_card_animation"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_launcher_background" />
 
@@ -81,7 +78,7 @@
                 android:id="@+id/iv_article_card_gradient_open"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:contentDescription="@string/article_weekly_gradient"
+                android:contentDescription="@string/iv_article_weekly_gradient"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_article_card_gradient_open"
                 app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
@@ -102,14 +99,26 @@
                 app:layout_constraintTop_toTopOf="@id/iv_article_place_image"
                 tools:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간" />
 
-            <ImageView
-                android:id="@+id/iv_article_card_packed"
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/layout_card_animation"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/article_weekly_gradient"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_article_card_packed" />
-        </androidx.constraintlayout.motion.widget.MotionLayout>
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="40dp"
+                app:layoutDescription="@xml/fragment_article_scene"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_article_card_packed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/iv_article_weekly_gradient"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_article_card_packed" />
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_article"

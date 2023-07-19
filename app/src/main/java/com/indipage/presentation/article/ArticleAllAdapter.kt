@@ -10,15 +10,15 @@ import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.databinding.ItemArticleAllBinding
 
 
-class ArticleAllAdapter(
-) : ListAdapter<ResponseArticleAllDto, ArticleAllAdapter.ArticleAllViewHolder>(
-    ArticleAllDiffCallback
-) {
+class ArticleAllAdapter(private val viewModel: ArticleViewModel) :
+    ListAdapter<ResponseArticleAllDto, ArticleAllAdapter.ArticleAllViewHolder>(
+        ArticleAllDiffCallback
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleAllViewHolder {
         val binding =
             ItemArticleAllBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleAllViewHolder(binding)
+        return ArticleAllViewHolder(binding, viewModel)
     }
 
     override fun onBindViewHolder(holder: ArticleAllViewHolder, position: Int) {
@@ -26,12 +26,13 @@ class ArticleAllAdapter(
     }
 
     class ArticleAllViewHolder(
-        private val binding: ItemArticleAllBinding
+        private val binding: ItemArticleAllBinding, private val model: ArticleViewModel
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseArticleAllDto) {
             with(binding) {
                 articleAll = data
                 executePendingBindings()
+                binding.viewModel = model
                 if (data.ticketReceived) {
                     layoutArticleAllReadArticle.visibility = View.VISIBLE
                     layoutArticleAllNoReadArticle.visibility = View.GONE
@@ -45,9 +46,7 @@ class ArticleAllAdapter(
 
     companion object {
         private val ArticleAllDiffCallback =
-            ItemDiffCallback<ResponseArticleAllDto>(
-                onItemsTheSame = { old, new -> old.spaceName == new.spaceName },
-                onContentsTheSame = { old, new -> old == new }
-            )
+            ItemDiffCallback<ResponseArticleAllDto>(onItemsTheSame = { old, new -> old.spaceName == new.spaceName },
+                onContentsTheSame = { old, new -> old == new })
     }
 }
