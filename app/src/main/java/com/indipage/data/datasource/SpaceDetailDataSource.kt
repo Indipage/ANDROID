@@ -10,12 +10,12 @@ import com.indipage.data.dto.response.SpaceArticleData
 import com.indipage.data.dto.response.SpaceDetailData
 
 interface SpaceDetailDataSource {
-    suspend fun getBookmarked(): BaseResponse<BookmarkData>
-    suspend fun deleteBookmarked(): NullResponse
-    suspend fun postBookmarked(): NullResponse
-    suspend fun getSpaceDetail(): BaseResponse<SpaceDetailData>
-    suspend fun getCuration(): BaseResponse<List<CurationData>>
-    suspend fun postFollow(): NullResponse
-    suspend fun getFollow(): BaseResponse<FollowData>
-    suspend fun getSpaceArticle(): BaseResponseNullable<SpaceArticleData>
+    suspend fun getBookmarked(spaceId:Int): BaseResponse<BookmarkData>
+    suspend fun deleteBookmarked(spaceId:Int): NullResponse
+    suspend fun postBookmarked(spaceId:Int): NullResponse
+    suspend fun getSpaceDetail(spaceId:Int): BaseResponse<SpaceDetailData>
+    suspend fun getCuration(spaceId:Int): BaseResponse<List<CurationData>>
+    suspend fun postFollow(spaceId:Int): NullResponse
+    suspend fun getFollow(spaceId:Int): BaseResponse<FollowData>
+    suspend fun getSpaceArticle(spaceId:Int): BaseResponseNullable<SpaceArticleData>
 }
