@@ -73,7 +73,11 @@
     <fragment
         android:id="@+id/navigation_space_detail"
         android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
-        android:label="SpaceDetailFragment" />
+        android:label="SpaceDetailFragment" >
+        <action
+            android:id="@+id/action_navigation_space_detail_to_navigation_article_detail"
+            app:destination="@id/navigation_article_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_article_detail"

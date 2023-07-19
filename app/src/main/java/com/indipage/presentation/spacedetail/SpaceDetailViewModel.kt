@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.*
 import com.indipage.domain.repository.SpaceDetailRepository
+import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,6 +34,10 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
 
     private val _spaceArticle = MutableStateFlow<UiState<SpaceArticleData?>>(UiState.Loading)
     val spaceArticle: StateFlow<UiState<SpaceArticleData?>> = _spaceArticle.asStateFlow()
+
+
+    private val _openArticleDetail = MutableLiveData<Event<String>>()
+    val openArticleDetail: LiveData<Event<String>> = _openArticleDetail
 
     fun setSpaceId(spaceId: Int) {
         getCuration(spaceId)
@@ -97,5 +102,11 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
             _bookMarked.value = UiState.Success(BookmarkData(false))
             Timber.d("뷰모델 성공 delete Bookmarked ${_bookMarked.value}")
         }.onFailure { Timber.d("뷰모델 실패 delete Bookmarked // ${it}") }
+    }
+
+
+
+    fun openArticleDetailEvent() {
+        _openArticleDetail.value = Event("test")
     }
 }

@@ -3,9 +3,11 @@ package com.indipage.presentation.spacedetail
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.Px
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.core_ui.base.BindingFragment
@@ -15,6 +17,7 @@ import com.indipage.R
 import com.indipage.data.dto.response.CurationData
 import com.indipage.data.dto.response.SpaceDetailData
 import com.indipage.databinding.FragmentSpaceDetailBinding
+import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -177,6 +180,7 @@ class SpaceDetailFragment :
                 is UiState.Success -> {
                     binding.spaceArticle = it.data
                     binding.clSpaceArticle.visibility = View.VISIBLE
+                    initSpaceArticleButton()
                 }
                 else -> {
                     initFollowButton(spaceId)
@@ -206,5 +210,21 @@ class SpaceDetailFragment :
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun initSpaceArticleButton() {
+        binding.clSpaceArticle.setOnClickListener() {
+            viewModel.openArticleDetailEvent()
+            viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
+                moveToSpaceArticle()
+            })
+        }
+    }
+
+    private fun moveToSpaceArticle() {
+        findNavController().navigate(
+            R.id.action_navigation_space_detail_to_navigation_article_detail,
+            bundleOf("key" to "value")
+        )
     }
 }
