@@ -55,23 +55,21 @@ class ArticleDetailFragment :
 
     private fun observeArticle() {
         viewModel.articleDetailData.flowWithLifecycle(lifecycle).onEach { uiState ->
-                when (uiState) {
-                    is UiState.Success -> {
-                        val resultArticleArray = splitArticleContent(uiState.data.content)
-                        with(binding) {
-                            rvArticleDetailArticleBody.adapter =
-                                ArticleDetailAdapter().apply { submitList(resultArticleArray) }
-                            tvArticleDetailAuthor.text = uiState.data.spaceOwner
-                            tvArticleDetailDate.text = uiState.data.createdAt
-                            tvArticleDetailTitle.text = uiState.data.title
-                            toolbarArticleDetail.title = uiState.data.spaceName
-                            spaceId = uiState.data.spaceId.toLong()
-                            spaceId?.let { viewModel.getTicketReceiveCheck(it) }
-                        }
+            when (uiState) {
+                is UiState.Success -> {
+                    val resultArticleArray = splitArticleContent(uiState.data.content)
+                    with(binding) {
+                        articleDetail = uiState.data
+                        executePendingBindings()
+                        rvArticleDetailArticleBody.adapter =
+                            ArticleDetailAdapter().apply { submitList(resultArticleArray) }
+                        spaceId = uiState.data.spaceId.toLong()
+                        spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                     }
-                    else -> {}
                 }
-            }.launchIn(lifecycleScope)
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun observeTicket() {

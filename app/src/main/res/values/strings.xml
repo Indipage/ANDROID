@@ -47,4 +47,5 @@
     <string name="tv_search_empty">검색된 공간이 없어요</string>
     <string name="tv_search_empty_comment">아직 미등록된 공간일 수 있어요\n지역명이 정확한지 확인해보세요</string>
     <string name="tv_read_article_get_ticket">아티클 읽고 티켓 받기</string>
+    <string name="tv_article_detail_banner">나만 알고싶은</string>
 </resources>
