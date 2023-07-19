@@ -18,7 +18,7 @@
     <style name="TextAppearance.IndiPage.Title01">
         <item name="fontFamily">@font/font_pretendard_bold</item>
         <item name="android:textSize">28sp</item>
-        <item name="lineHeight">33dp</item>
+        <item name="lineHeight">37dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Title02">
@@ -30,7 +30,7 @@
     <style name="TextAppearance.IndiPage.Sub_Head01">
         <item name="fontFamily">@font/font_pretendard_semibold</item>
         <item name="android:textSize">20sp</item>
-        <item name="lineHeight">24dp</item>
+        <item name="lineHeight">28dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Sub_Head02">
@@ -60,31 +60,31 @@
     <style name="TextAppearance.IndiPage.Body04">
         <item name="fontFamily">@font/font_pretendard_regular</item>
         <item name="android:textSize">16sp</item>
-        <item name="lineHeight">19dp</item>
+        <item name="lineHeight">22dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Body05">
         <item name="fontFamily">@font/font_pretendard_regular</item>
         <item name="android:textSize">15sp</item>
-        <item name="lineHeight">18dp</item>
+        <item name="lineHeight">24dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Body05_Bold">
         <item name="fontFamily">@font/font_pretendard_bold</item>
         <item name="android:textSize">15sp</item>
-        <item name="lineHeight">18dp</item>
+        <item name="lineHeight">24dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Body06">
         <item name="fontFamily">@font/font_pretendard_regular</item>
         <item name="android:textSize">14sp</item>
-        <item name="lineHeight">17dp</item>
+        <item name="lineHeight">18dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Caption01">
         <item name="fontFamily">@font/font_pretendard_regular</item>
         <item name="android:textSize">12sp</item>
-        <item name="lineHeight">14dp</item>
+        <item name="lineHeight">17dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.Caption02">
@@ -96,7 +96,7 @@
     <style name="TextAppearance.IndiPage.En.Title1">
         <item name="fontFamily">@font/font_unbounded_semibold</item>
         <item name="android:textSize">32sp</item>
-        <item name="lineHeight">39dp</item>
+        <item name="lineHeight">40dp</item>
     </style>
 
     <style name="TextAppearance.IndiPage.En.Title2">
