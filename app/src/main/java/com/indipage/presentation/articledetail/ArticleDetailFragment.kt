@@ -202,7 +202,7 @@ class ArticleDetailFragment :
 
     private fun openSpaceDetail(spaceId: Long) {
         findNavController().navigate(
-            R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId)
+            R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId.toInt())
         )
     }
 }
