@@ -35,6 +35,7 @@
                 app:navigationIcon="@drawable/ic_article_detail_arrow"
                 app:title="@{article_detail.spaceName}"
                 app:titleTextAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                app:titleTextColor="@color/indi_black"
                 tools:title="@string/tb_article_detail_title">
 
                 <ImageView
@@ -87,6 +88,7 @@
                     android:layout_marginTop="21dp"
                     android:text="@{article_detail.spaceOwner}"
                     android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+                    android:textColor="@color/indi_black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_article_detail_place_image"
@@ -99,6 +101,7 @@
                     android:lineSpacingExtra="27px"
                     android:text="@{article_detail.title}"
                     android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    android:textColor="@color/indi_black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_author"
@@ -112,6 +115,7 @@
                     android:layout_marginTop="3dp"
                     android:text="@{article_detail.issueDate}"
                     android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
+                    android:textColor="@color/indi_black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_title"
@@ -172,7 +176,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="13dp"
-                    android:layout_marginTop="35dp"
                     android:background="@color/indi_gray200"
                     app:layout_constraintTop_toBottomOf="@id/rv_article_detail_article_body" />
 
@@ -185,6 +188,7 @@
                     android:text="@string/tv_article_detail_ticket_title"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+                    android:textColor="@color/indi_black"
                     app:layout_constraintTop_toBottomOf="@id/view_article_detail_2" />
 
                 <TextView
@@ -197,6 +201,7 @@
                     android:text='@{"이번 주 아티클은 잘 읽으셨나요?\nPPPclub에서 드리는 티켓을 가지고\n"+(article_detail.spaceName)+"에 방문하여 인증받아보세요!"}'
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                    android:textColor="@color/indi_black"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_title"
                     tools:text="@string/tv_article_detail_ticket_detail" />
 

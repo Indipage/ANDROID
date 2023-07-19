@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="35dp"
-        android:lineSpacingExtra="24dp"
         android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+        android:textColor="@color/indi_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
