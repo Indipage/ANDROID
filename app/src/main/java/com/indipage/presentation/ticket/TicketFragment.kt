@@ -9,8 +9,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import coil.load
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
@@ -33,9 +33,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private lateinit var adapter: TicketAdapter
     private val viewModel by viewModels<TicketViewModel>()
+    private var testNum=0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initAdapter()
         initView()
         openQR()
@@ -46,6 +46,8 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     override fun onResume() {
         super.onResume()
         binding.switchTicket.isChecked = false
+        val color=colorOf(R.color.indi_white)
+        binding.tvTicketSwitchTicket.setTextColor(color)
     }
     private fun initView() {
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
@@ -69,6 +71,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private fun openQR() {
         viewModel.openQrEvent.observe(viewLifecycleOwner, EventObserver {
+            testNum=it
             onCustomScanButtonClicked()
         })
     }
@@ -118,17 +121,20 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         ScanContract()
     ) { result: ScanIntentResult ->
         if (result.contents != null) {
-            Timber.d(result.contents)
+            Timber.tag("QR TEST").d(result.contents)
+            Timber.tag("QR TEST 2").d("$testNum")
             if (result.contents.contains("http://3.37.34.144")) {
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                viewModel.isCheckQR(finalResult.toInt())
+                if (testNum==finalResult.toInt()) viewModel.isCheckQR(finalResult.toInt())
+                else toast("너 틀림 ㅋㅋㅋ 바보다바보다")
             } else {
                 toast("다시 시도해라")
             }
         }
     }
+
     private fun onCustomScanButtonClicked() {
         val options = ScanOptions()
         options.setOrientationLocked(false)

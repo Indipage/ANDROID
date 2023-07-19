@@ -21,8 +21,8 @@ class TicketViewModel @Inject constructor(
     private val apiRepository: TicketRepository
 ) : ViewModel() {
 
-    private val _openQrEvent = MutableLiveData<Event<String>>()
-    val openQrEvent: LiveData<Event<String>> = _openQrEvent
+    private val _openQrEvent = MutableLiveData<Event<Int>>()
+    val openQrEvent: LiveData<Event<Int>> = _openQrEvent
 
     private val _qrResponseCode = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val qrResponseCode: StateFlow<UiState<Int>> = _qrResponseCode.asStateFlow()
@@ -37,7 +37,7 @@ class TicketViewModel @Inject constructor(
     fun getTicketList() = viewModelScope.launch {
         apiRepository.getTicketList()
             .onSuccess { it ->
-                _ticket.value=UiState.Success(it)
+                _ticket.value = UiState.Success(it)
                 Timber.d("Success $it")
             }
             .onFailure {
@@ -45,8 +45,8 @@ class TicketViewModel @Inject constructor(
             }
     }
 
-    fun openQR() {
-        _openQrEvent.value = Event("test")
+    fun openQR(spaceId: Int) {
+        _openQrEvent.value = Event(spaceId)
     }
 
     fun isCheckQR(spaceId: Int) = viewModelScope.launch {

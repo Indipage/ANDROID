@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import coil.EventListener
 import coil.load
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentCardBinding
@@ -38,6 +39,8 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     override fun onResume() {
         super.onResume()
         binding.switchTicket.isChecked = true
+        val color=colorOf(R.color.indi_white)
+        binding.tvCardSwitchCard.setTextColor(color)
     }
     private fun initAdapter() {
         adapter = CardAdapter(viewModel)
