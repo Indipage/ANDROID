@@ -160,7 +160,7 @@ class ArticleDetailFragment :
                 spaceId?.let { viewModel.postTicketReceive(it) }
             }
             toolbarArticleDetail.setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_article_detail_to_article)
+                findNavController().navigateUp()
             }
             ivArticleDetailBookmark.setOnClickListener {
                 requireArguments().getLong(KEY_ARTICLE_ID).let {
