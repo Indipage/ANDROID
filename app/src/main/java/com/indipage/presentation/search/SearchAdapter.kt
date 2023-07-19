@@ -10,7 +10,6 @@ import com.indipage.databinding.ItemSearchBinding
 
 class SearchAdapter() :
     ListAdapter<ResponseSearchData, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
-    private val searchResults = mutableListOf<ResponseSearchData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding =
@@ -33,15 +32,8 @@ class SearchAdapter() :
     companion object {
         private val SearchDiffCalback =
             ItemDiffCallback<ResponseSearchData>(
-                onItemsTheSame = { old, new -> old == new },
+                onItemsTheSame = { old, new -> old.spaceId == new.spaceId },
                 onContentsTheSame = { old, new -> old == new }
             )
-    }
-
-    override fun getItemCount(): Int = searchResults.size
-    fun updateSearchResults(newSearchResults: MutableList<ResponseSearchData>) {
-        searchResults.clear()
-        searchResults.addAll(newSearchResults)
-        notifyDataSetChanged()
     }
 }

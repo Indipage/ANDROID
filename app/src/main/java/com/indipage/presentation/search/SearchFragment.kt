@@ -5,12 +5,17 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.ResponseSearchData
 import com.indipage.databinding.FragmentSearchBinding
 import com.indipage.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -21,17 +26,28 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
     private val searchDebouncer = Debouncer<String>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter()
+        getSearchResult()
         initEditText()
     }
 
-    private fun initAdapter() {
-        Timber.d("검색 리사이클러뷰 초기화")
-
+    private fun getSearchResult() {
         viewModel.getSearchResult()
+        viewModel.searchData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    initAdapter(it.data)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun initAdapter(data: List<ResponseSearchData>) {
+        Timber.d("검색 리사이클러뷰 초기화")
         adapter = SearchAdapter()
         binding.rvSearch.adapter = adapter.apply {
-            submitList(viewModel.searchList)
+            submitList(data)
         }
     }
 
@@ -69,17 +85,5 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 //            }
 //        }
 //        renewAdapter(resultList)
-    }
-
-    /**이렇게 갱신하는 거 맞나?*/
-    private fun renewAdapter(searchList: MutableList<ResponseSearchData>) {
-        Timber.d("검색 리스트 갱신 ${searchList}")
-        adapter = SearchAdapter()
-        binding.rvSearch.adapter = adapter.apply {
-            updateSearchResults(searchList)
-            submitList(searchList)
-            binding.coEmptySearch.visibility =
-                if (searchList.isEmpty()) View.VISIBLE else View.GONE
-        }
     }
 }
