@@ -3,6 +3,7 @@ package com.indipage.presentation.articledetail
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -59,6 +60,7 @@ class ArticleDetailFragment :
         viewModel.articleDetailData.flowWithLifecycle(lifecycle).onEach { uiState ->
             when (uiState) {
                 is UiState.Success -> {
+                    binding.progressArticleDetail.isVisible = false
                     val resultArticleArray =
                         splitArticleContent(uiState.data.content, uiState.data.spaceId.toLong())
                     with(binding) {
@@ -67,7 +69,7 @@ class ArticleDetailFragment :
                         rvArticleDetailArticleBody.adapter =
                             ArticleDetailAdapter().apply { submitList(resultArticleArray) }
                         spaceId = uiState.data.spaceId.toLong()
-                        spaceId?.let { viewModel.getTicketReceiveCheck(it) }
+                        spaceId?.let { viewModel.getTicketReceiveCheck(it.toInt()) }
                     }
                 }
                 else -> {}
@@ -156,7 +158,7 @@ class ArticleDetailFragment :
     private fun initClickEventListeners() {
         with(binding) {
             ivArticleDetailTicketImage.setOnClickListener {
-                spaceId?.let { viewModel.postTicketReceive(it) }
+                spaceId?.let { spaceId -> viewModel.postTicketReceive(spaceId) }
             }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigateUp()

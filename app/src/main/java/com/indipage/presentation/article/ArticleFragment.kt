@@ -29,6 +29,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        binding.layoutWeekly.isVisible = true
     }
 
     private fun initView() {
@@ -146,6 +147,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 viewModel.putArticleSlide()
+                binding.layoutWeekly.isVisible = false
                 openArticleDetail(articleId)
             }
 
