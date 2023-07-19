@@ -35,7 +35,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         binding.btnArticleCategoryWeekly.isSelected = true
         initClickEventListeners()
         setUpArticleData()
-        motion()
     }
 
     private fun setUpArticleData() {
@@ -58,6 +57,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 }
                 articleWeekly = it
                 executePendingBindings()
+                motion(it.id.toLong())
             }
         }
 
@@ -131,7 +131,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         }
     }
 
-    private fun motion() {
+    private fun motion(articleId: Long) {
         binding.layoutCardAnimation.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?, startId: Int, endId: Int
@@ -146,6 +146,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 viewModel.putArticleSlide()
+                openArticleDetail(articleId)
             }
 
             override fun onTransitionTrigger(
