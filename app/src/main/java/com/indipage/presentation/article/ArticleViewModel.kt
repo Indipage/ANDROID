@@ -31,8 +31,11 @@ class ArticleViewModel @Inject constructor(
     private val _putArticleSlide = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val putArticleSlide: StateFlow<UiState<Int>> = _putArticleSlide.asStateFlow()
 
-    private val _openArticleDetail = MutableLiveData<Event<ResponseArticleWeeklyDto>>()
-    val openArticleDetail: LiveData<Event<ResponseArticleWeeklyDto>> = _openArticleDetail
+    private val _openArticleDetail1 = MutableLiveData<Event<ResponseArticleWeeklyDto>>()
+    val openArticleDetail1: LiveData<Event<ResponseArticleWeeklyDto>> = _openArticleDetail1
+
+    private val _openArticleDetail2 = MutableLiveData<Event<ResponseArticleAllDto>>()
+    val openArticleDetail2: LiveData<Event<ResponseArticleAllDto>> = _openArticleDetail2
 
     private val _articleAllData: MutableLiveData<List<ResponseArticleAllDto>> = MutableLiveData()
     val articleAllData: LiveData<List<ResponseArticleAllDto>> = _articleAllData
@@ -44,7 +47,11 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun openArticleDetail(responseArticleWeeklyDto: ResponseArticleWeeklyDto) {
-        _openArticleDetail.value = Event(responseArticleWeeklyDto)
+        _openArticleDetail1.value = Event(responseArticleWeeklyDto)
+    }
+
+    fun openArticleDetail2(responseArticleAllDto: ResponseArticleAllDto) {
+        _openArticleDetail2.value = Event(responseArticleAllDto)
     }
 
     private fun getArticleWeekly() = viewModelScope.launch {

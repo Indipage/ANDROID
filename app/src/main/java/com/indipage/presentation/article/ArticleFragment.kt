@@ -61,7 +61,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
         }
 
-        viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
+        viewModel.openArticleDetail1.observe(viewLifecycleOwner, EventObserver {
             openArticleDetail(it.id.toLong())
         })
     }
@@ -99,10 +99,14 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     private fun observeArticleAll() {
         viewModel.articleAllData.observe(viewLifecycleOwner) {
-            binding.rvArticle.adapter = ArticleAllAdapter().apply {
+            binding.rvArticle.adapter = ArticleAllAdapter(viewModel).apply {
                 submitList(it)
             }
         }
+
+        viewModel.openArticleDetail2.observe(viewLifecycleOwner, EventObserver {
+            openArticleDetail(it.id.toLong())
+        })
     }
 
     private fun initClickEventListeners() {
