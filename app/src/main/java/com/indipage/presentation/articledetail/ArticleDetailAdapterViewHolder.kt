@@ -30,7 +30,7 @@ class ArticleDetailAdapterViewHolder {
             override fun onClick(view: View) {
                 Toast.makeText(view.context, "문학 칵테일 클릭 이벤트", Toast.LENGTH_SHORT).show()
                 view.findNavController().navigate(
-                    R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId)
+                    R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId.toInt())
                 )
             }
 
