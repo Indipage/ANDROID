@@ -38,9 +38,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="40dp"
+                android:paddingHorizontal="32dp">
 
                 <TextView
+                    android:id="@+id/tv_card_switch_ticket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_ticket"
@@ -51,6 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_card_switch_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_card"
@@ -74,10 +77,10 @@
             android:id="@+id/cd_ticket_card"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="26dp"
             android:layout_marginHorizontal="42dp"
-            app:cardCornerRadius="17dp"
+            android:layout_marginTop="26dp"
             android:layout_marginBottom="17dp"
+            app:cardCornerRadius="17dp"
             app:layout_constraintBottom_toTopOf="@id/rv_ticket_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

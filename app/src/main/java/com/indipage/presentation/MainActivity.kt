@@ -29,8 +29,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 botNavMain.setupWithNavController(NavController)
             }
         }
-        setBottomVisible(navController)
 
+        setBottomVisible(navController)
     }
 
     private fun setBottomVisible(navController: NavController) {

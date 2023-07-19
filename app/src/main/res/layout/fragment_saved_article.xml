@@ -53,6 +53,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/co_saved_article_empty_view"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
