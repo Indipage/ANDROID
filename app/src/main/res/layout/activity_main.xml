@@ -26,7 +26,7 @@
             android:id="@+id/bot_nav_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="28dp"
+            android:paddingBottom="10dp"
             app:itemIconSize="50dp"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
