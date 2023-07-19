@@ -36,4 +36,8 @@ abstract class RepositoryModule {
     @Binds
     abstract fun providesArticleRepository(repoImpl: ArticleRepositoryImpl): ArticleRepository
 
+    @Singleton
+    @Binds
+    abstract fun providesSearchRepository(repoImpl: SearchRepositoryImpl): SearchRepository
+
 }

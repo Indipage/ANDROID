@@ -5,7 +5,6 @@ import com.indipage.data.datasource.BookMarkDataSource
 import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.data.dto.response.ResponseSpaceDto
-import com.indipage.data.dto.response.SavedSpace
 import javax.inject.Inject
 
 class BookMarkDataSourceImpl @Inject constructor(

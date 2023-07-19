@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
-
 @AndroidEntryPoint
 class ArticleDetailFragment :
     BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
@@ -70,6 +69,7 @@ class ArticleDetailFragment :
                             spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                         }
                     }
+
                     else -> {}
                 }
             }.launchIn(lifecycleScope)
@@ -83,11 +83,13 @@ class ArticleDetailFragment :
                         201 -> {
                             snackBar(requireView(), message = { "티켓을 받았어요!" })
                         }
+
                         409 -> {
                             snackBar(requireView(), message = { "이미 티켓을 받았어요!" })
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -112,11 +114,13 @@ class ArticleDetailFragment :
                         201 -> {
                             snackBar(requireView(), message = { "북마크 성공" })
                         }
+
                         404 -> {
                             Timber.d("존재하지 않는 아티클")
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -138,11 +142,13 @@ class ArticleDetailFragment :
                         200 -> {
                             snackBar(requireView(), message = { "북마크 취소" })
                         }
+
                         404 -> {
                             Timber.d("존재하지 않는 아티클")
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -165,10 +171,10 @@ class ArticleDetailFragment :
             }
             ivArticleDetailBookmark.setOnClickListener {
                 if (ivArticleDetailBookmark.isSelected) {
-                    arguments?.getLong("articleId")?.let { it -> viewModel.deleteBookMark(it) }
+                    arguments?.getLong("articleId")?.let { viewModel.deleteBookMark(it) }
                     binding.ivArticleDetailBookmark.isSelected = false
                 } else {
-                    arguments?.getLong("articleId")?.let { it -> viewModel.postBookMark(it) }
+                    arguments?.getLong("articleId")?.let { viewModel.postBookMark(it) }
                     binding.ivArticleDetailBookmark.isSelected = true
                 }
             }
