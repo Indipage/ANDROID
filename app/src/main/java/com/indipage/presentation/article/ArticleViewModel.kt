@@ -8,6 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.domain.repository.ArticleRepository
+import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,8 +30,8 @@ class ArticleViewModel @Inject constructor(
     private val _putArticleSlide = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val putArticleSlide: StateFlow<UiState<Int>> = _putArticleSlide.asStateFlow()
 
-    private val _openArticleDetail = MutableLiveData<ResponseArticleWeeklyDto>()
-    val openArticleDetail: LiveData<ResponseArticleWeeklyDto> = _openArticleDetail
+    private val _openArticleDetail = MutableLiveData<Event<ResponseArticleWeeklyDto>>()
+    val openArticleDetail: LiveData<Event<ResponseArticleWeeklyDto>> = _openArticleDetail
 
     init {
         getArticleWeekly()
@@ -38,7 +39,7 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun openArticleDetail(responseArticleWeeklyDto: ResponseArticleWeeklyDto) {
-        _openArticleDetail.value = responseArticleWeeklyDto
+        _openArticleDetail.value = Event(responseArticleWeeklyDto)
     }
 
     private fun getArticleWeekly() = viewModelScope.launch {

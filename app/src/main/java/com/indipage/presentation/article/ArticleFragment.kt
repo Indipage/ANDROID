@@ -14,6 +14,7 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleBinding
+import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -59,9 +60,9 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
         }
 
-        viewModel.openArticleDetail.observe(viewLifecycleOwner) {
+        viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
             openArticleDetail(it.id.toLong())
-        }
+        })
     }
 
     private fun observeArticleSlide() {
