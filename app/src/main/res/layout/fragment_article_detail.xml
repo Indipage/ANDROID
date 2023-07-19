@@ -195,14 +195,27 @@
                     android:id="@+id/iv_article_detail_ticket_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginBottom="92dp"
+                    android:layout_marginTop="28dp"
                     android:contentDescription="@string/iv_article_detail_ticket_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_ticket_detail"
                     app:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/tv_article_detail_ticket_push"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="80dp"
+                    android:text="@string/tv_article_detail_ticket_push"
+                    android:textAppearance="@style/TextAppearance.IndiPage.Body06"
+                    android:textColor="@color/indi_gray600"
+                    app:drawableTopCompat="@drawable/ic_article_detail_up"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_article_detail_ticket_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
