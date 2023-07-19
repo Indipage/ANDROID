@@ -26,11 +26,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                imageUrl="@{search.imageUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/iv_search_result"
-                tools:src="@drawable/ic_launcher_background"
-                imageUrl="@{search.imageUrl}" />
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_launcher_background" />
         </androidx.cardview.widget.CardView>
 
         <TextView

@@ -1,7 +1,5 @@
 package com.indipage.presentation.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
@@ -18,22 +16,21 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val apiRepository: SearchRepository) :
     ViewModel() {
-
-    private val _keyword = MutableLiveData<String>()
-    val keyword: LiveData<String> = _keyword
-
     private val _searchData = MutableStateFlow<UiState<List<ResponseSearchData>>>(UiState.Loading)
     val searchData: StateFlow<UiState<List<ResponseSearchData>>> = _searchData.asStateFlow()
 
+    init {
+        getSearchResult(null)
+    }
 
-    fun getSearchResult() = viewModelScope.launch {
-        apiRepository.getSearchResult(keyword.value)
+    fun getSearchResult(keyword: String?) = viewModelScope.launch {
+        apiRepository.getSearchResult(keyword)
             .onSuccess { searchData ->
                 _searchData.value = UiState.Success(searchData)
-                Timber.d("서치뷰 Success 성공! ${_searchData.value}")
+                Timber.d("검색 서버 통신 Success 성공! ${_searchData.value}")
             }
             .onFailure {
-                Timber.tag("서치뷰").d("Fail $it")
+                Timber.tag("검색").d("Fail $it")
             }
     }
 }

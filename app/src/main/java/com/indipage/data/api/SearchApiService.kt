@@ -6,7 +6,5 @@ import retrofit2.http.*
 
 interface SearchApiService {
     @GET("/space/list")
-    suspend fun getSearchResult(
-        @Query("keyword") keyword: String?
-    ): BaseResponse<List<ResponseSearchData>>
+    suspend fun getSearchResult(@Query("keyword") keyword: String?): BaseResponse<List<ResponseSearchData>>
 }

@@ -28,7 +28,6 @@ class SpaceDetailFragment :
     private val viewModel by viewModels<SpaceDetailViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val productId = requireArguments().getLong("spaceId")
         initView()
     }
 
