@@ -22,7 +22,10 @@ object ArticleDetailTag{
     val TAG_REGEX = "(<img>.*?</img>|<title>.*?</title>|<body>.*?</body>)".toRegex()
 }
 
-object WeeklyArticle{
+object WeeklyArticle {
     const val ITEM_OPEN = 0
     const val ITEM_PRE = 1
+
+    const val KEY_ARTICLE_ID = "articleId"
 }
+

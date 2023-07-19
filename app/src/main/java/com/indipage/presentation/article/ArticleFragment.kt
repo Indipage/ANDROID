@@ -14,6 +14,7 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleBinding
+import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -130,7 +131,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     private fun openArticleDetail(articleId: Long) {
         findNavController().navigate(
-            R.id.action_article_to_article_detail, bundleOf("articleId" to articleId)
+            R.id.action_article_to_article_detail, bundleOf(KEY_ARTICLE_ID to articleId)
         )
     }
 }
