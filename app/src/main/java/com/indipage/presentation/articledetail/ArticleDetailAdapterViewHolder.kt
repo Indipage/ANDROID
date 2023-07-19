@@ -12,6 +12,7 @@ import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -30,7 +31,8 @@ class ArticleDetailAdapterViewHolder {
             override fun onClick(view: View) {
                 Toast.makeText(view.context, "문학 칵테일 클릭 이벤트", Toast.LENGTH_SHORT).show()
                 view.findNavController().navigate(
-                    R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId.toInt())
+                    R.id.action_article_detail_to_space_detail,
+                    bundleOf("spaceId" to spaceId.toInt())
                 )
             }
 
@@ -43,8 +45,13 @@ class ArticleDetailAdapterViewHolder {
         fun onBind(data: ArticleDetailData) {
             var articleBody = data.body
 
+            ArticleDetailTag.LINE_TAG_REGEX.find(articleBody).apply {
+                binding.viewItemArticleDetailArticleBody.isVisible = true
+            }
+
             articleBody = articleBody.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
             binding.tvItemArticleDetailArticleBody.movementMethod = LinkMovementMethod()
+
 
             val spannable = SpannableStringBuilder(articleBody).apply {
                 ArticleDetailTag.COLOR_TAG_REGEX.findAll(articleBody).forEach { matchResult ->

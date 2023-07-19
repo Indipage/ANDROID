@@ -29,7 +29,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        binding.layoutWeekly.isVisible = true
     }
 
     private fun initView() {
