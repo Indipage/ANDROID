@@ -2,6 +2,7 @@ package com.indipage.presentation.ticket
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import timber.log.Timber
 
 class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper.Callback() {
     override fun onMove(
@@ -44,7 +45,16 @@ class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
     ) {
-        viewModel.openQR()
+        val position = viewHolder.adapterPosition
+        val adapter = recyclerView.adapter as? TicketAdapter
+        if (position != RecyclerView.NO_POSITION && adapter != null) {
+            val item = adapter.currentList.getOrNull(position)
+            item?.let {
+                viewModel.openQR(it.spaceId)
+            }
+        }
+
+
         getDefaultUIUtil().clearView((viewHolder as TicketAdapter.TicketViewHolder).itemView)
     }
 

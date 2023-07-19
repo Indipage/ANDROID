@@ -30,6 +30,7 @@
             android:id="@+id/action_navigation_ticket_to_qr_success"
             app:destination="@id/navigation_qr_success" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_my_page"
         android:name="com.indipage.presentation.profile.MyPageFragment"
@@ -41,6 +42,7 @@
             android:id="@+id/action_navigation_my_page_to_saved_space"
             app:destination="@id/navigation_saved_space" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_saved_article"
         android:name="com.indipage.presentation.savedarticle.SavedArticleFragment"
@@ -49,6 +51,7 @@
             android:id="@+id/action_navigation_saved_article_to_navigation_article_detail"
             app:destination="@id/navigation_article_detail" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_saved_space"
         android:name="com.indipage.presentation.savedspace.SavedSpaceFragment"
@@ -57,6 +60,7 @@
             android:id="@+id/action_navigation_saved_space_to_navigation_space_detail"
             app:destination="@id/navigation_space_detail" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_card"
         android:name="com.indipage.presentation.ticket.CardFragment"
@@ -65,8 +69,10 @@
             android:id="@+id/action_navigation_card_to_navigation_ticket"
             app:destination="@id/navigation_ticket"
             app:popUpTo="@id/navigation_article"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false"
+            />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_space_detail"
         android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
@@ -83,6 +89,7 @@
             android:id="@+id/action_article_detail_to_article"
             app:destination="@id/navigation_article" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_qr_success"
         android:name="com.indipage.presentation.qr.QrSuccessFragment"
@@ -91,6 +98,7 @@
             android:id="@+id/action_navigation_qr_success_to_navigation_card"
             app:destination="@id/navigation_card" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_article_all"
         android:name="com.indipage.presentation.article.ArticleAllFragment"
@@ -99,4 +107,5 @@
             android:id="@+id/action_article_all_to_article"
             app:destination="@id/navigation_article" />
     </fragment>
+
 </navigation>

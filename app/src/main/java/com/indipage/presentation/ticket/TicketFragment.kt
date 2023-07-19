@@ -20,6 +20,7 @@ import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity
+import com.indipage.util.Event
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -35,9 +36,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private lateinit var adapter: TicketAdapter
     private val viewModel by viewModels<TicketViewModel>()
+    private var testNum=0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initAdapter()
         initView()
         openQR()
@@ -73,6 +74,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private fun openQR() {
         viewModel.openQrEvent.observe(viewLifecycleOwner, EventObserver {
+            testNum=it
             onCustomScanButtonClicked()
         })
     }
@@ -122,17 +124,20 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         ScanContract()
     ) { result: ScanIntentResult ->
         if (result.contents != null) {
-            Timber.d(result.contents)
+            Timber.tag("QR TEST").d(result.contents)
+            Timber.tag("QR TEST 2").d("$testNum")
             if (result.contents.contains("http://3.37.34.144")) {
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                viewModel.isCheckQR(finalResult.toInt())
+                if (testNum==finalResult.toInt()) viewModel.isCheckQR(finalResult.toInt())
+                else toast("너 틀림 ㅋㅋㅋ 바보다바보다")
             } else {
                 toast("다시 시도해라")
             }
         }
     }
+
     private fun onCustomScanButtonClicked() {
         val options = ScanOptions()
         options.setOrientationLocked(false)

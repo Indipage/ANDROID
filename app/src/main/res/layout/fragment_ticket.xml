@@ -75,12 +75,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ticket_ticket"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="47dp"
             android:contentDescription="rv_ticket"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/frameLayout" />
 
