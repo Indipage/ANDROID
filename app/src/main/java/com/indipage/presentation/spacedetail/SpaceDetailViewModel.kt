@@ -5,11 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.BookmarkData
-import com.indipage.data.dto.response.CurationData
-import com.indipage.data.dto.response.FollowData
-import com.indipage.data.dto.response.SpaceArticleData
-import com.indipage.data.dto.response.SpaceDetailData
+import com.indipage.data.dto.response.*
 import com.indipage.domain.repository.SpaceDetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
