@@ -72,7 +72,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 if (it.hasSlide) {
                     vpArticle.isVisible = true
                 } else {
-                    layoutCardAnimation.isVisible = true
+                    layoutWeekly.isVisible = true
                 }
             }
         }
@@ -113,7 +113,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
                     rvArticle.isVisible = true
                     vpArticle.isVisible = false
-                    layoutCardAnimation.isVisible = false
+                    layoutWeekly.isVisible = false
                 }
             }
             btnArticleCategoryWeekly.setOnClickListener {
