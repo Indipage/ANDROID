@@ -2,6 +2,7 @@ package com.indipage.presentation.articledetail
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
 import com.indipage.util.ArticleDetailTag.TAG_REGEX
+import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -28,13 +30,13 @@ class ArticleDetailFragment :
     private val viewModel by viewModels<ArticleDetailViewModel>()
     private var spaceId: Long? = null
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
     }
 
     private fun initView() {
+        binding.model = viewModel
         getData()
         setUpArticleDetail()
         initClickEventListeners()
@@ -57,7 +59,8 @@ class ArticleDetailFragment :
         viewModel.articleDetailData.flowWithLifecycle(lifecycle).onEach { uiState ->
             when (uiState) {
                 is UiState.Success -> {
-                    val resultArticleArray = splitArticleContent(uiState.data.content)
+                    val resultArticleArray =
+                        splitArticleContent(uiState.data.content, uiState.data.spaceId.toLong())
                     with(binding) {
                         articleDetail = uiState.data
                         executePendingBindings()
@@ -70,6 +73,10 @@ class ArticleDetailFragment :
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+
+        viewModel.openSpaceDetail.observe(viewLifecycleOwner, EventObserver {
+            openSpaceDetail(it.spaceId.toLong())
+        })
     }
 
     private fun observeTicket() {
@@ -148,12 +155,6 @@ class ArticleDetailFragment :
 
     private fun initClickEventListeners() {
         with(binding) {
-            tvArticleDetailMoveToPlaceDetail1.setOnClickListener {
-                findNavController().navigate(R.id.action_article_detail_to_space_detail)
-            }
-            tvArticleDetailMoveToPlaceDetail2.setOnClickListener {
-                findNavController().navigate(R.id.action_article_detail_to_space_detail)
-            }
             ivArticleDetailTicketImage.setOnClickListener {
                 spaceId?.let { viewModel.postTicketReceive(it) }
             }
@@ -175,7 +176,7 @@ class ArticleDetailFragment :
     }
 
     //전체 아티클 내용 태그 별 분할
-    private fun splitArticleContent(input: String): List<ArticleDetailData> {
+    private fun splitArticleContent(input: String, spaceId: Long): List<ArticleDetailData> {
         var currentIndex = 0
         val articleList = mutableListOf<ArticleDetailData>()
 
@@ -184,18 +185,24 @@ class ArticleDetailFragment :
             val tagLessPart = input.substring(currentIndex, matchResult.range.first)
 
             if (tagLessPart.isNotBlank()) {
-                articleList.add(ArticleDetailData(tagLessPart))
+                articleList.add(ArticleDetailData(tagLessPart, spaceId))
             }
 
-            articleList.add(ArticleDetailData(matchResult.value))
+            articleList.add(ArticleDetailData(matchResult.value, spaceId))
             currentIndex = matchResult.range.last + 1
         }
 
         val lastTagLessPart = input.substring(currentIndex)
         if (lastTagLessPart.isNotBlank()) {
-            articleList.add(ArticleDetailData(lastTagLessPart))
+            articleList.add(ArticleDetailData(lastTagLessPart, spaceId))
         }
 
         return articleList
+    }
+
+    private fun openSpaceDetail(spaceId: Long) {
+        findNavController().navigate(
+            R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId)
+        )
     }
 }

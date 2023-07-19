@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -25,10 +26,12 @@ class ArticleDetailAdapterViewHolder {
     class ItemArticleDetailArticleBodyViewHolder(private val binding: ItemArticleDetailArticleBodyBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val clickableSpan = object : ClickableSpan() {
+        private fun clickableSpan(spaceId: Long) = object : ClickableSpan() {
             override fun onClick(view: View) {
                 Toast.makeText(view.context, "문학 칵테일 클릭 이벤트", Toast.LENGTH_SHORT).show()
-                view.findNavController().navigate(R.id.action_article_detail_to_space_detail)
+                view.findNavController().navigate(
+                    R.id.action_article_detail_to_space_detail, bundleOf("spaceId" to spaceId)
+                )
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -39,6 +42,7 @@ class ArticleDetailAdapterViewHolder {
         @SuppressLint("ResourceAsColor")
         fun onBind(data: ArticleDetailData) {
             var articleBody = data.body
+
             articleBody = articleBody.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
             binding.tvItemArticleDetailArticleBody.movementMethod = LinkMovementMethod()
 
@@ -63,7 +67,7 @@ class ArticleDetailAdapterViewHolder {
 
                 ArticleDetailTag.CLICK_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
                     setSpan(
-                        clickableSpan,
+                        clickableSpan(data.spaceId),
                         matchResult.range.first,
                         matchResult.range.last,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

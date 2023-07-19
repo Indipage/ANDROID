@@ -7,13 +7,13 @@ import com.indipage.databinding.ItemWeeklyArticlePreBinding
 
 class WeeklyArticleAdapterViewHolder() {
     class ItemWeeklyArticleOpenViewHolder(
-        private val binding: ItemWeeklyArticleOpenBinding, private val Model: ArticleViewModel
+        private val binding: ItemWeeklyArticleOpenBinding, private val model: ArticleViewModel
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: ResponseArticleWeeklyDto) {
             with(binding) {
                 articleWeekly = data
                 executePendingBindings()
-                binding.viewModel = Model
+                binding.viewModel = model
             }
         }
     }

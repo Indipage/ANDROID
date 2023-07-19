@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="model"
+            type="com.indipage.presentation.articledetail.ArticleDetailViewModel" />
+
+        <variable
             name="article_detail"
             type="com.indipage.data.dto.response.ResponseArticleDetailDto" />
     </data>
@@ -111,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="23dp"
                     android:background="@color/indi_black"
+                    android:onClick="@{()->model.openSpaceDetail(article_detail)}"
                     android:paddingHorizontal="32dp"
                     android:paddingTop="21dp"
                     android:text="@string/tv_article_detail_banner"
@@ -123,15 +128,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/indi_black"
+                    android:onClick="@{()->model.openSpaceDetail(article_detail)}"
                     android:paddingHorizontal="32dp"
                     android:paddingBottom="21dp"
                     android:text='@{(article_detail.spaceName)+"\n바로가기"}'
                     android:textAppearance="@style/TextAppearance.IndiPage.Body03"
                     android:textColor="@color/indi_green"
+                    app:drawableEndCompat="@drawable/ic_article_detail_go_to_place_detail_arrow"
                     app:layout_constraintBottom_toTopOf="@id/view_article_detail_1"
                     app:layout_constraintTop_toBottomOf="@id/tv_article_detail_move_to_place_detail_1"
-                    tools:text="문학살롱 초고\n바로가기"
-                    app:drawableEndCompat="@drawable/ic_article_detail_go_to_place_detail_arrow" />
+                    tools:text="문학살롱 초고\n바로가기" />
 
                 <View
                     android:id="@+id/view_article_detail_1"
