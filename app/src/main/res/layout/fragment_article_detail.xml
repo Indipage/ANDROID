@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="@{article_detail.createdAt}"
+                    android:text="@{article_detail.issueDate}"
                     android:textAppearance="@style/TextAppearance.IndiPage.Caption02"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
