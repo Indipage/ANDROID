@@ -11,9 +11,10 @@ import com.indipage.databinding.ItemWeeklyArticlePreBinding
 import com.indipage.util.WeeklyArticle.ITEM_OPEN
 import com.indipage.util.WeeklyArticle.ITEM_PRE
 
-class WeeklyArticleAdapter : ListAdapter<ResponseArticleWeeklyDto, RecyclerView.ViewHolder>(
-    WeeklyArticleAdapterDiffCallback
-) {
+class WeeklyArticleAdapter(private val viewModel: ArticleViewModel) :
+    ListAdapter<ResponseArticleWeeklyDto, RecyclerView.ViewHolder>(
+        WeeklyArticleAdapterDiffCallback
+    ) {
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getItemViewType(position: Int): Int {
@@ -24,16 +25,12 @@ class WeeklyArticleAdapter : ListAdapter<ResponseArticleWeeklyDto, RecyclerView.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_OPEN) {
             val binding = ItemWeeklyArticleOpenBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
-            WeeklyArticleAdapterViewHolder.ItemWeeklyArticleOpenViewHolder(binding)
+            WeeklyArticleAdapterViewHolder.ItemWeeklyArticleOpenViewHolder(binding, viewModel)
         } else {
             val binding = ItemWeeklyArticlePreBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
             WeeklyArticleAdapterViewHolder.ItemWeeklyArticlePreViewHolder(binding)
         }
@@ -52,10 +49,8 @@ class WeeklyArticleAdapter : ListAdapter<ResponseArticleWeeklyDto, RecyclerView.
     }
 
     companion object {
-        private val WeeklyArticleAdapterDiffCallback =
-            ItemDiffCallback<ResponseArticleWeeklyDto>(
-                onItemsTheSame = { old, new -> old.title == new.title },
-                onContentsTheSame = { old, new -> old == new }
-            )
+        private val WeeklyArticleAdapterDiffCallback = ItemDiffCallback<ResponseArticleWeeklyDto>(
+            onItemsTheSame = { old, new -> old.title == new.title },
+            onContentsTheSame = { old, new -> old == new })
     }
 }

@@ -3,6 +3,7 @@ package com.indipage.presentation.article
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -43,7 +44,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun observeArticleWeekly() {
         viewModel.articleWeeklyData.observe(viewLifecycleOwner) {
             with(binding) {
-                vpArticle.adapter = WeeklyArticleAdapter().apply { submitList(listOf(it, it)) }
+                vpArticle.adapter =
+                    WeeklyArticleAdapter(viewModel).apply { submitList(listOf(it, it)) }
                 vpArticle.offscreenPageLimit = 2
                 vpArticle.setPageTransformer { page, position ->
                     page.translationX =
@@ -56,14 +58,18 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
         }
 
+        viewModel.openArticleDetail.observe(viewLifecycleOwner) {
+            openArticleDetail(it.id.toLong())
+        }
     }
 
     private fun observeArticleSlide() {
         viewModel.articleSlideData.observe(viewLifecycleOwner) {
-            if (it.hasSlide) {
-                with(binding) {
-                    layoutCardAnimation.isVisible = false
+            with(binding) {
+                if (it.hasSlide) {
                     vpArticle.isVisible = true
+                } else {
+                    layoutCardAnimation.isVisible = true
                 }
             }
         }
@@ -101,33 +107,30 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun motion() {
         binding.layoutCardAnimation.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int
+                motionLayout: MotionLayout?, startId: Int, endId: Int
             ) {
             }
 
             override fun onTransitionChange(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int,
-                progress: Float
+                motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float
             ) {
 
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 viewModel.putArticleSlide()
-                findNavController().navigate(R.id.action_article_to_article_detail)
             }
 
             override fun onTransitionTrigger(
-                motionLayout: MotionLayout?,
-                triggerId: Int,
-                positive: Boolean,
-                progress: Float
+                motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float
             ) {
             }
         })
+    }
+
+    private fun openArticleDetail(articleId: Long) {
+        findNavController().navigate(
+            R.id.action_article_to_article_detail, bundleOf("articleId" to articleId)
+        )
     }
 }

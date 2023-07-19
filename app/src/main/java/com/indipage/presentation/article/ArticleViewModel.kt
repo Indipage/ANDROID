@@ -29,9 +29,16 @@ class ArticleViewModel @Inject constructor(
     private val _putArticleSlide = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val putArticleSlide: StateFlow<UiState<Int>> = _putArticleSlide.asStateFlow()
 
+    private val _openArticleDetail = MutableLiveData<ResponseArticleWeeklyDto>()
+    val openArticleDetail: LiveData<ResponseArticleWeeklyDto> = _openArticleDetail
+
     init {
         getArticleWeekly()
         getArticleSlide()
+    }
+
+    fun openArticleDetail(responseArticleWeeklyDto: ResponseArticleWeeklyDto) {
+        _openArticleDetail.value = responseArticleWeeklyDto
     }
 
     private fun getArticleWeekly() = viewModelScope.launch {
