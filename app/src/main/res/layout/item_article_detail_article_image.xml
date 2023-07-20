@@ -8,9 +8,8 @@
         android:id="@+id/iv_item_article_detail_article_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
+        android:layout_marginTop="35dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
