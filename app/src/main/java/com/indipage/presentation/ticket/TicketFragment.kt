@@ -145,7 +145,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         val options = ScanOptions()
         options.setOrientationLocked(false)
         options.setBeepEnabled(true)
-        options.setPrompt("커스텀 QR 스캐너 창")
+        options.setPrompt("QR코드를 인식해보세요!")
         options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
         options.captureActivity = QrScanActivity::class.java
         barcodeLauncher.launch(options)
