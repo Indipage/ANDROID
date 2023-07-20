@@ -37,6 +37,7 @@
                 imageUrl="@{spaceDetail.imageUrl}"
                 android:layout_width="0dp"
                 android:layout_height="444dp"
+                android:contentDescription="@string/iv_space_detail_background"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="54dp"
                 android:background="@color/zxing_transparent"
+                android:contentDescription="@string/iv_back"
                 android:paddingHorizontal="6dp"
                 android:paddingVertical="6dp"
                 android:src="@drawable/ic_back_wh"
@@ -63,7 +65,8 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginEnd="28dp"
                 android:background="@color/zxing_transparent"
-                android:paddingHorizontal="18dp"
+                android:contentDescription="@string/ib_bookmark_icon"
+                android:paddingHorizontal="10dp"
                 android:paddingVertical="18dp"
                 android:src="@drawable/selector_space_bookmark"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +82,7 @@
                 android:textColor="@color/indi_white"
                 app:layout_constraintBottom_toTopOf="@id/tv_space_address"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-                tools:text="문학살롱 초고" />
+                tools:text="임시 공간명" />
 
             <TextView
                 android:id="@+id/tv_space_address"
@@ -179,6 +182,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_title" />
 
             <ImageView
+                android:contentDescription="@string/iv_purple_frame"
                 android:id="@+id/iv_purple_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -223,7 +227,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="78dp"
-                android:text="특색요소"
+                android:text="@string/tv_peculiarity_title"
                 android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
@@ -243,6 +247,7 @@
                     imageUrl="@{spaceDetail.peculiarityImageUrl}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/iv_peculiarity"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/ic_launcher_background" />
 
@@ -253,7 +258,7 @@
 
                     <TextView
                         android:id="@+id/tv_peculiarity_subtitle"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginBottom="8dp"
@@ -261,11 +266,11 @@
                         android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                         android:textColor="@color/indi_black"
                         app:layout_constraintBottom_toTopOf="@id/tv_peculiarity_comment"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TextView
                         android:id="@+id/tv_peculiarity_comment"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginBottom="24dp"
@@ -274,7 +279,7 @@
                         android:textAppearance="@style/TextAppearance.IndiPage.Body04"
                         android:textColor="@color/indi_black"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
@@ -284,7 +289,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="76dp"
-                android:text="공간이야기"
+                android:text="@string/tv_article_follow"
                 android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -303,7 +308,7 @@
                     android:id="@+id/tv_article_follow_comment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="인디페이지에서 서점이야기를 준비 중이에요.\n빠른 소식을 원한다면 아래 ‘조르기’ 버튼을 눌러주세요:)"
+                    android:text="@string/tv_article_follow_comment"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body06"
                     android:textColor="@color/indi_gray400"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -318,7 +323,7 @@
                     android:layout_marginBottom="84dp"
                     android:background="@drawable/selector_follow_button"
                     android:paddingVertical="20dp"
-                    android:text="아티클 조르기"
+                    android:text="@string/btn_follow"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body03"
                     android:textColor="@color/indi_white"
                     app:elevation="0dp"
@@ -334,6 +339,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="7dp"
+                android:layout_marginBottom="84dp"
+                android:paddingHorizontal="32dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/tv_article_follow">
 
@@ -341,12 +348,12 @@
                     android:id="@+id/cv_saved_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="32dp"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
+                        android:contentDescription="@string/iv_saved_article_background"
                         android:id="@+id/iv_saved_article_background"
                         imageUrl="@{spaceArticle.imageUrl}"
                         android:layout_width="match_parent"
@@ -401,8 +408,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="wrap_content"
                             android:layout_height="33dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginBottom="14dp"
                             android:background="@drawable/shape_black_fill_12_rect"
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="8dp"
