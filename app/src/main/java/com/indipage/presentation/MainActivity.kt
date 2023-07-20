@@ -35,15 +35,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         setBottomVisible(navController)
     }
 
-    override fun onBackPressed() {
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - backPressedTime < FINISH_INTERVAL_TIME) {
-            super.onBackPressed()
-        } else {
-            backPressedTime = currentTime
-            toast("뒤로 가기 버튼을 한번 더 눌르면 종료")
-        }
-    }
+
     private fun setBottomVisible(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.botNavMain.visibility = if (destination.id in listOf(
