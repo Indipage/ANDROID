@@ -10,6 +10,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
+import com.example.core_ui.context.toast
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
@@ -42,7 +43,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         observeArticleSlide()
         observeArticleAll()
     }
-
     private fun observeArticleWeekly() {
         viewModel.articleWeeklyData.observe(viewLifecycleOwner) {
             with(binding) {
