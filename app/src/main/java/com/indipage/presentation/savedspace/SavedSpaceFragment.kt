@@ -58,7 +58,6 @@ class SavedSpaceFragment :
                     adapter.submitList(it.data)
                     binding.coSavedSpaceEmptyView.visibility =
                         if (it.data.isEmpty()) View.VISIBLE else View.GONE
-
                 }
                 else -> {}
             }
