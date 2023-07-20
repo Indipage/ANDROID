@@ -16,17 +16,16 @@ object ArticleDetailTag {
     val COLOR_TAG_REGEX = "(<color>.*?</color>)".toRegex()
     val CLICK_TAG_REGEX = "(<click>.*?</click>)".toRegex()
     val LINE_TAG_REGEX = "(<hr>)".toRegex()
-    val REPLACE_TAG_REGEX = "(<img>|</img>|<title>|</title>|<body>|</body>)".toRegex()
+    val REPLACE_TAG_REGEX = "(<img>|</img>|<title>|</title>|<body>|</body>|<hr>|</hr>)".toRegex()
     val REPLACE_STYLE_START_TAG_REGEX = "(((<bold>)?(<color>)?(<link>)?)+)".toRegex()
     val REPLACE_STYLE_END_TAG_REGEX = "(((</link>)?(</bold>)?(</color>)?)+)".toRegex()
 
-    val TAG_REGEX = "(<img>.*?</img>|<title>.*?</title>|<body>.*?</body>)|<hr>".toRegex()
+    val TAG_REGEX = "(<img>.*?</img>|<title>.*?</title>|<body>.*?</body>|<hr>*?</hr>)".toRegex()
 }
 
 object WeeklyArticle {
     const val ITEM_OPEN = 0
     const val ITEM_PRE = 1
-
     const val KEY_ARTICLE_ID = "articleId"
 }
 

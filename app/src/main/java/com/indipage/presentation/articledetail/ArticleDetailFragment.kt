@@ -1,5 +1,6 @@
 package com.indipage.presentation.articledetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -53,7 +54,6 @@ class ArticleDetailFragment :
         bottomTicketAdapter = ArticleDetailBottomTicketAdapter(viewModel)
         binding.rvArticleDetailArticleBody.adapter =
             ConcatAdapter(headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter)
-
     }
 
     private fun getData() {
@@ -95,6 +95,7 @@ class ArticleDetailFragment :
         })
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun observeTicket() {
         viewModel.postTicketReceive.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -114,6 +115,10 @@ class ArticleDetailFragment :
 
         viewModel.ticketReceiveCheckData.observe(viewLifecycleOwner) {
             bottomTicketAdapter.apply { submitList(listOf(it)) }
+        }
+
+        viewModel.getArticleTicket.observe(viewLifecycleOwner) {
+            spaceId?.let { viewModel.getTicketReceiveCheck(it) }
         }
     }
 

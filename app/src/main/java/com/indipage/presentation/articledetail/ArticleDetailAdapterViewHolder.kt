@@ -45,7 +45,8 @@ class ArticleDetailAdapterViewHolder {
         fun onBind(data: ArticleDetailData) {
             var articleBody = data.body
 
-            ArticleDetailTag.LINE_TAG_REGEX.find(articleBody).apply {
+            binding.viewItemArticleDetailArticleBody.isVisible = false
+            repeat(ArticleDetailTag.LINE_TAG_REGEX.findAll(articleBody).count()) {
                 binding.viewItemArticleDetailArticleBody.isVisible = true
             }
 

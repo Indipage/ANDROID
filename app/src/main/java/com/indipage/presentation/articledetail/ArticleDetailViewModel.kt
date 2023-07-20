@@ -47,13 +47,11 @@ class ArticleDetailViewModel @Inject constructor(
     private val _openSpaceDetail = MutableLiveData<Event<ResponseArticleDetailDto>>()
     val openSpaceDetail: LiveData<Event<ResponseArticleDetailDto>> = _openSpaceDetail
 
+    private val _getArticleTicket = MutableLiveData<Int>()
+    val getArticleTicket: LiveData<Int> = _getArticleTicket
+
     fun openSpaceDetail(responseArticleDetailDto: ResponseArticleDetailDto) {
         _openSpaceDetail.value = Event(responseArticleDetailDto)
-    }
-
-    fun postAndGetTicket(responseTicketReceiveCheckDto: ResponseTicketReceiveCheckDto) {
-        postTicketReceive(responseTicketReceiveCheckDto.ticket.id.toLong())
-        getTicketReceiveCheck(responseTicketReceiveCheckDto.ticket.id.toLong())
     }
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
@@ -73,6 +71,7 @@ class ArticleDetailViewModel @Inject constructor(
     fun postTicketReceive(spaceId: Long) = viewModelScope.launch {
         apiRepository.postTicketReceive(spaceId).onSuccess {
             _postTicketReceive.value = UiState.Success(it)
+            _getArticleTicket.value = 200
             Timber.d("Success")
         }.onFailure {
             _postTicketReceive.value = UiState.Success(409)
