@@ -14,6 +14,7 @@ import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
+import com.indipage.data.dto.response.ResponseQrDto
 import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
@@ -91,25 +92,26 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     }
 
     private fun getCollectQrScanData() {
-        viewModel.qrResponseCode.flowWithLifecycle(lifecycle).onEach {
+        viewModel.qrResponse.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     Timber.d("${it.data},$it")
                     when (it.data) {
-                        200 -> {
+                        ResponseQrDto("error") ->{
+                            Timber.d("failure QR")
+                            moveFailQrDialog()
+                        }
+                        else ->{
                             Timber.d("Success QR")
                             Handler().postDelayed({
                                 findNavController().navigate(
                                     R.id.action_navigation_ticket_to_qr_success,
-                                    bundleOf()
+                                    bundleOf("cardImageUrl" to it.data.cardImageUrl)
                                 )
                             }, 100)
                             viewModel.closeQR()
                         }
-                        404 -> {
-                            Timber.d("failure QR")
-                            moveFailQrDialog()
-                        }
+
                     }
                 }
                 else -> {}
