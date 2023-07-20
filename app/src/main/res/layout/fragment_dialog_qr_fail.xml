@@ -19,6 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingHorizontal="16dp"
                 android:background="@drawable/shape_white_fill_18_rect">
 
                 <ImageView
@@ -50,13 +51,14 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_qr_fail_exit"
                     android:layout_width="0dp"
+                    android:paddingHorizontal="32dp"
                     android:layout_height="53dp"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/shape_gray200_fill_6_rect"
                     android:text="@string/tv_qr_fail_exit"
+                    android:layout_marginBottom="23dp"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body03"
                     android:textColor="@color/indi_gray400"
-                    app:layout_constraintEnd_toStartOf="@id/btn_qr_fail_retry"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_qr_fail_intro" />
 
@@ -71,6 +73,7 @@
                     android:textColor="@color/indi_white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="9dp"
                     app:layout_constraintStart_toEndOf="@id/btn_qr_fail_exit"
                     app:layout_constraintTop_toTopOf="@id/btn_qr_fail_exit" />
 

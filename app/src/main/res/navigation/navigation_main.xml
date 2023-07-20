@@ -15,7 +15,11 @@
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.indipage.presentation.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_navigation_search_to_navigation_space_detail"
+            app:destination="@id/navigation_space_detail" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_ticket"
         android:name="com.indipage.presentation.ticket.TicketFragment"

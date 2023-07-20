@@ -42,7 +42,7 @@ class SavedSpaceViewModel @Inject constructor(
                 Timber.d("Success")
             }
             .onFailure {
-                Timber.d("Fail")
+                Timber.d("Fail$it")
             }
     }
 

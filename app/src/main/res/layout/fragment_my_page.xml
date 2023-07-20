@@ -78,8 +78,8 @@
                 <ImageView
                     android:id="@+id/iv_my_page_profile_article"
                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:scaleType="fitXY"
-                    android:layout_height="74dp"
                     android:src="@drawable/ic_my_page_article"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,10 +124,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:scaleType="fitXY"
                     android:id="@+id/iv_my_page_profile_space"
                     android:layout_width="match_parent"
-                    android:layout_height="74dp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/ic_my_page_book"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
