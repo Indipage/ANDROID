@@ -108,15 +108,19 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                         }
                         404 -> {
                             Timber.d("failure QR")
-                            val dialog = DialogQrFailFragment()
-                            dialog.setCheckDialogListener(this)
-                            dialog.show(parentFragmentManager, "dialog")
+                            moveFailQrDialog()
                         }
                     }
                 }
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun moveFailQrDialog() {
+        val dialog = DialogQrFailFragment()
+        dialog.setCheckDialogListener(this)
+        dialog.show(parentFragmentManager, "dialog")
     }
 
     private val barcodeLauncher = registerForActivityResult(
@@ -132,7 +136,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 if (testNum==finalResult.toInt()) viewModel.isCheckQR(finalResult.toInt())
                 else toast("이티켓에 대한 큐알이 아니다.")
             } else {
-                toast("다시 시도해라")
+                moveFailQrDialog()
             }
         }
     }
