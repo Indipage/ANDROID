@@ -21,6 +21,7 @@
         app:zxing_viewfinder_mask="@color/zxing_custom_viewfinder_mask" />
 
     <TextView
+        android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
         android:id="@+id/zxing_status_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
         android:layout_marginTop="189dp"
         android:background="@color/zxing_transparent"
         android:padding="10dp"
-        android:text="QR코드를 인색해보세요"
+        android:text="QR코드를 인식해보세요"
         android:textColor="@color/zxing_status_text" />
 
 </merge>
