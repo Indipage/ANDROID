@@ -118,7 +118,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     rvArticle.isVisible = true
                     vpArticle.isVisible = false
                     layoutWeekly.isVisible = false
-                    observeArticleAll()
+                    viewModel.getArticleAll()
                 }
             }
             btnArticleCategoryWeekly.setOnClickListener {
@@ -126,7 +126,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
                     btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
                     rvArticle.isVisible = false
-                    observeArticleSlide()
+                    viewModel.getArticleSlide()
                 }
             }
         }

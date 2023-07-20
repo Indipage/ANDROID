@@ -61,7 +61,7 @@ class ArticleViewModel @Inject constructor(
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
-    private fun getArticleSlide() = viewModelScope.launch {
+    fun getArticleSlide() = viewModelScope.launch {
         apiRepository.getArticleSlide().onSuccess {
             _articleSlideData.value = it
             Timber.d("Success")
@@ -80,7 +80,7 @@ class ArticleViewModel @Inject constructor(
         }
     }
 
-    private fun getArticleAll() = viewModelScope.launch {
+    fun getArticleAll() = viewModelScope.launch {
         apiRepository.getArticleAll().onSuccess {
             _articleAllData.value = it
             Timber.d("Success")
