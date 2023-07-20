@@ -52,8 +52,9 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun postAndGetTicket(responseTicketReceiveCheckDto: ResponseTicketReceiveCheckDto) {
-        postTicketReceive(responseTicketReceiveCheckDto.ticket.id.toLong())
-        getTicketReceiveCheck(responseTicketReceiveCheckDto.ticket.id.toLong())
+        postTicketReceive(responseTicketReceiveCheckDto.ticket.id.toLong()).apply {
+            getTicketReceiveCheck(responseTicketReceiveCheckDto.ticket.id.toLong())
+        }
     }
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
@@ -70,7 +71,7 @@ class ArticleDetailViewModel @Inject constructor(
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun postTicketReceive(spaceId: Long) = viewModelScope.launch {
+    private fun postTicketReceive(spaceId: Long) = viewModelScope.launch {
         apiRepository.postTicketReceive(spaceId).onSuccess {
             _postTicketReceive.value = UiState.Success(it)
             Timber.d("Success")

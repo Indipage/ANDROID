@@ -30,10 +30,12 @@
 
         <TextView
             android:id="@+id/tv_item_article_detail_head_author"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="21dp"
             android:text="@{article_detail.spaceOwner}"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
             android:textColor="@color/indi_black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,10 +45,11 @@
 
         <TextView
             android:id="@+id/tv_item_article_detail_head_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="27px"
+            android:layout_marginHorizontal="32dp"
             android:text="@{article_detail.title}"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
             android:textColor="@color/indi_black"
             app:layout_constraintEnd_toEndOf="parent"

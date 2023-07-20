@@ -118,6 +118,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     rvArticle.isVisible = true
                     vpArticle.isVisible = false
                     layoutWeekly.isVisible = false
+                    observeArticleAll()
                 }
             }
             btnArticleCategoryWeekly.setOnClickListener {
