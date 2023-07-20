@@ -11,8 +11,6 @@ data class ResponseArticleDetailDto(
     val title: String,
     @SerialName("content")
     val content: String,
-    @SerialName("createdAt")
-    val createdAt: String,
     @SerialName("issueDate")
     val issueDate: String,
     @SerialName("thumbnailUrl")
