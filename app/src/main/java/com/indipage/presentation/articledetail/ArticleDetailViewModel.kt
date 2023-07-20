@@ -1,6 +1,5 @@
 package com.indipage.presentation.articledetail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -59,8 +58,8 @@ class ArticleDetailViewModel @Inject constructor(
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun getTicketReceiveCheck(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getTicketReceiveCheck(spaceId.toLong()).onSuccess {
+    fun getTicketReceiveCheck(spaceId: Long) = viewModelScope.launch {
+        apiRepository.getTicketReceiveCheck(spaceId).onSuccess {
             _ticketReceiveCheckData.value = it
             Timber.d("Success")
         }.onFailure { Timber.d(it.message.toString()) }

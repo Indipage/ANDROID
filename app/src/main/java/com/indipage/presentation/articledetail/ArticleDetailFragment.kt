@@ -69,7 +69,7 @@ class ArticleDetailFragment :
                         rvArticleDetailArticleBody.adapter =
                             ArticleDetailAdapter().apply { submitList(resultArticleArray) }
                         spaceId = uiState.data.spaceId.toLong()
-                        spaceId?.let { viewModel.getTicketReceiveCheck(it.toInt()) }
+                        spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                     }
                 }
                 else -> {}
@@ -158,7 +158,10 @@ class ArticleDetailFragment :
     private fun initClickEventListeners() {
         with(binding) {
             ivArticleDetailTicketImage.setOnClickListener {
-                spaceId?.let { spaceId -> viewModel.postTicketReceive(spaceId) }
+                spaceId?.let { spaceId ->
+                    viewModel.postTicketReceive(spaceId)
+                    viewModel.getTicketReceiveCheck(spaceId)
+                }
             }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigateUp()

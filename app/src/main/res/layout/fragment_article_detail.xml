@@ -211,7 +211,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:contentDescription="@string/iv_article_detail_ticket_image"
-                    android:onClick="@{() -> model.getTicketReceiveCheck(article_detail.spaceId)}"
                     android:src="@drawable/img_article_detail_ticket_empty"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
