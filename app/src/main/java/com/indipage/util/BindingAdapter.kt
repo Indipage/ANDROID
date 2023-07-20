@@ -20,6 +20,7 @@ fun loadImage(view: ImageView, url: String?) {
     view.load(url)
 }
 
+
 @BindingAdapter("setCircleImage")
 fun ImageView.setCircleImage(img: String?) {
     load(img) {

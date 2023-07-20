@@ -12,10 +12,21 @@
         android:layout_height="match_parent"
         tools:context=".presentation.ticket.TicketFragment">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +35,8 @@
             <Switch
                 android:id="@+id/switch_ticket"
                 android:layout_width="290dp"
-                android:layout_gravity="center"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:showText="true"
                 android:textColor="@color/black"
                 android:textOff=""
@@ -37,8 +48,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:paddingHorizontal="32dp"
-                android:layout_height="40dp">
+                android:layout_height="40dp"
+                android:paddingHorizontal="32dp">
 
                 <TextView
                     android:id="@+id/tv_ticket_switch_ticket"
@@ -87,9 +98,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/co_ticket_empty_view"
-            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

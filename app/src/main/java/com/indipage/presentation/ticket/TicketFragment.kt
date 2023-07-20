@@ -52,7 +52,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private fun initView() {
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
             when (it) {
+
                 is UiState.Success -> {
+                    binding.progressBar.visibility=View.GONE
                     adapter.submitList(it.data)
                     binding.coTicketEmptyView.visibility = if (it.data.isEmpty()) View.VISIBLE else View.GONE
                 }
@@ -106,15 +108,19 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                         }
                         404 -> {
                             Timber.d("failure QR")
-                            val dialog = DialogQrFailFragment()
-                            dialog.setCheckDialogListener(this)
-                            dialog.show(parentFragmentManager, "dialog")
+                            moveFailQrDialog()
                         }
                     }
                 }
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun moveFailQrDialog() {
+        val dialog = DialogQrFailFragment()
+        dialog.setCheckDialogListener(this)
+        dialog.show(parentFragmentManager, "dialog")
     }
 
     private val barcodeLauncher = registerForActivityResult(
@@ -128,9 +134,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
                 if (testNum==finalResult.toInt()) viewModel.isCheckQR(finalResult.toInt())
-                else toast("너 틀림 ㅋㅋㅋ 바보다바보다")
+                else toast("이티켓에 대한 큐알이 아니다.")
             } else {
-                toast("다시 시도해라")
+                moveFailQrDialog()
             }
         }
     }
