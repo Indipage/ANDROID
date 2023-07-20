@@ -8,7 +8,7 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseSearchData
 import com.indipage.databinding.ItemSearchBinding
 
-class SearchAdapter() :
+class SearchAdapter(private val viewModel: SearchViewModel) :
     ListAdapter<ResponseSearchData, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -21,10 +21,11 @@ class SearchAdapter() :
         holder.bind(getItem(position))
     }
 
-    class SearchViewHolder(
+    inner class SearchViewHolder(
         private val binding: ItemSearchBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseSearchData) {
+            binding.vm=viewModel
             binding.search = data
         }
     }

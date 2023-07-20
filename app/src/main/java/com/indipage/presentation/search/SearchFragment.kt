@@ -4,16 +4,19 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.data.dto.response.ResponseSearchData
 import com.indipage.databinding.FragmentSearchBinding
 import com.indipage.util.Debouncer
+import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -29,6 +32,15 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
         super.onViewCreated(view, savedInstanceState)
         getSearchResult()
         initEditText()
+
+        viewModel.openSpaceEvent.observe(viewLifecycleOwner, EventObserver {
+            Timber.d("test $it")
+            findNavController().navigate(
+                R.id.action_navigation_search_to_navigation_space_detail, bundleOf(
+                    "spaceId" to it.toInt()
+                )
+            )
+        })
     }
 
     private fun getSearchResult() {
@@ -59,7 +71,7 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
     private fun initAdapter(data: List<ResponseSearchData>) {
         Timber.d("검색 리사이클러뷰 초기화")
-        adapter = SearchAdapter()
+        adapter = SearchAdapter(viewModel)
         binding.rvSearch.adapter = adapter.apply {
             submitList(data)
         }
