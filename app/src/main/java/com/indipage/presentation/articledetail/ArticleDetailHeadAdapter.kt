@@ -31,7 +31,6 @@ class ArticleDetailHeadAdapter(private val viewModel: ArticleDetailViewModel) :
                 articleDetail = data
                 executePendingBindings()
                 binding.viewModel = model
-
             }
         }
     }

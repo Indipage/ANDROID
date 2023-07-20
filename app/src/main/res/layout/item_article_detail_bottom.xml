@@ -53,29 +53,5 @@
             app:layout_constraintTop_toBottomOf="@id/tv_item_article_detail_bottom_ticket_title"
             tools:text="@string/tv_article_detail_ticket_detail" />
 
-        <ImageView
-            android:id="@+id/iv_item_article_detail_bottom_ticket_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:contentDescription="@string/iv_article_detail_ticket_image"
-            android:src="@drawable/img_article_detail_ticket_empty"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_article_detail_bottom_ticket_detail" />
-
-        <TextView
-            android:id="@+id/tv_item_article_detail_bottom_ticket_push"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="@string/tv_article_detail_ticket_push"
-            android:textAppearance="@style/TextAppearance.IndiPage.Body06"
-            android:textColor="@color/indi_gray600"
-            app:drawableTopCompat="@drawable/ic_article_detail_up"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_item_article_detail_bottom_ticket_image" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

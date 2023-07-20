@@ -51,6 +51,11 @@ class ArticleDetailViewModel @Inject constructor(
         _openSpaceDetail.value = Event(responseArticleDetailDto)
     }
 
+    fun postAndGetTicket(responseTicketReceiveCheckDto: ResponseTicketReceiveCheckDto) {
+        postTicketReceive(responseTicketReceiveCheckDto.ticket.id.toLong())
+        getTicketReceiveCheck(responseTicketReceiveCheckDto.ticket.id.toLong())
+    }
+
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId).onSuccess {
             _articleDetailData.value = UiState.Success(it)
