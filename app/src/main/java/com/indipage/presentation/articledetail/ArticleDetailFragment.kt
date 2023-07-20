@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import coil.load
+import androidx.recyclerview.widget.ConcatAdapter
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.snackBar
 import com.example.core_ui.fragment.toast
@@ -37,7 +37,6 @@ class ArticleDetailFragment :
     }
 
     private fun initView() {
-        binding.model = viewModel
         getData()
         setUpArticleDetail()
         initClickEventListeners()
@@ -66,8 +65,14 @@ class ArticleDetailFragment :
                     with(binding) {
                         articleDetail = uiState.data
                         executePendingBindings()
-                        rvArticleDetailArticleBody.adapter =
+                        val headAdapter =
+                            ArticleDetailHeadAdapter(viewModel).apply { submitList(listOf(uiState.data)) }
+                        val contentAdapter =
                             ArticleDetailAdapter().apply { submitList(resultArticleArray) }
+                        val bottomAdapter =
+                            ArticleDetailBottomAdapter(viewModel).apply { submitList(listOf(uiState.data)) }
+                        rvArticleDetailArticleBody.adapter =
+                            ConcatAdapter(headAdapter, contentAdapter, bottomAdapter)
                         spaceId = uiState.data.spaceId.toLong()
                         spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                     }
@@ -100,7 +105,7 @@ class ArticleDetailFragment :
 
         viewModel.ticketReceiveCheckData.observe(viewLifecycleOwner) {
             if (it.hasReceivedTicket) {
-                binding.ivArticleDetailTicketImage.load(it.ticket.ticketImageUrl)
+
                 Timber.d("티켓 받음")
                 toast("티켓 받음")
             } else {
@@ -157,12 +162,6 @@ class ArticleDetailFragment :
 
     private fun initClickEventListeners() {
         with(binding) {
-            ivArticleDetailTicketImage.setOnClickListener {
-                spaceId?.let { spaceId ->
-                    viewModel.postTicketReceive(spaceId)
-                    viewModel.getTicketReceiveCheck(spaceId)
-                }
-            }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
