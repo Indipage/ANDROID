@@ -36,8 +36,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingHorizontal="32dp">
+                android:layout_height="40dp">
 
                 <TextView
                     android:id="@+id/tv_card_switch_ticket"
