@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="url"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +41,9 @@
             app:layout_constraintTop_toBottomOf="@id/tv_qr_success_title" />
 
         <ImageView
-            android:rotationY="9"
+            imageUrl="@{url}"
+            android:id="@+id/iv_card"
+            android:rotation="-9"
             android:src="@drawable/ic_launcher_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
