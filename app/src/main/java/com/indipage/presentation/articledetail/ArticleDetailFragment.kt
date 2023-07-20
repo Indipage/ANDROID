@@ -3,14 +3,14 @@ package com.indipage.presentation.articledetail
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import coil.load
+import androidx.recyclerview.widget.ConcatAdapter
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.snackBar
-import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
@@ -29,6 +29,10 @@ class ArticleDetailFragment :
 
     private val viewModel by viewModels<ArticleDetailViewModel>()
     private var spaceId: Long? = null
+    private lateinit var headAdapter: ArticleDetailHeadAdapter
+    private lateinit var contentAdapter: ArticleDetailAdapter
+    private lateinit var bottomAdapter: ArticleDetailBottomAdapter
+    private lateinit var bottomTicketAdapter: ArticleDetailBottomTicketAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,10 +40,20 @@ class ArticleDetailFragment :
     }
 
     private fun initView() {
-        binding.model = viewModel
         getData()
         setUpArticleDetail()
         initClickEventListeners()
+        concatAdapter()
+    }
+
+    private fun concatAdapter() {
+        headAdapter = ArticleDetailHeadAdapter(viewModel)
+        contentAdapter = ArticleDetailAdapter()
+        bottomAdapter = ArticleDetailBottomAdapter(viewModel)
+        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(viewModel)
+        binding.rvArticleDetailArticleBody.adapter =
+            ConcatAdapter(headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter)
+
     }
 
     private fun getData() {
@@ -59,13 +73,15 @@ class ArticleDetailFragment :
         viewModel.articleDetailData.flowWithLifecycle(lifecycle).onEach { uiState ->
             when (uiState) {
                 is UiState.Success -> {
+                    binding.progressArticleDetail.isVisible = false
                     val resultArticleArray =
                         splitArticleContent(uiState.data.content, uiState.data.spaceId.toLong())
                     with(binding) {
                         articleDetail = uiState.data
                         executePendingBindings()
-                        rvArticleDetailArticleBody.adapter =
-                            ArticleDetailAdapter().apply { submitList(resultArticleArray) }
+                        headAdapter.apply { submitList(listOf(uiState.data)) }
+                        contentAdapter.apply { submitList(resultArticleArray) }
+                        bottomAdapter.apply { submitList(listOf(uiState.data)) }
                         spaceId = uiState.data.spaceId.toLong()
                         spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                     }
@@ -97,14 +113,7 @@ class ArticleDetailFragment :
         }.launchIn(lifecycleScope)
 
         viewModel.ticketReceiveCheckData.observe(viewLifecycleOwner) {
-            if (it.hasReceivedTicket) {
-                binding.ivArticleDetailTicketImage.load(it.ticket.ticketImageUrl)
-                Timber.d("티켓 받음")
-                toast("티켓 받음")
-            } else {
-                Timber.d("티켓 안 받음")
-                toast("티켓 안 받음")
-            }
+            bottomTicketAdapter.apply { submitList(listOf(it)) }
         }
     }
 
@@ -155,9 +164,6 @@ class ArticleDetailFragment :
 
     private fun initClickEventListeners() {
         with(binding) {
-            ivArticleDetailTicketImage.setOnClickListener {
-                spaceId?.let { viewModel.postTicketReceive(it) }
-            }
             toolbarArticleDetail.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }

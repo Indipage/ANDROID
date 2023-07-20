@@ -38,13 +38,14 @@
 
         <TextView
             android:id="@+id/tv_item_weekly_article_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="24dp"
-            android:text="@{article_weekly.spaceName}"
+            android:text="@{article_weekly.title}"
             android:textAppearance="@style/TextAppearance.IndiPage.Title01"
             android:textColor="@color/indi_white"
+            app:layout_constraintEnd_toEndOf="@id/iv_item_weekly_article_place_image"
             app:layout_constraintStart_toStartOf="@id/iv_item_weekly_article_place_image"
             app:layout_constraintTop_toTopOf="@id/iv_item_weekly_article_place_image"
             tools:text="반복되는 일상 속\n나만의 아지트가\n되어주는 공간" />
@@ -54,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="@{article_weekly.title}"
+            android:text="@{article_weekly.spaceName}"
             android:textAppearance="@style/TextAppearance.IndiPage.Title02"
             android:textColor="@color/indi_green"
             app:layout_constraintBottom_toTopOf="@id/tv_item_weekly_article_author"

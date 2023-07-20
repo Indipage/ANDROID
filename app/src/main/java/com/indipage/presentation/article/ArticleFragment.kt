@@ -146,6 +146,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 viewModel.putArticleSlide()
+                binding.layoutWeekly.isVisible = false
                 openArticleDetail(articleId)
             }
 

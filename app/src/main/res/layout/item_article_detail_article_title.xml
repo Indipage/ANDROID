@@ -9,10 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="35dp"
-        android:lineSpacingExtra="28px"
+        android:layout_marginTop="35dp"
         android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/indi_black"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
