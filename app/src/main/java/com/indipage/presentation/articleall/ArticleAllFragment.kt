@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleAllBinding
-import com.indipage.presentation.article.ArticleAllAdapter
 import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle
 import dagger.hilt.android.AndroidEntryPoint
