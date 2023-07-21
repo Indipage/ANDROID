@@ -34,6 +34,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun initView() {
         binding.btnArticleCategoryWeekly.isSelected = true
         binding.model = viewModel
+        viewModel.getArticleWeekly()
+        viewModel.getArticleSlide()
         initClickEventListeners()
         setUpArticleData()
     }
