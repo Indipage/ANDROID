@@ -140,10 +140,10 @@
                         android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
                         android:textColor="@color/indi_white"
                         app:drawableEndCompat="@drawable/ic_article_move"
+                        app:drawableStartCompat="@drawable/ic_article_all_ticket"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:drawableStartCompat="@drawable/ic_article_all_ticket" />
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
