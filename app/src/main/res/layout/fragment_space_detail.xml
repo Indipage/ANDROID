@@ -266,8 +266,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingHorizontal="32dp"
-                    android:background="@color/indi_gray200">
+                    android:paddingHorizontal="32dp">
 
                     <TextView
                         android:id="@+id/tv_peculiarity_subtitle"
@@ -357,15 +356,15 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_article_follow">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_marginBottom="84dp"
                     android:id="@+id/cv_saved_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="0dp"
+                    android:layout_marginBottom="84dp"
                     app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/iv_saved_article_background"
