@@ -1,4 +1,4 @@
-package com.indipage.presentation.article
+package com.indipage.presentation.articleall
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.databinding.ItemArticleAllBinding
-import com.indipage.presentation.articleall.ArticleAllViewModel
 
 
 class ArticleAllAdapter(private val viewModel: ArticleAllViewModel) :

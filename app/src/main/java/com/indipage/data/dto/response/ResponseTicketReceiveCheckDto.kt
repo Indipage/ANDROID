@@ -23,7 +23,10 @@ data class ResponseTicketReceiveCheckDto(
         val ticketImageUrl: String,
         @NotNull
         @SerialName("cardImageUrl")
-        val cardImageUrl: String
+        val cardImageUrl: String,
+        @NotNull
+        @SerialName("ticketForArticleImageUrl")
+        val ticketForArticleImageUrl: String
     )
 
 }

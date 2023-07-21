@@ -86,11 +86,9 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                 is UiState.Success -> {
                     when (it.data) {
                         200 -> {
-                            toast("슬라이드 함")
                             Timber.d("슬라이드 함")
                         }
                         400 -> {
-                            toast("잘못 된 요청")
                             Timber.d("잘못 된 요청")
                         }
                     }

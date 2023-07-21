@@ -17,7 +17,7 @@ class ArticleDetailSnackBar(view: View) {
     }
 
     private val context = view.context
-    private val snackbar = Snackbar.make(view, "", 5000)
+    private val snackbar = Snackbar.make(view, "", 1000)
     private val snackbarLayout = snackbar.view as Snackbar.SnackbarLayout
 
     private val inflater = LayoutInflater.from(context)
@@ -26,7 +26,6 @@ class ArticleDetailSnackBar(view: View) {
 
     init {
         initView()
-        initClickEventListeners()
     }
 
     private fun initView() {
@@ -35,12 +34,6 @@ class ArticleDetailSnackBar(view: View) {
             setPadding(0, 0, 0, 0)
             setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
             addView(binding.root, 0)
-        }
-    }
-
-    private fun initClickEventListeners() {
-        binding.root.setOnClickListener {
-
         }
     }
 
