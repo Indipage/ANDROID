@@ -17,6 +17,14 @@
 |       초대장/마이페이지       |          아티클           |        검색/서점상세        |
 
 ## 🛠 Tech Stack
+- MVVM
+- Kotlin
+- Coroutine
+- StateFlow
+- UiState
+- Hilt
+- JetpackNavigation
+- Zxing
 
 ## 📌 Convention
 
