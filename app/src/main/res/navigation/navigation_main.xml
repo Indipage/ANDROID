@@ -93,7 +93,6 @@
         <action
             android:id="@+id/action_article_detail_to_space_detail"
             app:destination="@id/navigation_space_detail"
-            app:popUpTo="@id/navigation_article"
             app:popUpToInclusive="false"/>
     </fragment>
 
