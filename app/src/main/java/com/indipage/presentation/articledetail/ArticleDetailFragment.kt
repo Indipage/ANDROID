@@ -54,6 +54,16 @@ class ArticleDetailFragment :
         bottomTicketAdapter = ArticleDetailBottomTicketAdapter(viewModel)
         binding.rvArticleDetailArticleBody.adapter =
             ConcatAdapter(headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter)
+
+        testGo()
+    }
+
+    private fun testGo() {
+        val lastItemPosition =
+            ConcatAdapter(headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter).itemCount
+        bottomTicketAdapter.notifyDataSetChanged()
+        Timber.tag("Count").d("$lastItemPosition")
+        binding.rvArticleDetailArticleBody?.smoothScrollToPosition(lastItemPosition)
     }
 
     private fun getData() {
@@ -119,6 +129,7 @@ class ArticleDetailFragment :
 
         viewModel.getArticleTicket.observe(viewLifecycleOwner) {
             spaceId?.let { viewModel.getTicketReceiveCheck(it) }
+            Timber.tag("Count").d("test")
             val lastItemPosition = bottomTicketAdapter.itemCount
             bottomTicketAdapter.notifyDataSetChanged()
             binding.rvArticleDetailArticleBody?.smoothScrollToPosition(lastItemPosition)
