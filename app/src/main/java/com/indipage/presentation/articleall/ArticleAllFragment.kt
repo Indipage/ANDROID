@@ -28,6 +28,7 @@ class ArticleAllFragment :
         binding.btnArticleAllCategoryAll.isSelected = true
         initClickEventListeners()
         observeArticleAll()
+        viewModel.getArticleAll()
     }
 
     private fun observeArticleAll() {
