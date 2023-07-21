@@ -34,7 +34,7 @@ class TicketViewModel @Inject constructor(
     val ticket: StateFlow<UiState<List<ResponseTicketDto>>> = _ticket.asStateFlow()
 
     init {
-        getTicketList()
+//        getTicketList()
     }
 
     fun getTicketList() = viewModelScope.launch {

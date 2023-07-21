@@ -38,6 +38,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private var testNum = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getTicketList()
         initAdapter()
         initView()
         openQR()
@@ -55,14 +56,12 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private fun initView() {
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-
                 is UiState.Success -> {
                     binding.progressBar.visibility = View.GONE
                     adapter.submitList(it.data)
                     binding.coTicketEmptyView.visibility =
                         if (it.data.isEmpty()) View.VISIBLE else View.GONE
                 }
-
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -105,7 +104,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                             Timber.d("failure QR")
                             moveFailQrDialog()
                         }
-
                         else -> {
                             Timber.d("Success QR")
                             Handler().postDelayed({
@@ -116,7 +114,6 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                             }, 100)
                             viewModel.closeQR()
                         }
-
                     }
                 }
 
