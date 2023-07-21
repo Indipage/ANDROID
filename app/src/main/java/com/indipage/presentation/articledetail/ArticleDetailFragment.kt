@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.example.core_ui.base.BindingFragment
-import com.example.core_ui.fragment.snackBar
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
@@ -105,7 +104,7 @@ class ArticleDetailFragment :
                             ArticleDetailSnackBar.make(requireView()).show()
                         }
                         409 -> {
-                            ArticleDetailSnackBar.make(requireView()).show()
+                            Timber.d("티켓 수령 실패")
                         }
                     }
                 }
@@ -133,7 +132,7 @@ class ArticleDetailFragment :
                 is UiState.Success -> {
                     when (it.data) {
                         201 -> {
-                            ArticleDetailSnackBar.make(requireView()).show()
+                            Timber.d("북마크 성공")
                         }
                         404 -> {
                             Timber.d("존재하지 않는 아티클")
@@ -147,10 +146,10 @@ class ArticleDetailFragment :
         viewModel.articleBookmarkData.observe(viewLifecycleOwner) {
             if (it.bookmarked) {
                 binding.ivArticleDetailBookmark.isSelected = true
-                Timber.d("북마크 됨")
+                Timber.d("북마크 되어 있는 상태")
             } else {
                 binding.ivArticleDetailBookmark.isSelected = false
-                Timber.d("북마크 안됨")
+                Timber.d("북마크 안된 상태")
             }
         }
 
@@ -159,7 +158,7 @@ class ArticleDetailFragment :
                 is UiState.Success -> {
                     when (it.data) {
                         200 -> {
-                            snackBar(requireView(), message = { "북마크 취소" })
+                            Timber.d("북마크 취소")
                         }
                         404 -> {
                             Timber.d("존재하지 않는 아티클")

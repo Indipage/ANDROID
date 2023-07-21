@@ -41,13 +41,11 @@ class ArticleDetailBottomTicketAdapter(private val viewModel: ArticleDetailViewM
                 executePendingBindings()
                 model = viewModel
                 if (data.hasReceivedTicket) {
-                    ivItemArticleDetailBottomTicketImage.load(data.ticket.ticketImageUrl)
+                    ivItemArticleDetailBottomTicketImage.load(data.ticket.ticketForArticleImageUrl)
                     tvItemArticleDetailBottomTicketPush.isVisible = false
                     Timber.d("티켓 받음")
-                    Toast.makeText(binding.root.context, "티켓 받음", Toast.LENGTH_SHORT).show()
                 } else {
                     Timber.d("티켓 안 받음")
-                    Toast.makeText(binding.root.context, "티켓 안 받음", Toast.LENGTH_SHORT).show()
                 }
             }
         }

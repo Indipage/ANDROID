@@ -25,17 +25,5 @@
             android:textColor="@color/indi_white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_article_detail_snackbar_sub_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="@string/tv_article_detail_snackbar_sub_title"
-            android:textAppearance="@style/TextAppearance.IndiPage.Body03"
-            android:textColor="@color/indi_green"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -20,8 +20,9 @@
 
         <ImageView
             android:id="@+id/iv_item_article_detail_bottom_ticket_image"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="83dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/iv_article_detail_ticket_image"
             android:onClick="@{()->model.postTicketReceive(ticket_receive.ticket.Id)}"
