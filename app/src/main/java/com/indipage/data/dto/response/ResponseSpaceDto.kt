@@ -10,7 +10,7 @@ data class ResponseSpaceDto(
     @SerialName("name")
     val name: String,
     @SerialName("imageUrl")
-    val imageUrl:String,
-    @SerialName("roadAddress")
+    val imageUrl:String ?="",
+    @SerialName("address")
     val roadAddress: String,
 )

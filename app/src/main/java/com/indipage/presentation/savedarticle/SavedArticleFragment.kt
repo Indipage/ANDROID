@@ -30,6 +30,7 @@ class SavedArticleFragment :
         initAdapter()
         initView()
         setNavigation()
+        viewModel.getSavedArticles()
         viewModel.openArticleEvent.observe(viewLifecycleOwner, EventObserver {
             Timber.d("test $it")
             findNavController().navigate(

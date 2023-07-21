@@ -28,7 +28,7 @@ class SavedSpaceFragment :
         super.onViewCreated(view, savedInstanceState)
         adapter = SavedSpaceAdapter(viewModel)
         binding.rvSavedSpace.adapter = adapter
-
+        viewModel.getSavedSpaces()
         getCollectData()
         setNavigation()
         moveToSpaceDetail()

@@ -35,7 +35,7 @@ class SpaceDetailFragment :
         Timber.tag("SakSpace").d("$spaceId")
         binding.vm=viewModel
         initView(spaceId)
-
+        initSpaceArticleButton()
     }
 
     private fun initView(spaceId: Int) {
@@ -66,14 +66,14 @@ class SpaceDetailFragment :
                             ibBookmarkIcon.isSelected = true
                             ibBookmarkIcon.setOnClickListener {
                                 Timber.d("터치 됏당~!") // 누르면 조르기
-                                viewModel.deleteBookMarked(1)
+                                viewModel.deleteBookMarked(spaceId)
                             }
                         }
 
                         false -> {
                             ibBookmarkIcon.isSelected = false
                             ibBookmarkIcon.setOnClickListener { // 누르면 조르기
-                                viewModel.postBookMarked(1)
+                                viewModel.postBookMarked(spaceId)
                                 Timber.d("터치 됏당~!")
                             }
                         }
@@ -181,7 +181,6 @@ class SpaceDetailFragment :
                 is UiState.Success -> {
                     binding.spaceArticle = it.data
                     binding.clSpaceArticle.visibility = View.VISIBLE
-                    initSpaceArticleButton()
                 }
                 else -> {
                     initFollowButton(spaceId)
@@ -214,7 +213,10 @@ class SpaceDetailFragment :
     }
 
     private fun initSpaceArticleButton() {
-        binding.ivBack.setOnClickListener { findNavController().navigateUp() }
+        binding.ivBack.setOnClickListener {
+            Timber.tag("spaceBtn").d("$it")
+            findNavController().navigateUp()
+        }
         viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
             moveToSpaceArticle(it.toLong())
         })

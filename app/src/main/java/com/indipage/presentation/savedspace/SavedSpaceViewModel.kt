@@ -27,10 +27,6 @@ class SavedSpaceViewModel @Inject constructor(
     private val _openSpaceEvent = MutableLiveData<Event<Long>>()
     val openSpaceEvent: LiveData<Event<Long>> = _openSpaceEvent
 
-    init {
-        getSavedSpaces()
-    }
-
     fun openSpaceDetail(productPostId: Long) {
         _openSpaceEvent.value = Event(productPostId)
     }

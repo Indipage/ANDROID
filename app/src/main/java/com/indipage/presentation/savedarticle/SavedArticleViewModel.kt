@@ -25,7 +25,7 @@ class SavedArticleViewModel @Inject constructor(
     val savedArticles: StateFlow<UiState<List<ResponseArticleDto>>> = _savedArticles.asStateFlow()
 
     init {
-        getSavedArticles()
+
     }
 
     private val _openArticleEvent = MutableLiveData<Event<Long>>()
