@@ -6,6 +6,7 @@ import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.PUT
 
 interface ArticleApiService {
@@ -15,7 +16,7 @@ interface ArticleApiService {
     @GET("/user/weekly/slide")
     suspend fun getArticleSlide(): BaseResponse<ResponseArticleSlideDto>
 
-    @PUT("/user/weekly/slide")
+    @PATCH("/user/weekly/slide")
     suspend fun putArticleSlide(): NullResponse
 
     @GET("/article")
