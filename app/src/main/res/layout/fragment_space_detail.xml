@@ -226,12 +226,12 @@
                 android:id="@+id/tv_peculiarity_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="78dp"
+                android:layout_marginTop="300dp"
                 android:text="@string/tv_peculiarity_title"
                 android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                 android:textColor="@color/indi_black"
                 app:layout_constraintStart_toStartOf="@id/rv_space_detail_tag"
-                app:layout_constraintTop_toBottomOf="@id/tv_curation_comment" />
+                app:layout_constraintTop_toBottomOf="@id/tv_curation_content_title" />
 
             <FrameLayout
                 android:id="@+id/fl_peculiarity"
