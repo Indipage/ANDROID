@@ -266,7 +266,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingHorizontal="32dp">
+                    android:paddingHorizontal="32dp"
+                    android:background="@color/indi_gray200">
 
                     <TextView
                         android:id="@+id/tv_peculiarity_subtitle"
@@ -276,7 +277,7 @@
                         android:layout_marginBottom="8dp"
                         android:text="@{spaceDetail.peculiarityTitle}"
                         android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
-                        android:textColor="@color/indi_black"
+                        android:textColor="@color/indi_white"
                         app:layout_constraintBottom_toTopOf="@id/tv_peculiarity_comment"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -289,7 +290,7 @@
                         android:switchTextAppearance="@style/TextAppearance.IndiPage.Body05"
                         android:text="@{spaceDetail.peculiarityContent}"
                         android:textAppearance="@style/TextAppearance.IndiPage.Body04"
-                        android:textColor="@color/indi_black"
+                        android:textColor="@color/indi_white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
