@@ -21,12 +21,12 @@
         <ImageView
             android:id="@+id/iv_item_article_detail_bottom_ticket_image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="440dp"
             android:layout_marginHorizontal="83dp"
-            android:layout_marginTop="32dp"
             android:contentDescription="@string/iv_article_detail_ticket_image"
             android:onClick="@{()->model.postTicketReceive(ticket_receive.ticket.Id)}"
             android:src="@drawable/img_article_detail_ticket_empty"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_article_detail_bottom_ticket_push"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

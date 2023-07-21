@@ -38,8 +38,7 @@ class ArticleViewModel @Inject constructor(
 
 
     init {
-        getArticleWeekly()
-        getArticleSlide()
+
     }
 
     fun openArticleAll(responseArticleWeeklyDto: ResponseArticleWeeklyDto?) {
@@ -50,7 +49,7 @@ class ArticleViewModel @Inject constructor(
         _openArticleDetail.value = Event(responseArticleWeeklyDto)
     }
 
-    private fun getArticleWeekly() = viewModelScope.launch {
+    fun getArticleWeekly() = viewModelScope.launch {
         apiRepository.getArticleWeekly().onSuccess {
             _articleWeeklyData.value = it
             Timber.d("Success")
