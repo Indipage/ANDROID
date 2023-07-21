@@ -50,13 +50,14 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 )
             ) View.VISIBLE else View.GONE
 
-            binding.botNavMain.menu.findItem(R.id.navigation_article).isChecked =
-                destination.id == R.id.navigation_article_all
+            if (destination.id == R.id.navigation_article_all) {
+                binding.botNavMain.menu.findItem(R.id.navigation_article).isChecked = true
+            }
 
-            if(destination.id==R.id.navigation_card) {
+            if (destination.id == R.id.navigation_card) {
                 binding.botNavMain.menu.findItem(R.id.navigation_ticket).isChecked = true
             }
-            if (destination.id==R.id.navigation_ticket){
+            if (destination.id == R.id.navigation_ticket) {
                 binding.botNavMain.menu.findItem(R.id.navigation_ticket).isChecked = true
             }
         }
