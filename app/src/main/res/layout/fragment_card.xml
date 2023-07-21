@@ -15,8 +15,8 @@
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="32dp"
             android:layout_marginTop="22dp"
+            android:paddingHorizontal="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -35,8 +35,9 @@
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_width="290dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/tv_card_switch_ticket"
@@ -44,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tv_ticket"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                    android:textColor="@color/indi_gray400"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/guideline"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tv_card"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+                    android:textColor="@color/indi_gray400"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/guideline"
