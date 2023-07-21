@@ -45,7 +45,7 @@
     <string name="tv_search_hint">지역명으로 검색해보세요 ex) 서초구</string>
     <string name="iv_search_result">검색 결과 이미지</string>
     <string name="tv_search_empty">검색된 공간이 없어요</string>
-    <string name="tv_search_empty_comment">아직 미등록된 공간일 수 있어요\n지역명이 정확한지 확인해보세요</string>
+    <string name="tv_search_empty_comment">· 아직 미등록된 공간일 수 있어요\n· 지역명이 정확한지 확인해보세요\n· 검색어는 두 글자 이상 입력해주세요</string>
     <string name="tv_read_article_get_ticket">아티클 읽고 티켓 받기</string>
     <string name="tv_article_detail_banner">나만 알고싶은</string>
     <string name="tv_article_detail_ticket_push">눌러서 티켓 받기</string>
