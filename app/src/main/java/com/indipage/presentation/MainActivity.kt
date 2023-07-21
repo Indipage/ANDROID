@@ -2,6 +2,7 @@ package com.indipage.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.databinding.adapters.AutoCompleteTextViewBindingAdapter.setOnItemSelectedListener
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -30,6 +31,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             navController?.let { NavController ->
                 botNavMain.setupWithNavController(NavController)
             }
+
         }
 
         setBottomVisible(navController)
@@ -47,6 +49,16 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     R.id.navigation_article_all
                 )
             ) View.VISIBLE else View.GONE
+
+            binding.botNavMain.menu.findItem(R.id.navigation_article).isChecked =
+                destination.id == R.id.navigation_article_all
+
+            if(destination.id==R.id.navigation_card) {
+                binding.botNavMain.menu.findItem(R.id.navigation_ticket).isChecked = true
+            }
+            if (destination.id==R.id.navigation_ticket){
+                binding.botNavMain.menu.findItem(R.id.navigation_ticket).isChecked = true
+            }
         }
     }
 }
