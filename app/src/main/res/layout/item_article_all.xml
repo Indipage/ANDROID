@@ -104,7 +104,6 @@
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_all_comment"
                     app:layout_goneMarginBottom="14dp">
 
                     <TextView
@@ -131,8 +130,7 @@
                     android:paddingVertical="9dp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_article_all_comment">
+                    app:layout_constraintEnd_toEndOf="parent">
 
                     <TextView
                         android:id="@+id/tv_article_all_btn_no_read_article"
