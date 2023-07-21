@@ -3,6 +3,7 @@ package com.indipage.presentation.articleall
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
@@ -28,6 +29,7 @@ class ArticleAllFragment :
         binding.btnArticleAllCategoryAll.isSelected = true
         initClickEventListeners()
         observeArticleAll()
+        viewModel.getArticleAll()
     }
 
     private fun observeArticleAll() {
@@ -35,6 +37,7 @@ class ArticleAllFragment :
             binding.rvArticle.adapter = ArticleAllAdapter(viewModel).apply {
                 submitList(it)
             }
+            binding.progressbarArticleAll.isVisible = false
         }
 
         viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {

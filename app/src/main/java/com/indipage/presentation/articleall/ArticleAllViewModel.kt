@@ -22,10 +22,6 @@ class ArticleAllViewModel @Inject constructor(
     private val _openArticleDetail = MutableLiveData<Event<ResponseArticleAllDto>>()
     val openArticleDetail: LiveData<Event<ResponseArticleAllDto>> = _openArticleDetail
 
-    init {
-        getArticleAll()
-    }
-
     fun getArticleAll() = viewModelScope.launch {
         apiRepository.getArticleAll().onSuccess {
             _articleAllData.value = it
@@ -36,6 +32,4 @@ class ArticleAllViewModel @Inject constructor(
     fun openArticleDetail(responseArticleAllDto: ResponseArticleAllDto) {
         _openArticleDetail.value = Event(responseArticleAllDto)
     }
-
-
 }

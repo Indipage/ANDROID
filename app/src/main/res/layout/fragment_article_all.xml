@@ -13,6 +13,15 @@
         android:layout_height="match_parent"
         tools:context=".presentation.article.ArticleFragment">
 
+        <ProgressBar
+            android:id="@+id/progressbar_article_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_article_all_category_weekly"
             android:layout_width="wrap_content"

@@ -102,10 +102,10 @@ class ArticleDetailFragment :
                 is UiState.Success -> {
                     when (it.data) {
                         201 -> {
-                            snackBar(requireView(), message = { "티켓을 받았어요!" })
+                            ArticleDetailSnackBar.make(requireView()).show()
                         }
                         409 -> {
-                            snackBar(requireView(), message = { "이미 티켓을 받았어요!" })
+                            ArticleDetailSnackBar.make(requireView()).show()
                         }
                     }
                 }
@@ -119,8 +119,10 @@ class ArticleDetailFragment :
 
         viewModel.getArticleTicket.observe(viewLifecycleOwner) {
             spaceId?.let { viewModel.getTicketReceiveCheck(it) }
-            val lastItemPosition = bottomTicketAdapter.itemCount
             bottomTicketAdapter.notifyDataSetChanged()
+            val lastItemPosition = ConcatAdapter(
+                headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter
+            ).itemCount
             binding.rvArticleDetailArticleBody?.smoothScrollToPosition(lastItemPosition)
         }
     }
@@ -131,7 +133,7 @@ class ArticleDetailFragment :
                 is UiState.Success -> {
                     when (it.data) {
                         201 -> {
-                            snackBar(requireView(), message = { "북마크 성공" })
+                            ArticleDetailSnackBar.make(requireView()).show()
                         }
                         404 -> {
                             Timber.d("존재하지 않는 아티클")

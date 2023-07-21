@@ -59,4 +59,6 @@
     <string name="btn_follow">아티클 조르기</string>
     <string name="iv_purple_frame">뷰페이저 테두리</string>
     <string name="iv_saved_article_background">공간 아티클 이미지</string>
+    <string name="tv_article_detail_snackbar_title">티켓을 받았어요!</string>
+    <string name="tv_article_detail_snackbar_sub_title">티켓함 가기</string>
 </resources>
