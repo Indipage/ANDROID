@@ -42,7 +42,7 @@ class ArticleDetailBottomTicketAdapter(private val viewModel: ArticleDetailViewM
                 model = viewModel
                 if (data.hasReceivedTicket) {
                     ivItemArticleDetailBottomTicketImage.load(data.ticket.ticketForArticleImageUrl)
-                    tvItemArticleDetailBottomTicketPush.isVisible = false
+                    tvItemArticleDetailBottomTicketPush.visibility = View.INVISIBLE
                     Timber.d("티켓 받음")
                 } else {
                     Timber.d("티켓 안 받음")
