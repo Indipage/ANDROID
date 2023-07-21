@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +35,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private lateinit var adapter: TicketAdapter
     private val viewModel by viewModels<TicketViewModel>()
-    private var testNum=0
+    private var testNum = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
@@ -47,18 +48,21 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     override fun onResume() {
         super.onResume()
         binding.switchTicket.isChecked = false
-        val color=colorOf(R.color.indi_white)
+        val color = colorOf(R.color.indi_white)
         binding.tvTicketSwitchTicket.setTextColor(color)
     }
+
     private fun initView() {
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
             when (it) {
 
                 is UiState.Success -> {
-                    binding.progressBar.visibility=View.GONE
+                    binding.progressBar.visibility = View.GONE
                     adapter.submitList(it.data)
-                    binding.coTicketEmptyView.visibility = if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                    binding.coTicketEmptyView.visibility =
+                        if (it.data.isEmpty()) View.VISIBLE else View.GONE
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -74,19 +78,19 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private fun openQR() {
         viewModel.openQrEvent.observe(viewLifecycleOwner, EventObserver {
-            testNum=it
+            testNum = it
             onCustomScanButtonClicked()
         })
     }
 
     private fun moveToCard() {
         binding.switchTicket.setOnClickListener {
-                if (binding.switchTicket.isChecked)
-                    Handler().postDelayed({
-                        findNavController()
-                            .navigate(R.id.action_navigation_ticket_to_navigation_card, bundleOf())
-                    }, 100)
-                else Timber.d("test")
+            if (binding.switchTicket.isChecked)
+                Handler().postDelayed({
+                    findNavController()
+                        .navigate(R.id.action_navigation_ticket_to_navigation_card, bundleOf())
+                }, 100)
+            else Timber.d("test")
         }
 
     }
@@ -97,11 +101,12 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 is UiState.Success -> {
                     Timber.d("${it.data},$it")
                     when (it.data) {
-                        ResponseQrDto("error") ->{
+                        ResponseQrDto("error") -> {
                             Timber.d("failure QR")
                             moveFailQrDialog()
                         }
-                        else ->{
+
+                        else -> {
                             Timber.d("Success QR")
                             Handler().postDelayed({
                                 findNavController().navigate(
@@ -114,6 +119,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -122,6 +128,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private fun moveFailQrDialog() {
         val dialog = DialogQrFailFragment()
         dialog.setCheckDialogListener(this)
+        dialog.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogTheme)
         dialog.show(parentFragmentManager, "dialog")
     }
 
@@ -135,7 +142,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
-                if (testNum==finalResult.toInt()) viewModel.isCheckQR(finalResult.toInt())
+                if (testNum == finalResult.toInt()) viewModel.isCheckQR(finalResult.toInt())
                 else toast("이티켓에 대한 큐알이 아니다.")
             } else {
                 moveFailQrDialog()
