@@ -28,6 +28,7 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     private val viewModel by viewModels<CardViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getCardList()
         initAdapter()
         initView()
         moveToTicket()
