@@ -15,10 +15,10 @@ interface SpaceDetailApiService {
     @GET("bookmark/space/{spaceId}")
     suspend fun getBookmarked(@Path("spaceId") spaceId: Int): BaseResponse<BookmarkData>
 
-    @POST("user/bookmark/space/{spaceId}")
+    @POST("/bookmark/space/{spaceId}")
     suspend fun postBookmarked(@Path("spaceId") spaceId: Int): NullResponse
 
-    @DELETE("user/bookmark/space/{spaceId}")
+    @DELETE("/bookmark/space/{spaceId}")
     suspend fun deleteBookmarked(@Path("spaceId") spaceId: Int): NullResponse
 
     @GET("space/{spaceId}")
