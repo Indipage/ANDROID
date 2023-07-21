@@ -7,25 +7,32 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        app:cardCornerRadius="16dp"
-        android:layout_marginHorizontal="32dp"
+
+    <FrameLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardCornerRadius="16dp">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 android:paddingHorizontal="16dp">
 
                 <ImageView
                     android:id="@+id/iv_qr_fail"
                     android:layout_width="0dp"
                     android:layout_height="117dp"
-                    android:src="@drawable/ic_qr_fail"
                     android:layout_marginHorizontal="70dp"
                     android:layout_marginTop="46dp"
                     android:layout_marginBottom="19dp"
+                    android:src="@drawable/ic_qr_fail"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -47,12 +54,12 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_qr_fail_exit"
                     android:layout_width="0dp"
-                    android:paddingHorizontal="32dp"
                     android:layout_height="53dp"
                     android:layout_marginTop="24dp"
-                    android:background="@drawable/shape_gray200_fill_6_rect"
-                    android:text="@string/tv_qr_fail_exit"
                     android:layout_marginBottom="23dp"
+                    android:background="@drawable/shape_gray200_fill_6_rect"
+                    android:paddingHorizontal="32dp"
+                    android:text="@string/tv_qr_fail_exit"
                     android:textAppearance="@style/TextAppearance.IndiPage.Body03"
                     android:textColor="@color/indi_gray400"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +69,7 @@
                     android:id="@+id/btn_qr_fail_retry"
                     android:layout_width="0dp"
                     android:layout_height="53dp"
+                    android:layout_marginStart="9dp"
                     android:layout_marginBottom="23dp"
                     android:background="@drawable/shape_purple_fill_5_rect"
                     android:text="@string/tv_qr_fail_retry"
@@ -69,13 +77,16 @@
                     android:textColor="@color/indi_white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="9dp"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/btn_qr_fail_exit"
-                    app:layout_constraintTop_toTopOf="@id/btn_qr_fail_exit" />
+                    app:layout_constraintTop_toTopOf="@id/btn_qr_fail_exit"
+                    app:layout_constraintVertical_bias="0.0" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
 
 </layout>
