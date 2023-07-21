@@ -119,6 +119,9 @@ class ArticleDetailFragment :
 
         viewModel.getArticleTicket.observe(viewLifecycleOwner) {
             spaceId?.let { viewModel.getTicketReceiveCheck(it) }
+            val lastItemPosition = bottomTicketAdapter.itemCount
+            bottomTicketAdapter.notifyDataSetChanged()
+            binding.rvArticleDetailArticleBody?.smoothScrollToPosition(lastItemPosition)
         }
     }
 

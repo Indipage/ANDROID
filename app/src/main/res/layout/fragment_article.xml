@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="model"
+            type="com.indipage.presentation.article.ArticleViewModel" />
+
+        <variable
             name="article_weekly"
             type="com.indipage.data.dto.response.ResponseArticleWeeklyDto" />
     </data>
@@ -41,6 +45,7 @@
             android:background="@drawable/selector_article_category_button_back"
             android:minWidth="0dp"
             android:minHeight="0dp"
+            android:onClick="@{()->model.openArticleAll(article_weekly)}"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
             android:text="@string/btn_article_category_all"
@@ -129,17 +134,5 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_article"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="12dp"
-            android:paddingHorizontal="32dp"
-            android:visibility="gone"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_article_category_weekly"
-            tools:listitem="@layout/item_article_all" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

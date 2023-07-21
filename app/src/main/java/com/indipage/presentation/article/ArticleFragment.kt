@@ -10,7 +10,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
-import com.example.core_ui.context.toast
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
@@ -34,6 +33,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     private fun initView() {
         binding.btnArticleCategoryWeekly.isSelected = true
+        binding.model = viewModel
         initClickEventListeners()
         setUpArticleData()
     }
@@ -41,8 +41,8 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun setUpArticleData() {
         observeArticleWeekly()
         observeArticleSlide()
-        observeArticleAll()
     }
+
     private fun observeArticleWeekly() {
         viewModel.articleWeeklyData.observe(viewLifecycleOwner) {
             with(binding) {
@@ -61,8 +61,12 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
         }
 
-        viewModel.openArticleDetail1.observe(viewLifecycleOwner, EventObserver {
+        viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
             openArticleDetail(it.id.toLong())
+        })
+
+        viewModel.openArticleAll.observe(viewLifecycleOwner, EventObserver {
+            openArticleAll()
         })
     }
 
@@ -97,38 +101,9 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     }
 
-    private fun observeArticleAll() {
-        viewModel.articleAllData.observe(viewLifecycleOwner) {
-            binding.rvArticle.adapter = ArticleAllAdapter(viewModel).apply {
-                submitList(it)
-            }
-        }
-
-        viewModel.openArticleDetail2.observe(viewLifecycleOwner, EventObserver {
-            openArticleDetail(it.id.toLong())
-        })
-    }
-
     private fun initClickEventListeners() {
         with(binding) {
-            btnArticleCategoryAll.setOnClickListener {
-                if (!btnArticleCategoryAll.isSelected) {
-                    btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
-                    btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
-                    rvArticle.isVisible = true
-                    vpArticle.isVisible = false
-                    layoutWeekly.isVisible = false
-                    viewModel.getArticleAll()
-                }
-            }
-            btnArticleCategoryWeekly.setOnClickListener {
-                if (!btnArticleCategoryWeekly.isSelected) {
-                    btnArticleCategoryWeekly.isSelected = !btnArticleCategoryWeekly.isSelected
-                    btnArticleCategoryAll.isSelected = !btnArticleCategoryAll.isSelected
-                    rvArticle.isVisible = false
-                    viewModel.getArticleSlide()
-                }
-            }
+
         }
     }
 
@@ -162,5 +137,9 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         findNavController().navigate(
             R.id.action_article_to_article_detail, bundleOf(KEY_ARTICLE_ID to articleId)
         )
+    }
+
+    private fun openArticleAll() {
+        findNavController().navigate(R.id.action_article_to_article_all)
     }
 }
