@@ -80,11 +80,12 @@
 
                 <TextView
                     android:id="@+id/tv_article_all_comment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:layout_marginTop="4dp"
                     android:text="@{article_all.title}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
                     android:textColor="@color/indi_white"
                     app:layout_constraintStart_toStartOf="parent"
