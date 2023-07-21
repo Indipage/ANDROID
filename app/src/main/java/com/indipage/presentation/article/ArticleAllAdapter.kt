@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.databinding.ItemArticleAllBinding
+import com.indipage.presentation.articleall.ArticleAllViewModel
 
 
-class ArticleAllAdapter(private val viewModel: ArticleViewModel) :
+class ArticleAllAdapter(private val viewModel: ArticleAllViewModel) :
     ListAdapter<ResponseArticleAllDto, ArticleAllAdapter.ArticleAllViewHolder>(
         ArticleAllDiffCallback
     ) {
@@ -26,7 +27,7 @@ class ArticleAllAdapter(private val viewModel: ArticleViewModel) :
     }
 
     class ArticleAllViewHolder(
-        private val binding: ItemArticleAllBinding, private val model: ArticleViewModel
+        private val binding: ItemArticleAllBinding, private val model: ArticleAllViewModel
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseArticleAllDto) {
             with(binding) {

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.domain.repository.ArticleRepository
@@ -31,27 +30,24 @@ class ArticleViewModel @Inject constructor(
     private val _putArticleSlide = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val putArticleSlide: StateFlow<UiState<Int>> = _putArticleSlide.asStateFlow()
 
-    private val _openArticleDetail1 = MutableLiveData<Event<ResponseArticleWeeklyDto>>()
-    val openArticleDetail1: LiveData<Event<ResponseArticleWeeklyDto>> = _openArticleDetail1
+    private val _openArticleDetail = MutableLiveData<Event<ResponseArticleWeeklyDto>>()
+    val openArticleDetail: LiveData<Event<ResponseArticleWeeklyDto>> = _openArticleDetail
 
-    private val _openArticleDetail2 = MutableLiveData<Event<ResponseArticleAllDto>>()
-    val openArticleDetail2: LiveData<Event<ResponseArticleAllDto>> = _openArticleDetail2
+    private val _openArticleAll = MutableLiveData<Event<ResponseArticleWeeklyDto>>()
+    val openArticleAll: LiveData<Event<ResponseArticleWeeklyDto>> = _openArticleAll
 
-    private val _articleAllData: MutableLiveData<List<ResponseArticleAllDto>> = MutableLiveData()
-    val articleAllData: LiveData<List<ResponseArticleAllDto>> = _articleAllData
 
     init {
         getArticleWeekly()
         getArticleSlide()
-        getArticleAll()
+    }
+
+    fun openArticleAll(responseArticleWeeklyDto: ResponseArticleWeeklyDto?) {
+        if (responseArticleWeeklyDto !=null) _openArticleAll.value = Event(responseArticleWeeklyDto)
     }
 
     fun openArticleDetail(responseArticleWeeklyDto: ResponseArticleWeeklyDto) {
-        _openArticleDetail1.value = Event(responseArticleWeeklyDto)
-    }
-
-    fun openArticleDetail2(responseArticleAllDto: ResponseArticleAllDto) {
-        _openArticleDetail2.value = Event(responseArticleAllDto)
+        _openArticleDetail.value = Event(responseArticleWeeklyDto)
     }
 
     private fun getArticleWeekly() = viewModelScope.launch {
@@ -80,10 +76,4 @@ class ArticleViewModel @Inject constructor(
         }
     }
 
-    fun getArticleAll() = viewModelScope.launch {
-        apiRepository.getArticleAll().onSuccess {
-            _articleAllData.value = it
-            Timber.d("Success")
-        }.onFailure { Timber.d(it.message.toString()) }
-    }
 }

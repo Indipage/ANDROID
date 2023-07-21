@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_article_to_article_detail"
             app:destination="@id/navigation_article_detail" />
+        <action
+            android:id="@+id/action_article_to_article_all"
+            app:destination="@id/navigation_article_all" />
     </fragment>
     <fragment
         android:id="@+id/navigation_search"
@@ -101,5 +104,18 @@
         <action
             android:id="@+id/action_navigation_qr_success_to_navigation_card"
             app:destination="@id/navigation_card" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_article_all"
+        android:name="com.indipage.presentation.articleall.ArticleAllFragment"
+        android:label="ArticleAllFragment" >
+        <action
+            android:id="@+id/action_article_all_to_article"
+            app:destination="@id/navigation_article"
+            app:popUpTo="@id/navigation_article"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_article_all_to_article_detail"
+            app:destination="@id/navigation_article_detail" />
     </fragment>
 </navigation>
