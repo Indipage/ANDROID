@@ -14,7 +14,7 @@ object ArticleDetailTag {
     val BODY_TAG_REGEX = "(<body>.*?</body>)".toRegex()
     val BOLD_TAG_REGEX = "(<bold>.*?</bold>)".toRegex()
     val COLOR_TAG_REGEX = "(<color>.*?</color>)".toRegex()
-    val CLICK_TAG_REGEX = "(<click>.*?</click>)".toRegex()
+    val LINK_TAG_REGEX = "(<link>.*?</link>)".toRegex()
     val LINE_TAG_REGEX = "(<hr>)".toRegex()
     val REPLACE_TAG_REGEX = "(<img>|</img>|<title>|</title>|<body>|</body>|<hr>|</hr>)".toRegex()
     val REPLACE_STYLE_START_TAG_REGEX = "(((<bold>)?(<color>)?(<link>)?)+)".toRegex()

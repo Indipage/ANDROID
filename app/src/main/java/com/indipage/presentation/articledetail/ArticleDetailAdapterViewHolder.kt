@@ -10,7 +10,6 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
@@ -72,9 +71,21 @@ class ArticleDetailAdapterViewHolder {
                     )
                 }
 
-                ArticleDetailTag.CLICK_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
+                ArticleDetailTag.LINK_TAG_REGEX.findAll(articleBody).forEach { matchResult ->
                     setSpan(
                         clickableSpan(data.spaceId),
+                        matchResult.range.first,
+                        matchResult.range.last,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    setSpan(
+                        ForegroundColorSpan(R.color.indi_purple),
+                        matchResult.range.first,
+                        matchResult.range.last,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    setSpan(
+                        StyleSpan(Typeface.BOLD),
                         matchResult.range.first,
                         matchResult.range.last,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
