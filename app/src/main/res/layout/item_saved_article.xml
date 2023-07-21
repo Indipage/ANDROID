@@ -131,7 +131,7 @@
 
                     <TextView
                         android:id="@+id/tv_saved_article_ticket"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_marginEnd="10dp"
                         android:drawablePadding="7dp"
@@ -142,7 +142,8 @@
                         app:drawableEndCompat="@drawable/ic_article_move"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:drawableStartCompat="@drawable/ic_article_all_ticket" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
