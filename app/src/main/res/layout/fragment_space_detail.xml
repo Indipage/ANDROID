@@ -44,6 +44,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_launcher_background" />
 
+            <ImageView
+                android:id="@+id/iv_gradient"
+                android:layout_width="0dp"
+                android:layout_height="444dp"
+                android:contentDescription="@string/iv_space_detail_background"
+                android:scaleType="centerCrop"
+                android:src="@drawable/space_detail_gradient_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/space_detail_gradient_black" />
+
             <ImageButton
                 android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
@@ -182,11 +194,11 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_curation_title" />
 
             <ImageView
-                android:contentDescription="@string/iv_purple_frame"
                 android:id="@+id/iv_purple_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:contentDescription="@string/iv_purple_frame"
                 android:src="@drawable/shape_purple_unfill_rect"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -266,7 +278,7 @@
                         android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
                         android:textColor="@color/indi_black"
                         app:layout_constraintBottom_toTopOf="@id/tv_peculiarity_comment"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_peculiarity_comment"
@@ -279,7 +291,7 @@
                         android:textAppearance="@style/TextAppearance.IndiPage.Body04"
                         android:textColor="@color/indi_black"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
@@ -353,13 +365,22 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:contentDescription="@string/iv_saved_article_background"
                         android:id="@+id/iv_saved_article_background"
                         imageUrl="@{spaceArticle.imageUrl}"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
+                        android:contentDescription="@string/iv_saved_article_background"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background" />
+
+
+                    <ImageView
+                        android:id="@+id/iv_saved_article_background_black"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:contentDescription="@string/iv_saved_article_background"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/shape_black_transparent" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
