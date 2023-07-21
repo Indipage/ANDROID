@@ -37,28 +37,21 @@
 
 ## 📌 Screenshot & Video
 
+<br>
 
-### 애니메이션 모음
+### 아티클 - 메인
 
-| 위클리 아티클 | 아티클 상세 티켓 받기 | QR 실패 | QR 성공 |
+| 아티클 커버 on | 위클리 아티클 | 다음 아티클 예고 | 아티클 모두 보기 |
 |--------|--------|--------|--------|
-| ![gitf1](https://github.com/Indipage/ANDROID/assets/46596035/d1fabcca-daf4-4250-809f-7ac75db57ca5) | ![ticket](https://github.com/Indipage/ANDROID/assets/46596035/a51aba97-87e0-4322-b121-d0385cc1403d) | ![fail](https://github.com/Indipage/ANDROID/assets/46596035/98e8eaf3-3e24-4d27-a222-40d1196ebff4) | ![gif4](https://github.com/Indipage/ANDROID/assets/46596035/f701e8c9-5eab-42c1-91f5-a5959081d461) |
+| ![KakaoTalk_Photo_2023-07-21-23-42-41 001](https://github.com/Indipage/ANDROID/assets/46596035/784b80b1-68fe-4ea9-8d35-428ac87940d6) | ![KakaoTalk_Photo_2023-07-21-22-51-22 001](https://github.com/Indipage/ANDROID/assets/46596035/00caa6aa-2f95-45f8-a7d9-be184bb62ae2) | ![KakaoTalk_Photo_2023-07-21-23-42-41 002](https://github.com/Indipage/ANDROID/assets/46596035/041ac83c-a6bc-479b-a1e2-f665bf4bfb92) | ![KakaoTalk_Photo_2023-07-21-22-51-22 002](https://github.com/Indipage/ANDROID/assets/46596035/c3d96420-5114-4699-86d6-34e1b02d9673) | 
 
 <br>
 
-### 아티클 메인
-
-| 위클리 아티클 | 아티클 모두 보기 |
-|--------|--------|
-| ![KakaoTalk_Photo_2023-07-21-22-51-22 001](https://github.com/Indipage/ANDROID/assets/46596035/00caa6aa-2f95-45f8-a7d9-be184bb62ae2) | ![KakaoTalk_Photo_2023-07-21-22-51-22 002](https://github.com/Indipage/ANDROID/assets/46596035/c3d96420-5114-4699-86d6-34e1b02d9673) | 
-
-<br>
-
-### 아티클 상세보기
+### 아티클 - 상세보기
 
 | 아티클 상세보기 | 티켓 받기 전 | 티켓 받은 후 |
 |--------|--------|--------|
-| ![KakaoTalk_Photo_2023-07-21-22-51-22 003](https://github.com/Indipage/ANDROID/assets/46596035/2503a61c-d344-46a0-b8cc-f23f048998bd) | ![KakaoTalk_Photo_2023-07-21-22-51-22 004](https://github.com/Indipage/ANDROID/assets/46596035/1993a483-874e-4a30-88be-e727a4344479) | ![KakaoTalk_Photo_2023-07-21-22-51-22 005](https://github.com/Indipage/ANDROID/assets/46596035/d006c3e4-98a3-4ee0-8e3d-4a767d10bff5) |
+| ![KakaoTalk_Photo_2023-07-21-22-51-22 003](https://github.com/Indipage/ANDROID/assets/46596035/2503a61c-d344-46a0-b8cc-f23f048998bd) | ![KakaoTalk_Photo_2023-07-21-23-50-27 002](https://github.com/Indipage/ANDROID/assets/46596035/f6c8520b-dcbf-4810-ba97-783fbe56dea3) | ![KakaoTalk_Photo_2023-07-21-22-51-22 005](https://github.com/Indipage/ANDROID/assets/46596035/d006c3e4-98a3-4ee0-8e3d-4a767d10bff5) |
 
 <br>
 
@@ -70,13 +63,29 @@
 
 <br>
 
+### 티켓 & 카드
+
+| 티켓뷰 | QR 인증 | QR 성공 | 카드뷰 |
+|--------|--------|--------|--------|
+| ![KakaoTalk_Photo_2023-07-21-23-36-26 001](https://github.com/Indipage/ANDROID/assets/46596035/0a3af96a-21d6-40eb-95f9-c1920bb42af6) | ![KakaoTalk_Photo_2023-07-21-23-38-23 001](https://github.com/Indipage/ANDROID/assets/46596035/babb72ef-d238-40d9-a25b-c12919fa2f3b) | ![KakaoTalk_Photo_2023-07-21-23-38-23 002](https://github.com/Indipage/ANDROID/assets/46596035/fb55333f-6e4a-486a-9bd1-e09d1806e8b8) | ![KakaoTalk_Photo_2023-07-21-23-36-26 002](https://github.com/Indipage/ANDROID/assets/46596035/cecb641c-8e0c-4763-96e2-e0e4ab8b82ac)
+
+<br>
+
 ### 마이 페이지
 
 | 마이페이지 기본 | 저장한 아티클 | 저장한 공간 |
 |--------|--------|--------|
 | ![KakaoTalk_Photo_2023-07-21-22-51-22 011](https://github.com/Indipage/ANDROID/assets/46596035/ff164b40-940e-47f9-ba9f-f6c0663660b4) | ![KakaoTalk_Photo_2023-07-21-22-51-22 012](https://github.com/Indipage/ANDROID/assets/46596035/6707f02e-d19c-4e99-82d9-ca9408d35eaa) | ![KakaoTalk_Photo_2023-07-21-22-51-22 013](https://github.com/Indipage/ANDROID/assets/46596035/2355a86b-a51f-4632-b0d5-16ce80880bb4)
 
+<br>
 
+### 애니메이션 모음
+
+| 위클리 아티클 | 아티클 상세 티켓 받기 | 추천 서가 | QR 실패 | QR 성공 |
+|--------|--------|--------|--------|--------|
+| ![gitf1](https://github.com/Indipage/ANDROID/assets/46596035/d1fabcca-daf4-4250-809f-7ac75db57ca5) | ![git2](https://github.com/Indipage/ANDROID/assets/46596035/94961ecb-3944-4c24-8d64-415729cd5a34) | ![gif5](https://github.com/Indipage/ANDROID/assets/46596035/883e4c87-d500-43e3-b3f0-189600606254) | ![fail](https://github.com/Indipage/ANDROID/assets/46596035/98e8eaf3-3e24-4d27-a222-40d1196ebff4) | ![gif4](https://github.com/Indipage/ANDROID/assets/46596035/f701e8c9-5eab-42c1-91f5-a5959081d461) |
+
+<br>
 
 ## 📌 Convention
 
