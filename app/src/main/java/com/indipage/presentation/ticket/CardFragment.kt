@@ -28,7 +28,7 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     private val viewModel by viewModels<CardViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//
+        viewModel.getCardList()
         initAdapter()
         initView()
         moveToTicket()
@@ -65,6 +65,7 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     }
 
     private fun moveToTicket() {
+
         binding.switchTicket.setOnClickListener {
                 if (!binding.switchTicket.isChecked) {
                     Handler().postDelayed({
@@ -73,7 +74,6 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
                     }, 100)
                 }
         }
-
     }
 
 }

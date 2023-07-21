@@ -17,10 +17,10 @@
     <string name="iv_article_detail_move_to_place_detail_btn">상세 페이지로 이동</string>
     <string name="tv_saved_article_title">저장한 아티클</string>
     <string name="tv_saved_space">저장한 공간</string>
-    <string name="tv_app_version">앱버젼</string>
+    <string name="tv_app_version">앱 버전 v.1.0.0</string>
     <string name="tv_my_page_question">자주 묻는 질문</string>
     <string name="tv_my_page_exit">탈퇴</string>
-    <string name="tv_logout">자주 묻는 질문</string>
+    <string name="tv_logout">로그아웃</string>
     <string name="tv_info">개인정보처리방침</string>
     <string name="tv_saved_article_move">읽으러 가기</string>
     <string name="tv_ticket">티켓</string>

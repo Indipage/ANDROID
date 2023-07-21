@@ -7,6 +7,7 @@ import com.indipage.data.dto.response.ResponseCardDto
 import com.indipage.data.dto.response.ResponseQrDto
 import com.indipage.data.dto.response.ResponseTicketDto
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
@@ -19,7 +20,7 @@ interface TicketApiService {
     suspend fun getCardList(
     ): BaseResponse<List<ResponseCardDto>>
 
-    @PUT("/space/{spaceId}/visit")
+    @PATCH("/space/{spaceId}/visit")
     suspend fun isCheckQR(
         @Path("spaceId") spaceId: Int
     ): BaseResponseNullable<ResponseQrDto>
