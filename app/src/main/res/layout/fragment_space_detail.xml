@@ -351,18 +351,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="7dp"
-                android:layout_marginBottom="84dp"
                 android:paddingHorizontal="32dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/tv_article_follow">
 
                 <androidx.cardview.widget.CardView
+                    android:layout_marginBottom="84dp"
                     android:id="@+id/cv_saved_article"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <ImageView
                         android:id="@+id/iv_saved_article_background"
