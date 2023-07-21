@@ -15,7 +15,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="80dp">
 
         <ImageView
             android:id="@+id/iv_item_article_detail_bottom_ticket_image"
@@ -34,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:layout_marginBottom="80dp"
             android:text="@string/tv_article_detail_ticket_push"
             android:textAppearance="@style/TextAppearance.IndiPage.Body06"
             android:textColor="@color/indi_gray600"

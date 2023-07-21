@@ -1,8 +1,10 @@
 package com.indipage.presentation.articledetail
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -40,6 +42,7 @@ class ArticleDetailBottomTicketAdapter(private val viewModel: ArticleDetailViewM
                 model = viewModel
                 if (data.hasReceivedTicket) {
                     ivItemArticleDetailBottomTicketImage.load(data.ticket.ticketImageUrl)
+                    tvItemArticleDetailBottomTicketPush.isVisible = false
                     Timber.d("티켓 받음")
                     Toast.makeText(binding.root.context, "티켓 받음", Toast.LENGTH_SHORT).show()
                 } else {
