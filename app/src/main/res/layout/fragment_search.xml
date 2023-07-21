@@ -35,6 +35,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="32dp"
             android:paddingBottom="10dp"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
             android:textColorHint="@color/indi_gray500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,13 +86,14 @@
 
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="@string/tv_search_empty_comment"
-                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.IndiPage.Body04"
                 android:textColor="@color/indi_gray400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_search_empty_title" />
 
 

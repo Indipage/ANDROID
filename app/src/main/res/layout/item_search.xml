@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginVertical="12dp">
+        android:background="@drawable/shape_white_bottom_line"
+        android:paddingVertical="12dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_search"
