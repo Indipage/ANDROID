@@ -104,6 +104,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                             Timber.d("failure QR")
                             moveFailQrDialog()
                         }
+                        ResponseQrDto("")->{
+
+                        }
                         else -> {
                             Timber.d("Success QR")
                             Handler().postDelayed({
