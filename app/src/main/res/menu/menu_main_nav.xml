@@ -5,17 +5,20 @@
         android:id="@+id/navigation_article"
         android:icon="@drawable/selector_article_icon"
         android:title="@string/label_article_icon" />
+
     <item
         android:id="@+id/navigation_search"
         android:icon="@drawable/selector_search_icon"
         android:title="@string/label_search_icon" />
+
     <item
         android:id="@+id/navigation_ticket"
         android:icon="@drawable/selector_ticket_icon"
         android:title="@string/label_ticket_icon" />
+
     <item
         android:id="@+id/navigation_my_page"
         android:icon="@drawable/selector_my_page_icon"
-        android:title="@string/label_my_page_icon"
-        tools:ignore="HardcodedText" />
+        android:title="@string/label_my_page_icon" />
+
 </menu>

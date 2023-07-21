@@ -79,6 +79,7 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="42dp"
             android:layout_marginTop="26dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="17dp"
             app:cardCornerRadius="17dp"
             app:layout_constraintBottom_toTopOf="@id/rv_ticket_card"
@@ -98,12 +99,12 @@
             android:id="@+id/rv_ticket_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
             android:contentDescription="rv_card"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="17dp"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,8 +120,8 @@
                 android:id="@+id/iv_ticket_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="168dp"
                 android:src="@drawable/ic_cardblank"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
