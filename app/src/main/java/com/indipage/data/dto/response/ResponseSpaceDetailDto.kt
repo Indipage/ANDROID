@@ -21,7 +21,7 @@ data class SpaceDetailData(
     @SerialName("operatingTime")
     val operatingTime: String?,
     @SerialName("closedDays")
-    val closed: String?,
+    val closed: String ?,
     @SerialName("introduction")
     val introduction: String?,
     @SerialName("peculiarityTitle")

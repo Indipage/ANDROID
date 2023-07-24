@@ -77,8 +77,10 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             with(binding) {
                 if (it.hasSlide) {
                     vpArticle.isVisible = true
+                    layoutWeekly.isVisible = false
                 } else {
                     layoutWeekly.isVisible = true
+                    vpArticle.isVisible = false
                 }
             }
         }
