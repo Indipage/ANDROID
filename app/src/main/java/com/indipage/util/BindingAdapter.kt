@@ -37,7 +37,9 @@ fun applyOperationFormat(view: TextView, item: String?) {
 
 @BindingAdapter("closedInformation")
 fun applyClosedFormat(view: TextView, item: String?) {
-    val spaceInforFormat = "휴무 | ${item}"
+    var result = item
+    if(item.isNullOrBlank()) result="연중무휴"
+    val spaceInforFormat = "휴무 | ${result}"
     view.text = spaceInforFormat
 }
 
