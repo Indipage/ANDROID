@@ -18,7 +18,7 @@ class TicketDataSourceImpl @Inject constructor(
         return apiService.isCheckQR(spaceId)
     }
 
-    override suspend fun getTicketList(): BaseResponse<List<ResponseTicketDto>> {
+    override suspend fun getTicketList(): ResponseTicketDto {
         return apiService.getTicketList()
     }
 

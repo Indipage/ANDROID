@@ -14,7 +14,7 @@ import retrofit2.http.Path
 interface TicketApiService {
     @GET("/user/ticket")
     suspend fun getTicketList(
-    ): BaseResponse<List<ResponseTicketDto>>
+    ): ResponseTicketDto
 
     @GET("/user/card")
     suspend fun getCardList(

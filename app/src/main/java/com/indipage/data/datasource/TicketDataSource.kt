@@ -9,6 +9,6 @@ import com.indipage.data.dto.response.ResponseTicketDto
 
 interface TicketDataSource {
     suspend fun isCheckQR(spaceId:Int): BaseResponseNullable<ResponseQrDto>
-    suspend fun getTicketList(): BaseResponse<List<ResponseTicketDto>>
+    suspend fun getTicketList(): ResponseTicketDto
     suspend fun getCardList(): BaseResponse<List<ResponseCardDto>>
 }

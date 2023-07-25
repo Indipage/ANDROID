@@ -6,7 +6,7 @@
 
         <variable
             name="ticket"
-            type="com.indipage.data.dto.response.ResponseTicketDto" />
+            type="com.indipage.domain.entity.Ticket" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
