@@ -7,31 +7,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.databinding.ItemArticleDetailHeadBinding
+import com.indipage.domain.entity.Space
 
-class ArticleDetailHeadAdapter(private val viewModel: ArticleDetailViewModel) :
-    ListAdapter<ResponseArticleDetailDto, ArticleDetailHeadAdapter.ArticleDetailHeadViewHolder>(
+class ArticleDetailHeadAdapter(
+    private val onMoveToSpaceDetailClick: (ResponseArticleDetailDto, Int) -> Unit = { _, _ -> }
+) : ListAdapter<ResponseArticleDetailDto, ArticleDetailHeadAdapter.ArticleDetailHeadViewHolder>(
         ArticleAllDiffCallback
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleDetailHeadViewHolder {
         val binding =
             ItemArticleDetailHeadBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleDetailHeadViewHolder(binding, viewModel)
+        return ArticleDetailHeadViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ArticleDetailHeadViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ArticleDetailHeadViewHolder(
-        private val binding: ItemArticleDetailHeadBinding, private val model: ArticleDetailViewModel
+    inner class ArticleDetailHeadViewHolder(
+        private val binding: ItemArticleDetailHeadBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ResponseArticleDetailDto) {
             with(binding) {
-                articleDetail = data
-                executePendingBindings()
-                binding.viewModel = model
+                binding.articleDetail = data
+                binding.tvItemArticleDetailHeadMoveToPlaceDetail1.setOnClickListener {
+                    onMoveToSpaceDetailClick(
+                        data,
+                        position
+                    )
+                }
+                tvItemArticleDetailHeadMoveToPlaceDetail2.setOnClickListener {
+                    onMoveToSpaceDetailClick(
+                        data,
+                        position
+                    )
+                }
             }
+            binding.executePendingBindings()
         }
     }
 
