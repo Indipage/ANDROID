@@ -1,6 +1,7 @@
 package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
+import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
@@ -20,5 +21,5 @@ interface ArticleApiService {
     suspend fun putArticleSlide(): NullResponse
 
     @GET("/article")
-    suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>>
+    suspend fun getArticleAll(): BaseResponseNullable<List<ResponseArticleAllDto>>
 }

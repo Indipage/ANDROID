@@ -1,6 +1,7 @@
 package com.indipage.data.datasource
 
 import com.indipage.data.dto.BaseResponse
+import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
@@ -13,5 +14,5 @@ interface ArticleDataSource {
 
     suspend fun putArticleSlide(): NullResponse
 
-    suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>>
+    suspend fun getArticleAll(): BaseResponseNullable<List<ResponseArticleAllDto>>
 }
