@@ -54,7 +54,9 @@ class ArticleDetailFragment :
         })
         contentAdapter = ArticleDetailAdapter()
         bottomAdapter = ArticleDetailBottomAdapter(viewModel)
-        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(viewModel)
+        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(onClickTicketReceived = {it ->
+            viewModel.postTicketReceive(it.ticket.id.toLong())
+        })
         binding.rvArticleDetailArticleBody.adapter =
             ConcatAdapter(headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter)
     }
