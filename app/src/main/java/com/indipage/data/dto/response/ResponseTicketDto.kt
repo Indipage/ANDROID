@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
 //}
 
 @Serializable
-data class TicketDto(
+data class ResponseTicketDto(
     @SerialName("ticketId")
     val ticketId: Int,
     @SerialName("imageUrl")

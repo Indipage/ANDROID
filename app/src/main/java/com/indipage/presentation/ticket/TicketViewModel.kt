@@ -40,8 +40,10 @@ class TicketViewModel @Inject constructor(
     fun getTicketList() = viewModelScope.launch {
         apiRepository.getTicketList()
             .onSuccess { it ->
-                if (it != null) _ticket.value = UiState.Success(it)
-                Timber.d("Success $it")
+                if (it != null) {
+                    _ticket.value = UiState.Success(it)
+                    Timber.d("Success $it")
+                } else _ticket.value = UiState.Empty
             }
             .onFailure {
                 Timber.d("Fail $it")

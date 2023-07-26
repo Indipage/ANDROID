@@ -13,8 +13,8 @@ data class ResponseCardDto(
     val visitedAt: String,
     @SerialName("spaceId")
     val spaceId: Int,
-)
-
-fun ResponseCardDto.toCardEntity() = Card(
-    cardId, imageUrl, visitedAt, spaceId
-)
+) {
+    fun toCardEntity() = Card(
+        cardId, imageUrl, visitedAt, spaceId
+    )
+}

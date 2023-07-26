@@ -10,7 +10,7 @@ import com.indipage.databinding.ItemTicketCardBinding
 import com.indipage.domain.entity.Card
 import com.indipage.presentation.model.CardModel
 
-class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<ResponseCardDto, CardAdapter.TicketViewHolder>(
+class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<Card, CardAdapter.TicketViewHolder>(
     CardDiffCalback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
@@ -26,7 +26,7 @@ class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<ResponseCar
    inner class TicketViewHolder(
         private val binding: ItemTicketCardBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: ResponseCardDto) {
+        fun bind(data: Card) {
             binding.card = data
             binding.vm=viewModel
             binding.executePendingBindings()
@@ -35,7 +35,7 @@ class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<ResponseCar
 
     companion object {
         private val CardDiffCalback =
-            ItemDiffCallback<ResponseCardDto>(
+            ItemDiffCallback<Card>(
                 onItemsTheSame = { old, new -> old.cardId == new.cardId },
                 onContentsTheSame = { old, new -> old == new }
             )

@@ -6,7 +6,7 @@
 
         <variable
             name="card"
-            type="com.indipage.data.dto.response.ResponseCardDto" />
+            type="com.indipage.domain.entity.Card" />
 
         <variable
             name="vm"

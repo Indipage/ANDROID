@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseCardDto
+import com.indipage.domain.entity.Card
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +22,8 @@ class CardViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _card = MutableStateFlow<UiState<List<ResponseCardDto>>>(UiState.Loading)
-    val card: StateFlow<UiState<List<ResponseCardDto>>> = _card.asStateFlow()
+    private val _card = MutableStateFlow<UiState<List<Card>>>(UiState.Loading)
+    val card: StateFlow<UiState<List<Card>>> = _card.asStateFlow()
 
     private val _cardEvent = MutableLiveData<Event<String>>()
     val cardEvent: LiveData<Event<String>> = _cardEvent
@@ -33,7 +34,8 @@ class CardViewModel @Inject constructor(
     fun getCardList() = viewModelScope.launch {
         apiRepository.getCardList()
             .onSuccess { it ->
-                _card.value = UiState.Success(it)
+                if (it != null) _card.value = UiState.Success(it)
+                else _card.value = UiState.Empty
                 Timber.d("Success ${it}")
             }
             .onFailure {
