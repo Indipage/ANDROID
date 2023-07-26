@@ -10,7 +10,10 @@ import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.ItemSavedSpaceBinding
 import com.indipage.domain.entity.Space
 
-class SavedSpaceAdapter(private val viewModel:SavedSpaceViewModel):
+class SavedSpaceAdapter(
+//    private val viewModel:SavedSpaceViewModel,
+    private val onMoveToDetailClick: (Space,Int) -> Unit = { _,_ -> }
+    ):
     ListAdapter<Space, SavedSpaceAdapter.SavedSpaceViewHolder>(
     SavedSpaceDiffCalback
 ) {
@@ -30,7 +33,10 @@ class SavedSpaceAdapter(private val viewModel:SavedSpaceViewModel):
     ) : ViewHolder(binding.root) {
         fun bind(data: Space) {
             binding.savedSpace = data
-            binding.vm= viewModel
+//            binding.vm= viewModel
+            binding.root.setOnClickListener {
+                onMoveToDetailClick(data,position)
+            }
             binding.executePendingBindings()
         }
     }
