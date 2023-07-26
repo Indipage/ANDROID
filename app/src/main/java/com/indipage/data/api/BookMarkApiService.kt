@@ -8,7 +8,7 @@ import retrofit2.http.GET
 
 interface BookMarkApiService {
     @GET("/bookmark/article")
-    suspend fun getSavedArticles(): BaseResponse<List<ResponseArticleDto>>
+    suspend fun getSavedArticles(): BaseResponseNullable<List<ResponseArticleDto>>
 
     @GET("/bookmark/space")
     suspend fun getSavedSpaces(): BaseResponseNullable<List<ResponseSpaceDto>>

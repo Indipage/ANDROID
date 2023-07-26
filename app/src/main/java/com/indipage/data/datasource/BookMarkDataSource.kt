@@ -7,6 +7,6 @@ import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.data.dto.response.SavedSpace
 
 interface BookMarkDataSource {
-    suspend fun getSavedArticles(): BaseResponse<List<ResponseArticleDto>>
+    suspend fun getSavedArticles(): BaseResponseNullable<List<ResponseArticleDto>>
     suspend fun getSavedSpaces(): BaseResponseNullable<List<ResponseSpaceDto>>
 }

@@ -1,9 +1,7 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.BookMarkDataSource
-import com.indipage.data.dto.response.ResponseArticleDto
-import com.indipage.data.dto.response.ResponseSpaceDto
-import com.indipage.data.dto.response.SavedSpace
+import com.indipage.domain.entity.Article
 import com.indipage.domain.entity.Space
 import com.indipage.domain.repository.BookMarkRepository
 import javax.inject.Inject
@@ -11,15 +9,15 @@ import javax.inject.Inject
 class BookMarkRepositoryImpl @Inject constructor(
     private val dataSource: BookMarkDataSource
 ) : BookMarkRepository {
-    override suspend fun getSavedArticles(): Result<List<ResponseArticleDto>> {
+    override suspend fun getSavedArticles(): Result<List<Article>?> {
         return runCatching {
-            dataSource.getSavedArticles().data
+            dataSource.getSavedArticles().data?.map { articleDto -> articleDto.toArticleEntity() }
         }
     }
 
     override suspend fun getSavedSpaces(): Result<List<Space>?> {
         return runCatching {
-            dataSource.getSavedSpaces().data?.map { spaceDto-> spaceDto.toSpaceEntity() }
+            dataSource.getSavedSpaces().data?.map { spaceDto -> spaceDto.toSpaceEntity() }
         }
     }
 }

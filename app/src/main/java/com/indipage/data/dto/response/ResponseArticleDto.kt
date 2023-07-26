@@ -1,5 +1,6 @@
 package com.indipage.data.dto.response
 
+import com.indipage.domain.entity.Article
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable
@@ -18,4 +19,8 @@ data class ResponseArticleDto(
     val thumbnailUrl:String,
     @SerialName("ticketReceived")
     val ticketReceived: Boolean,
-)
+){
+    fun toArticleEntity() = Article(
+        spaceName, title, spaceType, id, issueDate, thumbnailUrl, ticketReceived
+    )
+}

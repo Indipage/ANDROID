@@ -13,7 +13,7 @@ class BookMarkDataSourceImpl @Inject constructor(
     private val apiService: BookMarkApiService
 ) : BookMarkDataSource {
 
-    override suspend fun getSavedArticles(): BaseResponse<List<ResponseArticleDto>> {
+    override suspend fun getSavedArticles(): BaseResponseNullable<List<ResponseArticleDto>> {
         return apiService.getSavedArticles()
     }
 
