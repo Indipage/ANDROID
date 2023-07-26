@@ -7,8 +7,10 @@ import com.indipage.domain.repository.TicketRepository
 class TicketUseCase(
     private val repository: TicketRepository
 ) {
-    suspend fun getTicketList(): Result<List<Ticket>?> = repository.getTicketList()
+    suspend fun getTicketList(): Result<List<Ticket>?> =
+        repository.getTicketList()
 
-    suspend fun getCardList(): Result<List<Card>?> = repository.getCardList()
+    suspend fun getCardList(): Result<List<Card>?> =
+        repository.getCardList()
 
 }
