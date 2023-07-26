@@ -1,6 +1,8 @@
 package com.indipage.di
 
+import com.indipage.domain.repository.BookMarkRepository
 import com.indipage.domain.repository.TicketRepository
+import com.indipage.domain.usecase.BookMarkUseCase
 import com.indipage.domain.usecase.TicketUseCase
 import dagger.Module
 import dagger.Provides
@@ -13,8 +15,14 @@ import javax.inject.Singleton
 class UseCaseModule {
     @Singleton
     @Provides
-    fun provideTicketUseCase(repository: TicketRepository): TicketUseCase{
+    fun provideTicketUseCase(repository: TicketRepository): TicketUseCase {
         return TicketUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideBookmarkUseCase(repository: BookMarkRepository): BookMarkUseCase {
+        return BookMarkUseCase(repository)
     }
 
 }

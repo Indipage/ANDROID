@@ -8,6 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.domain.entity.Space
 import com.indipage.domain.repository.BookMarkRepository
+import com.indipage.domain.usecase.BookMarkUseCase
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavedSpaceViewModel @Inject constructor(
-    private val apiRepository: BookMarkRepository
+    private val useCase: BookMarkUseCase
 ) : ViewModel() {
 
     private val _savedSpaces = MutableStateFlow<UiState<List<Space>>>(UiState.Loading)
@@ -33,7 +34,7 @@ class SavedSpaceViewModel @Inject constructor(
     }
 
     fun getSavedSpaces() = viewModelScope.launch {
-        apiRepository.getSavedSpaces()
+        useCase.getSavedSpaces()
             .onSuccess { savedSpaces ->
                 if (savedSpaces != null) {
                     _savedSpaces.value = UiState.Success(savedSpaces)
