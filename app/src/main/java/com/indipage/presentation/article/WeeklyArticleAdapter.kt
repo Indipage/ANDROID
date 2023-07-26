@@ -5,13 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core_ui.view.ItemDiffCallback
+import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
 import com.indipage.databinding.ItemWeeklyArticlePreBinding
 import com.indipage.util.WeeklyArticle.ITEM_OPEN
 import com.indipage.util.WeeklyArticle.ITEM_PRE
 
-class WeeklyArticleAdapter(private val viewModel: ArticleViewModel) :
+class WeeklyArticleAdapter(
+    private val onMoveToArticleDetailClick: (ResponseArticleWeeklyDto, Int) -> Unit = { _, _ -> }) :
     ListAdapter<ResponseArticleWeeklyDto, RecyclerView.ViewHolder>(
         WeeklyArticleAdapterDiffCallback
     ) {
@@ -27,7 +29,7 @@ class WeeklyArticleAdapter(private val viewModel: ArticleViewModel) :
             val binding = ItemWeeklyArticleOpenBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
-            WeeklyArticleAdapterViewHolder.ItemWeeklyArticleOpenViewHolder(binding, viewModel)
+            WeeklyArticleAdapterViewHolder.ItemWeeklyArticleOpenViewHolder(binding,onMoveToArticleDetailClick)
         } else {
             val binding = ItemWeeklyArticlePreBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
@@ -35,6 +37,7 @@ class WeeklyArticleAdapter(private val viewModel: ArticleViewModel) :
             WeeklyArticleAdapterViewHolder.ItemWeeklyArticlePreViewHolder(binding)
         }
     }
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (position == ITEM_OPEN) {

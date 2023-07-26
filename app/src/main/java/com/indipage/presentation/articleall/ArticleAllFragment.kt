@@ -33,7 +33,7 @@ class ArticleAllFragment :
 
     private fun observeArticleAll() {
         viewModel.articleAllData.observe(viewLifecycleOwner) {
-            binding.rvArticle.adapter = ArticleAllAdapter(onMoveToSpaceDetailClick = {it,position->
+            binding.rvArticle.adapter = ArticleAllAdapter(onMoveToArticleDetailClick = { it, position->
                 viewModel.openArticleDetail(it)
             }).apply {
                 submitList(it)

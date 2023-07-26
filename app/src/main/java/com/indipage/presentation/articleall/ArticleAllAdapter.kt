@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleAllDto
-import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.databinding.ItemArticleAllBinding
 
 
 class ArticleAllAdapter(
-    private val onMoveToSpaceDetailClick: (ResponseArticleAllDto, Int) -> Unit = { _, _ -> }) :
+    private val onMoveToArticleDetailClick: (ResponseArticleAllDto, Int) -> Unit = { _, _ -> }) :
     ListAdapter<ResponseArticleAllDto, ArticleAllAdapter.ArticleAllViewHolder>(
         ArticleAllDiffCallback
     ) {
@@ -41,7 +40,7 @@ class ArticleAllAdapter(
                     layoutArticleAllNoReadArticle.visibility = View.VISIBLE
                 }
                 binding.root.setOnClickListener {
-                    onMoveToSpaceDetailClick(data,position)
+                    onMoveToArticleDetailClick(data,position)
                 }
                 executePendingBindings()
             }
