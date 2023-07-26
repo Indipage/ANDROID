@@ -4,6 +4,18 @@ import com.indipage.domain.entity.Ticket
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+//@Serializable
+//data class ResponseTicketDto(
+//    @SerialName("code")
+//    val code: Int,
+//    @SerialName("message")
+//    val message: String,
+//    @SerialName("data")
+//    val ticketDtos: List<TicketDto>,
+//) {
+//    fun toTicketListEntity() = TicketList(ticketDtos.map { it.toTicketEntity()})
+//}
+
 @Serializable
 data class ResponseTicketDto(
     @SerialName("ticketId")
@@ -12,8 +24,10 @@ data class ResponseTicketDto(
     val imageUrl: String,
     @SerialName("spaceId")
     val spaceId: Int,
-)
+) {
+    fun toTicketEntity() = Ticket(
+        ticketId, imageUrl, spaceId
+    )
+}
 
-fun ResponseTicketDto.toTicketEntity() = Ticket(
-    ticketId, imageUrl, spaceId
-)
+

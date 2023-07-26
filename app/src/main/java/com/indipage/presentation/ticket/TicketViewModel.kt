@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseQrDto
-import com.indipage.data.dto.response.ResponseTicketDto
+import com.indipage.domain.entity.Ticket
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,8 +30,8 @@ class TicketViewModel @Inject constructor(
 
     private val _qrResponse = MutableStateFlow<UiState<ResponseQrDto>>(UiState.Loading)
     val qrResponse: StateFlow<UiState<ResponseQrDto>> = _qrResponse.asStateFlow()
-    private val _ticket = MutableStateFlow<UiState<List<ResponseTicketDto>>>(UiState.Loading)
-    val ticket: StateFlow<UiState<List<ResponseTicketDto>>> = _ticket.asStateFlow()
+    private val _ticket = MutableStateFlow<UiState<List<Ticket>>>(UiState.Loading)
+    val ticket: StateFlow<UiState<List<Ticket>>> = _ticket.asStateFlow()
 
     init {
 //        getTicketList()
@@ -40,8 +40,10 @@ class TicketViewModel @Inject constructor(
     fun getTicketList() = viewModelScope.launch {
         apiRepository.getTicketList()
             .onSuccess { it ->
-                _ticket.value = UiState.Success(it)
-                Timber.d("Success $it")
+                if (it != null) {
+                    _ticket.value = UiState.Success(it)
+                    Timber.d("Success $it")
+                } else _ticket.value = UiState.Empty
             }
             .onFailure {
                 Timber.d("Fail $it")
@@ -57,8 +59,8 @@ class TicketViewModel @Inject constructor(
             .onSuccess { it ->
                 if (it != null) {
                     _qrResponse.value = UiState.Success(it)
-                }else{
-                    _qrResponse.value=UiState.Success(ResponseQrDto("error"))
+                } else {
+                    _qrResponse.value = UiState.Success(ResponseQrDto("error"))
                 }
                 Timber.d("Success ${it}")
             }

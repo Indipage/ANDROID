@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.databinding.ItemSavedArticleBinding
+import com.indipage.domain.entity.Article
 
-class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAdapter<ResponseArticleDto, SavedArticleAdapter.SavedArticleViewHolder>(
+class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAdapter<Article, SavedArticleAdapter.SavedArticleViewHolder>(
     SavedArticleDiffCalback
 ) {
 
@@ -26,7 +27,7 @@ class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAda
     inner class SavedArticleViewHolder(
         private val binding: ItemSavedArticleBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: ResponseArticleDto) {
+        fun bind(data: Article) {
             binding.savedArticle = data
             binding.vm=viewModel
             if (data.ticketReceived){
@@ -42,7 +43,7 @@ class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAda
 
     companion object {
         private val SavedArticleDiffCalback =
-            ItemDiffCallback<ResponseArticleDto>(
+            ItemDiffCallback<Article>(
                 onItemsTheSame = { old, new -> old.id == new.id},
                 onContentsTheSame = { old, new -> old == new }
             )

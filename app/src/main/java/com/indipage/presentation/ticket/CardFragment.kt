@@ -65,7 +65,6 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     }
 
     private fun moveToTicket() {
-
         binding.switchTicket.setOnClickListener {
                 if (!binding.switchTicket.isChecked) {
                     Handler().postDelayed({

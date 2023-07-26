@@ -57,10 +57,10 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
+                    Timber.d("Success")
                     binding.progressBar.visibility = View.GONE
                     adapter.submitList(it.data)
-                    binding.coTicketEmptyView.visibility =
-                        if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                    if (it.data.isEmpty()) binding.coTicketEmptyView.visibility = View.VISIBLE
                 }
                 else -> {}
             }

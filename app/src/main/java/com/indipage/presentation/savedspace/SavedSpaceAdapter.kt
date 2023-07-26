@@ -8,9 +8,10 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.ItemSavedSpaceBinding
+import com.indipage.domain.entity.Space
 
 class SavedSpaceAdapter(private val viewModel:SavedSpaceViewModel):
-    ListAdapter<ResponseSpaceDto, SavedSpaceAdapter.SavedSpaceViewHolder>(
+    ListAdapter<Space, SavedSpaceAdapter.SavedSpaceViewHolder>(
     SavedSpaceDiffCalback
 ) {
 
@@ -27,7 +28,7 @@ class SavedSpaceAdapter(private val viewModel:SavedSpaceViewModel):
     inner class SavedSpaceViewHolder(
         private val binding: ItemSavedSpaceBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: ResponseSpaceDto) {
+        fun bind(data: Space) {
             binding.savedSpace = data
             binding.vm= viewModel
             binding.executePendingBindings()
@@ -36,7 +37,7 @@ class SavedSpaceAdapter(private val viewModel:SavedSpaceViewModel):
 
     companion object {
         private val SavedSpaceDiffCalback =
-            ItemDiffCallback<ResponseSpaceDto>(
+            ItemDiffCallback<Space>(
                 onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new }
             )

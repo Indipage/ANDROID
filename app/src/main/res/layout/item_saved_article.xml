@@ -7,7 +7,7 @@
 
         <variable
             name="saved_article"
-            type="com.indipage.data.dto.response.ResponseArticleDto" />
+            type="com.indipage.domain.entity.Article" />
 
         <variable
             name="vm"
