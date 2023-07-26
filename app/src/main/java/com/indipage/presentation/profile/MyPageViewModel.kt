@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.domain.repository.UserRepository
+import com.indipage.domain.usecase.UserUseCase
 import com.indipage.presentation.model.UserInfoModel
 import com.indipage.presentation.model.toUserModelEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
-    private val apiRepository: UserRepository
+    private val useCase: UserUseCase
 ) : ViewModel() {
 
     private val _userInfo = MutableStateFlow<UiState<UserInfoModel>>(UiState.Loading)
@@ -27,7 +28,7 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun getSavedSpaces() = viewModelScope.launch {
-        apiRepository.getUserInfo()
+        useCase.getUserInfo()
             .onSuccess { savedSpaces ->
                 _userInfo.value = UiState.Success(savedSpaces.toUserModelEntity())
                 Timber.d("Success")

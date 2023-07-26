@@ -8,6 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseCardDto
 import com.indipage.domain.entity.Card
 import com.indipage.domain.repository.TicketRepository
+import com.indipage.domain.usecase.TicketUseCase
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +19,7 @@ import timber.log.Timber
 import javax.inject.Inject
 @HiltViewModel
 class CardViewModel @Inject constructor(
-    private val apiRepository: TicketRepository
+    private val useCase: TicketUseCase
 ) : ViewModel() {
 
 
@@ -32,7 +33,7 @@ class CardViewModel @Inject constructor(
     }
 
     fun getCardList() = viewModelScope.launch {
-        apiRepository.getCardList()
+        useCase.getCardList()
             .onSuccess { it ->
                 if (it != null) _card.value = UiState.Success(it)
                 else _card.value = UiState.Empty
