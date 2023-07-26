@@ -7,14 +7,10 @@
             name="search"
             type="com.indipage.data.dto.response.ResponseSearchData" />
 
-        <variable
-            name="vm"
-            type="com.indipage.presentation.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        onThrottleClick="@{()->vm.openSpaceDetail(search.spaceId)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"

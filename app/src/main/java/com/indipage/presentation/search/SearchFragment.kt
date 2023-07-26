@@ -71,7 +71,9 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
 
     private fun initAdapter(data: List<ResponseSearchData>) {
         Timber.d("검색 리사이클러뷰 초기화")
-        adapter = SearchAdapter(viewModel)
+        adapter = SearchAdapter(onMoveToSpaceDetailClick = {searchData,position->
+            viewModel.openSpaceDetail(searchData.spaceId.toLong())
+        })
         binding.rvSearch.adapter = adapter.apply {
             submitList(data)
         }
