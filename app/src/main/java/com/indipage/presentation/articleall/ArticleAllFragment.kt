@@ -33,7 +33,9 @@ class ArticleAllFragment :
 
     private fun observeArticleAll() {
         viewModel.articleAllData.observe(viewLifecycleOwner) {
-            binding.rvArticle.adapter = ArticleAllAdapter(viewModel).apply {
+            binding.rvArticle.adapter = ArticleAllAdapter(onMoveToSpaceDetailClick = {it,position->
+                viewModel.openArticleDetail(it)
+            }).apply {
                 submitList(it)
             }
             binding.progressbarArticleAll.isVisible = false
