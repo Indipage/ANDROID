@@ -3,13 +3,10 @@ package com.indipage.presentation.articledetail
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.databinding.ItemArticleDetailBottomTicketBinding
 import timber.log.Timber

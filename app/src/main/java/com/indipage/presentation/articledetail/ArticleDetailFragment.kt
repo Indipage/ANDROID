@@ -53,7 +53,7 @@ class ArticleDetailFragment :
             viewModel.openSpaceDetail(it)
         })
         contentAdapter = ArticleDetailAdapter()
-        bottomAdapter = ArticleDetailBottomAdapter(viewModel)
+        bottomAdapter = ArticleDetailBottomAdapter()
         bottomTicketAdapter = ArticleDetailBottomTicketAdapter(onClickTicketReceived = {it ->
             viewModel.postTicketReceive(it.ticket.id.toLong())
         })

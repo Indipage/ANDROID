@@ -12,8 +12,8 @@ import com.indipage.domain.entity.Space
 class ArticleDetailHeadAdapter(
     private val onMoveToSpaceDetailClick: (ResponseArticleDetailDto, Int) -> Unit = { _, _ -> }
 ) : ListAdapter<ResponseArticleDetailDto, ArticleDetailHeadAdapter.ArticleDetailHeadViewHolder>(
-        ArticleAllDiffCallback
-    ) {
+    ArticleAllDiffCallback
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleDetailHeadViewHolder {
         val binding =

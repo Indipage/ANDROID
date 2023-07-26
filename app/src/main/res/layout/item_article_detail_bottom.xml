@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.indipage.presentation.articledetail.ArticleDetailViewModel" />
-
-        <variable
             name="article_detail"
             type="com.indipage.data.dto.response.ResponseArticleDetailDto" />
     </data>

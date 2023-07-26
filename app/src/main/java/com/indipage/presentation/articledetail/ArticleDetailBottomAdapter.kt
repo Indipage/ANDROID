@@ -8,7 +8,7 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.databinding.ItemArticleDetailBottomBinding
 
-class ArticleDetailBottomAdapter(private val viewModel: ArticleDetailViewModel) :
+class ArticleDetailBottomAdapter() :
     ListAdapter<ResponseArticleDetailDto, ArticleDetailBottomAdapter.ArticleDetailBottomViewHolder>(
         ArticleAllDiffCallback
     ) {
@@ -19,7 +19,7 @@ class ArticleDetailBottomAdapter(private val viewModel: ArticleDetailViewModel) 
         val binding = ItemArticleDetailBottomBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ArticleDetailBottomViewHolder(binding, viewModel)
+        return ArticleDetailBottomViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ArticleDetailBottomViewHolder, position: Int) {
@@ -28,14 +28,11 @@ class ArticleDetailBottomAdapter(private val viewModel: ArticleDetailViewModel) 
 
     class ArticleDetailBottomViewHolder(
         private val binding: ItemArticleDetailBottomBinding,
-        private val model: ArticleDetailViewModel
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ResponseArticleDetailDto) {
             with(binding) {
                 articleDetail = data
                 executePendingBindings()
-                binding.viewModel = model
-
             }
         }
     }
