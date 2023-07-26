@@ -31,6 +31,10 @@ class SavedArticleFragment :
         initView()
         setNavigation()
         viewModel.getSavedArticles()
+        moveToArticleDetail()
+    }
+
+    private fun moveToArticleDetail() {
         viewModel.openArticleEvent.observe(viewLifecycleOwner, EventObserver {
             Timber.d("test $it")
             findNavController().navigate(
@@ -40,8 +44,12 @@ class SavedArticleFragment :
             )
         })
     }
+
     private fun initAdapter() {
-        adapter = SavedArticleAdapter(viewModel)
+        adapter = SavedArticleAdapter(onMoveToArticleDetailClick = { article, position ->
+            Timber.tag("articleTest").d("${article.id}")
+            viewModel.openArticleDetail(article.id.toLong())
+        })
         binding.rvSavedArticle.adapter = adapter
     }
 

@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.FragmentSavedSpaceBinding
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +25,7 @@ class SavedSpaceFragment :
     private val viewModel by viewModels<SavedSpaceViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = SavedSpaceAdapter( onMoveToDetailClick = { space,positon ->
+        adapter = SavedSpaceAdapter( onMoveToSpaceDetailClick = { space, positon ->
             Timber.tag("testClick").d("$space,$positon")
             viewModel.openSpaceDetail(space.id)
         })

@@ -21,7 +21,6 @@ import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.android.go.sopt.presentation.recycler.SpaceDetailCurationAdapter
 import timber.log.Timber
 
 @AndroidEntryPoint

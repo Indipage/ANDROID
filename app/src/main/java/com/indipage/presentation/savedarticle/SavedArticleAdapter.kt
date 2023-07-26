@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.databinding.ItemSavedArticleBinding
 import com.indipage.domain.entity.Article
 
-class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAdapter<Article, SavedArticleAdapter.SavedArticleViewHolder>(
+class SavedArticleAdapter(
+    private val onMoveToArticleDetailClick: (Article, Int) -> Unit = { _, _ -> }
+) : ListAdapter<Article, SavedArticleAdapter.SavedArticleViewHolder>(
     SavedArticleDiffCalback
 ) {
 
@@ -29,13 +30,18 @@ class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAda
     ) : ViewHolder(binding.root) {
         fun bind(data: Article) {
             binding.savedArticle = data
-            binding.vm=viewModel
-            if (data.ticketReceived){
-                binding.clTicketTrue.visibility= View.VISIBLE
-                binding.clTicketFalse.visibility=View.GONE
-            }else{
-                binding.clTicketTrue.visibility= View.GONE
-                binding.clTicketFalse.visibility=View.VISIBLE
+            if (data.ticketReceived) {
+                binding.clTicketTrue.visibility = View.VISIBLE
+                binding.clTicketFalse.visibility = View.GONE
+            } else {
+                binding.clTicketTrue.visibility = View.GONE
+                binding.clTicketFalse.visibility = View.VISIBLE
+            }
+            binding.clTicketTrue.setOnClickListener {
+                onMoveToArticleDetailClick(data, position)
+            }
+            binding.clTicketFalse.setOnClickListener {
+                onMoveToArticleDetailClick(data, position)
             }
             binding.executePendingBindings()
         }
@@ -44,7 +50,7 @@ class SavedArticleAdapter(private val viewModel: SavedArticleViewModel): ListAda
     companion object {
         private val SavedArticleDiffCalback =
             ItemDiffCallback<Article>(
-                onItemsTheSame = { old, new -> old.id == new.id},
+                onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new }
             )
     }
