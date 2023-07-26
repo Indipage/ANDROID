@@ -14,6 +14,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentArticleDetailBinding
+import com.indipage.presentation.savedarticle.SavedArticleAdapter
 import com.indipage.util.ArticleDetailTag.TAG_REGEX
 import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
@@ -47,10 +48,15 @@ class ArticleDetailFragment :
     }
 
     private fun concatAdapter() {
-        headAdapter = ArticleDetailHeadAdapter(viewModel)
+
+        headAdapter = ArticleDetailHeadAdapter(onMoveToSpaceDetailClick = {it,position->
+            viewModel.openSpaceDetail(it)
+        })
         contentAdapter = ArticleDetailAdapter()
-        bottomAdapter = ArticleDetailBottomAdapter(viewModel)
-        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(viewModel)
+        bottomAdapter = ArticleDetailBottomAdapter()
+        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(onClickTicketReceived = {it ->
+            viewModel.postTicketReceive(it.ticket.id.toLong())
+        })
         binding.rvArticleDetailArticleBody.adapter =
             ConcatAdapter(headAdapter, contentAdapter, bottomAdapter, bottomTicketAdapter)
     }

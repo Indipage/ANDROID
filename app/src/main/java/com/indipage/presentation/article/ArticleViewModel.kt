@@ -41,8 +41,9 @@ class ArticleViewModel @Inject constructor(
 
     }
 
-    fun openArticleAll(responseArticleWeeklyDto: ResponseArticleWeeklyDto?) {
-        if (responseArticleWeeklyDto !=null) _openArticleAll.value = Event(responseArticleWeeklyDto)
+    fun openArticleAll(responseArticleWeeklyDto: ResponseArticleWeeklyDto) {
+//        if (responseArticleWeeklyDto !=null)
+            _openArticleAll.value = Event(responseArticleWeeklyDto)
     }
 
     fun openArticleDetail(responseArticleWeeklyDto: ResponseArticleWeeklyDto) {

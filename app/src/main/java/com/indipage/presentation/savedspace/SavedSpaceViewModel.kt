@@ -26,10 +26,10 @@ class SavedSpaceViewModel @Inject constructor(
     private val _savedSpaces = MutableStateFlow<UiState<List<Space>>>(UiState.Loading)
     val savedSpaces: StateFlow<UiState<List<Space>>> = _savedSpaces.asStateFlow()
 
-    private val _openSpaceEvent = MutableLiveData<Event<Long>>()
-    val openSpaceEvent: LiveData<Event<Long>> = _openSpaceEvent
+    private val _openSpaceEvent = MutableLiveData<Event<Int>>()
+    val openSpaceEvent: LiveData<Event<Int>> = _openSpaceEvent
 
-    fun openSpaceDetail(productPostId: Long) {
+    fun openSpaceDetail(productPostId: Int) {
         _openSpaceEvent.value = Event(productPostId)
     }
 

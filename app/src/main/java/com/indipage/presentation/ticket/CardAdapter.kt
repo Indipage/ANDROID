@@ -8,9 +8,10 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseCardDto
 import com.indipage.databinding.ItemTicketCardBinding
 import com.indipage.domain.entity.Card
+import com.indipage.domain.entity.Space
 import com.indipage.presentation.model.CardModel
 
-class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<Card, CardAdapter.TicketViewHolder>(
+class CardAdapter(private val onMoveToQrDetailClick: (Card) -> Unit = { _ -> }) : ListAdapter<Card, CardAdapter.TicketViewHolder>(
     CardDiffCalback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
@@ -28,7 +29,9 @@ class CardAdapter(private val viewModel:CardViewModel) : ListAdapter<Card, CardA
     ) : ViewHolder(binding.root) {
         fun bind(data: Card) {
             binding.card = data
-            binding.vm=viewModel
+            binding.tvTicketCard.setOnClickListener {
+                onMoveToQrDetailClick(data)
+            }
             binding.executePendingBindings()
         }
     }

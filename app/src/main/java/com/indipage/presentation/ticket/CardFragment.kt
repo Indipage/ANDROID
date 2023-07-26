@@ -15,10 +15,12 @@ import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentCardBinding
+import com.indipage.presentation.savedspace.SavedSpaceAdapter
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card) {
@@ -43,7 +45,11 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
         binding.tvCardSwitchCard.setTextColor(color)
     }
     private fun initAdapter() {
-        adapter = CardAdapter(viewModel)
+        adapter = CardAdapter(
+            onMoveToQrDetailClick = {card ->
+                viewModel.setMainCard(card.imageUrl)
+            }
+        )
         binding.rvTicketCard.adapter = adapter
     }
 

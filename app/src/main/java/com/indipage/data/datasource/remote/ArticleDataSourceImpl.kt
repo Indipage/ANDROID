@@ -3,6 +3,7 @@ package com.indipage.data.datasource.remote
 import com.indipage.data.api.ArticleApiService
 import com.indipage.data.datasource.ArticleDataSource
 import com.indipage.data.dto.BaseResponse
+import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
@@ -24,7 +25,7 @@ class ArticleDataSourceImpl @Inject constructor(
         return apiService.putArticleSlide()
     }
 
-    override suspend fun getArticleAll(): BaseResponse<List<ResponseArticleAllDto>> {
+    override suspend fun getArticleAll(): BaseResponseNullable<List<ResponseArticleAllDto>> {
         return apiService.getArticleAll()
     }
 

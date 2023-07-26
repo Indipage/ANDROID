@@ -49,7 +49,11 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         viewModel.articleWeeklyData.observe(viewLifecycleOwner) {
             with(binding) {
                 vpArticle.adapter =
-                    WeeklyArticleAdapter(viewModel).apply { submitList(listOf(it, it)) }
+                    WeeklyArticleAdapter(
+                        onMoveToArticleDetailClick = { it, position ->
+                            viewModel.openArticleDetail(it)
+                        }
+                    ).apply { submitList(listOf(it, it)) }
                 vpArticle.offscreenPageLimit = 2
                 vpArticle.setPageTransformer { page, position ->
                     page.translationX =

@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.recycler
+package com.indipage.presentation.spacedetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

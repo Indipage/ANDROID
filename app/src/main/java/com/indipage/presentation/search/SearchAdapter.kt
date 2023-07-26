@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseSearchData
 import com.indipage.databinding.ItemSearchBinding
+import com.indipage.domain.entity.Space
 
-class SearchAdapter(private val viewModel: SearchViewModel) :
+class SearchAdapter( private val onMoveToSpaceDetailClick: (ResponseSearchData, Int) -> Unit = { _, _ -> }) :
     ListAdapter<ResponseSearchData, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -25,8 +26,11 @@ class SearchAdapter(private val viewModel: SearchViewModel) :
         private val binding: ItemSearchBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseSearchData) {
-            binding.vm=viewModel
             binding.search = data
+            binding.root.setOnClickListener {
+                onMoveToSpaceDetailClick(data,position)
+            }
+            binding.executePendingBindings()
         }
     }
 

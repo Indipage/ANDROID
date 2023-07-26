@@ -28,7 +28,7 @@ class ArticleRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>> {
+    override suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>?> {
         return runCatching {
             dataSource.getArticleAll().data
         }

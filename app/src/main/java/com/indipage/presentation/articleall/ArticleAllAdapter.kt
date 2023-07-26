@@ -10,7 +10,8 @@ import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.databinding.ItemArticleAllBinding
 
 
-class ArticleAllAdapter(private val viewModel: ArticleAllViewModel) :
+class ArticleAllAdapter(
+    private val onMoveToArticleDetailClick: (ResponseArticleAllDto, Int) -> Unit = { _, _ -> }) :
     ListAdapter<ResponseArticleAllDto, ArticleAllAdapter.ArticleAllViewHolder>(
         ArticleAllDiffCallback
     ) {
@@ -18,21 +19,19 @@ class ArticleAllAdapter(private val viewModel: ArticleAllViewModel) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleAllViewHolder {
         val binding =
             ItemArticleAllBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleAllViewHolder(binding, viewModel)
+        return ArticleAllViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ArticleAllViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ArticleAllViewHolder(
-        private val binding: ItemArticleAllBinding, private val model: ArticleAllViewModel
+    inner class ArticleAllViewHolder(
+        private val binding: ItemArticleAllBinding
     ) : ViewHolder(binding.root) {
         fun bind(data: ResponseArticleAllDto) {
             with(binding) {
                 articleAll = data
-                executePendingBindings()
-                binding.viewModel = model
                 if (data.ticketReceived) {
                     layoutArticleAllReadArticle.visibility = View.VISIBLE
                     layoutArticleAllNoReadArticle.visibility = View.GONE
@@ -40,6 +39,10 @@ class ArticleAllAdapter(private val viewModel: ArticleAllViewModel) :
                     layoutArticleAllReadArticle.visibility = View.GONE
                     layoutArticleAllNoReadArticle.visibility = View.VISIBLE
                 }
+                binding.root.setOnClickListener {
+                    onMoveToArticleDetailClick(data,position)
+                }
+                executePendingBindings()
             }
         }
     }

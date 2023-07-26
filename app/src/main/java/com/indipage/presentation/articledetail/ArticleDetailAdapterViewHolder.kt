@@ -22,7 +22,6 @@ import com.indipage.databinding.ItemArticleDetailArticleTitleBinding
 import com.indipage.util.ArticleDetailTag
 
 class ArticleDetailAdapterViewHolder {
-
     class ItemArticleDetailArticleBodyViewHolder(private val binding: ItemArticleDetailArticleBodyBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

@@ -9,10 +9,7 @@
             name="saved_article"
             type="com.indipage.domain.entity.Article" />
 
-        <variable
-            name="vm"
-            type="com.indipage.presentation.savedarticle.SavedArticleViewModel" />
-    </data>
+        </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -94,7 +91,6 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_ticket_true"
-                    onThrottleClick="@{()->vm.openArticleDetail(saved_article.id)}"
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:layout_marginEnd="16dp"
@@ -121,7 +117,6 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_ticket_false"
-                    onThrottleClick="@{()->vm.openArticleDetail(saved_article.id)}"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:background="@color/indi_black"

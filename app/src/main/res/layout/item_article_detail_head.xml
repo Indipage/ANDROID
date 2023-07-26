@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.indipage.presentation.articledetail.ArticleDetailViewModel" />
-
-        <variable
             name="article_detail"
             type="com.indipage.data.dto.response.ResponseArticleDetailDto" />
     </data>
@@ -78,7 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:background="@color/indi_black"
-            android:onClick="@{()->viewModel.openSpaceDetail(article_detail)}"
             android:paddingHorizontal="32dp"
             android:paddingTop="21dp"
             android:text="@string/tv_article_detail_banner"
@@ -91,8 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/indi_black"
-            android:onClick="@{()->viewModel.openSpaceDetail(article_detail)}"
-            android:paddingHorizontal="32dp"
+           android:paddingHorizontal="32dp"
             android:paddingBottom="21dp"
             android:text='@{(article_detail.spaceName)+"\n바로가기"}'
             android:textAppearance="@style/TextAppearance.IndiPage.Body03"

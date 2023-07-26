@@ -11,5 +11,5 @@ interface ArticleRepository {
 
     suspend fun putArticleSlide(): Result<Int>
 
-    suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>>
+    suspend fun getArticleAll(): Result<List<ResponseArticleAllDto>?>
 }

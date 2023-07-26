@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.response.SavedSpace
 import com.indipage.databinding.FragmentSavedSpaceBinding
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +25,10 @@ class SavedSpaceFragment :
     private val viewModel by viewModels<SavedSpaceViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = SavedSpaceAdapter(viewModel)
+        adapter = SavedSpaceAdapter( onMoveToSpaceDetailClick = { space, positon ->
+            Timber.tag("testClick").d("$space,$positon")
+            viewModel.openSpaceDetail(space.id)
+        })
         binding.rvSavedSpace.adapter = adapter
         viewModel.getSavedSpaces()
         getCollectData()
@@ -39,7 +41,7 @@ class SavedSpaceFragment :
             Timber.d("test $it")
             findNavController().navigate(
                 R.id.action_navigation_saved_space_to_navigation_space_detail, bundleOf(
-                    "spaceId" to it.toInt()
+                    "spaceId" to it
                 )
             )
         })
