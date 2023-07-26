@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class UseCaseModule {
     @Singleton
     @Provides
-    fun provideLoginUseCase(repository: TicketRepository): TicketUseCase{
+    fun provideTicketUseCase(repository: TicketRepository): TicketUseCase{
         return TicketUseCase(repository)
     }
 
