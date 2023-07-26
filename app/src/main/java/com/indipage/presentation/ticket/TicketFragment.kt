@@ -60,9 +60,14 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                     Timber.d("Success")
                     binding.progressBar.visibility = View.GONE
                     adapter.submitList(it.data)
-                    if (it.data.isEmpty()) binding.coTicketEmptyView.visibility = View.VISIBLE
+                    if (it.data.isEmpty()) {
+                        binding.coTicketEmptyView.visibility = View.VISIBLE
+                    }
                 }
-                else -> {}
+                else -> {
+                    binding.coTicketEmptyView.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                }
             }
         }.launchIn(lifecycleScope)
         binding.switchTicket.isChecked = false
@@ -104,7 +109,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                             Timber.d("failure QR")
                             moveFailQrDialog()
                         }
-                        ResponseQrDto("")->{
+                        ResponseQrDto("") -> {
 
                         }
                         else -> {
