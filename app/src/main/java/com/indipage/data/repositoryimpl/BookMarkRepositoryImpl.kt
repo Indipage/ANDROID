@@ -4,6 +4,7 @@ import com.indipage.data.datasource.BookMarkDataSource
 import com.indipage.data.dto.response.ResponseArticleDto
 import com.indipage.data.dto.response.ResponseSpaceDto
 import com.indipage.data.dto.response.SavedSpace
+import com.indipage.domain.entity.Space
 import com.indipage.domain.repository.BookMarkRepository
 import javax.inject.Inject
 
@@ -16,9 +17,9 @@ class BookMarkRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSavedSpaces(): Result<List<ResponseSpaceDto>> {
+    override suspend fun getSavedSpaces(): Result<List<Space>?> {
         return runCatching {
-            dataSource.getSavedSpaces().data
+            dataSource.getSavedSpaces().data?.map { spaceDto-> spaceDto.toSpaceEntity() }
         }
     }
 }
