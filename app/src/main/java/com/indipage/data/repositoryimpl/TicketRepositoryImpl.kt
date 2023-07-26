@@ -1,11 +1,9 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.TicketDataSource
-import com.indipage.data.dto.BaseResponse
-import com.indipage.data.dto.response.*
-import com.indipage.domain.entity.Card
+import com.indipage.data.dto.response.ResponseCardDto
+import com.indipage.data.dto.response.ResponseQrDto
 import com.indipage.domain.entity.Ticket
-import com.indipage.domain.entity.TicketList
 import com.indipage.domain.repository.TicketRepository
 import javax.inject.Inject
 
@@ -19,9 +17,9 @@ class TicketRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTicketList(): Result<TicketList?> {
+    override suspend fun getTicketList(): Result<List<Ticket>?> {
         return kotlin.runCatching {
-            dataSource.getTicketList().toTicketListEntity()
+            dataSource.getTicketList().data?.map { ticketDto -> ticketDto.toTicketEntity() }
         }
     }
 

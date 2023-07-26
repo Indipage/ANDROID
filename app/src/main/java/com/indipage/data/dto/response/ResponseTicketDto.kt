@@ -1,22 +1,20 @@
 package com.indipage.data.dto.response
 
-import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.domain.entity.Ticket
-import com.indipage.domain.entity.TicketList
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-data class ResponseTicketDto(
-    @SerialName("code")
-    val code: Int,
-    @SerialName("message")
-    val message: String,
-    @SerialName("data")
-    val data: List<TicketDto>,
-) {
-    fun toTicketListEntity() = TicketList(data.map { it.toTicketEntity() })
-}
+//@Serializable
+//data class ResponseTicketDto(
+//    @SerialName("code")
+//    val code: Int,
+//    @SerialName("message")
+//    val message: String,
+//    @SerialName("data")
+//    val ticketDtos: List<TicketDto>,
+//) {
+//    fun toTicketListEntity() = TicketList(ticketDtos.map { it.toTicketEntity()})
+//}
 
 @Serializable
 data class TicketDto(

@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseQrDto
-import com.indipage.data.dto.response.ResponseTicketDto
-import com.indipage.domain.entity.TicketList
+import com.indipage.domain.entity.Ticket
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,8 +30,8 @@ class TicketViewModel @Inject constructor(
 
     private val _qrResponse = MutableStateFlow<UiState<ResponseQrDto>>(UiState.Loading)
     val qrResponse: StateFlow<UiState<ResponseQrDto>> = _qrResponse.asStateFlow()
-    private val _ticket = MutableStateFlow<UiState<TicketList>>(UiState.Loading)
-    val ticket: StateFlow<UiState<TicketList>> = _ticket.asStateFlow()
+    private val _ticket = MutableStateFlow<UiState<List<Ticket>>>(UiState.Loading)
+    val ticket: StateFlow<UiState<List<Ticket>>> = _ticket.asStateFlow()
 
     init {
 //        getTicketList()

@@ -58,7 +58,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
             when (it) {
                 is UiState.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    adapter.submitList(it.data.ticketList)
+                    adapter.submitList(it.data)
                     binding.coTicketEmptyView.visibility = View.GONE
                 }
                 else -> {}

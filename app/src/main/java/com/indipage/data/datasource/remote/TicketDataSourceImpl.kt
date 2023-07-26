@@ -8,6 +8,8 @@ import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseCardDto
 import com.indipage.data.dto.response.ResponseQrDto
 import com.indipage.data.dto.response.ResponseTicketDto
+import com.indipage.data.dto.response.TicketDto
+import java.util.ListResourceBundle
 import javax.inject.Inject
 
 class TicketDataSourceImpl @Inject constructor(
@@ -18,7 +20,7 @@ class TicketDataSourceImpl @Inject constructor(
         return apiService.isCheckQR(spaceId)
     }
 
-    override suspend fun getTicketList(): ResponseTicketDto {
+    override suspend fun getTicketList(): BaseResponseNullable<List<TicketDto>> {
         return apiService.getTicketList()
     }
 
