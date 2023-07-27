@@ -1,4 +1,4 @@
-package com.indipage.presentation.ticket
+package com.indipage.presentation.ticket.ticket
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
