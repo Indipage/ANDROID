@@ -15,8 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private var FINISH_INTERVAL_TIME: Long = 2000
-    private var backPressedTime: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -53,7 +52,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             if (destination.id == R.id.navigation_article_all) {
                 binding.botNavMain.menu.findItem(R.id.navigation_article).isChecked = true
             }
-
             if (destination.id == R.id.navigation_card) {
                 binding.botNavMain.menu.findItem(R.id.navigation_ticket).isChecked = true
             }
