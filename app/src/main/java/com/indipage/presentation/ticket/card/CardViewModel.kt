@@ -1,13 +1,11 @@
-package com.indipage.presentation.ticket
+package com.indipage.presentation.ticket.card
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseCardDto
 import com.indipage.domain.entity.Card
-import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.usecase.TicketUseCase
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
