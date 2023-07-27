@@ -65,8 +65,6 @@ dependencies {
 
     // Matrial Design
     implementation(Google.MATERIAL)
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
     // Test Dependency
     androidTestImplementation(TestDependencies.EXT_JUNIT)
