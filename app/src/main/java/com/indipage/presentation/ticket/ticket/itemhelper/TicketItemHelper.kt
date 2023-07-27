@@ -1,10 +1,13 @@
-package com.indipage.presentation.ticket
+package com.indipage.presentation.ticket.ticket.itemhelper
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import timber.log.Timber
+import com.indipage.presentation.ticket.ticket.TicketAdapter
+import com.indipage.presentation.ticket.ticket.viewholder.TicketViewHolder
 
-class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper.Callback() {
+class TicketItemHelper(
+    private val onOpenQr: (Int) -> Unit = { _ -> }
+) : ItemTouchHelper.Callback() {
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
@@ -50,12 +53,12 @@ class TicketItemHelper(private val viewModel: TicketViewModel) : ItemTouchHelper
         if (position != RecyclerView.NO_POSITION && adapter != null) {
             val item = adapter.currentList.getOrNull(position)
             item?.let {
-                viewModel.openQR(it.spaceId)
+                onOpenQr
             }
         }
 
 
-        getDefaultUIUtil().clearView((viewHolder as TicketAdapter.TicketViewHolder).itemView)
+        getDefaultUIUtil().clearView((viewHolder as TicketViewHolder).itemView)
     }
 
 }
