@@ -18,7 +18,7 @@ class ArticleDetailDataSourceImpl
         return apiService.getArticleDetail(articleId)
     }
 
-    override suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponse<ResponseTicketReceiveCheckDto> {
+    override suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponseNullable<ResponseTicketReceiveCheckDto> {
         return apiService.getTicketReceiveCheck(spaceId)
     }
 

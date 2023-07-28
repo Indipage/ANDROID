@@ -21,7 +21,7 @@ interface ArticleDetailApiService {
     @GET("/user/ticket/{spaceId}")
     suspend fun getTicketReceiveCheck(
         @Path(value = "spaceId") spaceId: Long
-    ): BaseResponse<ResponseTicketReceiveCheckDto>
+    ): BaseResponseNullable<ResponseTicketReceiveCheckDto>
 
     @POST("/user/ticket/{spaceId}")
     suspend fun postTicketReceive(

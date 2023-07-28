@@ -1,13 +1,13 @@
 package com.indipage.domain.repository
 
-import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.entity.ArticleBookmark
 import com.indipage.domain.entity.ArticleDetail
+import com.indipage.domain.entity.TicketReceiveCheck
 
 interface ArticleDetailRepository {
     suspend fun getArticleDetail(articleId: Long): Result<ArticleDetail?>
 
-    suspend fun getTicketReceiveCheck(spaceId: Long): Result<ResponseTicketReceiveCheckDto>
+    suspend fun getTicketReceiveCheck(spaceId: Long): Result<TicketReceiveCheck?>
 
     suspend fun postTicketReceive(spaceId: Long): Result<Int>
 

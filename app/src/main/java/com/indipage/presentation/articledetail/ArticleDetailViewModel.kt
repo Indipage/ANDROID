@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseArticleBookmarkDto
-import com.indipage.data.dto.response.ResponseArticleDetailDto
-import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.entity.ArticleBookmark
 import com.indipage.domain.entity.ArticleDetail
+import com.indipage.domain.entity.TicketReceiveCheck
 import com.indipage.domain.repository.ArticleDetailRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,9 +27,9 @@ class ArticleDetailViewModel @Inject constructor(
     val articleDetailData: StateFlow<UiState<ArticleDetail>> =
         _articleDetailData.asStateFlow()
 
-    private val _ticketReceiveCheckData: MutableLiveData<ResponseTicketReceiveCheckDto> =
+    private val _ticketReceiveCheckData: MutableLiveData<TicketReceiveCheck> =
         MutableLiveData()
-    val ticketReceiveCheckData: LiveData<ResponseTicketReceiveCheckDto> = _ticketReceiveCheckData
+    val ticketReceiveCheckData: LiveData<TicketReceiveCheck> = _ticketReceiveCheckData
 
     private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
@@ -68,8 +66,10 @@ class ArticleDetailViewModel @Inject constructor(
 
     fun getTicketReceiveCheck(spaceId: Long) = viewModelScope.launch {
         apiRepository.getTicketReceiveCheck(spaceId).onSuccess {
-            _ticketReceiveCheckData.value = it
-            Timber.d("Success")
+            if (it != null) {
+                _ticketReceiveCheckData.value = it
+                Timber.d("Success")
+            }
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
@@ -86,8 +86,10 @@ class ArticleDetailViewModel @Inject constructor(
 
     fun getBookMark(articleId: Long) = viewModelScope.launch {
         apiRepository.getBookmark(articleId).onSuccess {
-            _articleBookmarkData.value = it
-            Timber.d("Success")
+            if (it != null) {
+                _articleBookmarkData.value = it
+                Timber.d("Success")
+            }
         }.onFailure { Timber.d(it.message.toString()) }
     }
 

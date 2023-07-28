@@ -10,7 +10,7 @@ import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 interface ArticleDetailDataSource {
     suspend fun getArticleDetail(articleId: Long): BaseResponseNullable<ResponseArticleDetailDto>
 
-    suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponse<ResponseTicketReceiveCheckDto>
+    suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponseNullable<ResponseTicketReceiveCheckDto>
 
     suspend fun postTicketReceive(spaceId: Long): NullResponse
 

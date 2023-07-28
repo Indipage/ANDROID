@@ -4,6 +4,7 @@ import com.indipage.data.datasource.ArticleDetailDataSource
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.domain.entity.ArticleBookmark
 import com.indipage.domain.entity.ArticleDetail
+import com.indipage.domain.entity.TicketReceiveCheck
 import com.indipage.domain.repository.ArticleDetailRepository
 import javax.inject.Inject
 
@@ -16,9 +17,9 @@ class ArticleDetailRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTicketReceiveCheck(spaceId: Long): Result<ResponseTicketReceiveCheckDto> {
+    override suspend fun getTicketReceiveCheck(spaceId: Long): Result<TicketReceiveCheck?> {
         return runCatching {
-            dataSource.getTicketReceiveCheck(spaceId).data
+            dataSource.getTicketReceiveCheck(spaceId).data?.toTicketReceiveCheckEntity()
         }
     }
 

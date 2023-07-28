@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.databinding.ItemArticleDetailBottomTicketBinding
+import com.indipage.domain.entity.TicketReceiveCheck
 import com.indipage.presentation.articledetail.viewholder.ArticleDetailBottomTicketViewHolder
 
-class ArticleDetailBottomTicketAdapter(private val onClickTicketReceived: (ResponseTicketReceiveCheckDto) -> Unit = { _ -> }) :
-    ListAdapter<ResponseTicketReceiveCheckDto, ArticleDetailBottomTicketViewHolder>(
+class ArticleDetailBottomTicketAdapter(private val onClickTicketReceived: (TicketReceiveCheck) -> Unit = { _ -> }) :
+    ListAdapter<TicketReceiveCheck, ArticleDetailBottomTicketViewHolder>(
         ArticleAllDiffCallback
     ) {
 
@@ -27,7 +27,7 @@ class ArticleDetailBottomTicketAdapter(private val onClickTicketReceived: (Respo
     }
 
     companion object {
-        private val ArticleAllDiffCallback = ItemDiffCallback<ResponseTicketReceiveCheckDto>(
+        private val ArticleAllDiffCallback = ItemDiffCallback<TicketReceiveCheck>(
             onItemsTheSame = { old, new -> old.ticket.id == new.ticket.id },
             onContentsTheSame = { old, new -> old == new })
     }
