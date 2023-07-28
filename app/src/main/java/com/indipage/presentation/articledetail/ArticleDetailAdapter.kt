@@ -8,6 +8,7 @@ import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemArticleDetailArticleBodyBinding
 import com.indipage.databinding.ItemArticleDetailArticleImageBinding
 import com.indipage.databinding.ItemArticleDetailArticleTitleBinding
+import com.indipage.presentation.articledetail.viewholder.ArticleDetailAdapterViewHolder
 import com.indipage.util.ArticleDetailTag.BODY
 import com.indipage.util.ArticleDetailTag.BODY_TAG_REGEX
 import com.indipage.util.ArticleDetailTag.IMAGE

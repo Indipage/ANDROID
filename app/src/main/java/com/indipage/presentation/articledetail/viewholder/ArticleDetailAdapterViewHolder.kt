@@ -1,4 +1,4 @@
-package com.indipage.presentation.articledetail
+package com.indipage.presentation.articledetail.viewholder
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
@@ -19,6 +19,7 @@ import com.indipage.R
 import com.indipage.databinding.ItemArticleDetailArticleBodyBinding
 import com.indipage.databinding.ItemArticleDetailArticleImageBinding
 import com.indipage.databinding.ItemArticleDetailArticleTitleBinding
+import com.indipage.presentation.articledetail.ArticleDetailData
 import com.indipage.util.ArticleDetailTag
 
 class ArticleDetailAdapterViewHolder {

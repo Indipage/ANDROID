@@ -1,18 +1,15 @@
 package com.indipage.presentation.articledetail
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
 import com.indipage.databinding.ItemArticleDetailBottomTicketBinding
-import timber.log.Timber
+import com.indipage.presentation.articledetail.viewholder.ArticleDetailBottomTicketViewHolder
 
 class ArticleDetailBottomTicketAdapter(private val onClickTicketReceived: (ResponseTicketReceiveCheckDto) -> Unit = { _ -> }) :
-    ListAdapter<ResponseTicketReceiveCheckDto, ArticleDetailBottomTicketAdapter.ArticleDetailBottomTicketViewHolder>(
+    ListAdapter<ResponseTicketReceiveCheckDto, ArticleDetailBottomTicketViewHolder>(
         ArticleAllDiffCallback
     ) {
 
@@ -22,32 +19,11 @@ class ArticleDetailBottomTicketAdapter(private val onClickTicketReceived: (Respo
         val binding = ItemArticleDetailBottomTicketBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ArticleDetailBottomTicketViewHolder(binding)
+        return ArticleDetailBottomTicketViewHolder(binding, onClickTicketReceived)
     }
 
     override fun onBindViewHolder(holder: ArticleDetailBottomTicketViewHolder, position: Int) {
         holder.bind(getItem(position))
-    }
-
-    inner class ArticleDetailBottomTicketViewHolder(
-        private val binding: ItemArticleDetailBottomTicketBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ResponseTicketReceiveCheckDto) {
-            with(binding) {
-                ticketReceive = data
-                if (data.hasReceivedTicket) {
-                    ivItemArticleDetailBottomTicketImage.load(data.ticket.ticketForArticleImageUrl)
-                    tvItemArticleDetailBottomTicketPush.visibility = View.INVISIBLE
-                    Timber.d("티켓 받음")
-                } else {
-                    Timber.d("티켓 안 받음")
-                }
-                binding.ivItemArticleDetailBottomTicketImage.setOnClickListener {
-                    onClickTicketReceived(data)
-                }
-                executePendingBindings()
-            }
-        }
     }
 
     companion object {
