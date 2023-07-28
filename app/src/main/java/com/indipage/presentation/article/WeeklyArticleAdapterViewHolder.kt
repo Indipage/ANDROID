@@ -5,13 +5,14 @@ import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
 import com.indipage.databinding.ItemWeeklyArticlePreBinding
+import com.indipage.domain.entity.ArticleWeekly
 
 class WeeklyArticleAdapterViewHolder() {
     class ItemWeeklyArticleOpenViewHolder(
         private val binding: ItemWeeklyArticleOpenBinding,
-        private val onMoveToArticleDetailClick: (ResponseArticleWeeklyDto, Int) -> Unit = { _, _ -> }
+        private val onMoveToArticleDetailClick: (ArticleWeekly, Int) -> Unit = { _, _ -> }
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ResponseArticleWeeklyDto) {
+        fun onBind(data: ArticleWeekly) {
             with(binding) {
                 articleWeekly = data
                 binding.root.setOnClickListener {
@@ -24,7 +25,7 @@ class WeeklyArticleAdapterViewHolder() {
 
     class ItemWeeklyArticlePreViewHolder(private val binding: ItemWeeklyArticlePreBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ResponseArticleWeeklyDto) {
+        fun onBind(data: ArticleWeekly) {
             with(binding) {
                 articleWeekly = data
                 executePendingBindings()

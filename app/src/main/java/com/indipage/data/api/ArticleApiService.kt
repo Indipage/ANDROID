@@ -12,7 +12,7 @@ import retrofit2.http.PUT
 
 interface ArticleApiService {
     @GET("/article/weekly")
-    suspend fun getArticleWeekly(): BaseResponse<ResponseArticleWeeklyDto>
+    suspend fun getArticleWeekly(): BaseResponseNullable<ResponseArticleWeeklyDto>
 
     @GET("/user/weekly/slide")
     suspend fun getArticleSlide(): BaseResponse<ResponseArticleSlideDto>

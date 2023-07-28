@@ -13,7 +13,7 @@ import javax.inject.Inject
 class ArticleDataSourceImpl @Inject constructor(
     private val apiService: ArticleApiService
 ) : ArticleDataSource {
-    override suspend fun getArticleWeekly(): BaseResponse<ResponseArticleWeeklyDto> {
+    override suspend fun getArticleWeekly(): BaseResponseNullable<ResponseArticleWeeklyDto> {
         return apiService.getArticleWeekly()
     }
 

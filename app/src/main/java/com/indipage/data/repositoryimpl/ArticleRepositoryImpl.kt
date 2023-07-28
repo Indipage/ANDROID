@@ -4,15 +4,16 @@ import com.indipage.data.datasource.ArticleDataSource
 import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
+import com.indipage.domain.entity.ArticleWeekly
 import com.indipage.domain.repository.ArticleRepository
 import javax.inject.Inject
 
 class ArticleRepositoryImpl @Inject constructor(
     private val dataSource: ArticleDataSource
 ) : ArticleRepository {
-    override suspend fun getArticleWeekly(): Result<ResponseArticleWeeklyDto> {
+    override suspend fun getArticleWeekly(): Result<ArticleWeekly?> {
         return runCatching {
-            dataSource.getArticleWeekly().data
+            dataSource.getArticleWeekly().data?.toArticleWeeklyEntity()
         }
     }
 

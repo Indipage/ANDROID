@@ -9,12 +9,13 @@ import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
 import com.indipage.databinding.ItemWeeklyArticlePreBinding
+import com.indipage.domain.entity.ArticleWeekly
 import com.indipage.util.WeeklyArticle.ITEM_OPEN
 import com.indipage.util.WeeklyArticle.ITEM_PRE
 
 class WeeklyArticleAdapter(
-    private val onMoveToArticleDetailClick: (ResponseArticleWeeklyDto, Int) -> Unit = { _, _ -> }) :
-    ListAdapter<ResponseArticleWeeklyDto, RecyclerView.ViewHolder>(
+    private val onMoveToArticleDetailClick: (ArticleWeekly, Int) -> Unit = { _, _ -> }) :
+    ListAdapter<ArticleWeekly, RecyclerView.ViewHolder>(
         WeeklyArticleAdapterDiffCallback
     ) {
     override fun getItemId(position: Int): Long = position.toLong()
@@ -52,7 +53,7 @@ class WeeklyArticleAdapter(
     }
 
     companion object {
-        private val WeeklyArticleAdapterDiffCallback = ItemDiffCallback<ResponseArticleWeeklyDto>(
+        private val WeeklyArticleAdapterDiffCallback = ItemDiffCallback<ArticleWeekly>(
             onItemsTheSame = { old, new -> old.title == new.title },
             onContentsTheSame = { old, new -> old == new })
     }
