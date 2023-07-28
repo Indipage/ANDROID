@@ -1,8 +1,6 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.SpaceDetailDataSource
-import com.indipage.data.dto.response.BookmarkData
-import com.indipage.data.dto.response.FollowData
 import com.indipage.domain.entity.Curation
 import com.indipage.domain.entity.SpaceArticle
 import com.indipage.domain.entity.SpaceDetail
@@ -13,9 +11,9 @@ class SpaceDetailRepositoryImpl @Inject constructor(
     private val dataSource: SpaceDetailDataSource
 ) : SpaceDetailRepository {
 
-    override suspend fun getBookmarked(spaceId: Int): Result<BookmarkData> {
+    override suspend fun getBookmarked(spaceId: Int): Result<Boolean> {
         return runCatching {
-            dataSource.getBookmarked(spaceId).data
+            dataSource.getBookmarked(spaceId).data.bookmarked
         }
     }
 
@@ -44,9 +42,9 @@ class SpaceDetailRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun getFollow(spaceId: Int): Result<FollowData> {
+    override suspend fun getFollow(spaceId: Int): Result<Boolean> {
         return runCatching {
-            dataSource.getFollow(spaceId).data
+            dataSource.getFollow(spaceId).data.isFollowed
         }
     }
 

@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.CurationData
 import com.indipage.databinding.ItemSpaceDetailCurationBinding
+import com.indipage.domain.entity.Curation
 
 class SpaceDetailCurationAdapter() :
-    ListAdapter<CurationData, SpaceDetailCurationAdapter.CurationViewHolder>(
+    ListAdapter<Curation, SpaceDetailCurationAdapter.CurationViewHolder>(
         SpaceDetailDiffCallback
     ) {
 
@@ -29,14 +29,14 @@ class SpaceDetailCurationAdapter() :
 
     class CurationViewHolder(private val binding: ItemSpaceDetailCurationBinding) :
         ViewHolder(binding.root) {
-        fun onBind(data: CurationData) {
+        fun onBind(data: Curation) {
             binding.curation = data
         }
     }
 
     companion object {
         private val SpaceDetailDiffCallback =
-            ItemDiffCallback<CurationData>(
+            ItemDiffCallback<Curation>(
                 onItemsTheSame = { old, new -> old.bookData == new.bookData },
                 onContentsTheSame = { old, new -> old == new }
             )

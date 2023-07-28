@@ -14,9 +14,9 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.response.CurationData
-import com.indipage.data.dto.response.SpaceDetailData
 import com.indipage.databinding.FragmentSpaceDetailBinding
+import com.indipage.domain.entity.Curation
+import com.indipage.domain.entity.SpaceDetail
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -60,7 +60,7 @@ class SpaceDetailFragment :
         viewModel.bookMarked.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    when (it.data.bookmarked) {
+                    when (it.data) {
                         true -> {
                             ibBookmarkIcon.isSelected = true
                             ibBookmarkIcon.setOnClickListener {
@@ -103,7 +103,7 @@ class SpaceDetailFragment :
      * 1. binding 전달
      * 2. 추천 서가 recycler view LayoutManager 설정
      * 3. recycler view adapter*/
-    private fun initTagAdapter(item: SpaceDetailData) = with(binding) {
+    private fun initTagAdapter(item: SpaceDetail) = with(binding) {
         spaceDetail = item
         rvSpaceDetailTag.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -125,7 +125,7 @@ class SpaceDetailFragment :
     }
 
     /**initCurationAdapter */
-    private fun initCurationAdapter2(item: List<CurationData>) {
+    private fun initCurationAdapter2(item: List<Curation>) {
         with(binding) {
             vpCuration.apply {
                 adapter = SpaceDetailCurationAdapter().apply { submitList(item) }
@@ -195,7 +195,7 @@ class SpaceDetailFragment :
             when (it) {
                 is UiState.Success -> {
                     Timber.d("{$it} 조르기 버튼 UI 초기화")
-                    if (it.data.isFollowed) {
+                    if (it.data) {
                         btnFollow.text = "조르기 완료"
                         btnFollow.isSelected = true
                     } else {

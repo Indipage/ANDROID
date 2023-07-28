@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.ResponseSearchData
 import com.indipage.databinding.ItemSearchBinding
-import com.indipage.domain.entity.Space
+import com.indipage.domain.entity.Search
 
-class SearchAdapter( private val onMoveToSpaceDetailClick: (ResponseSearchData, Int) -> Unit = { _, _ -> }) :
-    ListAdapter<ResponseSearchData, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
+class SearchAdapter(private val onMoveToSpaceDetailClick: (Search, Int) -> Unit = { _, _ -> }) :
+    ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding =
@@ -25,10 +24,10 @@ class SearchAdapter( private val onMoveToSpaceDetailClick: (ResponseSearchData, 
     inner class SearchViewHolder(
         private val binding: ItemSearchBinding
     ) : ViewHolder(binding.root) {
-        fun bind(data: ResponseSearchData) {
+        fun bind(data: Search) {
             binding.search = data
             binding.root.setOnClickListener {
-                onMoveToSpaceDetailClick(data,position)
+                onMoveToSpaceDetailClick(data, position)
             }
             binding.executePendingBindings()
         }
@@ -36,7 +35,7 @@ class SearchAdapter( private val onMoveToSpaceDetailClick: (ResponseSearchData, 
 
     companion object {
         private val SearchDiffCalback =
-            ItemDiffCallback<ResponseSearchData>(
+            ItemDiffCallback<Search>(
                 onItemsTheSame = { old, new -> old.spaceId == new.spaceId },
                 onContentsTheSame = { old, new -> old == new }
             )
