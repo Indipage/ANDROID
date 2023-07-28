@@ -8,6 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
+import com.indipage.domain.entity.ArticleDetail
 import com.indipage.domain.repository.ArticleDetailRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,8 +24,8 @@ class ArticleDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _articleDetailData =
-        MutableStateFlow<UiState<ResponseArticleDetailDto>>(UiState.Loading)
-    val articleDetailData: StateFlow<UiState<ResponseArticleDetailDto>> =
+        MutableStateFlow<UiState<ArticleDetail>>(UiState.Loading)
+    val articleDetailData: StateFlow<UiState<ArticleDetail>> =
         _articleDetailData.asStateFlow()
 
     private val _ticketReceiveCheckData: MutableLiveData<ResponseTicketReceiveCheckDto> =
@@ -44,20 +45,23 @@ class ArticleDetailViewModel @Inject constructor(
     private val _deleteArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val deleteArticleBookmark: StateFlow<UiState<Int>> = _deleteArticleBookmark.asStateFlow()
 
-    private val _openSpaceDetail = MutableLiveData<Event<ResponseArticleDetailDto>>()
-    val openSpaceDetail: LiveData<Event<ResponseArticleDetailDto>> = _openSpaceDetail
+    private val _openSpaceDetail = MutableLiveData<Event<ArticleDetail>>()
+    val openSpaceDetail: LiveData<Event<ArticleDetail>> = _openSpaceDetail
 
     private val _getArticleTicket = MutableLiveData<Int>()
     val getArticleTicket: LiveData<Int> = _getArticleTicket
 
-    fun openSpaceDetail(responseArticleDetailDto: ResponseArticleDetailDto) {
-        _openSpaceDetail.value = Event(responseArticleDetailDto)
+    fun openSpaceDetail(articleDetail: ArticleDetail) {
+        _openSpaceDetail.value = Event(articleDetail)
     }
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId).onSuccess {
-            _articleDetailData.value = UiState.Success(it)
-            Timber.d("Success")
+            if (it != null) {
+                _articleDetailData.value = UiState.Success(it)
+                Timber.d("Success")
+            } else _articleDetailData.value = UiState.Empty
+
         }.onFailure { Timber.d(it.message.toString()) }
     }
 

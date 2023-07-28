@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.databinding.ItemArticleDetailHeadBinding
+import com.indipage.domain.entity.ArticleDetail
 import com.indipage.domain.entity.Space
 
 class ArticleDetailHeadAdapter(
-    private val onMoveToSpaceDetailClick: (ResponseArticleDetailDto, Int) -> Unit = { _, _ -> }
-) : ListAdapter<ResponseArticleDetailDto, ArticleDetailHeadAdapter.ArticleDetailHeadViewHolder>(
+    private val onMoveToSpaceDetailClick: (ArticleDetail, Int) -> Unit = { _, _ -> }
+) : ListAdapter<ArticleDetail, ArticleDetailHeadAdapter.ArticleDetailHeadViewHolder>(
     ArticleAllDiffCallback
 ) {
 
@@ -28,7 +29,7 @@ class ArticleDetailHeadAdapter(
     inner class ArticleDetailHeadViewHolder(
         private val binding: ItemArticleDetailHeadBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ResponseArticleDetailDto) {
+        fun bind(data: ArticleDetail) {
             with(binding) {
                 binding.articleDetail = data
                 binding.tvItemArticleDetailHeadMoveToPlaceDetail1.setOnClickListener {
@@ -49,7 +50,7 @@ class ArticleDetailHeadAdapter(
     }
 
     companion object {
-        private val ArticleAllDiffCallback = ItemDiffCallback<ResponseArticleDetailDto>(
+        private val ArticleAllDiffCallback = ItemDiffCallback<ArticleDetail>(
             onItemsTheSame = { old, new -> old.id == new.id },
             onContentsTheSame = { old, new -> old == new })
     }

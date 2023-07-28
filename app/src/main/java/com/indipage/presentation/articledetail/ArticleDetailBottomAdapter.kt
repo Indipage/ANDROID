@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.databinding.ItemArticleDetailBottomBinding
+import com.indipage.domain.entity.ArticleDetail
 
 class ArticleDetailBottomAdapter() :
-    ListAdapter<ResponseArticleDetailDto, ArticleDetailBottomAdapter.ArticleDetailBottomViewHolder>(
+    ListAdapter<ArticleDetail, ArticleDetailBottomAdapter.ArticleDetailBottomViewHolder>(
         ArticleAllDiffCallback
     ) {
 
@@ -29,7 +30,7 @@ class ArticleDetailBottomAdapter() :
     class ArticleDetailBottomViewHolder(
         private val binding: ItemArticleDetailBottomBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: ResponseArticleDetailDto) {
+        fun bind(data: ArticleDetail) {
             with(binding) {
                 articleDetail = data
                 executePendingBindings()
@@ -38,7 +39,7 @@ class ArticleDetailBottomAdapter() :
     }
 
     companion object {
-        private val ArticleAllDiffCallback = ItemDiffCallback<ResponseArticleDetailDto>(
+        private val ArticleAllDiffCallback = ItemDiffCallback<ArticleDetail>(
             onItemsTheSame = { old, new -> old.id == new.id },
             onContentsTheSame = { old, new -> old == new })
     }

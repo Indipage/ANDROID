@@ -1,6 +1,7 @@
 package com.indipage.data.api
 
 import com.indipage.data.dto.BaseResponse
+import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
@@ -15,7 +16,7 @@ interface ArticleDetailApiService {
     @GET("/article/{articleId}")
     suspend fun getArticleDetail(
         @Path(value = "articleId") articleId: Long
-    ): BaseResponse<ResponseArticleDetailDto>
+    ): BaseResponseNullable<ResponseArticleDetailDto>
 
     @GET("/user/ticket/{spaceId}")
     suspend fun getTicketReceiveCheck(
