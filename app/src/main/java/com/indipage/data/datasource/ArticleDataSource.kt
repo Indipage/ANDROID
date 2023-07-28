@@ -10,7 +10,7 @@ import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 interface ArticleDataSource {
     suspend fun getArticleWeekly(): BaseResponseNullable<ResponseArticleWeeklyDto>
 
-    suspend fun getArticleSlide(): BaseResponse<ResponseArticleSlideDto>
+    suspend fun getArticleSlide(): BaseResponseNullable<ResponseArticleSlideDto>
 
     suspend fun putArticleSlide(): NullResponse
 

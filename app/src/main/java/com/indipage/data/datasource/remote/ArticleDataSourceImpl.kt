@@ -17,7 +17,7 @@ class ArticleDataSourceImpl @Inject constructor(
         return apiService.getArticleWeekly()
     }
 
-    override suspend fun getArticleSlide(): BaseResponse<ResponseArticleSlideDto> {
+    override suspend fun getArticleSlide(): BaseResponseNullable<ResponseArticleSlideDto> {
         return apiService.getArticleSlide()
     }
 

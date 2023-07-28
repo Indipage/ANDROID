@@ -2,8 +2,7 @@ package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDataSource
 import com.indipage.data.dto.response.ResponseArticleAllDto
-import com.indipage.data.dto.response.ResponseArticleSlideDto
-import com.indipage.data.dto.response.ResponseArticleWeeklyDto
+import com.indipage.domain.entity.ArticleSlide
 import com.indipage.domain.entity.ArticleWeekly
 import com.indipage.domain.repository.ArticleRepository
 import javax.inject.Inject
@@ -17,9 +16,9 @@ class ArticleRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getArticleSlide(): Result<ResponseArticleSlideDto> {
+    override suspend fun getArticleSlide(): Result<ArticleSlide?> {
         return runCatching {
-            dataSource.getArticleSlide().data
+            dataSource.getArticleSlide().data?.toArticleSlideEntity()
         }
     }
 

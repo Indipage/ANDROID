@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseArticleSlideDto
+import com.indipage.domain.entity.ArticleSlide
 import com.indipage.domain.entity.ArticleWeekly
 import com.indipage.domain.repository.ArticleRepository
 import com.indipage.util.Event
@@ -24,8 +24,8 @@ class ArticleViewModel @Inject constructor(
     private val _articleWeeklyData: MutableLiveData<ArticleWeekly> = MutableLiveData()
     val articleWeeklyData: LiveData<ArticleWeekly> = _articleWeeklyData
 
-    private val _articleSlideData: MutableLiveData<ResponseArticleSlideDto> = MutableLiveData()
-    val articleSlideData: LiveData<ResponseArticleSlideDto> = _articleSlideData
+    private val _articleSlideData: MutableLiveData<ArticleSlide> = MutableLiveData()
+    val articleSlideData: LiveData<ArticleSlide> = _articleSlideData
 
     private val _putArticleSlide = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val putArticleSlide: StateFlow<UiState<Int>> = _putArticleSlide.asStateFlow()
@@ -46,9 +46,9 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun getArticleWeekly() = viewModelScope.launch {
-        apiRepository.getArticleWeekly().onSuccess { articleWeekly ->
-            if (articleWeekly != null) {
-                _articleWeeklyData.value = articleWeekly
+        apiRepository.getArticleWeekly().onSuccess {
+            if (it != null) {
+                _articleWeeklyData.value = it
                 Timber.d("Success")
             }
         }.onFailure { Timber.d(it.message.toString()) }
@@ -56,8 +56,10 @@ class ArticleViewModel @Inject constructor(
 
     fun getArticleSlide() = viewModelScope.launch {
         apiRepository.getArticleSlide().onSuccess {
-            _articleSlideData.value = it
-            Timber.d("Success")
+            if (it != null) {
+                _articleSlideData.value = it
+                Timber.d("Success")
+            }
         }.onFailure {
             Timber.d(it.message.toString())
         }
