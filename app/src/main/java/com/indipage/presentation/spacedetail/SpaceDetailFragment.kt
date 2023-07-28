@@ -32,7 +32,6 @@ class SpaceDetailFragment :
         super.onViewCreated(view, savedInstanceState)
         val spaceId = requireArguments().getInt("spaceId")
         Timber.tag("SakSpace").d("$spaceId")
-        binding.vm = viewModel
         initView(spaceId)
         initSpaceArticleButton()
     }
@@ -180,6 +179,10 @@ class SpaceDetailFragment :
                 is UiState.Success -> {
                     binding.spaceArticle = it.data
                     binding.clSpaceArticle.visibility = View.VISIBLE
+                    val test = it.data
+                    binding.clSpaceArticle.setOnClickListener {
+                        viewModel.openArticleDetailEvent(test.id)
+                    }
                 }
 
                 else -> {
@@ -217,6 +220,7 @@ class SpaceDetailFragment :
             Timber.tag("spaceBtn").d("$it")
             findNavController().navigateUp()
         }
+
         viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
             moveToSpaceArticle(it.toLong())
         })

@@ -17,9 +17,6 @@
             name="spaceArticle"
             type="com.indipage.domain.entity.SpaceArticle" />
 
-        <variable
-            name="vm"
-            type="com.indipage.presentation.spacedetail.SpaceDetailViewModel" />
 
     </data>
 
@@ -347,7 +344,6 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_space_article"
-                onThrottleClick="@{()->vm.openArticleDetailEvent(spaceArticle.id)}"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="7dp"
