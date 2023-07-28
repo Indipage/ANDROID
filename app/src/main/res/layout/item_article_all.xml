@@ -7,7 +7,7 @@
 
         <variable
             name="article_all"
-            type="com.indipage.data.dto.response.ResponseArticleAllDto" />
+            type="com.indipage.domain.entity.ArticleAll" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

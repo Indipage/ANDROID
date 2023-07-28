@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.indipage.data.dto.response.ResponseArticleAllDto
+import com.indipage.domain.entity.ArticleAll
 import com.indipage.domain.repository.ArticleRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.launch
@@ -16,11 +16,11 @@ class ArticleAllViewModel @Inject constructor(
     private val apiRepository: ArticleRepository
 ) : ViewModel() {
 
-    private val _articleAllData: MutableLiveData<List<ResponseArticleAllDto>> = MutableLiveData()
-    val articleAllData: LiveData<List<ResponseArticleAllDto>> = _articleAllData
+    private val _articleAllData: MutableLiveData<List<ArticleAll>> = MutableLiveData()
+    val articleAllData: LiveData<List<ArticleAll>> = _articleAllData
 
-    private val _openArticleDetail = MutableLiveData<Event<ResponseArticleAllDto>>()
-    val openArticleDetail: LiveData<Event<ResponseArticleAllDto>> = _openArticleDetail
+    private val _openArticleDetail = MutableLiveData<Event<ArticleAll>>()
+    val openArticleDetail: LiveData<Event<ArticleAll>> = _openArticleDetail
 
     fun getArticleAll() = viewModelScope.launch {
         apiRepository.getArticleAll().onSuccess {
@@ -29,7 +29,7 @@ class ArticleAllViewModel @Inject constructor(
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
-    fun openArticleDetail(responseArticleAllDto: ResponseArticleAllDto) {
-        _openArticleDetail.value = Event(responseArticleAllDto)
+    fun openArticleDetail(articleAll: ArticleAll) {
+        _openArticleDetail.value = Event(articleAll)
     }
 }
