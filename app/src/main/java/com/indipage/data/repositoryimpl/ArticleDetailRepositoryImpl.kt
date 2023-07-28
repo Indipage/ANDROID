@@ -1,9 +1,8 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDetailDataSource
-import com.indipage.data.dto.response.ResponseArticleBookmarkDto
-import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
+import com.indipage.domain.entity.ArticleBookmark
 import com.indipage.domain.entity.ArticleDetail
 import com.indipage.domain.repository.ArticleDetailRepository
 import javax.inject.Inject
@@ -29,9 +28,9 @@ class ArticleDetailRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getBookmark(articleId: Long): Result<ResponseArticleBookmarkDto> {
+    override suspend fun getBookmark(articleId: Long): Result<ArticleBookmark?> {
         return runCatching {
-            dataSource.getBookmark(articleId).data
+            dataSource.getBookmark(articleId).data?.toArticleBookmarkEntity()
         }
     }
 

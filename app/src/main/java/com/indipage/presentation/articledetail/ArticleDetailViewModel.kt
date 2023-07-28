@@ -8,6 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
 import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
+import com.indipage.domain.entity.ArticleBookmark
 import com.indipage.domain.entity.ArticleDetail
 import com.indipage.domain.repository.ArticleDetailRepository
 import com.indipage.util.Event
@@ -35,9 +36,9 @@ class ArticleDetailViewModel @Inject constructor(
     private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
 
-    private val _articleBookmarkData: MutableLiveData<ResponseArticleBookmarkDto> =
+    private val _articleBookmarkData: MutableLiveData<ArticleBookmark> =
         MutableLiveData()
-    val articleBookmarkData: LiveData<ResponseArticleBookmarkDto> = _articleBookmarkData
+    val articleBookmarkData: LiveData<ArticleBookmark> = _articleBookmarkData
 
     private val _postArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postArticleBookmark: StateFlow<UiState<Int>> = _postArticleBookmark.asStateFlow()

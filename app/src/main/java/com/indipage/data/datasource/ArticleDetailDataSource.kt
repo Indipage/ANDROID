@@ -14,7 +14,7 @@ interface ArticleDetailDataSource {
 
     suspend fun postTicketReceive(spaceId: Long): NullResponse
 
-    suspend fun getBookmark(articleId: Long): BaseResponse<ResponseArticleBookmarkDto>
+    suspend fun getBookmark(articleId: Long): BaseResponseNullable<ResponseArticleBookmarkDto>
 
     suspend fun postBookmark(articleId: Long): NullResponse
 

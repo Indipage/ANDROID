@@ -29,7 +29,7 @@ class ArticleDetailDataSourceImpl
         return apiService.postTicketReceive(spaceId)
     }
 
-    override suspend fun getBookmark(articleId: Long): BaseResponse<ResponseArticleBookmarkDto> {
+    override suspend fun getBookmark(articleId: Long): BaseResponseNullable<ResponseArticleBookmarkDto> {
         return apiService.getBookmark(articleId)
     }
 

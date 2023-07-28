@@ -31,7 +31,7 @@ interface ArticleDetailApiService {
     @GET("/bookmark/article/{articleId}")
     suspend fun getBookmark(
         @Path(value = "articleId") articleId: Long
-    ): BaseResponse<ResponseArticleBookmarkDto>
+    ): BaseResponseNullable<ResponseArticleBookmarkDto>
 
     @POST("/bookmark/article/{articleId}")
     suspend fun postBookmark(
