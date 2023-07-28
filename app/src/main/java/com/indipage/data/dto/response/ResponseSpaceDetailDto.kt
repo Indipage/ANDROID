@@ -1,5 +1,7 @@
 package com.indipage.data.dto.response
 
+import com.indipage.domain.entity.SpaceDetail
+import com.indipage.domain.entity.Tag
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,7 +23,7 @@ data class SpaceDetailData(
     @SerialName("operatingTime")
     val operatingTime: String?,
     @SerialName("closedDays")
-    val closed: String ?,
+    val closed: String?,
     @SerialName("introduction")
     val introduction: String?,
     @SerialName("peculiarityTitle")
@@ -39,5 +41,28 @@ data class SpaceDetailData(
         val id: Int?,
         @SerialName("name")
         val name: String?
-    )
+    ) {
+
+        fun toTagList() = run {
+            Tag(id, name)
+        }
+    }
+
+    fun toSpaceDetail() = run {
+        SpaceDetail(
+            id,
+            name,
+            imageUrl,
+            address,
+            type,
+            owner,
+            operatingTime,
+            closed,
+            introduction,
+            peculiarityTitle,
+            peculiarityContent,
+            peculiarityImageUrl,
+            tagList.map { it.toTagList() }
+        )
+    }
 }

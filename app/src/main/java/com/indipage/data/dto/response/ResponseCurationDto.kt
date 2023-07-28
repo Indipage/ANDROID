@@ -1,5 +1,7 @@
 package com.indipage.data.dto.response
 
+import com.indipage.domain.entity.Book
+import com.indipage.domain.entity.Curation
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,5 +21,13 @@ data class CurationData(
         val title: String,
         @SerialName("imageUrl")
         val imageUrl: String
-    )
+    ) {
+        fun toBook() = run {
+            Book(id, title, imageUrl)
+        }
+    }
+
+    fun toCuration() = run {
+        Curation(bookData.toBook(), comment)
+    }
 }
