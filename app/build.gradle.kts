@@ -51,6 +51,7 @@ android {
 dependencies {
     implementation(project(":core-ui"))
     implementation(project(":domain"))
+    implementation(project(":data"))
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX

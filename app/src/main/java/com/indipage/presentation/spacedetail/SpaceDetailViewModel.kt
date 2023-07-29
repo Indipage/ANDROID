@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.SpaceArticleData
 import com.indipage.domain.model.Curation
 import com.indipage.domain.model.SpaceArticle
 import com.indipage.domain.model.SpaceDetail
@@ -91,7 +90,7 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
         apiRepository.getSpaceArticle(spaceId).onSuccess { SpaceArticle ->
             if (SpaceArticle != null) {
                 _spaceArticle.value = UiState.Success(SpaceArticle)
-                Timber.d("뷰모델 성공 Space Article Success $SpaceArticleData")
+                Timber.d("뷰모델 성공 Space Article Success $SpaceArticle")
             } else {
                 _spaceArticle.value = UiState.Empty
             }
