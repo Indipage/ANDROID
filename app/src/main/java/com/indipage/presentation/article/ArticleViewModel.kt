@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.ArticleSlide
-import com.indipage.domain.entity.ArticleWeekly
+import com.indipage.domain.model.ArticleSlide
+import com.indipage.domain.model.ArticleWeekly
 import com.indipage.domain.repository.ArticleRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow

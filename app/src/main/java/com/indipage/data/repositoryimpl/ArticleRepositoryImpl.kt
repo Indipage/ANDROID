@@ -1,9 +1,9 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDataSource
-import com.indipage.domain.entity.ArticleAll
-import com.indipage.domain.entity.ArticleSlide
-import com.indipage.domain.entity.ArticleWeekly
+import com.indipage.domain.model.ArticleAll
+import com.indipage.domain.model.ArticleSlide
+import com.indipage.domain.model.ArticleWeekly
 import com.indipage.domain.repository.ArticleRepository
 import javax.inject.Inject
 

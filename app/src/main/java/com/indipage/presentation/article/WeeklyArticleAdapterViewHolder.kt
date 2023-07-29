@@ -1,11 +1,9 @@
 package com.indipage.presentation.article
 
 import androidx.recyclerview.widget.RecyclerView
-import com.indipage.data.dto.response.ResponseArticleAllDto
-import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import com.indipage.databinding.ItemWeeklyArticleOpenBinding
 import com.indipage.databinding.ItemWeeklyArticlePreBinding
-import com.indipage.domain.entity.ArticleWeekly
+import com.indipage.domain.model.ArticleWeekly
 
 class WeeklyArticleAdapterViewHolder() {
     class ItemWeeklyArticleOpenViewHolder(

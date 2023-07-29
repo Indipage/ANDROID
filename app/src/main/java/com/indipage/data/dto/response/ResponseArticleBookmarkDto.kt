@@ -1,6 +1,6 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.ArticleBookmark
+import com.indipage.domain.model.ArticleBookmark
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

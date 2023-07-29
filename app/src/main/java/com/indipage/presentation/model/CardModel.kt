@@ -1,6 +1,8 @@
 package com.indipage.presentation.model
 
-import com.indipage.domain.entity.Card
+import com.indipage.domain.model.Card
+
+
 data class CardModel (
     val cardId :Long,
     val imageUrl:String,

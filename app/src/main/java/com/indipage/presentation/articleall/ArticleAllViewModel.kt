@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.indipage.domain.entity.ArticleAll
+import com.indipage.domain.model.ArticleAll
 import com.indipage.domain.repository.ArticleRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.launch

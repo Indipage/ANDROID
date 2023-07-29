@@ -2,7 +2,7 @@ package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.UserDataSource
 import com.indipage.data.dto.response.toUserInfoEntity
-import com.indipage.domain.entity.UserInfo
+import com.indipage.domain.model.UserInfo
 import com.indipage.domain.repository.UserRepository
 import javax.inject.Inject
 

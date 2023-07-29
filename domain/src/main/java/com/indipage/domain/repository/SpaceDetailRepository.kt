@@ -1,8 +1,9 @@
 package com.indipage.domain.repository
 
-import com.indipage.domain.entity.Curation
-import com.indipage.domain.entity.SpaceArticle
-import com.indipage.domain.entity.SpaceDetail
+import com.indipage.domain.model.Curation
+import com.indipage.domain.model.SpaceArticle
+import com.indipage.domain.model.SpaceDetail
+
 
 interface SpaceDetailRepository {
     suspend fun getSpaceDetail(spaceId: Int): Result<SpaceDetail?>

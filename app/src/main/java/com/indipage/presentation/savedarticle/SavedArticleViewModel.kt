@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.Article
-import com.indipage.domain.repository.BookMarkRepository
+import com.indipage.domain.model.Article
 import com.indipage.domain.usecase.BookMarkUseCase
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel

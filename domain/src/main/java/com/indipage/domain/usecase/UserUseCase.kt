@@ -1,6 +1,7 @@
 package com.indipage.domain.usecase
 
-import com.indipage.domain.entity.UserInfo
+
+import com.indipage.domain.model.UserInfo
 import com.indipage.domain.repository.UserRepository
 
 class UserUseCase(

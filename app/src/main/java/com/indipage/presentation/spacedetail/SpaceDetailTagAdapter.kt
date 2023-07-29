@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemSpaceDetailTagBinding
-import com.indipage.domain.entity.Tag
+import com.indipage.domain.model.Tag
 
 class SpaceDetailTagAdapter(private val itemList: List<Tag>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

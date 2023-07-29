@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemTicketCardBinding
-import com.indipage.domain.entity.Card
+import com.indipage.domain.model.Card
 import com.indipage.presentation.ticket.card.viewholder.CardViewHolder
 
 class CardAdapter(private val onMoveToQrDetailClick: (Card) -> Unit = { _ -> }) : ListAdapter<Card, CardViewHolder>(

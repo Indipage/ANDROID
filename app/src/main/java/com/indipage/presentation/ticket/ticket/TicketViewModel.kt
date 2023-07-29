@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.MainCard
-import com.indipage.domain.entity.Ticket
+import com.indipage.domain.model.MainCard
+import com.indipage.domain.model.Ticket
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.usecase.TicketUseCase
 import com.indipage.util.Event

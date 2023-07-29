@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.ArticleBookmark
-import com.indipage.domain.entity.ArticleDetail
-import com.indipage.domain.entity.TicketReceiveCheck
+import com.indipage.domain.model.ArticleBookmark
+import com.indipage.domain.model.ArticleDetail
+import com.indipage.domain.model.TicketReceiveCheck
 import com.indipage.domain.repository.ArticleDetailRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow

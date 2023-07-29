@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemSpaceDetailCurationBinding
-import com.indipage.domain.entity.Curation
+import com.indipage.domain.model.Curation
 
 class SpaceDetailCurationAdapter() :
     ListAdapter<Curation, SpaceDetailCurationAdapter.CurationViewHolder>(

@@ -2,7 +2,7 @@ package com.indipage.presentation.savedspace.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemSavedSpaceBinding
-import com.indipage.domain.entity.Space
+import com.indipage.domain.model.Space
 
 class SavedSpaceViewHolder(
     private val binding: ItemSavedSpaceBinding,

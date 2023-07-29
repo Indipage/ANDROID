@@ -1,6 +1,8 @@
 package com.indipage.presentation.model
 
-import com.indipage.domain.entity.Ticket
+import com.indipage.domain.model.Ticket
+
+
 data class TicketModel (
     val ticketId:Int,
     val imageUrl:String,

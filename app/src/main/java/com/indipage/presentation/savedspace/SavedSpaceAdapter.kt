@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemSavedSpaceBinding
-import com.indipage.domain.entity.Space
+import com.indipage.domain.model.Space
 import com.indipage.presentation.savedspace.viewholder.SavedSpaceViewHolder
 
 class SavedSpaceAdapter(

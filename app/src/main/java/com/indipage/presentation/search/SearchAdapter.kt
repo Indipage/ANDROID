@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemSearchBinding
-import com.indipage.domain.entity.Search
+import com.indipage.domain.model.Search
 
 class SearchAdapter(private val onMoveToSpaceDetailClick: (Search, Int) -> Unit = { _, _ -> }) :
     ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffCalback) {

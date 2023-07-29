@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.Card
+import com.indipage.domain.model.Card
 import com.indipage.domain.usecase.TicketUseCase
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+
 @HiltViewModel
 class CardViewModel @Inject constructor(
     private val useCase: TicketUseCase

@@ -2,7 +2,7 @@ package com.indipage.presentation.articledetail.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemArticleDetailHeadBinding
-import com.indipage.domain.entity.ArticleDetail
+import com.indipage.domain.model.ArticleDetail
 
 class ArticleDetailHeadViewHolder(
     private val binding: ItemArticleDetailHeadBinding,

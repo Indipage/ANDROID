@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemArticleDetailHeadBinding
-import com.indipage.domain.entity.ArticleDetail
+import com.indipage.domain.model.ArticleDetail
 import com.indipage.presentation.articledetail.viewholder.ArticleDetailHeadViewHolder
 
 class ArticleDetailHeadAdapter(

@@ -1,7 +1,7 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.Book
-import com.indipage.domain.entity.Curation
+import com.indipage.domain.model.Book
+import com.indipage.domain.model.Curation
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

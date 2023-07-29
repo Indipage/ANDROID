@@ -1,8 +1,8 @@
 package com.indipage.domain.repository
 
-import com.indipage.domain.entity.ArticleAll
-import com.indipage.domain.entity.ArticleSlide
-import com.indipage.domain.entity.ArticleWeekly
+import com.indipage.domain.model.ArticleAll
+import com.indipage.domain.model.ArticleSlide
+import com.indipage.domain.model.ArticleWeekly
 
 interface ArticleRepository {
     suspend fun getArticleWeekly(): Result<ArticleWeekly?>

@@ -1,6 +1,6 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.ArticleWeekly
+import com.indipage.domain.model.ArticleWeekly
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

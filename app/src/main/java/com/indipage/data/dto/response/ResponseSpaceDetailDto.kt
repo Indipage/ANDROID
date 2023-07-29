@@ -1,7 +1,7 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.SpaceDetail
-import com.indipage.domain.entity.Tag
+import com.indipage.domain.model.SpaceDetail
+import com.indipage.domain.model.Tag
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

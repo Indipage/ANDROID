@@ -1,8 +1,9 @@
 package com.indipage.domain.repository
 
-import com.indipage.domain.entity.Card
-import com.indipage.domain.entity.MainCard
-import com.indipage.domain.entity.Ticket
+import com.indipage.domain.model.Card
+import com.indipage.domain.model.MainCard
+import com.indipage.domain.model.Ticket
+
 
 interface TicketRepository {
 

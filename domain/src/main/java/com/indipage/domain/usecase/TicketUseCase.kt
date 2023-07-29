@@ -1,7 +1,8 @@
 package com.indipage.domain.usecase
 
-import com.indipage.domain.entity.Card
-import com.indipage.domain.entity.Ticket
+
+import com.indipage.domain.model.Card
+import com.indipage.domain.model.Ticket
 import com.indipage.domain.repository.TicketRepository
 
 class TicketUseCase(

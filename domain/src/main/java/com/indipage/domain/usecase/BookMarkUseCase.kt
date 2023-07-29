@@ -1,7 +1,8 @@
 package com.indipage.domain.usecase
 
-import com.indipage.domain.entity.Article
-import com.indipage.domain.entity.Space
+import com.indipage.domain.model.Article
+import com.indipage.domain.model.Space
+
 import com.indipage.domain.repository.BookMarkRepository
 
 class BookMarkUseCase(

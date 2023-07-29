@@ -1,10 +1,9 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.ArticleDetailDataSource
-import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
-import com.indipage.domain.entity.ArticleBookmark
-import com.indipage.domain.entity.ArticleDetail
-import com.indipage.domain.entity.TicketReceiveCheck
+import com.indipage.domain.model.ArticleBookmark
+import com.indipage.domain.model.ArticleDetail
+import com.indipage.domain.model.TicketReceiveCheck
 import com.indipage.domain.repository.ArticleDetailRepository
 import javax.inject.Inject
 

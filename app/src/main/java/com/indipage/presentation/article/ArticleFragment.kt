@@ -33,10 +33,10 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
     private fun initView() {
         binding.btnArticleCategoryWeekly.isSelected = true
-        binding.model = viewModel
         viewModel.getArticleWeekly()
         viewModel.getArticleSlide()
         initClickEventListeners()
+
         setUpArticleData()
     }
 
@@ -46,14 +46,17 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     }
 
     private fun observeArticleWeekly() {
-        viewModel.articleWeeklyData.observe(viewLifecycleOwner) {
+        viewModel.articleWeeklyData.observe(viewLifecycleOwner) { article ->
+            binding.btnArticleCategoryAll.setOnClickListener {
+                viewModel.openArticleAll(article)
+            }
             with(binding) {
                 vpArticle.adapter =
                     WeeklyArticleAdapter(
                         onMoveToArticleDetailClick = { it, position ->
                             viewModel.openArticleDetail(it)
                         }
-                    ).apply { submitList(listOf(it, it)) }
+                    ).apply { submitList(listOf(article, article)) }
                 vpArticle.offscreenPageLimit = 2
                 vpArticle.setPageTransformer { page, position ->
                     page.translationX =
@@ -61,10 +64,11 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     page.scaleY = ((1 - abs(position)) / 5 + 0.8f)
                     page.scaleX = ((1 - abs(position)) / 5 + 0.8f)
                 }
-                articleWeekly = it
+                articleWeekly = article
                 executePendingBindings()
-                motion(it.id.toLong())
+                motion(article.id.toLong())
             }
+
         }
 
         viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {

@@ -1,6 +1,6 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.UserInfo
+import com.indipage.domain.model.UserInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

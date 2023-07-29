@@ -7,7 +7,7 @@
 
         <variable
             name="saved_space"
-            type="com.indipage.domain.entity.Space" />
+            type="com.indipage.domain.model.Space" />
 
     </data>
 

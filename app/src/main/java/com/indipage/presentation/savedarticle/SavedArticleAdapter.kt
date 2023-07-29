@@ -1,13 +1,11 @@
 package com.indipage.presentation.savedarticle
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemSavedArticleBinding
-import com.indipage.domain.entity.Article
+import com.indipage.domain.model.Article
 import com.indipage.presentation.savedarticle.viewholder.SavedArticleViewHolder
 
 class SavedArticleAdapter(

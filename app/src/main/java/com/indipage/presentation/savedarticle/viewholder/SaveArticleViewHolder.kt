@@ -3,7 +3,7 @@ package com.indipage.presentation.savedarticle.viewholder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemSavedArticleBinding
-import com.indipage.domain.entity.Article
+import com.indipage.domain.model.Article
 
 class SavedArticleViewHolder(
     private val binding: ItemSavedArticleBinding,

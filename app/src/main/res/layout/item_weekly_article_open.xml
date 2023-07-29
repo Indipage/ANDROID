@@ -11,7 +11,7 @@
 
         <variable
             name="article_weekly"
-            type="com.indipage.domain.entity.ArticleWeekly" />
+            type="com.indipage.domain.model.ArticleWeekly" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,9 +1,9 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.TicketDataSource
-import com.indipage.domain.entity.Card
-import com.indipage.domain.entity.MainCard
-import com.indipage.domain.entity.Ticket
+import com.indipage.domain.model.Card
+import com.indipage.domain.model.MainCard
+import com.indipage.domain.model.Ticket
 import com.indipage.domain.repository.TicketRepository
 import javax.inject.Inject
 

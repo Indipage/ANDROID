@@ -6,7 +6,7 @@
     <data>
         <variable
             name="curation"
-            type="com.indipage.domain.entity.Curation" />
+            type="com.indipage.domain.model.Curation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

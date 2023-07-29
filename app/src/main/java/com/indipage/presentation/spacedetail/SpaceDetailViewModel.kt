@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.data.dto.response.SpaceArticleData
-import com.indipage.domain.entity.Curation
-import com.indipage.domain.entity.SpaceArticle
-import com.indipage.domain.entity.SpaceDetail
+import com.indipage.domain.model.Curation
+import com.indipage.domain.model.SpaceArticle
+import com.indipage.domain.model.SpaceDetail
 import com.indipage.domain.repository.SpaceDetailRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,4 +1,4 @@
-package com.indipage.domain.entity
+package com.indipage.domain.model
 
 data class ArticleDetail(
     val id: Int,

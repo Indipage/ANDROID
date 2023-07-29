@@ -1,6 +1,6 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.Card
+import com.indipage.domain.model.Card
 import kotlinx.serialization.SerialName
 
 @kotlinx.serialization.Serializable

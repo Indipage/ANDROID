@@ -1,7 +1,7 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.SearchDataSource
-import com.indipage.domain.entity.Search
+import com.indipage.domain.model.Search
 import com.indipage.domain.repository.SearchRepository
 import javax.inject.Inject
 

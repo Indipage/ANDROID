@@ -2,7 +2,7 @@ package com.indipage.presentation.ticket.card.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemTicketCardBinding
-import com.indipage.domain.entity.Card
+import com.indipage.domain.model.Card
 
 class CardViewHolder(
     private val binding: ItemTicketCardBinding,

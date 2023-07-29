@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.indipage.databinding.ItemArticleDetailBottomTicketBinding
-import com.indipage.domain.entity.TicketReceiveCheck
+import com.indipage.domain.model.TicketReceiveCheck
 import timber.log.Timber
 
 class ArticleDetailBottomTicketViewHolder(

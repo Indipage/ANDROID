@@ -16,7 +16,7 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentTicketBinding
-import com.indipage.domain.entity.MainCard
+import com.indipage.domain.model.MainCard
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity

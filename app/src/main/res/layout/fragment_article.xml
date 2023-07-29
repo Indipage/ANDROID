@@ -6,12 +6,8 @@
     <data>
 
         <variable
-            name="model"
-            type="com.indipage.presentation.article.ArticleViewModel" />
-
-        <variable
             name="article_weekly"
-            type="com.indipage.domain.entity.ArticleWeekly" />
+            type="com.indipage.domain.model.ArticleWeekly" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +43,6 @@
             android:elevation="0dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:onClick="@{()->model.openArticleAll(article_weekly)}"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
             android:text="@string/btn_article_category_all"

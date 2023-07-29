@@ -3,7 +3,7 @@ package com.indipage.presentation.articleall.viewholder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.databinding.ItemArticleAllBinding
-import com.indipage.domain.entity.ArticleAll
+import com.indipage.domain.model.ArticleAll
 
 class ArticleAllViewHolder(
     private val binding: ItemArticleAllBinding,

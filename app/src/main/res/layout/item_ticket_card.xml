@@ -6,7 +6,7 @@
 
         <variable
             name="card"
-            type="com.indipage.domain.entity.Card" />
+            type="com.indipage.domain.model.Card" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,6 +1,7 @@
 package com.indipage.presentation.model
 
-import com.indipage.domain.entity.UserInfo
+import com.indipage.domain.model.UserInfo
+
 data class UserInfoModel(
     val id: Long,
     val name: String,

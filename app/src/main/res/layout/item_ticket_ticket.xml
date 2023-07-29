@@ -6,7 +6,7 @@
 
         <variable
             name="ticket"
-            type="com.indipage.domain.entity.Ticket" />
+            type="com.indipage.domain.model.Ticket" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

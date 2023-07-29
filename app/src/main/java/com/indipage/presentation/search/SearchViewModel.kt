@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.entity.Search
+import com.indipage.domain.model.Search
 import com.indipage.domain.repository.SearchRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel

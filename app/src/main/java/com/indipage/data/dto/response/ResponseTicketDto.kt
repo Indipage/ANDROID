@@ -1,6 +1,6 @@
 package com.indipage.data.dto.response
 
-import com.indipage.domain.entity.Ticket
+import com.indipage.domain.model.Ticket
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

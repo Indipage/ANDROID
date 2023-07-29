@@ -1,8 +1,8 @@
 package com.indipage.domain.repository
 
-import com.indipage.domain.entity.ArticleBookmark
-import com.indipage.domain.entity.ArticleDetail
-import com.indipage.domain.entity.TicketReceiveCheck
+import com.indipage.domain.model.ArticleBookmark
+import com.indipage.domain.model.ArticleDetail
+import com.indipage.domain.model.TicketReceiveCheck
 
 interface ArticleDetailRepository {
     suspend fun getArticleDetail(articleId: Long): Result<ArticleDetail?>

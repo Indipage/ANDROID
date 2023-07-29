@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "IndiPage"
 include(":app")
 include(":core-ui")
+include(":domain")

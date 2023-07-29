@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
 import com.indipage.databinding.ItemTicketTicketBinding
-import com.indipage.domain.entity.Ticket
+import com.indipage.domain.model.Ticket
 import com.indipage.presentation.ticket.ticket.viewholder.TicketViewHolder
 
 class TicketAdapter : ListAdapter<Ticket, TicketViewHolder>(

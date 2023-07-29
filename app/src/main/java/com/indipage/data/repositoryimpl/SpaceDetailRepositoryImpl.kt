@@ -1,9 +1,9 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.SpaceDetailDataSource
-import com.indipage.domain.entity.Curation
-import com.indipage.domain.entity.SpaceArticle
-import com.indipage.domain.entity.SpaceDetail
+import com.indipage.domain.model.Curation
+import com.indipage.domain.model.SpaceArticle
+import com.indipage.domain.model.SpaceDetail
 import com.indipage.domain.repository.SpaceDetailRepository
 import javax.inject.Inject
 

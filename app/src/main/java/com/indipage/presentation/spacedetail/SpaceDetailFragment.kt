@@ -15,8 +15,8 @@ import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentSpaceDetailBinding
-import com.indipage.domain.entity.Curation
-import com.indipage.domain.entity.SpaceDetail
+import com.indipage.domain.model.Curation
+import com.indipage.domain.model.SpaceDetail
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

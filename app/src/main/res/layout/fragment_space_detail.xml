@@ -7,15 +7,15 @@
 
         <variable
             name="curation"
-            type="com.indipage.domain.entity.Curation" />
+            type="com.indipage.domain.model.Curation" />
 
         <variable
             name="spaceDetail"
-            type="com.indipage.domain.entity.SpaceDetail" />
+            type="com.indipage.domain.model.SpaceDetail" />
 
         <variable
             name="spaceArticle"
-            type="com.indipage.domain.entity.SpaceArticle" />
+            type="com.indipage.domain.model.SpaceArticle" />
 
 
     </data>

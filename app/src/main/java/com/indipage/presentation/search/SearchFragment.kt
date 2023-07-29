@@ -14,7 +14,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentSearchBinding
-import com.indipage.domain.entity.Search
+import com.indipage.domain.model.Search
 import com.indipage.util.Debouncer
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
