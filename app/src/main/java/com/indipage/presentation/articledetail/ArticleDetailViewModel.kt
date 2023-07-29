@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseArticleBookmarkDto
-import com.indipage.data.dto.response.ResponseArticleDetailDto
-import com.indipage.data.dto.response.ResponseTicketReceiveCheckDto
+import com.indipage.domain.entity.ArticleBookmark
+import com.indipage.domain.entity.ArticleDetail
+import com.indipage.domain.entity.TicketReceiveCheck
 import com.indipage.domain.repository.ArticleDetailRepository
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,20 +23,20 @@ class ArticleDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _articleDetailData =
-        MutableStateFlow<UiState<ResponseArticleDetailDto>>(UiState.Loading)
-    val articleDetailData: StateFlow<UiState<ResponseArticleDetailDto>> =
+        MutableStateFlow<UiState<ArticleDetail>>(UiState.Loading)
+    val articleDetailData: StateFlow<UiState<ArticleDetail>> =
         _articleDetailData.asStateFlow()
 
-    private val _ticketReceiveCheckData: MutableLiveData<ResponseTicketReceiveCheckDto> =
+    private val _ticketReceiveCheckData: MutableLiveData<TicketReceiveCheck> =
         MutableLiveData()
-    val ticketReceiveCheckData: LiveData<ResponseTicketReceiveCheckDto> = _ticketReceiveCheckData
+    val ticketReceiveCheckData: LiveData<TicketReceiveCheck> = _ticketReceiveCheckData
 
     private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
 
-    private val _articleBookmarkData: MutableLiveData<ResponseArticleBookmarkDto> =
+    private val _articleBookmarkData: MutableLiveData<ArticleBookmark> =
         MutableLiveData()
-    val articleBookmarkData: LiveData<ResponseArticleBookmarkDto> = _articleBookmarkData
+    val articleBookmarkData: LiveData<ArticleBookmark> = _articleBookmarkData
 
     private val _postArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postArticleBookmark: StateFlow<UiState<Int>> = _postArticleBookmark.asStateFlow()
@@ -44,27 +44,32 @@ class ArticleDetailViewModel @Inject constructor(
     private val _deleteArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val deleteArticleBookmark: StateFlow<UiState<Int>> = _deleteArticleBookmark.asStateFlow()
 
-    private val _openSpaceDetail = MutableLiveData<Event<ResponseArticleDetailDto>>()
-    val openSpaceDetail: LiveData<Event<ResponseArticleDetailDto>> = _openSpaceDetail
+    private val _openSpaceDetail = MutableLiveData<Event<ArticleDetail>>()
+    val openSpaceDetail: LiveData<Event<ArticleDetail>> = _openSpaceDetail
 
     private val _getArticleTicket = MutableLiveData<Int>()
     val getArticleTicket: LiveData<Int> = _getArticleTicket
 
-    fun openSpaceDetail(responseArticleDetailDto: ResponseArticleDetailDto) {
-        _openSpaceDetail.value = Event(responseArticleDetailDto)
+    fun openSpaceDetail(articleDetail: ArticleDetail) {
+        _openSpaceDetail.value = Event(articleDetail)
     }
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         apiRepository.getArticleDetail(articleId).onSuccess {
-            _articleDetailData.value = UiState.Success(it)
-            Timber.d("Success")
+            if (it != null) {
+                _articleDetailData.value = UiState.Success(it)
+                Timber.d("Success")
+            } else _articleDetailData.value = UiState.Empty
+
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
     fun getTicketReceiveCheck(spaceId: Long) = viewModelScope.launch {
         apiRepository.getTicketReceiveCheck(spaceId).onSuccess {
-            _ticketReceiveCheckData.value = it
-            Timber.d("Success")
+            if (it != null) {
+                _ticketReceiveCheckData.value = it
+                Timber.d("Success")
+            }
         }.onFailure { Timber.d(it.message.toString()) }
     }
 
@@ -81,8 +86,10 @@ class ArticleDetailViewModel @Inject constructor(
 
     fun getBookMark(articleId: Long) = viewModelScope.launch {
         apiRepository.getBookmark(articleId).onSuccess {
-            _articleBookmarkData.value = it
-            Timber.d("Success")
+            if (it != null) {
+                _articleBookmarkData.value = it
+                Timber.d("Success")
+            }
         }.onFailure { Timber.d(it.message.toString()) }
     }
 

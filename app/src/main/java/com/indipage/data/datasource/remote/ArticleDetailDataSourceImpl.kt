@@ -3,6 +3,7 @@ package com.indipage.data.datasource.remote
 import com.indipage.data.api.ArticleDetailApiService
 import com.indipage.data.datasource.ArticleDetailDataSource
 import com.indipage.data.dto.BaseResponse
+import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
 import com.indipage.data.dto.response.ResponseArticleDetailDto
@@ -13,11 +14,11 @@ class ArticleDetailDataSourceImpl
 @Inject constructor(
     private val apiService: ArticleDetailApiService
 ) : ArticleDetailDataSource {
-    override suspend fun getArticleDetail(articleId: Long): BaseResponse<ResponseArticleDetailDto> {
+    override suspend fun getArticleDetail(articleId: Long): BaseResponseNullable<ResponseArticleDetailDto> {
         return apiService.getArticleDetail(articleId)
     }
 
-    override suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponse<ResponseTicketReceiveCheckDto> {
+    override suspend fun getTicketReceiveCheck(spaceId: Long): BaseResponseNullable<ResponseTicketReceiveCheckDto> {
         return apiService.getTicketReceiveCheck(spaceId)
     }
 
@@ -28,7 +29,7 @@ class ArticleDetailDataSourceImpl
         return apiService.postTicketReceive(spaceId)
     }
 
-    override suspend fun getBookmark(articleId: Long): BaseResponse<ResponseArticleBookmarkDto> {
+    override suspend fun getBookmark(articleId: Long): BaseResponseNullable<ResponseArticleBookmarkDto> {
         return apiService.getBookmark(articleId)
     }
 
