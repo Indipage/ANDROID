@@ -22,10 +22,10 @@ interface SpaceDetailApiService {
     suspend fun deleteBookmarked(@Path("spaceId") spaceId: Int): NullResponse
 
     @GET("space/{spaceId}")
-    suspend fun getSpaceDetail(@Path("spaceId") spaceId: Int): BaseResponse<SpaceDetailData>
+    suspend fun getSpaceDetail(@Path("spaceId") spaceId: Int): BaseResponseNullable<SpaceDetailData>
 
     @GET("space/{spaceId}/book")
-    suspend fun getCuration(@Path("spaceId") spaceId: Int): BaseResponse<List<CurationData>>
+    suspend fun getCuration(@Path("spaceId") spaceId: Int): BaseResponseNullable<List<CurationData>>
 
     @GET("space/{spaceId}/follow")
     suspend fun getFollow(@Path("spaceId") spaceId: Int): BaseResponse<FollowData>

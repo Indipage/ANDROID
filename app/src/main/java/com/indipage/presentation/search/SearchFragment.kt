@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.response.ResponseSearchData
 import com.indipage.databinding.FragmentSearchBinding
+import com.indipage.domain.entity.Search
 import com.indipage.util.Debouncer
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,9 +69,9 @@ class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_
     }
 
 
-    private fun initAdapter(data: List<ResponseSearchData>) {
+    private fun initAdapter(data: List<Search>) {
         Timber.d("검색 리사이클러뷰 초기화")
-        adapter = SearchAdapter(onMoveToSpaceDetailClick = {searchData,position->
+        adapter = SearchAdapter(onMoveToSpaceDetailClick = { searchData, position ->
             viewModel.openSpaceDetail(searchData.spaceId.toLong())
         })
         binding.rvSearch.adapter = adapter.apply {

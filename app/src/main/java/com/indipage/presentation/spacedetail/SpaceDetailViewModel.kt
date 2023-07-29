@@ -5,7 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.*
+import com.indipage.data.dto.response.SpaceArticleData
+import com.indipage.domain.entity.Curation
+import com.indipage.domain.entity.SpaceArticle
+import com.indipage.domain.entity.SpaceDetail
 import com.indipage.domain.repository.SpaceDetailRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,20 +23,20 @@ import javax.inject.Inject
 class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceDetailRepository) :
     ViewModel() {
 
-    private val _spaceDetailData = MutableStateFlow<UiState<SpaceDetailData>>(UiState.Loading)
-    val spaceDetailData: StateFlow<UiState<SpaceDetailData>> = _spaceDetailData.asStateFlow()
+    private val _spaceDetailData = MutableStateFlow<UiState<SpaceDetail>>(UiState.Loading)
+    val spaceDetailData: StateFlow<UiState<SpaceDetail>> = _spaceDetailData.asStateFlow()
 
-    private val _curationData = MutableStateFlow<UiState<List<CurationData>>>(UiState.Loading)
-    val curationData: StateFlow<UiState<List<CurationData>>> = _curationData.asStateFlow()
+    private val _curationData = MutableStateFlow<UiState<List<Curation>>>(UiState.Loading)
+    val curationData: StateFlow<UiState<List<Curation>>> = _curationData.asStateFlow()
 
-    private val _bookMarked = MutableStateFlow<UiState<BookmarkData>>(UiState.Loading)
-    val bookMarked: StateFlow<UiState<BookmarkData>> = _bookMarked.asStateFlow()
+    private val _bookMarked = MutableStateFlow<UiState<Boolean>>(UiState.Loading)
+    val bookMarked: StateFlow<UiState<Boolean>> = _bookMarked.asStateFlow()
 
-    private val _follow = MutableStateFlow<UiState<FollowData>>(UiState.Loading)
-    val follow: StateFlow<UiState<FollowData>> = _follow.asStateFlow()
+    private val _follow = MutableStateFlow<UiState<Boolean>>(UiState.Loading)
+    val follow: StateFlow<UiState<Boolean>> = _follow.asStateFlow()
 
-    private val _spaceArticle = MutableStateFlow<UiState<SpaceArticleData?>>(UiState.Loading)
-    val spaceArticle: StateFlow<UiState<SpaceArticleData?>> = _spaceArticle.asStateFlow()
+    private val _spaceArticle = MutableStateFlow<UiState<SpaceArticle>>(UiState.Loading)
+    val spaceArticle: StateFlow<UiState<SpaceArticle>> = _spaceArticle.asStateFlow()
 
 
     private val _openArticleDetail = MutableLiveData<Event<Int>>()
@@ -48,16 +51,24 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     }
 
     fun getCuration(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getCuration(spaceId).onSuccess { CurationData ->
-            _curationData.value = UiState.Success(CurationData)
+        apiRepository.getCuration(spaceId).onSuccess { Curation ->
+            if (Curation != null) {
+                _curationData.value = UiState.Success(Curation)
+            } else {
+                _curationData.value = UiState.Empty
+            }
         }
             .onFailure { Timber.d("뷰모델 실패 Curation // ${it}") }
     }
 
     fun getSpaceDetail(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getSpaceDetail(spaceId).onSuccess { SpaceDetailData ->
-            _spaceDetailData.value = UiState.Success(SpaceDetailData)
-            Timber.d("공간 상세 정보 실험 ${_spaceDetailData.value}")
+        apiRepository.getSpaceDetail(spaceId).onSuccess { SpaceDetail ->
+            if (SpaceDetail != null) {
+                _spaceDetailData.value = UiState.Success(SpaceDetail)
+                Timber.d("공간 상세 정보 실험 ${_spaceDetailData.value}")
+            } else {
+                _spaceDetailData.value = UiState.Empty
+            }
         }
             .onFailure { Timber.d("뷰모델 실패 Space Detail // ${it}") }
     }
@@ -71,15 +82,19 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
 
     fun postFollow(spaceId: Int) = viewModelScope.launch {
         apiRepository.postFollow(spaceId).onSuccess {
-            _follow.value = UiState.Success(FollowData(true))
+            _follow.value = UiState.Success(true)
             Timber.d("뷰모델 성공 조르기 post Success$it")
         }.onFailure { Timber.d("뷰모델 실패 Post follow / ${it}") }
     }
 
     fun getSpaceArticle(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getSpaceArticle(spaceId).onSuccess { SpaceArticleData ->
-            _spaceArticle.value = UiState.Success(SpaceArticleData)
-            Timber.d("뷰모델 성공 Space Article Success $SpaceArticleData")
+        apiRepository.getSpaceArticle(spaceId).onSuccess { SpaceArticle ->
+            if (SpaceArticle != null) {
+                _spaceArticle.value = UiState.Success(SpaceArticle)
+                Timber.d("뷰모델 성공 Space Article Success $SpaceArticleData")
+            } else {
+                _spaceArticle.value = UiState.Empty
+            }
         }.onFailure { Timber.d("뷰모델 실패 Space Article / ${it}") }
     }
 
@@ -92,21 +107,20 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
 
     fun postBookMarked(spaceId: Int) = viewModelScope.launch {
         apiRepository.postBookmarked(spaceId).onSuccess {
-            _bookMarked.value = UiState.Success(BookmarkData(true))
+            _bookMarked.value = UiState.Success(true)
             Timber.d("뷰모델 성공 post Bookmarked ${_bookMarked.value}")
         }.onFailure { Timber.d("뷰모델 실패 Post Bookmarked / ${it}") }
     }
 
     fun deleteBookMarked(spaceId: Int) = viewModelScope.launch {
         apiRepository.deleteBookmarked(spaceId).onSuccess {
-            _bookMarked.value = UiState.Success(BookmarkData(false))
+            _bookMarked.value = UiState.Success(false)
             Timber.d("뷰모델 성공 delete Bookmarked ${_bookMarked.value}")
         }.onFailure { Timber.d("뷰모델 실패 delete Bookmarked // ${it}") }
     }
 
 
-
-    fun openArticleDetailEvent(articleId:Int) {
+    fun openArticleDetailEvent(articleId: Int) {
         Timber.tag("Sak").d("test")
         _openArticleDetail.value = Event(articleId)
     }

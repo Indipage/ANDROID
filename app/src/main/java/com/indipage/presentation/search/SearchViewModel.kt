@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseSearchData
+import com.indipage.domain.entity.Search
 import com.indipage.domain.repository.SearchRepository
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,11 +19,12 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val apiRepository: SearchRepository) :
     ViewModel() {
-    private val _searchData = MutableStateFlow<UiState<List<ResponseSearchData>>>(UiState.Loading)
-    val searchData: StateFlow<UiState<List<ResponseSearchData>>> = _searchData.asStateFlow()
+    private val _searchData = MutableStateFlow<UiState<List<Search>>>(UiState.Loading)
+    val searchData: StateFlow<UiState<List<Search>>> = _searchData.asStateFlow()
 
     private val _openSpaceEvent = MutableLiveData<Event<Long>>()
     val openSpaceEvent: LiveData<Event<Long>> = _openSpaceEvent
+
     init {
         getSearchResult(null)
     }
@@ -31,11 +32,16 @@ class SearchViewModel @Inject constructor(private val apiRepository: SearchRepos
     fun openSpaceDetail(spaceId: Long) {
         _openSpaceEvent.value = Event(spaceId)
     }
+
     fun getSearchResult(keyword: String?) = viewModelScope.launch {
         apiRepository.getSearchResult(keyword)
-            .onSuccess { searchData ->
-                _searchData.value = UiState.Success(searchData)
-                Timber.d("검색 서버 통신 Success 성공! ${_searchData.value}")
+            .onSuccess { Search ->
+                if (Search != null) {
+                    _searchData.value = UiState.Success(Search)
+                    Timber.d("검색 서버 통신 Success 성공! ${_searchData.value}")
+                } else {
+                    _searchData.value = UiState.Empty
+                }
             }
             .onFailure {
                 Timber.tag("검색").d("Fail $it")

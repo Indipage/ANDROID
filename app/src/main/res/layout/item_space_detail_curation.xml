@@ -6,7 +6,7 @@
     <data>
         <variable
             name="curation"
-            type="com.indipage.data.dto.response.CurationData" />
+            type="com.indipage.domain.entity.Curation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

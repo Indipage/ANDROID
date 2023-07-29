@@ -1,5 +1,6 @@
 package com.indipage.data.dto.response
 
+import com.indipage.domain.entity.SpaceArticle
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,4 +16,8 @@ data class SpaceArticleData(
     val id: Int,
     @SerialName("imageUrl")
     val imageUrl: String
-)
+) {
+    fun toSpaceArticle() = run {
+        SpaceArticle(spaceName, title, spaceType, id, imageUrl)
+    }
+}
