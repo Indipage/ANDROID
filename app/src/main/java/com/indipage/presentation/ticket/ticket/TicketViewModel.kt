@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.data.dto.response.ResponseQrDto
+import com.indipage.domain.entity.MainCard
 import com.indipage.domain.entity.Ticket
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.usecase.TicketUseCase
@@ -30,8 +30,8 @@ class TicketViewModel @Inject constructor(
     private val _qrResponseCode = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val qrResponseCode: StateFlow<UiState<Int>> = _qrResponseCode.asStateFlow()
 
-    private val _qrResponse = MutableStateFlow<UiState<ResponseQrDto>>(UiState.Loading)
-    val qrResponse: StateFlow<UiState<ResponseQrDto>> = _qrResponse.asStateFlow()
+    private val _qrResponse = MutableStateFlow<UiState<MainCard>>(UiState.Loading)
+    val qrResponse: StateFlow<UiState<MainCard>> = _qrResponse.asStateFlow()
     private val _ticket = MutableStateFlow<UiState<List<Ticket>>>(UiState.Loading)
     val ticket: StateFlow<UiState<List<Ticket>>> = _ticket.asStateFlow()
 
@@ -62,7 +62,7 @@ class TicketViewModel @Inject constructor(
                 if (it != null) {
                     _qrResponse.value = UiState.Success(it)
                 } else {
-                    _qrResponse.value = UiState.Success(ResponseQrDto("error"))
+                    _qrResponse.value = UiState.Success(MainCard("error"))
                 }
                 Timber.d("Success ${it}")
             }
@@ -72,7 +72,7 @@ class TicketViewModel @Inject constructor(
     }
 
     fun closeQR() {
-        _qrResponse.value = UiState.Success(ResponseQrDto(""))
+        _qrResponse.value = UiState.Success(MainCard(""))
     }
 
 }

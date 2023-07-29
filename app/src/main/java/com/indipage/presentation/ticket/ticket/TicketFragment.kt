@@ -15,8 +15,8 @@ import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.R
-import com.indipage.data.dto.response.ResponseQrDto
 import com.indipage.databinding.FragmentTicketBinding
+import com.indipage.domain.entity.MainCard
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity
@@ -108,11 +108,11 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
                 is UiState.Success -> {
                     Timber.d("${it.data},$it")
                     when (it.data) {
-                        ResponseQrDto("error") -> {
+                        MainCard("error") -> {
                             Timber.d("failure QR")
                             moveFailQrDialog()
                         }
-                        ResponseQrDto("") -> {
+                        MainCard("") -> {
 
                         }
                         else -> {

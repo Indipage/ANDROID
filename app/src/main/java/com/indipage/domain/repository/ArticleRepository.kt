@@ -1,6 +1,5 @@
 package com.indipage.domain.repository
 
-import com.indipage.data.dto.response.ResponseArticleAllDto
 import com.indipage.domain.entity.ArticleAll
 import com.indipage.domain.entity.ArticleSlide
 import com.indipage.domain.entity.ArticleWeekly
