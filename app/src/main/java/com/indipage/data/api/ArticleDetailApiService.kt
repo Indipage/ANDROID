@@ -1,6 +1,5 @@
 package com.indipage.data.api
 
-import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleBookmarkDto
