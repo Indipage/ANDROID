@@ -1,4 +1,4 @@
-package com.indipage.presentation.ticket
+package com.indipage.presentation.ticket.ticket
 
 import android.os.Bundle
 import android.os.Handler
@@ -20,6 +20,7 @@ import com.indipage.databinding.FragmentTicketBinding
 import com.indipage.presentation.qr.CheckDialogListener
 import com.indipage.presentation.qr.DialogQrFailFragment
 import com.indipage.presentation.qr.QrScanActivity
+import com.indipage.presentation.ticket.ticket.itemhelper.TicketItemHelper
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -76,7 +77,9 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private fun initAdapter() {
         adapter = TicketAdapter()
         binding.rvTicketTicket.adapter = adapter
-        val itemTouchHelper = ItemTouchHelper(TicketItemHelper(viewModel))
+        val itemTouchHelper = ItemTouchHelper(TicketItemHelper(onOpenQr = {
+            viewModel.openQR(it)
+        }))
         itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)
     }
 

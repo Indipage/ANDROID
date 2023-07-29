@@ -1,4 +1,4 @@
-package com.indipage.presentation.ticket
+package com.indipage.presentation.ticket.card
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,19 +8,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import coil.EventListener
 import coil.load
 import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.view.UiState
 import com.indipage.R
 import com.indipage.databinding.FragmentCardBinding
-import com.indipage.presentation.savedspace.SavedSpaceAdapter
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card) {

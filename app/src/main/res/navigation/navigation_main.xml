@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_ticket"
-        android:name="com.indipage.presentation.ticket.TicketFragment"
+        android:name="com.indipage.presentation.ticket.ticket.TicketFragment"
         android:label="TicketFragment">
         <action
             android:id="@+id/action_navigation_ticket_to_navigation_card"
@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/navigation_card"
-        android:name="com.indipage.presentation.ticket.CardFragment"
+        android:name="com.indipage.presentation.ticket.card.CardFragment"
         android:label="CardFragment">
         <action
             android:id="@+id/action_navigation_card_to_navigation_ticket"

@@ -10,7 +10,6 @@ import com.indipage.databinding.FragmentDialogQrFailBinding
 interface CheckDialogListener {
     fun onCheckDialogResult()
 }
-
 class DialogQrFailFragment : DialogFragment() {
 
     private var listener: CheckDialogListener? = null

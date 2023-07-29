@@ -1,15 +1,14 @@
-package com.indipage.presentation.ticket
+package com.indipage.presentation.ticket.ticket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.data.dto.response.ResponseTicketDto
 import com.indipage.databinding.ItemTicketTicketBinding
 import com.indipage.domain.entity.Ticket
+import com.indipage.presentation.ticket.ticket.viewholder.TicketViewHolder
 
-class TicketAdapter : ListAdapter<Ticket, TicketAdapter.TicketViewHolder>(
+class TicketAdapter : ListAdapter<Ticket, TicketViewHolder>(
     TicketDiffCalback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
@@ -20,15 +19,6 @@ class TicketAdapter : ListAdapter<Ticket, TicketAdapter.TicketViewHolder>(
 
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
-    }
-
-    class TicketViewHolder(
-        private val binding: ItemTicketTicketBinding
-    ) : ViewHolder(binding.root) {
-        fun bind(data: Ticket) {
-            binding.ticket = data
-            binding.executePendingBindings()
-        }
     }
 
     companion object {
