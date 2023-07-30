@@ -17,7 +17,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".SplashActivity"
+            android:name="com.indipage.ui.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.IndiPage.Splash">
@@ -29,13 +29,13 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.indipage.ui.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".qr.QrScanActivity"
+            android:name="com.indipage.ui.qr.QrScanActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
 

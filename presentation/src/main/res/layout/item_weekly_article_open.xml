@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.indipage.presentation.article.ArticleViewModel" />
+            type="com.indipage.ui.article.ArticleViewModel" />
 
         <variable
             name="article_weekly"

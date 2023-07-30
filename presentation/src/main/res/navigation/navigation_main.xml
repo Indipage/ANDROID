@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_article"
-        android:name="com.indipage.presentation.article.ArticleFragment"
+        android:name="com.indipage.ui.article.ArticleFragment"
         android:label="ArticleFragment">
         <action
             android:id="@+id/action_article_to_article_detail"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.indipage.presentation.search.SearchFragment"
+        android:name="com.indipage.ui.search.SearchFragment"
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_navigation_search_to_navigation_space_detail"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_ticket"
-        android:name="com.indipage.presentation.ticket.ticket.TicketFragment"
+        android:name="com.indipage.ui.ticket.ticket.TicketFragment"
         android:label="TicketFragment">
         <action
             android:id="@+id/action_navigation_ticket_to_navigation_card"
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/navigation_my_page"
-        android:name="com.indipage.presentation.profile.MyPageFragment"
+        android:name="com.indipage.ui.profile.MyPageFragment"
         android:label="MyPageFragment">
         <action
             android:id="@+id/action_navigation_my_page_to_saved_article"
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/navigation_saved_article"
-        android:name="com.indipage.presentation.savedarticle.SavedArticleFragment"
+        android:name="com.indipage.ui.savedarticle.SavedArticleFragment"
         android:label="SavedArticleFragment">
         <action
             android:id="@+id/action_navigation_saved_article_to_navigation_article_detail"
@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/navigation_saved_space"
-        android:name="com.indipage.presentation.savedspace.SavedSpaceFragment"
+        android:name="com.indipage.ui.savedspace.SavedSpaceFragment"
         android:label="SavedSpaceFragment">
         <action
             android:id="@+id/action_navigation_saved_space_to_navigation_space_detail"
@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/navigation_card"
-        android:name="com.indipage.presentation.ticket.card.CardFragment"
+        android:name="com.indipage.ui.ticket.card.CardFragment"
         android:label="CardFragment">
         <action
             android:id="@+id/action_navigation_card_to_navigation_ticket"
@@ -79,7 +79,7 @@
 
     <fragment
         android:id="@+id/navigation_space_detail"
-        android:name="com.indipage.presentation.spacedetail.SpaceDetailFragment"
+        android:name="com.indipage.ui.spacedetail.SpaceDetailFragment"
         android:label="SpaceDetailFragment" >
         <action
             android:id="@+id/action_navigation_space_detail_to_navigation_article_detail"
@@ -88,7 +88,7 @@
 
     <fragment
         android:id="@+id/navigation_article_detail"
-        android:name="com.indipage.presentation.articledetail.ArticleDetailFragment"
+        android:name="com.indipage.ui.articledetail.ArticleDetailFragment"
         android:label="ArticleDetailFragment">
         <action
             android:id="@+id/action_article_detail_to_space_detail"
@@ -99,7 +99,7 @@
 
     <fragment
         android:id="@+id/navigation_qr_success"
-        android:name="com.indipage.presentation.qr.QrSuccessFragment"
+        android:name="com.indipage.ui.qr.QrSuccessFragment"
         android:label="QrSuccessFragment">
         <action
             android:id="@+id/action_navigation_qr_success_to_navigation_card"
@@ -107,7 +107,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_article_all"
-        android:name="com.indipage.presentation.articleall.ArticleAllFragment"
+        android:name="com.indipage.ui.articleall.ArticleAllFragment"
         android:label="ArticleAllFragment" >
         <action
             android:id="@+id/action_article_all_to_article"
