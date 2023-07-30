@@ -1,4 +1,4 @@
-package com.indipage.ui.model
+package com.indipage.model
 
 import com.indipage.domain.model.Ticket
 

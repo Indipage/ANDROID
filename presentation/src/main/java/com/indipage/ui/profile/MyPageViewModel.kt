@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.domain.usecase.UserUseCase
-import com.indipage.ui.model.UserInfoModel
-import com.indipage.ui.model.toUserModelEntity
+import com.indipage.model.UserInfoModel
+import com.indipage.model.toUserModelEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
