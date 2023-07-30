@@ -1,27 +1,23 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
     id("dagger.hilt.android.plugin")
+
+    kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
 
 }
 
 android {
-    namespace = Configuration.PACKAGE_NAME
+    namespace = "com.indipage.presentation"
     compileSdk = Configuration.COMPILE_SDK
 
     defaultConfig {
-        applicationId = Configuration.PACKAGE_NAME
         minSdk = Configuration.MIN_SDK
         targetSdk = Configuration.TARGET_SDK
-        versionCode = Configuration.VERSION_CODE
-        versionName = Configuration.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -48,10 +44,8 @@ android {
 
 dependencies {
 
-    implementation(project(":presentation"))
     implementation(project(":core-ui"))
     implementation(project(":domain"))
-    implementation(project(":data"))
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX
