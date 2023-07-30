@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="saved_space"
+            type="com.indipage.domain.model.Space" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_saved_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/iv_saved_space"
+                imageUrl="@{saved_space.imageUrl}"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:src="@drawable/ic_launcher_background" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_saved_space_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="11dp"
+            android:text="@{saved_space.name}"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/cv_saved_space"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="test" />
+
+        <TextView
+            android:id="@+id/tv_saved_space_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
+            android:text="@{saved_space.roadAddress}"
+            android:textAppearance="@style/TextAppearance.IndiPage.Caption01"
+            android:textColor="@color/indi_gray600"
+            app:layout_constraintStart_toEndOf="@id/cv_saved_space"
+            app:layout_constraintTop_toBottomOf="@id/tv_saved_space_name"
+            tools:text="test" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

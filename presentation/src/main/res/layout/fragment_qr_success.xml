@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="url"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_qr_success_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="140dp"
+            android:layout_marginTop="72dp"
+            android:gravity="center"
+            android:text="@string/tv_qr_success_title"
+            android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+            android:textColor="@color/indi_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_qr_success_intro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="113dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/tv_qr_success_intro"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body02"
+            android:textColor="@color/indi_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_qr_success_title" />
+
+        <ImageView
+            imageUrl="@{url}"
+            android:id="@+id/iv_card"
+            android:rotation="-9"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_qr_success_move_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_qr_success_intro" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_qr_success_move_card"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_purple_fill_5_rect"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="49dp"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+            android:textColor="@color/indi_white"
+            android:text="카드 보러가기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
