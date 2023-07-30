@@ -2,14 +2,14 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
-    // Hilt
-    // 앱잼 끝나고 구현하자!
     id("dagger.hilt.android.plugin")
+
+    kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
+
 }
 
 android {
-    namespace = Configuration.PACKAGE_NAME
+    namespace = "com.indipage.presentation"
     compileSdk = Configuration.COMPILE_SDK
 
     defaultConfig {

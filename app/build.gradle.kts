@@ -3,8 +3,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
-    // Hilt
-    // 앱잼 끝나고 구현하자!
     id("dagger.hilt.android.plugin")
 
 }
@@ -49,6 +47,8 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":presentation"))
     implementation(project(":core-ui"))
     implementation(project(":domain"))
     implementation(project(":data"))
