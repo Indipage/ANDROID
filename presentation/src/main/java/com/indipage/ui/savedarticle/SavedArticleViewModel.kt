@@ -36,15 +36,12 @@ class SavedArticleViewModel @Inject constructor(
     }
 
     fun getSavedArticles() = viewModelScope.launch {
-        useCase.getSavedArticles()
-            .onSuccess { savedArticles ->
-                if (savedArticles != null) _savedArticles.value = UiState.Success(savedArticles)
-                else _savedArticles.value = UiState.Empty
-                Timber.d("Success $savedArticles")
-            }
-            .onFailure {
-                Timber.d("Fail $it")
-            }
+        useCase.getSavedArticles().collect { savedArticles ->
+            if (savedArticles != null) _savedArticles.value = UiState.Success(savedArticles)
+            else _savedArticles.value = UiState.Empty
+            Timber.d("Success $savedArticles")
+        }
+
     }
 
 }
