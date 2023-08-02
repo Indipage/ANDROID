@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.usecase.BookMarkUseCase
+import com.indipage.domain.usecase.BookMarkArticleUseCase
 import com.indipage.mapper.toArticleModelEntity
 import com.indipage.model.ArticleModel
 import com.indipage.util.Event
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavedArticleViewModel @Inject constructor(
-    private val useCase: BookMarkUseCase
+    private val bookMarkArticleUseCase: BookMarkArticleUseCase
 ) : ViewModel() {
 
     private val _savedArticles = MutableStateFlow<UiState<List<ArticleModel>>>(UiState.Loading)
@@ -37,7 +37,7 @@ class SavedArticleViewModel @Inject constructor(
     }
 
     fun getSavedArticles() = viewModelScope.launch {
-        useCase.getSavedArticles().collect { savedArticles ->
+        bookMarkArticleUseCase().collect { savedArticles ->
             val savedArticle = savedArticles?.toArticleModelEntity()
             if (savedArticle != null) _savedArticles.value = UiState.Success(savedArticle)
             else _savedArticles.value = UiState.Empty
