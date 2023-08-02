@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.domain.model.MainCard
-import com.indipage.domain.model.Ticket
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.usecase.TicketUseCase
 import com.indipage.mapper.toTicketModelEntity
@@ -23,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TicketViewModel @Inject constructor(
     private val apiRepository: TicketRepository,
-    private val useCase: TicketUseCase
+    private val ticketUseCase: TicketUseCase,
 ) : ViewModel() {
 
     private val _openQrEvent = MutableLiveData<Event<Int>>()
@@ -42,7 +41,7 @@ class TicketViewModel @Inject constructor(
     }
 
     fun getTicketList() = viewModelScope.launch {
-        useCase.getTicketList().collect{ it ->
+        ticketUseCase().collect{ it ->
                 val ticketList = it?.toTicketModelEntity()
                 if (ticketList != null) {
                     _ticket.value = UiState.Success(ticketList)
