@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.domain.usecase.CardUseCase
 import com.indipage.domain.usecase.TicketUseCase
 import com.indipage.mapper.toCardModelEntity
 import com.indipage.model.CardModel
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CardViewModel @Inject constructor(
-    private val useCase: TicketUseCase
+    private val cardUseCase: CardUseCase
 ) : ViewModel() {
 
 
@@ -34,7 +35,7 @@ class CardViewModel @Inject constructor(
     }
 
     fun getCardList() = viewModelScope.launch {
-        useCase.getCardList().collect { it ->
+        cardUseCase().collect { it ->
             val cardList = it?.toCardModelEntity()
             if (cardList != null) _card.value = UiState.Success(cardList)
             else _card.value = UiState.Empty
