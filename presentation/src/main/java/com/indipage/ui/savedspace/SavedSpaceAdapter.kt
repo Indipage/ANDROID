@@ -10,15 +10,15 @@ import com.indipage.ui.savedspace.viewholder.SavedSpaceViewHolder
 
 class SavedSpaceAdapter(
     private val onMoveToSpaceDetailClick: (SpaceModel, Int) -> Unit = { _, _ -> }
-    ):
+) :
     ListAdapter<SpaceModel, SavedSpaceViewHolder>(
-    SavedSpaceDiffCalback
-) {
+        SavedSpaceDiffCalback
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedSpaceViewHolder {
         val binding =
             ItemSavedSpaceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SavedSpaceViewHolder(binding,onMoveToSpaceDetailClick)
+        return SavedSpaceViewHolder(binding, onMoveToSpaceDetailClick)
     }
 
     override fun onBindViewHolder(holder: SavedSpaceViewHolder, position: Int) {

@@ -6,7 +6,6 @@ import com.indipage.domain.model.UserInfo
 import com.indipage.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.util.Optional.empty
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -18,7 +17,7 @@ class UserRepositoryImpl @Inject constructor(
             val result = runCatching {
                 dataSource.getUserInfo().data.toUserInfoEntity()
             }
-            emit(result.getOrDefault(UserInfo(0,"","")))
+            emit(result.getOrDefault(UserInfo(0, "", "")))
         }
     }
 }

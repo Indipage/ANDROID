@@ -34,7 +34,7 @@ class SavedSpaceViewModel @Inject constructor(
 
     fun getSavedSpaces() = viewModelScope.launch {
         useCase.getSavedSpaces().collect() { savedSpaces ->
-            val savedSpace=savedSpaces?.toSpaceModelEntity()
+            val savedSpace = savedSpaces?.toSpaceModelEntity()
             if (savedSpace != null) {
                 _savedSpaces.value = UiState.Success(savedSpace)
                 Timber.d("Success")

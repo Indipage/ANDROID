@@ -11,7 +11,7 @@ class SavedSpaceViewHolder(
     fun bind(data: SpaceModel) {
         binding.savedSpace = data
         binding.root.setOnClickListener {
-            onMoveToSpaceDetailClick(data,position)
+            onMoveToSpaceDetailClick(data, position)
         }
         binding.executePendingBindings()
     }

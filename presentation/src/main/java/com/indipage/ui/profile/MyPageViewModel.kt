@@ -27,10 +27,10 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun getSavedSpaces() = viewModelScope.launch {
-        useCase.getUserInfo().collect{ savedSpaces ->
-                _userInfo.value = UiState.Success(savedSpaces.toUserModelEntity())
-                Timber.d("Success")
-            }
+        useCase.getUserInfo().collect { savedSpaces ->
+            _userInfo.value = UiState.Success(savedSpaces.toUserModelEntity())
+            Timber.d("Success")
+        }
 
     }
 

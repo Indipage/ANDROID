@@ -1,9 +1,6 @@
 package com.indipage.model
 
-import com.indipage.domain.model.Article
-import com.indipage.domain.model.UserInfo
-
-data class ArticleModel (
+data class ArticleModel(
     val spaceName: String,
     val title: String,
     val spaceType: String,

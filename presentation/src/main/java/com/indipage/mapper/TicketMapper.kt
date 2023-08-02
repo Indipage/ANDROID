@@ -8,6 +8,5 @@ fun List<Ticket>.toTicketModelEntity(): List<TicketModel> = map {
         ticketId = it.ticketId,
         imageUrl = it.imageUrl,
         spaceId = it.spaceId
-
     )
 }
