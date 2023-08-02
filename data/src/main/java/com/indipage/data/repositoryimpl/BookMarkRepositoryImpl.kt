@@ -20,9 +20,11 @@ class BookMarkRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSavedSpaces(): Result<List<Space>?> {
-        return runCatching {
-            dataSource.getSavedSpaces().data?.map { spaceDto -> spaceDto.toSpaceEntity() }
+    override suspend fun getSavedSpaces(): Flow<List<Space>?> {
+        return flow {
+            val result = runCatching {
+                dataSource.getSavedSpaces().data?.map { spaceDto -> spaceDto.toSpaceEntity() } }
+            emit(result.getOrDefault(emptyList()))
         }
     }
 }

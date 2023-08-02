@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.domain.model.Space
+import com.indipage.model.SpaceModel
 import com.indipage.presentation.databinding.ItemSavedSpaceBinding
 import com.indipage.ui.savedspace.viewholder.SavedSpaceViewHolder
 
 class SavedSpaceAdapter(
-    private val onMoveToSpaceDetailClick: (Space, Int) -> Unit = { _, _ -> }
+    private val onMoveToSpaceDetailClick: (SpaceModel, Int) -> Unit = { _, _ -> }
     ):
-    ListAdapter<Space, SavedSpaceViewHolder>(
+    ListAdapter<SpaceModel, SavedSpaceViewHolder>(
     SavedSpaceDiffCalback
 ) {
 
@@ -27,7 +27,7 @@ class SavedSpaceAdapter(
 
     companion object {
         private val SavedSpaceDiffCalback =
-            ItemDiffCallback<Space>(
+            ItemDiffCallback<SpaceModel>(
                 onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new }
             )

@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface BookMarkRepository {
     suspend fun getSavedArticles(): Flow<List<Article>?>
-    suspend fun getSavedSpaces(): Result<List<Space>?>
+    suspend fun getSavedSpaces(): Flow<List<Space>?>
 
 }

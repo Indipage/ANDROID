@@ -14,7 +14,7 @@ class BookMarkUseCase(
     suspend fun getSavedArticles(): Flow<List<Article>?> =
         repository.getSavedArticles()
 
-    suspend fun getSavedSpaces(): Result<List<Space>?> =
+    suspend fun getSavedSpaces(): Flow<List<Space>?> =
         repository.getSavedSpaces()
 }
 
