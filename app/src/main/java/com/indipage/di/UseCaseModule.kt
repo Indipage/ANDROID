@@ -3,9 +3,7 @@ package com.indipage.di
 import com.indipage.domain.repository.BookMarkRepository
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.repository.UserRepository
-import com.indipage.domain.usecase.BookMarkUseCase
-import com.indipage.domain.usecase.TicketUseCase
-import com.indipage.domain.usecase.UserUseCase
+import com.indipage.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,10 +21,21 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideBookmarkUseCase(repository: BookMarkRepository): BookMarkUseCase {
-        return BookMarkUseCase(repository)
+    fun provideCardUseCase(repository: TicketRepository): CardUseCase {
+        return CardUseCase(repository)
     }
 
+    @Singleton
+    @Provides
+    fun provideBookmarkArticleUseCase(repository: BookMarkRepository): BookMarkArticleUseCase {
+        return BookMarkArticleUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideBookmarkSpaceUseCase(repository: BookMarkRepository): BookMarkSpaceUseCase {
+        return BookMarkSpaceUseCase(repository)
+    }
     @Singleton
     @Provides
     fun provideUserUseCase(repository: UserRepository): UserUseCase {
