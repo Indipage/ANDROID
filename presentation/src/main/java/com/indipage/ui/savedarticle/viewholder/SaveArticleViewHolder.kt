@@ -3,13 +3,14 @@ package com.indipage.ui.savedarticle.viewholder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.domain.model.Article
+import com.indipage.model.ArticleModel
 import com.indipage.presentation.databinding.ItemSavedArticleBinding
 
 class SavedArticleViewHolder(
     private val binding: ItemSavedArticleBinding,
-    private val onMoveToArticleDetailClick: (Article, Int) -> Unit = { _, _ -> }
+    private val onMoveToArticleDetailClick: (ArticleModel, Int) -> Unit = { _, _ -> }
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: Article) {
+    fun bind(data: ArticleModel) {
         binding.savedArticle = data
         if (data.ticketReceived) {
             binding.clTicketTrue.visibility = View.VISIBLE
