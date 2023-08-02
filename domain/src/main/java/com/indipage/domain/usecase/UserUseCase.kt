@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 class UserUseCase(
     private val repository: UserRepository
 ) {
-    suspend fun getUserInfo(): Flow<UserInfo> =
+    suspend operator fun invoke(): Flow<UserInfo> =
         repository.getUserInfo()
 }

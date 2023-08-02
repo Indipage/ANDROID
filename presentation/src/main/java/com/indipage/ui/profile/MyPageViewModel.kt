@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
-    private val useCase: UserUseCase
+    private val userUseCase: UserUseCase
 ) : ViewModel() {
 
     private val _userInfo = MutableStateFlow<UiState<UserInfoModel>>(UiState.Loading)
@@ -27,7 +27,7 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun getSavedSpaces() = viewModelScope.launch {
-        useCase.getUserInfo().collect { savedSpaces ->
+        userUseCase().collect { savedSpaces ->
             _userInfo.value = UiState.Success(savedSpaces.toUserModelEntity())
             Timber.d("Success")
         }
