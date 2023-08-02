@@ -1,7 +1,5 @@
 package com.indipage.model
 
-import com.indipage.domain.model.Ticket
-
 
 data class TicketModel (
     val ticketId:Int,
@@ -9,6 +7,3 @@ data class TicketModel (
     val spaceId:Int
     )
 
-fun Ticket.toTicketModelEntity()= TicketModel(
-    ticketId,imageUrl, spaceId
-)

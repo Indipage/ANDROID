@@ -9,6 +9,8 @@ import com.indipage.domain.model.MainCard
 import com.indipage.domain.model.Ticket
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.usecase.TicketUseCase
+import com.indipage.mapper.toTicketModelEntity
+import com.indipage.model.TicketModel
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,23 +34,20 @@ class TicketViewModel @Inject constructor(
 
     private val _qrResponse = MutableStateFlow<UiState<MainCard>>(UiState.Loading)
     val qrResponse: StateFlow<UiState<MainCard>> = _qrResponse.asStateFlow()
-    private val _ticket = MutableStateFlow<UiState<List<Ticket>>>(UiState.Loading)
-    val ticket: StateFlow<UiState<List<Ticket>>> = _ticket.asStateFlow()
+    private val _ticket = MutableStateFlow<UiState<List<TicketModel>>>(UiState.Loading)
+    val ticket: StateFlow<UiState<List<TicketModel>>> = _ticket.asStateFlow()
 
     init {
 //        getTicketList()
     }
 
     fun getTicketList() = viewModelScope.launch {
-        useCase.getTicketList()
-            .onSuccess { it ->
-                if (it != null) {
-                    _ticket.value = UiState.Success(it)
+        useCase.getTicketList().collect{ it ->
+                val ticketList = it?.toTicketModelEntity()
+                if (ticketList != null) {
+                    _ticket.value = UiState.Success(ticketList)
                     Timber.d("Success $it")
                 } else _ticket.value = UiState.Empty
-            }
-            .onFailure {
-                Timber.d("Fail $it")
             }
     }
 
