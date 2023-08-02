@@ -12,6 +12,3 @@ data class ArticleModel (
     val thumbnailUrl: String,
     val ticketReceived: Boolean,
 )
-fun Article.toArticleModelEntity() = ArticleModel(
-    spaceName, title, spaceType, id, issueDate, thumbnailUrl, ticketReceived
-)
