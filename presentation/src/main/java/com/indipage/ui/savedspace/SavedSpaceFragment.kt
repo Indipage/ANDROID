@@ -25,7 +25,7 @@ class SavedSpaceFragment :
     private val viewModel by viewModels<SavedSpaceViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = SavedSpaceAdapter( onMoveToSpaceDetailClick = { space, positon ->
+        adapter = SavedSpaceAdapter(onMoveToSpaceDetailClick = { space, positon ->
             Timber.tag("testClick").d("$space,$positon")
             viewModel.openSpaceDetail(space.id)
         })

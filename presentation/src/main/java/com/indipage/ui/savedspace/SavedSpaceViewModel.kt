@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
-import com.indipage.domain.model.Space
-import com.indipage.domain.usecase.BookMarkUseCase
+import com.indipage.domain.usecase.BookMarkSpaceUseCase
+import com.indipage.mapper.toSpaceModelEntity
+import com.indipage.model.SpaceModel
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,11 +19,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavedSpaceViewModel @Inject constructor(
-    private val useCase: BookMarkUseCase
+    private val bookMarkSpaceUseCase: BookMarkSpaceUseCase
 ) : ViewModel() {
 
-    private val _savedSpaces = MutableStateFlow<UiState<List<Space>>>(UiState.Loading)
-    val savedSpaces: StateFlow<UiState<List<Space>>> = _savedSpaces.asStateFlow()
+    private val _savedSpaces = MutableStateFlow<UiState<List<SpaceModel>>>(UiState.Loading)
+    val savedSpaces: StateFlow<UiState<List<SpaceModel>>> = _savedSpaces.asStateFlow()
 
     private val _openSpaceEvent = MutableLiveData<Event<Int>>()
     val openSpaceEvent: LiveData<Event<Int>> = _openSpaceEvent
@@ -32,16 +33,14 @@ class SavedSpaceViewModel @Inject constructor(
     }
 
     fun getSavedSpaces() = viewModelScope.launch {
-        useCase.getSavedSpaces()
-            .onSuccess { savedSpaces ->
-                if (savedSpaces != null) {
-                    _savedSpaces.value = UiState.Success(savedSpaces)
-                    Timber.d("Success")
-                } else _savedSpaces.value = UiState.Empty
-            }
-            .onFailure {
-                Timber.d("Fail$it")
-            }
+        bookMarkSpaceUseCase().collect { savedSpaces ->
+            val savedSpace = savedSpaces?.toSpaceModelEntity()
+            if (savedSpace != null) {
+                _savedSpaces.value = UiState.Success(savedSpace)
+                Timber.d("Success")
+            } else _savedSpaces.value = UiState.Empty
+        }
+
     }
 
 }

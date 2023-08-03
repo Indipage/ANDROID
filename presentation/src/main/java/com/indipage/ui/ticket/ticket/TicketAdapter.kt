@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core_ui.view.ItemDiffCallback
-import com.indipage.domain.model.Ticket
+import com.indipage.model.TicketModel
 import com.indipage.presentation.databinding.ItemTicketTicketBinding
 import com.indipage.ui.ticket.ticket.viewholder.TicketViewHolder
 
-class TicketAdapter : ListAdapter<Ticket, TicketViewHolder>(
-    TicketDiffCalback
+class TicketAdapter : ListAdapter<TicketModel, TicketViewHolder>(
+    TicketDiffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
         val binding =
@@ -22,8 +22,8 @@ class TicketAdapter : ListAdapter<Ticket, TicketViewHolder>(
     }
 
     companion object {
-        private val TicketDiffCalback =
-            ItemDiffCallback<Ticket>(
+        private val TicketDiffCallback =
+            ItemDiffCallback<TicketModel>(
                 onItemsTheSame = { old, new -> old.ticketId == new.ticketId },
                 onContentsTheSame = { old, new -> old == new }
             )

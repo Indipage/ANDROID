@@ -7,7 +7,7 @@
 
         <variable
             name="saved_article"
-            type="com.indipage.domain.model.Article" />
+            type="com.indipage.model.ArticleModel" />
 
         </data>
 
