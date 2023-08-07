@@ -33,12 +33,11 @@ class ArticleViewModel @Inject constructor(
     private val _openArticleDetail = MutableLiveData<Event<ArticleWeekly>>()
     val openArticleDetail: LiveData<Event<ArticleWeekly>> = _openArticleDetail
 
-    private val _openArticleAll = MutableLiveData<Event<ArticleWeekly>>()
-    val openArticleAll: LiveData<Event<ArticleWeekly>> = _openArticleAll
+    private val _openArticleAll = MutableLiveData<Event<Int>>()
+    val openArticleAll: LiveData<Event<Int>> = _openArticleAll
 
-    fun openArticleAll(articleWeekly: ArticleWeekly) {
-//        if (responseArticleWeeklyDto !=null)
-        _openArticleAll.value = Event(articleWeekly)
+    fun openArticleAll() {
+        _openArticleAll.value = Event(200)
     }
 
     fun openArticleDetail(articleWeekly: ArticleWeekly) {

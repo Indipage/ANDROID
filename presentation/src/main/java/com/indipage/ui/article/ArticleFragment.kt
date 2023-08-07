@@ -34,26 +34,25 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         binding.btnArticleCategoryWeekly.isSelected = true
         viewModel.getArticleWeekly()
         viewModel.getArticleSlide()
+        binding.btnArticleCategoryAll.setOnClickListener {
+            viewModel.openArticleAll()
+        }
         setUpArticleData()
     }
 
     private fun setUpArticleData() {
         observeArticleWeekly()
         observeArticleSlide()
+        observeArticleAll()
     }
 
     private fun observeArticleWeekly() {
         viewModel.articleWeeklyData.observe(viewLifecycleOwner) { article ->
-            binding.btnArticleCategoryAll.setOnClickListener {
-                viewModel.openArticleAll(article)
-            }
             with(binding) {
                 vpArticle.adapter =
-                    WeeklyArticleAdapter(
-                        onMoveToArticleDetailClick = { it, position ->
-                            viewModel.openArticleDetail(it)
-                        }
-                    ).apply { submitList(listOf(article, article)) }
+                    WeeklyArticleAdapter(onMoveToArticleDetailClick = { it, position ->
+                        viewModel.openArticleDetail(it)
+                    }).apply { submitList(listOf(article, article)) }
                 vpArticle.offscreenPageLimit = 2
                 vpArticle.setPageTransformer { page, position ->
                     page.translationX =
@@ -70,10 +69,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
 
         viewModel.openArticleDetail.observe(viewLifecycleOwner, EventObserver {
             openArticleDetail(it.id.toLong())
-        })
-
-        viewModel.openArticleAll.observe(viewLifecycleOwner, EventObserver {
-            openArticleAll()
         })
     }
 
@@ -106,6 +101,12 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
             }
         }.launchIn(lifecycleScope)
 
+    }
+
+    private fun observeArticleAll() {
+        viewModel.openArticleAll.observe(viewLifecycleOwner, EventObserver {
+            openArticleAll()
+        })
     }
 
     private fun motion(articleId: Long) {
