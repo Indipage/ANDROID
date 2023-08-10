@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.domain.model.ArticleSlide
 import com.indipage.domain.model.ArticleWeekly
-import com.indipage.domain.repository.ArticleRepository
+import com.indipage.domain.usecase.ArticleUseCase
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel
 class ArticleViewModel @Inject constructor(
-    private val apiRepository: ArticleRepository
+    private val useCase: ArticleUseCase
 ) : ViewModel() {
 
     private val _articleWeeklyData: MutableLiveData<ArticleWeekly> = MutableLiveData()
@@ -33,12 +33,11 @@ class ArticleViewModel @Inject constructor(
     private val _openArticleDetail = MutableLiveData<Event<ArticleWeekly>>()
     val openArticleDetail: LiveData<Event<ArticleWeekly>> = _openArticleDetail
 
-    private val _openArticleAll = MutableLiveData<Event<ArticleWeekly>>()
-    val openArticleAll: LiveData<Event<ArticleWeekly>> = _openArticleAll
+    private val _openArticleAll = MutableLiveData<Event<Int>>()
+    val openArticleAll: LiveData<Event<Int>> = _openArticleAll
 
-    fun openArticleAll(articleWeekly: ArticleWeekly) {
-//        if (responseArticleWeeklyDto !=null)
-        _openArticleAll.value = Event(articleWeekly)
+    fun openArticleAll() {
+        _openArticleAll.value = Event(200)
     }
 
     fun openArticleDetail(articleWeekly: ArticleWeekly) {
@@ -46,7 +45,7 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun getArticleWeekly() = viewModelScope.launch {
-        apiRepository.getArticleWeekly().onSuccess {
+        useCase.getArticleWeekly().onSuccess {
             if (it != null) {
                 _articleWeeklyData.value = it
                 Timber.d("Success")
@@ -55,7 +54,7 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun getArticleSlide() = viewModelScope.launch {
-        apiRepository.getArticleSlide().onSuccess {
+        useCase.getArticleSlide().onSuccess {
             if (it != null) {
                 _articleSlideData.value = it
                 Timber.d("Success")
@@ -66,7 +65,7 @@ class ArticleViewModel @Inject constructor(
     }
 
     fun putArticleSlide() = viewModelScope.launch {
-        apiRepository.putArticleSlide().onSuccess {
+        useCase.putArticleSlide().onSuccess {
             _putArticleSlide.value = UiState.Success(it)
             Timber.d("Success")
         }.onFailure {
