@@ -1,6 +1,7 @@
 package com.indipage.di
 
 import com.indipage.domain.repository.BookMarkRepository
+import com.indipage.domain.repository.SpaceDetailRepository
 import com.indipage.domain.repository.TicketRepository
 import com.indipage.domain.repository.UserRepository
 import com.indipage.domain.usecase.*
@@ -36,10 +37,17 @@ class UseCaseModule {
     fun provideBookmarkSpaceUseCase(repository: BookMarkRepository): BookMarkSpaceUseCase {
         return BookMarkSpaceUseCase(repository)
     }
+
     @Singleton
     @Provides
     fun provideUserUseCase(repository: UserRepository): UserUseCase {
         return UserUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSpaceDetailUseCase(repository: SpaceDetailRepository): SpaceDetailUseCase {
+        return SpaceDetailUseCase(repository)
     }
 
 }
