@@ -8,7 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.domain.model.Curation
 import com.indipage.domain.model.SpaceArticle
 import com.indipage.domain.model.SpaceDetail
-import com.indipage.domain.repository.SpaceDetailRepository
+import com.indipage.domain.usecase.SpaceDetailUseCase
 import com.indipage.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceDetailRepository) :
+class SpaceDetailViewModel @Inject constructor(private val useCase: SpaceDetailUseCase) :
     ViewModel() {
 
     private val _spaceDetailData = MutableStateFlow<UiState<SpaceDetail>>(UiState.Loading)
@@ -50,7 +50,7 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     }
 
     fun getCuration(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getCuration(spaceId).onSuccess { Curation ->
+        useCase.getCuration(spaceId).onSuccess { Curation ->
             if (Curation != null) {
                 _curationData.value = UiState.Success(Curation)
             } else {
@@ -61,7 +61,7 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     }
 
     fun getSpaceDetail(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getSpaceDetail(spaceId).onSuccess { SpaceDetail ->
+        useCase.getSpaceDetail(spaceId).onSuccess { SpaceDetail ->
             if (SpaceDetail != null) {
                 _spaceDetailData.value = UiState.Success(SpaceDetail)
                 Timber.d("공간 상세 정보 실험 ${_spaceDetailData.value}")
@@ -73,21 +73,21 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     }
 
     fun getFollow(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getFollow(spaceId).onSuccess { FollowData ->
+        useCase.getFollow(spaceId).onSuccess { FollowData ->
             _follow.value = UiState.Success(FollowData)
             Timber.d("뷰모델 성공 Success 조르기")
         }.onFailure { Timber.d("뷰모델 실패 Follow / ${it}") }
     }
 
     fun postFollow(spaceId: Int) = viewModelScope.launch {
-        apiRepository.postFollow(spaceId).onSuccess {
+        useCase.postFollow(spaceId).onSuccess {
             _follow.value = UiState.Success(true)
             Timber.d("뷰모델 성공 조르기 post Success$it")
         }.onFailure { Timber.d("뷰모델 실패 Post follow / ${it}") }
     }
 
     fun getSpaceArticle(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getSpaceArticle(spaceId).onSuccess { SpaceArticle ->
+        useCase.getSpaceArticle(spaceId).onSuccess { SpaceArticle ->
             if (SpaceArticle != null) {
                 _spaceArticle.value = UiState.Success(SpaceArticle)
                 Timber.d("뷰모델 성공 Space Article Success $SpaceArticle")
@@ -98,21 +98,21 @@ class SpaceDetailViewModel @Inject constructor(private val apiRepository: SpaceD
     }
 
     fun getBookmarked(spaceId: Int) = viewModelScope.launch {
-        apiRepository.getBookmarked(spaceId).onSuccess { BookMarkData ->
+        useCase.getBookmarked(spaceId).onSuccess { BookMarkData ->
             _bookMarked.value = UiState.Success(BookMarkData)
             Timber.d("뷰모델 성공 get Bookmarked ${_bookMarked.value}")
         }.onFailure { Timber.d("뷰모델 실패 get Bookmarked / ${it}") }
     }
 
     fun postBookMarked(spaceId: Int) = viewModelScope.launch {
-        apiRepository.postBookmarked(spaceId).onSuccess {
+        useCase.postBookmarked(spaceId).onSuccess {
             _bookMarked.value = UiState.Success(true)
             Timber.d("뷰모델 성공 post Bookmarked ${_bookMarked.value}")
         }.onFailure { Timber.d("뷰모델 실패 Post Bookmarked / ${it}") }
     }
 
     fun deleteBookMarked(spaceId: Int) = viewModelScope.launch {
-        apiRepository.deleteBookmarked(spaceId).onSuccess {
+        useCase.deleteBookmarked(spaceId).onSuccess {
             _bookMarked.value = UiState.Success(false)
             Timber.d("뷰모델 성공 delete Bookmarked ${_bookMarked.value}")
         }.onFailure { Timber.d("뷰모델 실패 delete Bookmarked // ${it}") }
