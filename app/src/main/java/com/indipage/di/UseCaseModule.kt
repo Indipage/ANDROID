@@ -1,10 +1,6 @@
 package com.indipage.di
 
-import com.indipage.domain.repository.BookMarkRepository
-import com.indipage.domain.repository.SearchRepository
-import com.indipage.domain.repository.SpaceDetailRepository
-import com.indipage.domain.repository.TicketRepository
-import com.indipage.domain.repository.UserRepository
+import com.indipage.domain.repository.*
 import com.indipage.domain.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -49,6 +45,10 @@ class UseCaseModule {
     @Provides
     fun provideSpaceDetailUseCase(repository: SpaceDetailRepository): SpaceDetailUseCase {
         return SpaceDetailUseCase(repository)
+    @Singleton
+    @Provides
+    fun provideArticleUseCase(repository: ArticleRepository): ArticleUseCase {
+        return ArticleUseCase(repository)
     }
 
     @Singleton
@@ -56,4 +56,10 @@ class UseCaseModule {
     fun provideSearchUseCase(repository: SearchRepository): SearchUseCase {
         return SearchUseCase(repository)
     }
+    @Singleton
+    @Provides
+    fun provideArticleDetailUseCase(repository: ArticleDetailRepository): ArticleDetailUseCase {
+        return ArticleDetailUseCase(repository)
+    }
+
 }

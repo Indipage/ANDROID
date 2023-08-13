@@ -8,7 +8,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.domain.model.ArticleBookmark
 import com.indipage.domain.model.ArticleDetail
 import com.indipage.domain.model.TicketReceiveCheck
-import com.indipage.domain.repository.ArticleDetailRepository
+import com.indipage.domain.usecase.ArticleDetailUseCase
 import com.indipage.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel
 class ArticleDetailViewModel @Inject constructor(
-    private val apiRepository: ArticleDetailRepository
+    private val useCase: ArticleDetailUseCase
 ) : ViewModel() {
 
     private val _articleDetailData =
@@ -55,7 +55,7 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
-        apiRepository.getArticleDetail(articleId).onSuccess {
+        useCase.getArticleDetail(articleId).onSuccess {
             if (it != null) {
                 _articleDetailData.value = UiState.Success(it)
                 Timber.d("Success")
@@ -65,7 +65,7 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun getTicketReceiveCheck(spaceId: Long) = viewModelScope.launch {
-        apiRepository.getTicketReceiveCheck(spaceId).onSuccess {
+        useCase.getTicketReceiveCheck(spaceId).onSuccess {
             if (it != null) {
                 _ticketReceiveCheckData.value = it
                 Timber.d("Success")
@@ -74,7 +74,7 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun postTicketReceive(spaceId: Long) = viewModelScope.launch {
-        apiRepository.postTicketReceive(spaceId).onSuccess {
+        useCase.postTicketReceive(spaceId).onSuccess {
             _postTicketReceive.value = UiState.Success(it)
             _getArticleTicket.value = 200
             Timber.d("Success")
@@ -85,7 +85,7 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun getBookMark(articleId: Long) = viewModelScope.launch {
-        apiRepository.getBookmark(articleId).onSuccess {
+        useCase.getBookmark(articleId).onSuccess {
             if (it != null) {
                 _articleBookmarkData.value = it
                 Timber.d("Success")
@@ -94,7 +94,7 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun postBookMark(articleId: Long) = viewModelScope.launch {
-        apiRepository.postBookmark(articleId).onSuccess {
+        useCase.postBookmark(articleId).onSuccess {
             _postArticleBookmark.value = UiState.Success(it)
             Timber.d("Success")
         }.onFailure {
@@ -104,7 +104,7 @@ class ArticleDetailViewModel @Inject constructor(
     }
 
     fun deleteBookMark(articleId: Long) = viewModelScope.launch {
-        apiRepository.deleteBookmark(articleId).onSuccess {
+        useCase.deleteBookmark(articleId).onSuccess {
             _deleteArticleBookmark.value = UiState.Success(it)
             Timber.d("Success")
         }.onFailure {
