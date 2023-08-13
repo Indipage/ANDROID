@@ -7,6 +7,6 @@ import com.indipage.domain.repository.SearchRepository
 class SearchUseCase(
     private val repository: SearchRepository
 ) {
-    suspend fun getSearchResult(keyword: String): Result<List<Search>?> =
+    suspend fun getSearchResult(keyword: String?): Result<List<Search>?> =
         repository.getSearchResult(keyword)
 }

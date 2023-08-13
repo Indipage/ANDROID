@@ -54,6 +54,6 @@ class UseCaseModule {
     @Singleton
     @Provides
     fun provideSearchUseCase(repository: SearchRepository): SearchUseCase {
-        return provideSearchUseCase(repository)
+        return SearchUseCase(repository)
     }
 }
