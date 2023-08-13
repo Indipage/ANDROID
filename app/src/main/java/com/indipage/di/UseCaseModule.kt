@@ -45,6 +45,8 @@ class UseCaseModule {
     @Provides
     fun provideSpaceDetailUseCase(repository: SpaceDetailRepository): SpaceDetailUseCase {
         return SpaceDetailUseCase(repository)
+    }
+
     @Singleton
     @Provides
     fun provideArticleUseCase(repository: ArticleRepository): ArticleUseCase {
@@ -56,10 +58,10 @@ class UseCaseModule {
     fun provideSearchUseCase(repository: SearchRepository): SearchUseCase {
         return SearchUseCase(repository)
     }
+
     @Singleton
     @Provides
     fun provideArticleDetailUseCase(repository: ArticleDetailRepository): ArticleDetailUseCase {
         return ArticleDetailUseCase(repository)
     }
-
 }
