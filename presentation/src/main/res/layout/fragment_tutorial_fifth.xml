@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tv_tutorial_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tutorial_title_welcome"
+            android:textAppearance="@style/TextAppearance.IndiPage.En.Body01"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_tutorial_welcome_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"
+            android:gravity="center"
+            android:text="책과 공간을 사랑하는\n당신을 위한 이야기"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body05"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tutorial_welcome" />
+
+        <ImageView
+            android:id="@+id/iv_tutorial_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_tutorial_welcome"
+            app:layout_constraintBottom_toTopOf="@id/btn_tutorial_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tutorial_welcome_detail" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_tutorial_welcome"
+            android:layout_width="0dp"
+            android:elevation="0dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/shape_purple_fill_15_rect"
+            android:text="@string/tutorial_welcome_button_text"
+            android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head01"
+            android:textColor="@color/indi_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
