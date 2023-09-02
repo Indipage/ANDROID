@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/vp_tutorial_indicator"
+            android:layout_width="60dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabBackground="@drawable/selector_tutorial_viewpager_indicator"
+            app:tabIndicatorFullWidth="false"
+            app:tabPadding="3dp"
+            app:tabIndicatorHeight="0dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_tutorial"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="41dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp_tutorial_indicator" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
