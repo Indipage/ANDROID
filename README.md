@@ -89,9 +89,9 @@
 
 ## 📌 Convention
 
--  [Code Convention](https://ppp-club.notion.site/5c452b9a19a540e0939f941d93b20746?v=f7fe218cd91f47189a76c71cdcb46bed&pvs=4)
--  [Git Convention](https://ppp-club.notion.site/Github-Convention-110449212d2b4bb4947eded6c352d2fd?pvs=4)
--  [Package Convention](https://ppp-club.notion.site/Package-Convention-2f85d474b8df44e8aeccb8ffa1efa54b?pvs=4)
+-  [Code Convention](https://pppclub.notion.site/5bfb2dc525cd446f8cdcc68b09c0083b?v=692ad3ac3cba4368a0d178cf444e914b&pvs=4)
+-  [Git Convention](https://pppclub.notion.site/Github-Convention-628d0fceb16d456ba0cab98387e6e816?pvs=4)
+-  [Package Convention](https://pppclub.notion.site/Package-Convention-3bea24df1cac4c4ba9018e148d7101b5?pvs=4)
 
 <br>
 
