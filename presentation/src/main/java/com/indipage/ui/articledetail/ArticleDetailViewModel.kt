@@ -22,20 +22,21 @@ class ArticleDetailViewModel @Inject constructor(
     private val useCase: ArticleDetailUseCase
 ) : ViewModel() {
 
-    private val _articleDetailData =
-        MutableStateFlow<UiState<ArticleDetail>>(UiState.Loading)
-    val articleDetailData: StateFlow<UiState<ArticleDetail>> =
-        _articleDetailData.asStateFlow()
+    private val _articleDetailData = MutableStateFlow<UiState<ArticleDetail>>(UiState.Loading)
+    val articleDetailData: StateFlow<UiState<ArticleDetail>> = _articleDetailData.asStateFlow()
 
-    private val _ticketReceiveCheckData: MutableLiveData<TicketReceiveCheck> =
-        MutableLiveData()
+    private val _articleDetailParsingData =
+        MutableStateFlow<UiState<List<ArticleDetailParsing>>>(UiState.Loading)
+    val articleDetailParsingData: StateFlow<UiState<List<ArticleDetailParsing>>> =
+        _articleDetailParsingData.asStateFlow()
+
+    private val _ticketReceiveCheckData: MutableLiveData<TicketReceiveCheck> = MutableLiveData()
     val ticketReceiveCheckData: LiveData<TicketReceiveCheck> = _ticketReceiveCheckData
 
     private val _postTicketReceive = MutableStateFlow<UiState<Int>>(UiState.Loading)
     val postTicketReceive: StateFlow<UiState<Int>> = _postTicketReceive.asStateFlow()
 
-    private val _articleBookmarkData: MutableLiveData<ArticleBookmark> =
-        MutableLiveData()
+    private val _articleBookmarkData: MutableLiveData<ArticleBookmark> = MutableLiveData()
     val articleBookmarkData: LiveData<ArticleBookmark> = _articleBookmarkData
 
     private val _postArticleBookmark = MutableStateFlow<UiState<Int>>(UiState.Loading)
@@ -50,6 +51,8 @@ class ArticleDetailViewModel @Inject constructor(
     private val _getArticleTicket = MutableLiveData<Int>()
     val getArticleTicket: LiveData<Int> = _getArticleTicket
 
+    private val articleParser = ArticleParser()
+
     fun openSpaceDetail(articleDetail: ArticleDetail) {
         _openSpaceDetail.value = Event(articleDetail)
     }
@@ -57,7 +60,10 @@ class ArticleDetailViewModel @Inject constructor(
     fun getArticleDetail(articleId: Long) = viewModelScope.launch {
         useCase.getArticleDetail(articleId).onSuccess {
             if (it != null) {
+                val splitResult = articleParser.splitArticleContent(it.content, it.spaceId.toLong())
+                val parsingResult = articleParser.getArticleContent(splitResult)
                 _articleDetailData.value = UiState.Success(it)
+                _articleDetailParsingData.value = UiState.Success(parsingResult)
                 Timber.d("Success")
             } else _articleDetailData.value = UiState.Empty
 
@@ -112,4 +118,5 @@ class ArticleDetailViewModel @Inject constructor(
             Timber.d(it.message.toString())
         }
     }
+
 }

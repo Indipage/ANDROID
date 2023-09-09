@@ -14,7 +14,6 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentArticleDetailBinding
-import com.indipage.util.ArticleDetailTag.TAG_REGEX
 import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,13 +46,12 @@ class ArticleDetailFragment :
     }
 
     private fun concatAdapter() {
-
-        headAdapter = ArticleDetailHeadAdapter(onMoveToSpaceDetailClick = {it,position->
+        headAdapter = ArticleDetailHeadAdapter(onMoveToSpaceDetailClick = { it, position ->
             viewModel.openSpaceDetail(it)
         })
         contentAdapter = ArticleDetailAdapter()
         bottomAdapter = ArticleDetailBottomAdapter()
-        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(onClickTicketReceived = {it ->
+        bottomTicketAdapter = ArticleDetailBottomTicketAdapter(onClickTicketReceived = { it ->
             viewModel.postTicketReceive(it.ticket.id.toLong())
         })
         binding.rvArticleDetailArticleBody.adapter =
@@ -78,18 +76,26 @@ class ArticleDetailFragment :
             when (uiState) {
                 is UiState.Success -> {
                     binding.progressArticleDetail.isVisible = false
-                    val resultArticleArray =
-                        splitArticleContent(uiState.data.content, uiState.data.spaceId.toLong())
                     with(binding) {
                         articleDetail = uiState.data
                         executePendingBindings()
                         headAdapter.apply { submitList(listOf(uiState.data)) }
-                        contentAdapter.apply { submitList(resultArticleArray) }
                         bottomAdapter.apply { submitList(listOf(uiState.data)) }
                         spaceId = uiState.data.spaceId.toLong()
                         spaceId?.let { viewModel.getTicketReceiveCheck(it) }
                     }
                 }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+
+        viewModel.articleDetailParsingData.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    contentAdapter.apply { submitList(uiState.data) }
+                }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -108,11 +114,13 @@ class ArticleDetailFragment :
                         201 -> {
                             ArticleDetailSnackBar.make(requireView()).show()
                         }
+
                         409 -> {
                             Timber.d("티켓 수령 실패")
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -139,11 +147,13 @@ class ArticleDetailFragment :
                         201 -> {
                             Timber.d("북마크 성공")
                         }
+
                         404 -> {
                             Timber.d("존재하지 않는 아티클")
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -165,11 +175,13 @@ class ArticleDetailFragment :
                         200 -> {
                             Timber.d("북마크 취소")
                         }
+
                         404 -> {
                             Timber.d("존재하지 않는 아티클")
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -195,30 +207,6 @@ class ArticleDetailFragment :
         }
     }
 
-    //전체 아티클 내용 태그 별 분할
-    private fun splitArticleContent(input: String, spaceId: Long): List<ArticleDetailData> {
-        var currentIndex = 0
-        val articleList = mutableListOf<ArticleDetailData>()
-
-        TAG_REGEX.findAll(input).forEach { matchResult ->
-
-            val tagLessPart = input.substring(currentIndex, matchResult.range.first)
-
-            if (tagLessPart.isNotBlank()) {
-                articleList.add(ArticleDetailData(tagLessPart, spaceId))
-            }
-
-            articleList.add(ArticleDetailData(matchResult.value, spaceId))
-            currentIndex = matchResult.range.last + 1
-        }
-
-        val lastTagLessPart = input.substring(currentIndex)
-        if (lastTagLessPart.isNotBlank()) {
-            articleList.add(ArticleDetailData(lastTagLessPart, spaceId))
-        }
-
-        return articleList
-    }
 
     private fun openSpaceDetail(spaceId: Long) {
         findNavController().navigate(

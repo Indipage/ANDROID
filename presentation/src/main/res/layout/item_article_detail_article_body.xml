@@ -12,6 +12,7 @@
         android:layout_marginTop="35dp"
         android:textAppearance="@style/TextAppearance.IndiPage.Body05"
         android:textColor="@color/indi_black"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
