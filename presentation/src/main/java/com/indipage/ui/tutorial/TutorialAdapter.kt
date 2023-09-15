@@ -12,12 +12,13 @@ class TutorialAdapter(fragmentActivity: FragmentActivity) :
     }
 
     override fun createFragment(position: Int): Fragment {
-        val index: Int = position
-        return if (index == 0) TutorialFirstFragment()
-        else if (index == 1) TutorialSecondFragment()
-        else if (index == 2) TutorialThirdFragment()
-        else if (index == 3) TutorialFourthFragment()
-        else TutorialFifthFragment()
+        return when (position) {
+            0 -> TutorialFirstFragment()
+            1 -> TutorialSecondFragment()
+            2 -> TutorialThirdFragment()
+            3 -> TutorialFourthFragment()
+            else -> TutorialFifthFragment()
+        }
     }
 
 }

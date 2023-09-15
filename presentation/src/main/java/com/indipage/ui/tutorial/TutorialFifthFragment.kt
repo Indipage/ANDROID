@@ -18,14 +18,8 @@ class TutorialFifthFragment :
 
     private fun initButton() {
         binding.btnTutorialWelcome.setOnClickListener() {
-            val intent =
-                Intent(activity, MainActivity::class.java) //fragment라서 activity intent와는 다른 방식
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-            activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.remove(this)
-                ?.commit()
+            startActivity(Intent(requireActivity(), MainActivity::class.java))
+            requireActivity().finish()
         }
     }
 }
