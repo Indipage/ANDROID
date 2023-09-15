@@ -35,7 +35,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         viewModel.getArticleWeekly()
         viewModel.getArticleSlide()
         binding.btnArticleCategoryAll.setOnClickListener {
-            viewModel.openArticleAll()
+            openArticleAll()
         }
         setUpArticleData()
     }
@@ -43,7 +43,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun setUpArticleData() {
         observeArticleWeekly()
         observeArticleSlide()
-        observeArticleAll()
     }
 
     private fun observeArticleWeekly() {
@@ -92,21 +91,17 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                         200 -> {
                             Timber.d("슬라이드 함")
                         }
+
                         400 -> {
                             Timber.d("잘못 된 요청")
                         }
                     }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
 
-    }
-
-    private fun observeArticleAll() {
-        viewModel.openArticleAll.observe(viewLifecycleOwner, EventObserver {
-            openArticleAll()
-        })
     }
 
     private fun motion(articleId: Long) {
