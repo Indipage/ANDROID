@@ -150,13 +150,13 @@ class SpaceDetailFragment :
         setDeviceOffset()
     }
 
-    private fun setDeviceOffset() {
-        val pageWidth = resources.getDimension(R.dimen.viewpager_item_width)
-        val pageMargin = resources.getDimension(R.dimen.viewpager_item_margin)
-        val screenWidth = resources.displayMetrics.widthPixels
-        val offset = screenWidth - pageWidth - pageMargin
-        setPageTransformer(offset)
-    }
+        private fun setDeviceOffset() {
+            val pageWidth = resources.getDimension(R.dimen.viewpager_item_width)
+            val pageMargin = resources.getDimension(R.dimen.viewpager_item_margin)
+            val screenWidth = resources.displayMetrics.widthPixels
+            val offset = screenWidth - pageWidth - pageMargin
+            setPageTransformer(offset)
+        }
 
     private fun setPageTransformer(offset: Float) = with(binding) {
         vpCuration.setPageTransformer { page, position ->

@@ -31,7 +31,6 @@ class MyPageViewModel @Inject constructor(
             _userInfo.value = UiState.Success(savedSpaces.toUserModelEntity())
             Timber.d("Success")
         }
-
     }
 
 }
