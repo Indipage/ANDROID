@@ -61,4 +61,7 @@
     <string name="iv_saved_article_background">공간 아티클 이미지</string>
     <string name="tv_article_detail_snackbar_title">티켓을 받았어요!</string>
     <string name="tv_article_detail_snackbar_sub_title">티켓함 가기</string>
+    <string name="tv_sign_in_title">책과 공간을 사랑하는\n당신을 위한 이야기</string>
+    <string name="tv_sign_in_google_login">Google로 계속하기</string>
+    <string name="img_description_sign_in_logo">메인 로고</string>
 </resources>
