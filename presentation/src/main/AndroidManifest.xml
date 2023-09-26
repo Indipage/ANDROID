@@ -39,6 +39,11 @@
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
 
+        <activity
+            android:name="com.indipage.ui.signin.SignInActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

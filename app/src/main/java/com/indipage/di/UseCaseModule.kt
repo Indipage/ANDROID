@@ -64,4 +64,10 @@ class UseCaseModule {
     fun provideArticleDetailUseCase(repository: ArticleDetailRepository): ArticleDetailUseCase {
         return ArticleDetailUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun provideTokenUseCase(repository: SignInRepository): TokenUseCase {
+        return TokenUseCase(repository)
+    }
 }
