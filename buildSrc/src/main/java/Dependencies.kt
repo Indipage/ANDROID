@@ -32,6 +32,8 @@ object Google {
     const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
     const val HILT_ANDROID = "com.google.dagger:hilt-android:${Versions.HILT}"
     const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
+    const val GOOGLE_PLAY =
+        "com.google.android.gms:play-services-auth:${Versions.GOOGLE_PLAY_VERSION}"
 }
 
 object SquareUp {

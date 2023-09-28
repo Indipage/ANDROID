@@ -1,6 +1,7 @@
 package com.indipage.di
 
 import android.util.Log
+import com.indipage.data.TokenInterceptor
 import com.indipage.di.extension.isJsonArray
 import com.indipage.di.extension.isJsonObject
 import com.indipage.util.API.API_TAG
@@ -30,6 +31,10 @@ object RetrofitModule {
 //            .addInterceptor(tokenInterceptor())
             .build()
 
+    @Provides
+    @Singleton
+    @Token
+    fun provideAuthInterceptor(interceptor: TokenInterceptor): Interceptor = interceptor
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {

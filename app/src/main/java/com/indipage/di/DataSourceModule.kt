@@ -41,4 +41,7 @@ abstract class DataSourceModule {
     @Binds
     abstract fun providesSearchDataSource(DataSourceImpl: SearchDataSourceImpl): SearchDataSource
 
+    @Singleton
+    @Binds
+    abstract fun providesSignInDataSource(DataSourceImpl: SignInDataSourceImpl): SignInDataSource
 }

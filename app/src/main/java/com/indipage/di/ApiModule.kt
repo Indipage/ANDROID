@@ -47,4 +47,9 @@ object ApiModule {
     fun provideSearchService(@IndiPageRetrofit retrofit: Retrofit): SearchApiService =
         retrofit.create(SearchApiService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideSignInService(@IndiPageRetrofit retrofit: Retrofit): SignInApiService =
+        retrofit.create(SignInApiService::class.java)
+
 }

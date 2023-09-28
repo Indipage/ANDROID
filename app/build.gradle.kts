@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -25,12 +27,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "CLIENT_ID", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["client.id"].toString())
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "CLIENT_ID", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["client.id"].toString())
         }
     }
     compileOptions {
@@ -87,4 +97,10 @@ dependencies {
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
     implementation(ThirdParty.ZXING)
+
+    // shared preference
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+
+    //google play
+    implementation(Google.GOOGLE_PLAY)
 }

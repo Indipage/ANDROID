@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="164dp"
+            android:text="@string/tv_sign_in_title"
+            android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head02"
+            android:textColor="@color/indi_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_main_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="36dp"
+            android:contentDescription="@string/img_description_sign_in_logo"
+            android:src="@drawable/ic_main_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_in" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_google_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="34dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/shape_gray300_line_5_rect"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="15dp"
+            android:text="@string/tv_sign_in_google_login"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body01"
+            app:drawableStartCompat="@drawable/ic_google_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="34dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
