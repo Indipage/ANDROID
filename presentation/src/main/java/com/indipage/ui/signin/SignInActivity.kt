@@ -52,6 +52,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         binding.tvSignInGoogleLogin.setOnClickListener {
             val googleSignInOption =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
                     .requestServerAuthCode("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
                     .requestIdToken("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
                     .build()
