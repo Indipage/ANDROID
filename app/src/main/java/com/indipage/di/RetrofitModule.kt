@@ -2,8 +2,10 @@ package com.indipage.di
 
 import android.util.Log
 import com.indipage.data.TokenInterceptor
+import com.indipage.data.datasource.TokenImpl
 import com.indipage.di.extension.isJsonArray
 import com.indipage.di.extension.isJsonObject
+import com.indipage.domain.SharedPreferenceToken
 import com.indipage.util.API.API_TAG
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -25,12 +27,18 @@ import javax.inject.Singleton
 object RetrofitModule {
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        @Token tokenInterceptor: Interceptor
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-//            .addInterceptor(tokenInterceptor())
+            .addInterceptor(tokenInterceptor)
             .build()
 
+    @Provides
+    @Singleton
+    fun provideDataStore(DataStore: TokenImpl): SharedPreferenceToken = DataStore
     @Provides
     @Singleton
     @Token

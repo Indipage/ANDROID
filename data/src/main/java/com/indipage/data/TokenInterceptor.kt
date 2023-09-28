@@ -12,10 +12,9 @@ class TokenInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         var accessToken = token.token
         val request = chain.request().newBuilder()
-            .addHeader("X-AUTH-TOKEN", "$accessToken").build()
+            .addHeader("Authorization", "Bearer $accessToken").build()
         Timber.tag("intercept").d(accessToken)
         val result = chain.proceed(request)
-        //refresh가 없는디요 ???
         when (result.code) {
             401 -> {
                 try {
