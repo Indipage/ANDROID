@@ -63,5 +63,15 @@
     <string name="tv_article_detail_snackbar_sub_title">티켓함 가기</string>
     <string name="tv_sign_in_title">책과 공간을 사랑하는\n당신을 위한 이야기</string>
     <string name="tv_sign_in_google_login">Google로 계속하기</string>
-    <string name="img_description_sign_in_logo">메인 로고</string>
+  <string name="img_description_sign_in_logo">메인 로고</string>
+    <string name="tutorial_article">"<b>"책방지기가 들려주는 서점 이야기"</b>"를 읽어보세요.\n매주 새로운 공간으로 여러분을 초대합니다.</string>
+    <string name="tutorial_ticket">아티클을 읽고, "<b>"티켓"</b>"을 받아요!\n티켓과 함께 공간으로 떠나보세요!</string>
+    <string name="tutorial_collection">서점을 방문해, 공간을 직접 느껴보세요.\n"<b>"QR 인증"</b>"을 하고 "<b>"시그니처 카드"</b>"를 모아\n나만의 컬렉션을 꾸며봐요.</string>
+    <string name="tutorial_place">다양한 독립서점들을 둘러보며\n"<b>"내 취향에 딱 맞는 공간"</b>"을 찾아보세요.</string>
+    <string name="tutorial_title_article">Article</string>
+    <string name="tutorial_title_ticket">Ticket</string>
+    <string name="tutorial_title_welcome">Welcome !</string>
+    <string name="tutorial_welcome_button_text">PPP Club 입장하기</string>
+    <string name="tutorial_title_collection">Collection</string>
+    <string name="tutorial_title_place">place</string>
 </resources>
