@@ -18,7 +18,7 @@
             android:layout_marginStart="34dp"
             android:layout_marginTop="164dp"
             android:text="@string/tv_sign_in_title"
-            android:textAppearance="@style/TextAppearance.IndiPage.Sub_Head02"
+            android:textAppearance="@style/TextAppearance.IndiPage.Title01"
             android:textColor="@color/indi_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

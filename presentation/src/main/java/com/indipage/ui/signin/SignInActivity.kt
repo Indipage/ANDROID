@@ -35,6 +35,45 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         collectToken()
     }
 
+
+    override fun initView() {
+        getGoogleClient()
+        googleSignResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            Timber.tag("resultCode").d("${result.resultCode}")
+            val task: Task<GoogleSignInAccount> =
+                GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun getGoogleClient() {
+        binding.tvSignInGoogleLogin.setOnClickListener {
+            val googleSignInOption =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestServerAuthCode("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
+                    .requestIdToken("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
+                    .build()
+            val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
+
+            var signIntent: Intent = mGoogleSignInClient.signInIntent
+            googleSignResultLauncher.launch(signIntent)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            var googleTokenAuth = account?.idToken.toString()
+            Timber.tag("googleTokenAuth").d(googleTokenAuth)
+            if (!googleTokenAuth.isNullOrBlank()) {
+                viewModel.postGoogleLogin(googleTokenAuth)
+            }
+        } catch (e: ApiException) {
+            Timber.d("signInResult:failed Code = " + e.statusCode)
+        }
+    }
     private fun collectToken() {
         viewModel.jwtToken.flowWithLifecycle(lifecycle).onEach {
             Timber.d("JwtToken Flow: $it")
@@ -49,45 +88,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                 else -> {}
             }
         }.launchIn(lifecycleScope)
-    }
-
-    override fun initView() {
-        getGoogleClient()
-        googleSignResultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            Timber.tag("test").d("${result.resultCode}")
-            val task: Task<GoogleSignInAccount> =
-                GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            handleSignInResult(task)
-        }
-    }
-
-    private fun getGoogleClient() {
-        binding.tvSignInGoogleLogin.setOnClickListener {
-            Timber.d("tasdasd")
-            val googleSignInOption =
-                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestServerAuthCode("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
-                    .build()
-            val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
-
-            var signIntent: Intent = mGoogleSignInClient.signInIntent
-            googleSignResultLauncher.launch(signIntent)
-        }
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            var googleTokenAuth = account?.idToken.toString()
-            Timber.tag("test").d(googleTokenAuth)
-            if (!googleTokenAuth.isNullOrBlank()) {
-                viewModel.postGoogleLogin(googleTokenAuth)
-            }
-        } catch (e: ApiException) {
-            Timber.d("signInResult:failed Code = " + e.statusCode)
-        }
     }
 
     private inline fun <reified T : Activity> navigateTo() {

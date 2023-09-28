@@ -18,6 +18,13 @@
 
         <activity
             android:name="com.indipage.ui.tutorial.TutorialActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.IndiPage.Splash">
+        </activity>
+
+        <activity
+            android:name="com.indipage.ui.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.IndiPage.Splash">
@@ -27,12 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="com.indipage.ui.SplashActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.IndiPage.Splash"/>
 
         <activity
             android:name="com.indipage.ui.MainActivity"
