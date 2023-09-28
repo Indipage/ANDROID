@@ -64,14 +64,5 @@ object RetrofitModule {
         .client(okHttpClient)
         .build()
 
-    private fun tokenInterceptor(): Interceptor {
-        val requestInterceptor = Interceptor { chain ->
-            val original = chain.request()
-            val builder = original.newBuilder()
-            builder.addHeader("Authorization", "헤더의 토큰 값")
-            chain.proceed(builder.build())
-        }
-        return requestInterceptor
-    }
 }
 
