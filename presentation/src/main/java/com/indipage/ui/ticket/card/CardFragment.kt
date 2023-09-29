@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,7 @@ import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.view.UiState
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentCardBinding
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -25,6 +27,11 @@ class CardFragment : BindingFragment<FragmentCardBinding>(R.layout.fragment_card
     private lateinit var adapter: CardAdapter
 
     private val viewModel by viewModels<CardViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getCardList()

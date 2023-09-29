@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BindingFragment
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentArticleAllBinding
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +20,11 @@ class ArticleAllFragment :
     BindingFragment<FragmentArticleAllBinding>(R.layout.fragment_article_all) {
 
     private val viewModel by viewModels<ArticleAllViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

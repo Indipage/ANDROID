@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +21,7 @@ import com.indipage.presentation.databinding.FragmentTicketBinding
 import com.indipage.ui.qr.CheckDialogListener
 import com.indipage.ui.qr.DialogQrFailFragment
 import com.indipage.ui.qr.QrScanActivity
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.ui.ticket.ticket.itemhelper.TicketItemHelper
 import com.indipage.util.EventObserver
 import com.journeyapps.barcodescanner.ScanContract
@@ -36,6 +38,11 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
 
     private lateinit var adapter: TicketAdapter
     private val viewModel by viewModels<TicketViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
     private var testNum = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

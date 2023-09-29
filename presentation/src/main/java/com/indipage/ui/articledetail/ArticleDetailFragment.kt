@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentArticleDetailBinding
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +29,11 @@ class ArticleDetailFragment :
     BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
 
     private val viewModel by viewModels<ArticleDetailViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
     private var spaceId: Long? = null
     private lateinit var headAdapter: ArticleDetailHeadAdapter
     private lateinit var contentAdapter: ArticleDetailAdapter

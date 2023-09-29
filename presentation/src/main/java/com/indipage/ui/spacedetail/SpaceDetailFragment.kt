@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.Px
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,7 @@ import com.indipage.domain.model.Curation
 import com.indipage.domain.model.SpaceDetail
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentSpaceDetailBinding
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -28,6 +30,11 @@ class SpaceDetailFragment :
     BindingFragment<FragmentSpaceDetailBinding>(R.layout.fragment_space_detail) {
 
     private val viewModel by viewModels<SpaceDetailViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val spaceId = requireArguments().getInt("spaceId")

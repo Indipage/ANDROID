@@ -5,6 +5,7 @@ import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentArticleBinding
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.util.EventObserver
 import com.indipage.util.WeeklyArticle.KEY_ARTICLE_ID
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +27,11 @@ import kotlin.math.abs
 class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragment_article) {
 
     private val viewModel by viewModels<ArticleViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()

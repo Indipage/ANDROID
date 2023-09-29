@@ -3,6 +3,7 @@ package com.indipage.ui.profile
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +12,7 @@ import com.example.core_ui.base.BindingFragment
 import com.example.core_ui.view.UiState
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentMyPageBinding
+import com.indipage.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -20,6 +22,11 @@ import timber.log.Timber
 class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
     private val viewModel by viewModels<MyPageViewModel>()
+    private val mainViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        mainViewModel.getUser()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
