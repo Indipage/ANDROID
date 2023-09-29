@@ -27,10 +27,10 @@ class SavedArticleFragment :
 
     // ViewModel 초기화
     private val viewModel by viewModels<SavedArticleViewModel>()
-    private val mainViewModel by activityViewModels<SignInViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+        parentViewModel.getUser()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

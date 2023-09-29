@@ -29,10 +29,10 @@ class ArticleDetailFragment :
     BindingFragment<FragmentArticleDetailBinding>(R.layout.fragment_article_detail) {
 
     private val viewModel by viewModels<ArticleDetailViewModel>()
-    private val mainViewModel by activityViewModels<SignInViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+        parentViewModel.getUser()
     }
     private var spaceId: Long? = null
     private lateinit var headAdapter: ArticleDetailHeadAdapter

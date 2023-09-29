@@ -28,10 +28,10 @@ import timber.log.Timber
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
 
     private val viewModel by viewModels<SearchViewModel>()
-    private val mainViewModel by activityViewModels<SignInViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+        parentViewModel.getUser()
     }
 
     private lateinit var adapter: SearchAdapter

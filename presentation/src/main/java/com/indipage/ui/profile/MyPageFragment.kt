@@ -22,10 +22,10 @@ import timber.log.Timber
 class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
     private val viewModel by viewModels<MyPageViewModel>()
-    private val mainViewModel by activityViewModels<SignInViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+        parentViewModel.getUser()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -20,10 +20,10 @@ class ArticleAllFragment :
     BindingFragment<FragmentArticleAllBinding>(R.layout.fragment_article_all) {
 
     private val viewModel by viewModels<ArticleAllViewModel>()
-    private val mainViewModel by activityViewModels<SignInViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+        parentViewModel.getUser()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -30,10 +30,10 @@ class SpaceDetailFragment :
     BindingFragment<FragmentSpaceDetailBinding>(R.layout.fragment_space_detail) {
 
     private val viewModel by viewModels<SpaceDetailViewModel>()
-    private val mainViewModel by activityViewModels<SignInViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+        parentViewModel.getUser()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
