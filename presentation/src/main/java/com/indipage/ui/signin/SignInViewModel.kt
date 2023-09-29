@@ -47,12 +47,10 @@ class SignInViewModel @Inject constructor(
         )
     }
 
-
-    private val _logoutState = MutableStateFlow<UiState<Boolean>>(UiState.Empty)
-    val logoutState: StateFlow<UiState<Boolean>> = _logoutState.asStateFlow()
+    private val _logoutState = MutableStateFlow<SignCheck<Boolean>>(SignCheck.Empty)
+    val logoutState: StateFlow<SignCheck<Boolean>> = _logoutState.asStateFlow()
     fun postLogout() {
-        _logoutState.value = UiState.Loading
-        _logoutState.value = UiState.Success(true)
+        _logoutState.value = SignCheck.Success(true)
         saveToken("")
     }
 

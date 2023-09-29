@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.core_ui.base.BindingActivity
 import com.example.core_ui.context.longToast
-import com.example.core_ui.view.UiState
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.ActivityMainBinding
+import com.indipage.ui.signin.SignCheck
 import com.indipage.ui.signin.SignInActivity
 import com.indipage.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,24 +48,18 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private fun setupLogoutState() {
         mainViewModel.logoutState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Loading -> {
-                }
-
-                is UiState.Success -> {
-                    navigateToLoginScreen()
+                is SignCheck.Success -> {
+                    navigateToSignInActivity()
                     longToast("로그인이 필요합니다.")
                 }
 
-                is UiState.Failure -> {
-                }
-
-                is UiState.Empty -> {
+                is SignCheck.Empty -> {
                 }
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigateToLoginScreen() {
+    private fun navigateToSignInActivity() {
         Intent(this@MainActivity, SignInActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
