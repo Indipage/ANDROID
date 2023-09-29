@@ -1,6 +1,7 @@
 package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.BookMarkDataSource
+import com.indipage.domain.Outcome
 import com.indipage.domain.model.Article
 import com.indipage.domain.model.Space
 import com.indipage.domain.repository.BookMarkRepository
@@ -11,21 +12,27 @@ import javax.inject.Inject
 class BookMarkRepositoryImpl @Inject constructor(
     private val dataSource: BookMarkDataSource
 ) : BookMarkRepository {
-    override suspend fun getSavedArticles(): Flow<List<Article>?> {
+    override suspend fun getSavedArticles(): Flow<Outcome<List<Article>?>> {
         return flow {
-            val result = runCatching {
-                dataSource.getSavedArticles().data?.map { articleDto -> articleDto.toArticleEntity() }
+            val result = kotlin.runCatching {
+                dataSource.getSavedArticles().data?.map { it.toArticleEntity() }
             }
-            emit(result.getOrDefault(emptyList()))
+            if(result.isSuccess){
+                emit(Outcome.Success(result.getOrDefault(emptyList())))
+            }else{
+                emit(Outcome.Failure(error = null))
+            }
         }
     }
 
     override suspend fun getSavedSpaces(): Flow<List<Space>?> {
         return flow {
-            val result = runCatching {
-                dataSource.getSavedSpaces().data?.map { spaceDto -> spaceDto.toSpaceEntity() }
+            val result = kotlin.runCatching {
+                dataSource.getSavedSpaces().data?.map { spaceDto->spaceDto.toSpaceEntity() }
             }
             emit(result.getOrDefault(emptyList()))
         }
     }
+
+
 }

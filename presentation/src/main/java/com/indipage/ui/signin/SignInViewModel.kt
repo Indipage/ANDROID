@@ -3,9 +3,11 @@ package com.indipage.ui.signin
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.domain.collectOutcome
 import com.indipage.domain.model.Token
 import com.indipage.domain.repository.AuthRepository
 import com.indipage.domain.usecase.TokenUseCase
+import com.indipage.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val tokenUseCase: TokenUseCase,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val userUseCase: UserUseCase
 ) : ViewModel() {
 
     private val _jwtToken = MutableStateFlow<UiState<Token>>(UiState.Loading)
@@ -30,6 +33,27 @@ class SignInViewModel @Inject constructor(
             Timber.d(authRepository.getAccessToken())
         }
         _jwtToken.value = UiState.Loading
+    }
+
+    fun getUser() = viewModelScope.launch {
+        userUseCase().collectOutcome(
+            handleSuccess = {
+                Timber.d("Success")
+            },
+            handleFail = {
+                Timber.d("Fail")
+                postLogout()
+            }
+        )
+    }
+
+
+    private val _logoutState = MutableStateFlow<UiState<Boolean>>(UiState.Empty)
+    val logoutState: StateFlow<UiState<Boolean>> = _logoutState.asStateFlow()
+    fun postLogout() {
+        _logoutState.value = UiState.Loading
+        _logoutState.value = UiState.Success(true)
+        saveToken("")
     }
 
     fun getToken() = authRepository.getAccessToken()
