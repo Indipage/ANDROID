@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
 import com.indipage.domain.collectOutcome
+import com.indipage.domain.exception.NetworkErrorHandling
 import com.indipage.domain.model.Token
 import com.indipage.domain.repository.AuthRepository
 import com.indipage.domain.usecase.TokenUseCase
@@ -26,11 +27,12 @@ class SignInViewModel @Inject constructor(
     private val _jwtToken = MutableStateFlow<UiState<Token>>(UiState.Loading)
     val jwtToken: StateFlow<UiState<Token>> = _jwtToken.asStateFlow()
 
+    private val _logoutState = MutableStateFlow<SignCheck<Boolean>>(SignCheck.Empty)
+    val logoutState: StateFlow<SignCheck<Boolean>> = _logoutState.asStateFlow()
+
     fun postGoogleLogin(token: String) = viewModelScope.launch {
-        Timber.tag("test").d("실행됨")
         tokenUseCase(token).collect {
             _jwtToken.value = UiState.Success(it)
-            Timber.d(authRepository.getAccessToken())
         }
         _jwtToken.value = UiState.Loading
     }
@@ -41,19 +43,20 @@ class SignInViewModel @Inject constructor(
                 Timber.d("Success")
             },
             handleFail = {
-                Timber.tag("실패").d("${it.error?.message}")
-                if (it.error?.message=="401")
-                    postLogout()
-                else
-                    Timber.d("통신에러")
+                val errorHandling = when (it.error?.message) {
+                    "401" -> NetworkErrorHandling.Unauthorized
+                    "500" -> NetworkErrorHandling.ServerError
+                    else -> NetworkErrorHandling.OtherError
+                }
+                when (errorHandling) {
+                    is NetworkErrorHandling.Unauthorized -> postLogout()
+                    is NetworkErrorHandling.ServerError -> Timber.d("서버에러")
+                    is NetworkErrorHandling.OtherError ->  Timber.d("다른에러")
+                }
             }
         )
     }
 
-
-
-    private val _logoutState = MutableStateFlow<SignCheck<Boolean>>(SignCheck.Empty)
-    val logoutState: StateFlow<SignCheck<Boolean>> = _logoutState.asStateFlow()
     fun postLogout() {
         _logoutState.value = SignCheck.Success(true)
         saveToken("")
