@@ -41,11 +41,16 @@ class SignInViewModel @Inject constructor(
                 Timber.d("Success")
             },
             handleFail = {
-                Timber.d("Fail")
-                postLogout()
+                Timber.tag("실패").d("${it.error?.message}")
+                if (it.error?.message=="401")
+                    postLogout()
+                else
+                    Timber.d("통신에러")
             }
         )
     }
+
+
 
     private val _logoutState = MutableStateFlow<SignCheck<Boolean>>(SignCheck.Empty)
     val logoutState: StateFlow<SignCheck<Boolean>> = _logoutState.asStateFlow()

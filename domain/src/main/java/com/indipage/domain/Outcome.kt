@@ -3,7 +3,7 @@ import kotlinx.coroutines.flow.Flow
 
 sealed class Outcome<out T> {
     data class Success<T>(val data: T) : Outcome<T>()
-    data class Failure<T>(val error: T) : Outcome<T>()
+    data class Failure<T>(val error: Throwable?) : Outcome<T>()
 }
 
 suspend fun <T> Flow<Outcome<T>>.collectOutcome(
@@ -17,3 +17,4 @@ suspend fun <T> Flow<Outcome<T>>.collectOutcome(
         }
     }
 }
+
