@@ -15,6 +15,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.indipage.presentation.BuildConfig
+import com.indipage.presentation.BuildConfig.CLIENT_ID
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.ActivitySignInBinding
 import com.indipage.ui.MainActivity
@@ -52,8 +54,8 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             val googleSignInOption =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
-                    .requestServerAuthCode("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
-                    .requestIdToken("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
+                    .requestServerAuthCode(CLIENT_ID)
+                    .requestIdToken(CLIENT_ID)
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
 

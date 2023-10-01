@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -16,16 +18,30 @@ android {
         targetSdk = Configuration.TARGET_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-//        consumerProguardFiles("consumer-rules.pro")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
+            debug {
+                buildConfigField("String", "CLIENT_ID", Properties().apply {
+                    load(project.rootProject.file("local.properties").inputStream())
+                }["client.id"].toString())
+                buildConfigField("String", "BASE_URL", Properties().apply {
+                    load(project.rootProject.file("local.properties").inputStream())
+                }["base.url"].toString())
+            }
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "CLIENT_ID", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["client.id"].toString())
+            buildConfigField("String", "BASE_URL", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["base.url"].toString())
         }
     }
     compileOptions {

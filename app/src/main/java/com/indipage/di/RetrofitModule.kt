@@ -6,6 +6,7 @@ import com.indipage.data.datasource.TokenImpl
 import com.indipage.di.extension.isJsonArray
 import com.indipage.di.extension.isJsonObject
 import com.indipage.domain.SharedPreferenceToken
+import com.indipage.presentation.BuildConfig.BASE_URL
 import com.indipage.util.API.API_TAG
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -68,7 +69,7 @@ object RetrofitModule {
     @IndiPageRetrofit
     fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("http://3.37.34.144")
+        .baseUrl(BASE_URL)
         .client(okHttpClient)
         .build()
 
