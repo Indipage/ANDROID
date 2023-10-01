@@ -61,4 +61,5 @@ dependencies {
     implementation(Jakewharton.CONVERTER)
 
     implementation(KotlinX.KOTLINX_COROUTINE)
+    implementation(KotlinX.KOTLINX_SERIALIZATION_JSON)
 }

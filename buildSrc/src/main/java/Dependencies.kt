@@ -51,6 +51,8 @@ object KotlinX {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KOTLINX_COROUTINE}"
     const val KOTLINX_SERIALIZATION =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION_VERSION}"
+    const val KOTLINX_SERIALIZATION_JSON =
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
 }
 
 object ThirdParty {
