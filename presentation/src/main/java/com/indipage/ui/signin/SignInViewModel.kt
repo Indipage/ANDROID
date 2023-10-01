@@ -60,6 +60,7 @@ class SignInViewModel @Inject constructor(
     fun postLogout() {
         _logoutState.value = SignCheck.Success(true)
         saveToken("")
+        saveCheckLogin(false)
     }
 
     fun getToken() = authRepository.getAccessToken()

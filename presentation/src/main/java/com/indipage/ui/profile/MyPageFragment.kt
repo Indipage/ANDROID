@@ -33,6 +33,9 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
         initView()
         moveToSaveArticle()
         moveToSaveSpace()
+        binding.tvMyPageProfileLogout.setOnClickListener {
+            parentViewModel.postLogout()
+        }
     }
 
     private fun initView() {
