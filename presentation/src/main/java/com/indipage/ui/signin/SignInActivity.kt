@@ -41,7 +41,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         googleSignResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
-            Timber.tag("resultCode").d("${result.resultCode}")
             val task: Task<GoogleSignInAccount> =
                 GoogleSignIn.getSignedInAccountFromIntent(result.data)
             handleSignInResult(task)
@@ -67,9 +66,9 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         try {
             val account = completedTask.getResult(ApiException::class.java)
             var googleTokenAuth = account?.idToken.toString()
-            Timber.tag("googleTokenAuth").d(googleTokenAuth)
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.postGoogleLogin(googleTokenAuth)
+                viewModel.saveCheckLogin(true)
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
@@ -77,12 +76,10 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
     private fun collectToken() {
         viewModel.jwtToken.flowWithLifecycle(lifecycle).onEach {
-            Timber.d("JwtToken Flow: $it")
             when (it) {
                 is UiState.Success -> {
-                    Timber.d(it.data.accessToken)
-                    Timber.tag("check").d(it.data.accessToken)
                     viewModel.saveToken(it.data.accessToken)
+                    viewModel.saveCheckLogin(true)
                     navigateTo<MainActivity>()
                 }
 

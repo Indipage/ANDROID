@@ -24,6 +24,7 @@ class TokenInterceptor @Inject constructor(
                 try {
                     Timber.e("액세스 토큰 만료, 토큰 재발급 합니다.")
                     token.token = ""
+                    token.checkLogin=false
                     Timber.e("액세스 토큰 만료, ${token.token}")
 //                    result.close()
                     return result

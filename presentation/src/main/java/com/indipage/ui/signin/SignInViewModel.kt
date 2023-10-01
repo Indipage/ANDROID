@@ -51,7 +51,7 @@ class SignInViewModel @Inject constructor(
                 when (errorHandling) {
                     is NetworkErrorHandling.Unauthorized -> postLogout()
                     is NetworkErrorHandling.ServerError -> Timber.d("서버에러")
-                    is NetworkErrorHandling.OtherError ->  Timber.d("다른에러")
+                    is NetworkErrorHandling.OtherError -> Timber.d("다른에러")
                 }
             }
         )
@@ -64,5 +64,11 @@ class SignInViewModel @Inject constructor(
 
     fun getToken() = authRepository.getAccessToken()
     fun saveToken(token: String) = authRepository.saveAccessToken(token)
+
+    fun getFirst() = authRepository.getFirst()
+    fun saveFirst(firstCheck: Boolean) = authRepository.saveFirst(firstCheck)
+
+    fun getCheckLogin(): Boolean = authRepository.checkLogin()
+    fun saveCheckLogin(check: Boolean) = authRepository.saveCheckLogin(check)
 
 }
