@@ -9,8 +9,6 @@ sealed interface SignCheck<out T> {
         val data: T,
     ) : SignCheck<T>
 
-
-
     fun getUiStateModel(): SignCheckModel {
         return SignCheckModel(
             this is Empty,

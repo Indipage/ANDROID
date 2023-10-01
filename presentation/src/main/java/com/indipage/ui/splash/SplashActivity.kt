@@ -1,5 +1,6 @@
 package com.indipage.ui.splash
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -21,23 +22,21 @@ class SplashActivity : AppCompatActivity() {
         if (mainViewModel.getFirst()) {
             Timber.d("${mainViewModel.getCheckLogin()}")
             if (mainViewModel.getCheckLogin()) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }else{
-                startActivity(Intent(this, SignInActivity::class.java))
-                finish()
+                navigateTo<MainActivity>()
+            } else {
+                navigateTo<SignInActivity>()
             }
         } else {
-
             mainViewModel.saveFirst(true)
-            startActivity(Intent(this, TutorialActivity::class.java))
+            navigateTo<TutorialActivity>()
+        }
+    }
+
+    private inline fun <reified T : Activity> navigateTo() {
+        Intent(this@SplashActivity, T::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(this)
             finish()
         }
-        /*
-         * 듀토리얼 확인
-         * 로그인 확인
-         * 귀찮아 죽겠다
-         * **/
-
     }
 }
