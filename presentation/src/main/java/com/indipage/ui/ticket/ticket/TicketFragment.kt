@@ -16,6 +16,7 @@ import com.example.core_ui.fragment.colorOf
 import com.example.core_ui.fragment.toast
 import com.example.core_ui.view.UiState
 import com.indipage.domain.model.MainCard
+import com.indipage.presentation.BuildConfig.BASE_URL
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentTicketBinding
 import com.indipage.ui.qr.CheckDialogListener
@@ -41,7 +42,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private val mainViewModel by activityViewModels<SignInViewModel>()
     override fun onStart() {
         super.onStart()
-        mainViewModel.getUser()
+//        mainViewModel.getUser()
     }
     private var testNum = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,16 +66,18 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         viewModel.ticket.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    Timber.d("Success")
+                    Timber.d("Success2")
                     binding.progressBar.visibility = View.GONE
                     adapter.submitList(it.data)
                     if (it.data.isEmpty()) {
                         binding.coTicketEmptyView.visibility = View.VISIBLE
+                        Timber.tag("SakTest").d("test1")
                     }
                 }
                 else -> {
-                    binding.coTicketEmptyView.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
+                    Timber.tag("SakTest").d("test2")
+//                    binding.coTicketEmptyView.visibility = View.VISIBLE
+//                    binding.progressBar.visibility = View.GONE
                 }
             }
         }.launchIn(lifecycleScope)
@@ -153,7 +156,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
         if (result.contents != null) {
             Timber.tag("QR TEST").d(result.contents)
             Timber.tag("QR TEST 2").d("$testNum")
-            if (result.contents.contains("http://3.37.34.144")) {
+            if (result.contents.contains(BASE_URL)) {
                 val url = result.contents
                 val regex = Regex(""".*(/(\d+)/).*""")
                 val finalResult = regex.replace(url, "$2")
