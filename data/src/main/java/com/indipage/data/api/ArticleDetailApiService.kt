@@ -12,34 +12,43 @@ import retrofit2.http.Path
 
 interface ArticleDetailApiService {
 
-    @GET("/article/{articleId}")
+    companion object{
+        const val ARTICLE = "article"
+        const val SPACE_ID = "spaceId"
+        const val ARTICLE_ID = "articleId"
+        const val USER = "user"
+        const val BOOKMARK = "bookmark"
+        const val TICKET = "ticket"
+    }
+
+    @GET("/$ARTICLE/{$ARTICLE_ID}")
     suspend fun getArticleDetail(
-        @Path(value = "articleId") articleId: Long
+        @Path(value = "$ARTICLE_ID") articleId: Long
     ): BaseResponseNullable<ResponseArticleDetailDto>
 
-    @GET("/user/ticket/{spaceId}")
+    @GET("/$USER/$TICKET/{$SPACE_ID}")
     suspend fun getTicketReceiveCheck(
-        @Path(value = "spaceId") spaceId: Long
+        @Path(value = "$SPACE_ID") spaceId: Long
     ): BaseResponseNullable<ResponseTicketReceiveCheckDto>
 
-    @POST("/user/ticket/{spaceId}")
+    @POST("/$USER/$TICKET/{$SPACE_ID}")
     suspend fun postTicketReceive(
-        @Path(value = "spaceId") spaceId: Long
+        @Path(value = "$SPACE_ID") spaceId: Long
     ): NullResponse
 
-    @GET("/bookmark/article/{articleId}")
+    @GET("/$BOOKMARK/$ARTICLE/{$ARTICLE_ID}")
     suspend fun getBookmark(
-        @Path(value = "articleId") articleId: Long
+        @Path(value = "$ARTICLE_ID") articleId: Long
     ): BaseResponseNullable<ResponseArticleBookmarkDto>
 
-    @POST("/bookmark/article/{articleId}")
+    @POST("/$BOOKMARK/$ARTICLE/{$ARTICLE_ID}")
     suspend fun postBookmark(
-        @Path(value = "articleId") articleId: Long
+        @Path(value = "$ARTICLE_ID") articleId: Long
     ): NullResponse
 
-    @DELETE("/bookmark/article/{articleId}")
+    @DELETE("/$BOOKMARK/$ARTICLE/{$ARTICLE_ID}")
     suspend fun deleteBookmark(
-        @Path(value = "articleId") articleId: Long
+        @Path(value = "$ARTICLE_ID") articleId: Long
     ): NullResponse
 
 }

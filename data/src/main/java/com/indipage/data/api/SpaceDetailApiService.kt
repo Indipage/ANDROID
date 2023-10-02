@@ -11,28 +11,37 @@ import com.indipage.data.dto.response.SpaceDetailData
 import retrofit2.http.*
 
 interface SpaceDetailApiService {
+    companion object {
+        const val ARTICLE = "article"
+        const val SPACE_ID = "spaceId"
+        const val BOOK = "book"
+        const val SPACE = "space"
+        const val FOLLOW = "follow"
+        const val BOOKMARK = "bookmark"
+    }
 
-    @GET("bookmark/space/{spaceId}")
-    suspend fun getBookmarked(@Path("spaceId") spaceId: Int): BaseResponse<BookmarkData>
 
-    @POST("/bookmark/space/{spaceId}")
-    suspend fun postBookmarked(@Path("spaceId") spaceId: Int): NullResponse
+    @GET("$BOOKMARK/$SPACE/{$SPACE_ID}")
+    suspend fun getBookmarked(@Path("$SPACE_ID") spaceId: Int): BaseResponse<BookmarkData>
 
-    @DELETE("/bookmark/space/{spaceId}")
-    suspend fun deleteBookmarked(@Path("spaceId") spaceId: Int): NullResponse
+    @POST("/$BOOKMARK/${SPACE}S/{$SPACE_ID}")
+    suspend fun postBookmarked(@Path("$SPACE_ID") spaceId: Int): NullResponse
 
-    @GET("space/{spaceId}")
-    suspend fun getSpaceDetail(@Path("spaceId") spaceId: Int): BaseResponseNullable<SpaceDetailData>
+    @DELETE("/$BOOKMARK/$SPACE/{$SPACE_ID}")
+    suspend fun deleteBookmarked(@Path("$SPACE_ID") spaceId: Int): NullResponse
 
-    @GET("space/{spaceId}/book")
-    suspend fun getCuration(@Path("spaceId") spaceId: Int): BaseResponseNullable<List<CurationData>>
+    @GET("$SPACE/{$SPACE_ID}")
+    suspend fun getSpaceDetail(@Path("$SPACE_ID") spaceId: Int): BaseResponseNullable<SpaceDetailData>
 
-    @GET("space/{spaceId}/follow")
-    suspend fun getFollow(@Path("spaceId") spaceId: Int): BaseResponse<FollowData>
+    @GET("$SPACE/{$SPACE_ID}/$BOOK")
+    suspend fun getCuration(@Path("$SPACE_ID") spaceId: Int): BaseResponseNullable<List<CurationData>>
 
-    @POST("space/{spaceId}/follow")
-    suspend fun postFollow(@Path("spaceId") spaceId: Int): NullResponse
+    @GET("$SPACE/{$SPACE_ID}/$FOLLOW")
+    suspend fun getFollow(@Path("$SPACE_ID") spaceId: Int): BaseResponse<FollowData>
 
-    @GET("space/{spaceId}/article")
-    suspend fun getSpaceArticle(@Path("spaceId") spaceId: Int): BaseResponseNullable<SpaceArticleData>
+    @POST("$SPACE/{$SPACE_ID}/$FOLLOW")
+    suspend fun postFollow(@Path("$SPACE_ID") spaceId: Int): NullResponse
+
+    @GET("$SPACE/{$SPACE_ID}/$ARTICLE")
+    suspend fun getSpaceArticle(@Path("$SPACE_ID") spaceId: Int): BaseResponseNullable<SpaceArticleData>
 }

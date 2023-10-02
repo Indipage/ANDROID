@@ -3,6 +3,7 @@ package com.indipage.ui.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.domain.collectOutcome
 import com.indipage.domain.usecase.UserUseCase
 import com.indipage.model.UserInfoModel
 import com.indipage.model.toUserModelEntity
@@ -27,10 +28,15 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun getSavedSpaces() = viewModelScope.launch {
-        userUseCase().collect { savedSpaces ->
-            _userInfo.value = UiState.Success(savedSpaces.toUserModelEntity())
-            Timber.d("Success")
-        }
+        userUseCase().collectOutcome(
+            handleSuccess = {savedSpaces ->
+                _userInfo.value = UiState.Success(savedSpaces.data.toUserModelEntity())
+                Timber.d("Success")
+            },
+            handleFail = {
+                Timber.d("Fail")
+            }
+        )
     }
 
 }

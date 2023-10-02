@@ -2,22 +2,28 @@ package com.indipage.data.repositoryimpl
 
 import com.indipage.data.datasource.UserDataSource
 import com.indipage.data.dto.response.toUserInfoEntity
+import com.indipage.domain.Outcome
+import com.indipage.domain.exception.IndipageHttpException
 import com.indipage.domain.model.UserInfo
 import com.indipage.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val dataSource: UserDataSource
 ) : UserRepository {
 
-    override suspend fun getUserInfo(): Flow<UserInfo> {
-        return flow {
-            val result = runCatching {
-                dataSource.getUserInfo().data.toUserInfoEntity()
-            }
-            emit(result.getOrDefault(UserInfo(0, "", "")))
+    override suspend fun getUserInfo(): Flow<Outcome<UserInfo>> = flow {
+        val result = runCatching {
+            val userInfoEntity = dataSource.getUserInfo()
+            Outcome.Success(userInfoEntity.data.toUserInfoEntity())
         }
+        val outcome = result.getOrElse {
+            val errorCode = (it as? HttpException)?.code() ?: -1
+            Outcome.Failure(error = IndipageHttpException(errorCode, "$errorCode"))
+        }
+        emit(outcome)
     }
 }

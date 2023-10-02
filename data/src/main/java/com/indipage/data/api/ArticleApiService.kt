@@ -1,6 +1,5 @@
 package com.indipage.data.api
 
-import com.indipage.data.dto.BaseResponse
 import com.indipage.data.dto.BaseResponseNullable
 import com.indipage.data.dto.NullResponse
 import com.indipage.data.dto.response.ResponseArticleAllDto
@@ -8,18 +7,25 @@ import com.indipage.data.dto.response.ResponseArticleSlideDto
 import com.indipage.data.dto.response.ResponseArticleWeeklyDto
 import retrofit2.http.GET
 import retrofit2.http.PATCH
-import retrofit2.http.PUT
 
 interface ArticleApiService {
-    @GET("/article/weekly")
+
+    companion object {
+        const val ARTICLE = "article"
+        const val WEEKLY = "weekly"
+        const val USER = "user"
+        const val SLIDE = "slide"
+    }
+
+    @GET("/$ARTICLE/$WEEKLY")
     suspend fun getArticleWeekly(): BaseResponseNullable<ResponseArticleWeeklyDto>
 
-    @GET("/user/weekly/slide")
+    @GET("/$USER/$WEEKLY/$SLIDE")
     suspend fun getArticleSlide(): BaseResponseNullable<ResponseArticleSlideDto>
 
-    @PATCH("/user/weekly/slide")
+    @PATCH("/$USER/$WEEKLY/$SLIDE")
     suspend fun putArticleSlide(): NullResponse
 
-    @GET("/article")
+    @GET("/$ARTICLE")
     suspend fun getArticleAll(): BaseResponseNullable<List<ResponseArticleAllDto>>
 }

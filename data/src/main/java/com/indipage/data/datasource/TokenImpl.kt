@@ -11,4 +11,12 @@ class TokenImpl @Inject constructor(
     override var token: String
         get() = prefs.getString("AccessToken", "") ?: ""
         set(value) = prefs.edit { putString("AccessToken", value) }
+
+    override var first:Boolean
+        get() = prefs.getBoolean("First",false)
+        set(value)=prefs.edit{putBoolean("First",value)}
+
+    override var checkLogin : Boolean
+        get() = prefs.getBoolean("CheckLogin",false)
+        set(value) = prefs.edit{putBoolean("CheckLogin",value)}
 }

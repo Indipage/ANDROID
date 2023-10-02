@@ -15,6 +15,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.indipage.presentation.BuildConfig
+import com.indipage.presentation.BuildConfig.CLIENT_ID
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.ActivitySignInBinding
 import com.indipage.ui.MainActivity
@@ -41,7 +43,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         googleSignResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
-            Timber.tag("resultCode").d("${result.resultCode}")
             val task: Task<GoogleSignInAccount> =
                 GoogleSignIn.getSignedInAccountFromIntent(result.data)
             handleSignInResult(task)
@@ -52,8 +53,9 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         binding.tvSignInGoogleLogin.setOnClickListener {
             val googleSignInOption =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestServerAuthCode("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
-                    .requestIdToken("165711899943-akm9qai3cocq7k2ndpj85v2qlr0n6lja.apps.googleusercontent.com")
+                    .requestEmail()
+                    .requestServerAuthCode(CLIENT_ID)
+                    .requestIdToken(CLIENT_ID)
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
 
@@ -66,9 +68,9 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         try {
             val account = completedTask.getResult(ApiException::class.java)
             var googleTokenAuth = account?.idToken.toString()
-            Timber.tag("googleTokenAuth").d(googleTokenAuth)
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.postGoogleLogin(googleTokenAuth)
+                viewModel.saveCheckLogin(true)
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
@@ -76,12 +78,10 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
     private fun collectToken() {
         viewModel.jwtToken.flowWithLifecycle(lifecycle).onEach {
-            Timber.d("JwtToken Flow: $it")
             when (it) {
                 is UiState.Success -> {
-                    Timber.d(it.data.accessToken)
-                    Timber.tag("check").d(it.data.accessToken)
                     viewModel.saveToken(it.data.accessToken)
+                    viewModel.saveCheckLogin(true)
                     navigateTo<MainActivity>()
                 }
 

@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name="com.indipage.ui.SplashActivity"
+            android:name="com.indipage.ui.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.IndiPage.Splash">

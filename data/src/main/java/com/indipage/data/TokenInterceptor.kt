@@ -12,15 +12,22 @@ class TokenInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         var accessToken = token.token
         val request = chain.request().newBuilder()
-            .addHeader("X-AUTH-TOKEN", "$accessToken").build()
+            .addHeader("Authorization", "Bearer $accessToken").build()
         Timber.tag("intercept").d(accessToken)
         val result = chain.proceed(request)
-        //refresh가 없는디요 ???
+        /***
+         * Refresh Token이 존재하지 않음 새로운 요청을 보낼 필요가 없기에 응답을 재요청및 클로즈 할 필요가 없다.
+         *
+         * **/
         when (result.code) {
             401 -> {
                 try {
                     Timber.e("액세스 토큰 만료, 토큰 재발급 합니다.")
-                    result.close()
+                    token.token = ""
+                    token.checkLogin=false
+                    Timber.e("액세스 토큰 만료, ${token.token}")
+//                    result.close()
+                    return result
                 } catch (t: Throwable) {
                     Timber.e("예외발생 ${t.message}")
                     accessToken = ""

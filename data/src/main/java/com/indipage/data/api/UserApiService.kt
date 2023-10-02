@@ -5,7 +5,12 @@ import com.indipage.data.dto.response.UserResponseDto
 import retrofit2.http.GET
 
 interface UserApiService {
-    @GET("/user")
+
+    companion object{
+        const val USER = "user"
+    }
+
+    @GET("/$USER")
     suspend fun getUserInfo(
     ): BaseResponse<UserResponseDto>
 

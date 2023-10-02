@@ -10,15 +10,24 @@ import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface TicketApiService {
-    @GET("/user/ticket")
+    companion object{
+        const val SPACE = "space"
+        const val SPACE_ID = "spaceId"
+        const val VISIT = "visit"
+        const val USER = "user"
+        const val CARD = "card"
+        const val TICKET = "ticket"
+    }
+
+    @GET("/$USER/$TICKET")
     suspend fun getTicketList(): BaseResponseNullable<List<ResponseTicketDto>>
 
-    @GET("/user/card")
+    @GET("/$USER/$CARD")
     suspend fun getCardList(
     ): BaseResponseNullable<List<ResponseCardDto>>
 
-    @PATCH("/space/{spaceId}/visit")
+    @PATCH("/$SPACE/{$SPACE_ID}/$VISIT")
     suspend fun isCheckQR(
-        @Path("spaceId") spaceId: Int
+        @Path("$SPACE_ID") spaceId: Int
     ): BaseResponseNullable<ResponseQrDto>
 }

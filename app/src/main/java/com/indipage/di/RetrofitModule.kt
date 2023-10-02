@@ -1,9 +1,13 @@
 package com.indipage.di
 
 import android.util.Log
+import com.indipage.BuildConfig
 import com.indipage.data.TokenInterceptor
+import com.indipage.data.datasource.TokenImpl
 import com.indipage.di.extension.isJsonArray
 import com.indipage.di.extension.isJsonObject
+import com.indipage.domain.SharedPreferenceToken
+import com.indipage.presentation.BuildConfig.BASE_URL
 import com.indipage.util.API.API_TAG
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -25,12 +29,18 @@ import javax.inject.Singleton
 object RetrofitModule {
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        @Token tokenInterceptor: Interceptor
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-//            .addInterceptor(tokenInterceptor())
+            .addInterceptor(tokenInterceptor)
             .build()
 
+    @Provides
+    @Singleton
+    fun provideDataStore(DataStore: TokenImpl): SharedPreferenceToken = DataStore
     @Provides
     @Singleton
     @Token
@@ -42,10 +52,8 @@ object RetrofitModule {
             when {
                 message.isJsonObject() ->
                     Log.d(API_TAG, JSONObject(message).toString(4))
-
                 message.isJsonArray() ->
                     Log.d(API_TAG, JSONArray(message).toString(4))
-
                 else -> {
                     Log.d(API_TAG, "CONNECTION INFO -> $message")
                 }
@@ -58,20 +66,11 @@ object RetrofitModule {
     @Singleton
     @Provides
     @IndiPageRetrofit
-    fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun provideAuthRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("http://3.37.34.144")
+        .baseUrl(BASE_URL)
         .client(okHttpClient)
         .build()
 
-    private fun tokenInterceptor(): Interceptor {
-        val requestInterceptor = Interceptor { chain ->
-            val original = chain.request()
-            val builder = original.newBuilder()
-            builder.addHeader("Authorization", "헤더의 토큰 값")
-            chain.proceed(builder.build())
-        }
-        return requestInterceptor
-    }
 }
 

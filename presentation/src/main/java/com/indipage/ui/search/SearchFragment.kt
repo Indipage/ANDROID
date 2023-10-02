@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +16,7 @@ import com.example.core_ui.view.UiState
 import com.indipage.domain.model.Search
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentSearchBinding
+import com.indipage.ui.signin.SignInViewModel
 import com.indipage.util.Debouncer
 import com.indipage.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,12 @@ import timber.log.Timber
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
 
     private val viewModel by viewModels<SearchViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
+    override fun onStart() {
+        super.onStart()
+        parentViewModel.getUser()
+    }
+
     private lateinit var adapter: SearchAdapter
     private val searchDebouncer = Debouncer<String>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

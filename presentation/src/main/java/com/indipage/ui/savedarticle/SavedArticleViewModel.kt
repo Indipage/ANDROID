@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core_ui.view.UiState
+import com.indipage.domain.collectOutcome
 import com.indipage.domain.usecase.BookMarkArticleUseCase
 import com.indipage.mapper.toArticleModelEntity
 import com.indipage.model.ArticleModel
@@ -25,10 +26,6 @@ class SavedArticleViewModel @Inject constructor(
     private val _savedArticles = MutableStateFlow<UiState<List<ArticleModel>>>(UiState.Loading)
     val savedArticles: StateFlow<UiState<List<ArticleModel>>> = _savedArticles.asStateFlow()
 
-    init {
-
-    }
-
     private val _openArticleEvent = MutableLiveData<Event<Long>>()
     val openArticleEvent: LiveData<Event<Long>> = _openArticleEvent
 
@@ -37,12 +34,17 @@ class SavedArticleViewModel @Inject constructor(
     }
 
     fun getSavedArticles() = viewModelScope.launch {
-        bookMarkArticleUseCase().collect { savedArticles ->
-            val savedArticle = savedArticles?.toArticleModelEntity()
-            if (savedArticle != null) _savedArticles.value = UiState.Success(savedArticle)
-            else _savedArticles.value = UiState.Empty
-            Timber.d("Success $savedArticles")
-        }
+        bookMarkArticleUseCase().collectOutcome(
+            handleSuccess = { savedArticles ->
+                val savedArticle = savedArticles.data?.toArticleModelEntity()
+                if (savedArticle != null) _savedArticles.value = UiState.Success(savedArticle)
+                else _savedArticles.value = UiState.Empty
+                Timber.d("Article Success")
+            },
+            handleFail = {
+                Timber.d("Fail")
+            }
+        )
 
     }
 
