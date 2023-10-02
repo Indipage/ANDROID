@@ -29,14 +29,12 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView()
         moveToSaveArticle()
         moveToSaveSpace()
         eventLogout()
+        eventInfo()
     }
-
-
 
     private fun initView() {
         getUserInfo()
@@ -74,6 +72,12 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     private fun eventLogout() {
         binding.tvMyPageProfileLogout.setOnClickListener {
             parentViewModel.postLogout()
+        }
+    }
+
+    private fun eventInfo() {
+        binding.tvMyPageProfileInfo.setOnClickListener {
+            Timber.d("move_개인정보방침 만들자")
         }
     }
 }
