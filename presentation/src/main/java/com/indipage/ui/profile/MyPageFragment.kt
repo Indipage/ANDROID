@@ -33,10 +33,10 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
         initView()
         moveToSaveArticle()
         moveToSaveSpace()
-        binding.tvMyPageProfileLogout.setOnClickListener {
-            parentViewModel.postLogout()
-        }
+        eventLogout()
     }
+
+
 
     private fun initView() {
         getUserInfo()
@@ -66,11 +66,14 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     private fun moveToSaveArticle() {
         binding.clMyPageSavedView2.setOnClickListener {
             findNavController().navigate(
-                R.id.action_navigation_my_page_to_saved_space, bundleOf(
-                )
+                R.id.action_navigation_my_page_to_saved_space, bundleOf()
             )
         }
     }
 
-
+    private fun eventLogout() {
+        binding.tvMyPageProfileLogout.setOnClickListener {
+            parentViewModel.postLogout()
+        }
+    }
 }
