@@ -87,7 +87,7 @@ class TicketFragment : BindingFragment<FragmentTicketBinding>(R.layout.fragment_
     private fun initAdapter() {
         adapter = TicketAdapter()
         binding.rvTicketTicket.adapter = adapter
-        val itemTouchHelper = ItemTouchHelper(TicketItemHelper(onOpenQr = {
+        val itemTouchHelper = ItemTouchHelper(TicketItemHelper(viewModel,onOpenQr = {
             viewModel.openQR(it)
         }))
         itemTouchHelper.attachToRecyclerView(binding.rvTicketTicket)

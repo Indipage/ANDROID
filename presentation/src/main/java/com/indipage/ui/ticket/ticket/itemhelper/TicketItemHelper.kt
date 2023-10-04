@@ -3,9 +3,11 @@ package com.indipage.ui.ticket.ticket.itemhelper
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.indipage.ui.ticket.ticket.TicketAdapter
+import com.indipage.ui.ticket.ticket.TicketViewModel
 import com.indipage.ui.ticket.ticket.viewholder.TicketViewHolder
 
 class TicketItemHelper(
+    private val viewmodel:TicketViewModel,
     private val onOpenQr: (Int) -> Unit = { _ -> }
 ) : ItemTouchHelper.Callback() {
     override fun onMove(
@@ -52,6 +54,7 @@ class TicketItemHelper(
         val adapter = recyclerView.adapter as? TicketAdapter
         if (position != RecyclerView.NO_POSITION && adapter != null) {
             val item = adapter.currentList.getOrNull(position)
+            viewmodel.openQR(item?.spaceId!!)
             item?.let {
                 onOpenQr
             }
