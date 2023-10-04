@@ -21,7 +21,8 @@
     <string name="tv_my_page_question">자주 묻는 질문</string>
     <string name="tv_my_page_exit">탈퇴</string>
     <string name="tv_logout">로그아웃</string>
-    <string name="tv_info">개인정보처리방침</string>
+    <string name="tv_privacy_policy">개인정보처리방침</string>
+    <string name="tv_terms_of_use">이용약관</string>
     <string name="tv_saved_article_move">읽으러 가기</string>
     <string name="tv_ticket">티켓</string>
     <string name="tv_card">카드</string>

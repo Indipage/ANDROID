@@ -1,5 +1,7 @@
 package com.indipage.ui.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -18,6 +20,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
+
 @AndroidEntryPoint
 class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
@@ -27,13 +30,15 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
         super.onStart()
         parentViewModel.getUser()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         moveToSaveArticle()
         moveToSaveSpace()
         eventLogout()
-        eventInfo()
+        eventPrivacyPolicy()
+        eventTermsOfUse()
     }
 
     private fun initView() {
@@ -47,6 +52,7 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
                     binding.userInfo = it.data
                     Timber.d(it.data.toString())
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -75,9 +81,23 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
         }
     }
 
-    private fun eventInfo() {
-        binding.tvMyPageProfileInfo.setOnClickListener {
-            Timber.d("move_개인정보방침 만들자")
+    private fun eventPrivacyPolicy() {
+        binding.tvMyPagePrivacyPolicy.setOnClickListener {
+            val urlIntentPrivacyPolicy = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://pppclub.notion.site/00eb6c87ba8544669ca92a8ef53dce1c?pvs=4")
+            )
+            startActivity(urlIntentPrivacyPolicy)
+        }
+    }
+
+    private fun eventTermsOfUse() {
+        binding.tvMyPageTermsOfUse.setOnClickListener {
+            val urlIntentTermsOfUse = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://pppclub.notion.site/966f09583d964587a6080ab12f293d78")
+            )
+            startActivity(urlIntentTermsOfUse)
         }
     }
 }

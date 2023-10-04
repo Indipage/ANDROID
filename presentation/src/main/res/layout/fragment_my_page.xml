@@ -195,17 +195,30 @@
             app:layout_constraintTop_toBottomOf="@id/cl_my_page_profile" />
 
         <TextView
-            android:id="@+id/tv_my_page_profile_info"
+            android:id="@+id/tv_my_page_privacy_policy"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
-            android:text="@string/tv_info"
+            android:text="@string/tv_privacy_policy"
             android:textAppearance="@style/TextAppearance.IndiPage.Body04"
             android:textColor="@color/indi_black"
             app:drawableEndCompat="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_question" />
+
+        <TextView
+            android:id="@+id/tv_my_page_terms_of_use"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/tv_terms_of_use"
+            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+            android:textColor="@color/indi_black"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_privacy_policy" />
 
 
         <View
@@ -215,7 +228,7 @@
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="20dp"
             android:background="@color/indi_gray200"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_info" />
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_terms_of_use" />
 
         <TextView
             android:id="@+id/tv_my_page_profile_logout"
@@ -253,17 +266,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
-<!--
-        <TextView
-            android:id="@+id/tv_my_page_profile_exit"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/tv_my_page_exit"
-            android:textAppearance="@style/TextAppearance.IndiPage.Body04"
-            android:textColor="@color/indi_black"
-            app:drawableEndCompat="@drawable/ic_arrow_right"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_logout" />
--->
+    <!--
+            <TextView
+                android:id="@+id/tv_my_page_profile_exit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/tv_my_page_exit"
+                android:textAppearance="@style/TextAppearance.IndiPage.Body04"
+                android:textColor="@color/indi_black"
+                app:drawableEndCompat="@drawable/ic_arrow_right"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_my_page_profile_logout" />
+    -->
