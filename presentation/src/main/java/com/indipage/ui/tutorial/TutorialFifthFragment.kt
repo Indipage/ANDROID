@@ -7,6 +7,7 @@ import com.example.core_ui.base.BindingFragment
 import com.indipage.presentation.R
 import com.indipage.presentation.databinding.FragmentTutorialFifthBinding
 import com.indipage.ui.MainActivity
+import com.indipage.ui.signin.SignInActivity
 
 class TutorialFifthFragment :
     BindingFragment<FragmentTutorialFifthBinding>(R.layout.fragment_tutorial_fifth) {
@@ -18,7 +19,7 @@ class TutorialFifthFragment :
 
     private fun initButton() {
         binding.btnTutorialWelcome.setOnClickListener() {
-            startActivity(Intent(requireActivity(), MainActivity::class.java))
+            startActivity(Intent(requireActivity(), SignInActivity::class.java))
             requireActivity().finish()
         }
     }
