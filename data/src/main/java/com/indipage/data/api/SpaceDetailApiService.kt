@@ -24,7 +24,7 @@ interface SpaceDetailApiService {
     @GET("$BOOKMARK/$SPACE/{$SPACE_ID}")
     suspend fun getBookmarked(@Path("$SPACE_ID") spaceId: Int): BaseResponse<BookmarkData>
 
-    @POST("/$BOOKMARK/${SPACE}S/{$SPACE_ID}")
+    @POST("/$BOOKMARK/${SPACE}/{$SPACE_ID}")
     suspend fun postBookmarked(@Path("$SPACE_ID") spaceId: Int): NullResponse
 
     @DELETE("/$BOOKMARK/$SPACE/{$SPACE_ID}")
