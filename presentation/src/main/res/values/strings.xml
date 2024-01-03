@@ -29,7 +29,7 @@
     <string name="tv_card_empty_intro">장소를 방문하여 카드를 받아보세요</string>
     <string name="tv_ticket_empty_title">발급 받은 카드가 없어요!</string>
     <string name="tv_article_empty_intro">아티클을 읽고 티켓을 받아보세요</string>
-    <string name="tv_article_empty_title">발급 받은 티켓이 없어요!</string>
+    <string name="tv_article_ticket_empty_title">발급 받은 티켓이 없어요!</string>
     <string name="tv_saved_article_intro">마음에 드는 아티클을 저장해보세요</string>
     <string name="tv_saved_article_empty_title">아직 저장한 아티클이 없어요</string>
     <string name="tv_saved_space_empty_intro">마음에 드는 공간을 저장해보세요</string>
@@ -75,4 +75,5 @@
     <string name="tutorial_welcome_button_text">PPP Club 입장하기</string>
     <string name="tutorial_title_collection">Collection</string>
     <string name="tutorial_title_place">place</string>
+    <string name="tv_article_empty_title">아직 아티클이 없어요</string>
 </resources>

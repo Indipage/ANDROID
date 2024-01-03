@@ -8,5 +8,5 @@ data class ArticleDetail(
     val thumbnailUrl: String,
     val spaceId: Int,
     val spaceName: String,
-    val spaceOwner: String
+    val spaceOwner: String?
 )

@@ -13,7 +13,7 @@ data class ResponseArticleDetailDto(
     @SerialName("thumbnailUrl") val thumbnailUrl: String,
     @SerialName("spaceId") val spaceId: Int,
     @SerialName("spaceName") val spaceName: String,
-    @SerialName("spaceOwner") val spaceOwner: String
+    @SerialName("spaceOwner") val spaceOwner: String? = null
 ) {
     fun toArticleDetailEntity() =
         ArticleDetail(id, title, content, issueDate, thumbnailUrl, spaceId, spaceName, spaceOwner)
