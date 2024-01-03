@@ -32,6 +32,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
         super.onStart()
         parentViewModel.getUser()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -81,6 +82,7 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
     private fun observeArticleSlide() {
         viewModel.articleSlideData.observe(viewLifecycleOwner) {
             with(binding) {
+                coArticleEmptyView.isVisible = false
                 if (it.hasSlide) {
                     vpArticle.isVisible = true
                     layoutWeekly.isVisible = false
