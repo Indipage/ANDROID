@@ -15,7 +15,6 @@ class ArticleDetailBottomTicketViewHolder(
 
     fun bind(data: TicketReceiveCheck) {
         with(binding) {
-            ticketReceive = data
             if (data.hasReceivedTicket) {
                 ivItemArticleDetailBottomTicketImage.load(data.ticket.ticketForArticleImageUrl)
                 tvItemArticleDetailBottomTicketPush.visibility = View.INVISIBLE
@@ -26,7 +25,6 @@ class ArticleDetailBottomTicketViewHolder(
             binding.ivItemArticleDetailBottomTicketImage.setOnClickListener {
                 onClickTicketReceived(data)
             }
-            executePendingBindings()
         }
     }
 
