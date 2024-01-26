@@ -125,7 +125,7 @@
                 android:layout_marginHorizontal="71dp"
                 android:layout_marginTop="23dp"
                 android:gravity="center"
-                android:text="@string/tv_article_empty_title"
+                android:text="@string/tv_article_ticket_empty_title"
                 android:textAppearance="@style/TextAppearance.IndiPage.Body01"
                 android:textColor="@color/indi_gray600"
                 app:layout_constraintEnd_toEndOf="parent"
