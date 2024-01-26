@@ -68,7 +68,6 @@ class ArticleFragment : BindingFragment<FragmentArticleBinding>(R.layout.fragmen
                     page.scaleX = ((1 - abs(position)) / 5 + 0.8f)
                 }
                 articleWeekly = article
-                executePendingBindings()
                 motion(article.id.toLong())
             }
 
