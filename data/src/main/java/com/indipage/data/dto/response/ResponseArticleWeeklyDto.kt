@@ -10,7 +10,7 @@ data class ResponseArticleWeeklyDto(
     @SerialName("id") val id: Int,
     @SerialName("title") val title: String,
     @SerialName("spaceName") val spaceName: String,
-    @SerialName("spaceOwner") val spaceOwner: String,
+    @SerialName("spaceOwner") val spaceOwner: String? = null,
     @SerialName("remainingDays") val remainingDays: Int,
     @SerialName("thumbnailUrlOfThisWeek") val thumbnailUrlOfThisWeek: String,
     @SerialName("thumbnailUrlOfNextWeek") val thumbnailUrlOfNextWeek: String

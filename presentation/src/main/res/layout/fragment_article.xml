@@ -76,13 +76,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_launcher_background" />
 
-            <ImageView
+            <View
                 android:id="@+id/iv_article_card_gradient_open"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:contentDescription="@string/iv_article_weekly_gradient"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_article_card_gradient_open"
+                android:background="@drawable/shape_black_gradient_rect"
                 app:layout_constraintBottom_toBottomOf="@id/iv_article_place_image"
                 app:layout_constraintEnd_toEndOf="@id/iv_article_place_image"
                 app:layout_constraintStart_toStartOf="@id/iv_article_place_image"

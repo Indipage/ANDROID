@@ -4,9 +4,6 @@
 
     <data>
 
-        <variable
-            name="ticket_receive"
-            type="com.indipage.domain.model.TicketReceiveCheck" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +18,7 @@
             android:layout_marginHorizontal="83dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/iv_article_detail_ticket_image"
-           android:src="@drawable/img_article_detail_ticket_empty"
+            android:src="@drawable/img_article_detail_ticket_empty"
             app:layout_constraintBottom_toTopOf="@id/tv_item_article_detail_bottom_ticket_push"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
