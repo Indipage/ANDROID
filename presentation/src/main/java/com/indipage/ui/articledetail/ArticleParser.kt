@@ -15,7 +15,11 @@ import com.indipage.presentation.R
 import com.indipage.util.ArticleDetailTag
 import timber.log.Timber
 
+
 class ArticleParser {
+    /**
+     * TAG 속성 문자열 분리
+     * **/
     fun splitArticleContent(input: String, spaceId: Long): List<ArticleDetailData> {
         var currentIndex = 0
         val articleList = mutableListOf<ArticleDetailData>()
@@ -32,10 +36,14 @@ class ArticleParser {
             currentIndex = matchResult.range.last + 1
         }
 
-        Timber.tag("split").d(articleList.toString())
         return articleList
     }
 
+    /**
+     * TAG 제거
+     * TAG 별 분리 작업
+     * SPANABLE 타입 분리
+     * **/
     fun getArticleContent(content: List<ArticleDetailData>): List<ArticleDetailParsing> {
         val parsingList = mutableListOf<ArticleDetailParsing>()
         for (i in content.indices) {
@@ -73,6 +81,9 @@ class ArticleParser {
         return parsingList
     }
 
+    /*
+    * 태그 속성 분리
+    * */
     private fun getArticleContentType(content: ArticleDetailData): Int {
         return when {
             content.body.contains(ArticleDetailTag.TITLE_TAG_REGEX) -> ArticleDetailTag.TITLE
@@ -82,6 +93,11 @@ class ArticleParser {
         }
     }
 
+    /**
+     * SpannableStringBuilder로 반환
+     * 색상, 볼드체, 링크 적용
+     * 최종 스타일 적용
+     * */
     @SuppressLint("ResourceAsColor")
     private fun getSpannableString(content: String, spaceId: Long): SpannableStringBuilder {
         val spannable = SpannableStringBuilder(content).apply {
@@ -137,6 +153,9 @@ class ArticleParser {
         return spannable
     }
 
+    /**
+    클릭 가능한 Span
+     * **/
     private fun clickableSpan(spaceId: Long) = object : ClickableSpan() {
         override fun onClick(view: View) {
             view.findNavController().navigate(
