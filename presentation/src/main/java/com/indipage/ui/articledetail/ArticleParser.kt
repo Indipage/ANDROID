@@ -15,7 +15,6 @@ import com.indipage.presentation.R
 import com.indipage.util.ArticleDetailTag
 import timber.log.Timber
 
-
 class ArticleParser {
     /**
      * TAG 속성 문자열 분리
@@ -25,13 +24,10 @@ class ArticleParser {
         val articleList = mutableListOf<ArticleDetailData>()
 
         ArticleDetailTag.TAG_REGEX.findAll(input).forEach { matchResult ->
-
             val tagLessPart = input.substring(currentIndex, matchResult.range.first)
-
             if (tagLessPart.isNotBlank()) {
                 articleList.add(ArticleDetailData(tagLessPart, spaceId))
             }
-
             articleList.add(ArticleDetailData(matchResult.value, spaceId))
             currentIndex = matchResult.range.last + 1
         }
@@ -70,10 +66,15 @@ class ArticleParser {
                         content[i].body.replace(ArticleDetailTag.REPLACE_TAG_REGEX, "")
                     parsingList.add(
                         ArticleDetailParsing(
-                            null, null, getSpannableString(articleBody, spaceId), false, spaceId
+                            null,
+                            null,
+                            getSpannableString(articleBody, spaceId),
+                            false,
+                            spaceId
                         )
                     )
                 }
+
             }
         }
 
@@ -139,7 +140,6 @@ class ArticleParser {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
-
         }
 
         ArticleDetailTag.REPLACE_STYLE_START_TAG_REGEX.findAll(spannable).forEach { matchResult ->
